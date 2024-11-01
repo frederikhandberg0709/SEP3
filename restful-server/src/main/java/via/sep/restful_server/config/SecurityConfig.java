@@ -19,8 +19,13 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
                         // Public endpoints
-                        .requestMatchers("/api/users/register").permitAll()
-                        .requestMatchers("/api/properties", "/api/properties/**").permitAll()
+                        .requestMatchers(
+                                "/api/users/register",
+                                "/api/users",
+                                "/api/users/{id}",
+                                "/api/properties",
+                                "/api/properties/{id}"
+                        ).permitAll()
                         // Secured endpoints
                         .anyRequest().authenticated()
                 );
