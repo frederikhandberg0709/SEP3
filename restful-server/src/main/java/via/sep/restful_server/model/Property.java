@@ -39,4 +39,10 @@ public class Property {
     private Integer yearBuilt;
 
     private String description;
+
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+    private Set<Image> images;
+
+    @OneToMany(mappedBy = "property")
+    private Set<Booking> bookings;
 }
