@@ -5,37 +5,38 @@ import lombok.Data;
 
 import java.awt.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
+@Table(name = "properties", schema = "properties")
 @Data
 public class Property {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "property_id")
+    private Long propertyId;
 
-    private String title;
-    private String description;
-    private BigDecimal price;
-    private Integer squareMeters;
-    private Integer bedrooms;
-    private Integer bathrooms;
+    @Column(name = "property_type", nullable = false, length = 20)
+    private String propertyType;
+
+    @Column(nullable = false)
     private String address;
-    private String city;
-    private String postalCode;
 
-    @Enumerated(EnumType.STRING)
-    private PropertyType type;
+    @Column(name = "floor_area", nullable = false, precision = 10, scale = 2)
+    private BigDecimal floorArea;
 
-    @Enumerated(EnumType.STRING)
-    private ListingType listingType;
+    @Column(nullable = false, precision = 15, scale = 2)
+    private BigDecimal price;
 
-    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
-    private Set<Image> images;
+    @Column(name = "num_bedrooms")
+    private Integer numBedrooms;
 
-    @ManyToOne
-    private Agent agent;
+    @Column(name = "num_bathrooms")
+    private Integer numBathrooms;
 
-    @OneToMany(mappedBy = "property")
-    private Set<Viewing> viewings;
+    @Column(name = "year_built")
+    private Integer yearBuilt;
+
+    private String description;
 }
