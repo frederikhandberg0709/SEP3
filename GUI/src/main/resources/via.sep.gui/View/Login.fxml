@@ -8,8 +8,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="via.sep.logic.View.LoginView">
    <children>
-      <TextField fx:id="usernameField" layoutX="106.0" layoutY="70.0" prefHeight="26.0" prefWidth="233.0" />
-      <TextField fx:id="passwordField" layoutX="105.0" layoutY="117.0" prefHeight="26.0" prefWidth="234.0" />
+      <TextField fx:id="usernameField" layoutX="106.0" layoutY="70.0" prefHeight="26.0" prefWidth="233.0" promptText="Enter username" />
+      <TextField fx:id="passwordField" layoutX="105.0" layoutY="117.0" prefHeight="26.0" prefWidth="234.0" promptText="Enter password" />
       <Text layoutX="14.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name">
          <font>
             <Font name="System Italic" size="12.0" />

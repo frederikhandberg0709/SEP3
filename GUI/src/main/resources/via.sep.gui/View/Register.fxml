@@ -6,20 +6,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="358.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="via.sep.logic.View.RegisterView">
    <children>
-      <TextField layoutX="90.0" layoutY="63.0" prefHeight="26.0" prefWidth="234.0" />
-      <TextField layoutX="90.0" layoutY="175.0" prefHeight="26.0" prefWidth="234.0" />
-      <Text layoutX="12.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name" />
+      <TextField layoutX="90.0" layoutY="63.0" prefHeight="26.0" prefWidth="234.0" promptText="Enter email" />
+      <TextField layoutX="90.0" layoutY="175.0" prefHeight="26.0" prefWidth="234.0" promptText="Enter password " />
+      <Text layoutX="11.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Text>
       <Text layoutX="27.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
          <font>
-            <Font name="System Italic" size="12.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
       </Text>
       <Button layoutX="118.0" layoutY="249.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="59.0" text="Cancel" />
       <Button layoutX="207.0" layoutY="249.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Register" />
-      <Text layoutX="16.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-      <TextField layoutX="90.0" layoutY="121.0" prefHeight="26.0" prefWidth="234.0" />
+      <TextField layoutX="90.0" layoutY="121.0" prefHeight="26.0" prefWidth="234.0" promptText="Enter username" />
+      <Text layoutX="12.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
