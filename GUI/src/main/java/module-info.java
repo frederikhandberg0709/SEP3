@@ -4,6 +4,6 @@ module via.sep.gui {
     requires java.desktop;
 
 
-    opens via.sep.gui to javafx.fxml;
+    opens via.sep.gui.View to javafx.fxml;
     exports via.sep.gui;
 }

@@ -4,11 +4,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/path/to/your/EditView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/via/sep/gui/View/DashBoard.fxml"));
         Pane root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -18,5 +20,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
+
     }
 }
