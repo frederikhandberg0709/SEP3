@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="358.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="via.sep.logic.View.RegisterView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="358.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="via.sep.gui.View.RegisterView">
    <children>
       <TextField layoutX="90.0" layoutY="63.0" prefHeight="26.0" prefWidth="234.0" promptText="Enter email" />
       <TextField layoutX="90.0" layoutY="175.0" prefHeight="26.0" prefWidth="234.0" promptText="Enter password " />

@@ -1,4 +1,4 @@
-package via.sep.logic.View;
+package via.sep.gui.View;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -6,7 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import java.util.function.Consumer;
 
-public class EditView {
+public class CreateView {
+
     @FXML private TextField addressField;
     @FXML private TextField propertyTypeField;
     @FXML private TextField bathroomNumField;
@@ -16,7 +17,7 @@ public class EditView {
     @FXML private TextField statusField;
     @FXML private TextField sizeField;
     @FXML private TextField priceField;
-    @FXML private Button applyChangesButton;
+    @FXML private Button createButton;
     @FXML private Button cancelButton;
 
     private Consumer<PropertyData> onSaveCallback;
@@ -30,8 +31,8 @@ public class EditView {
         setupNumericValidation(sizeField);
         setupNumericValidation(priceField);
 
-        applyChangesButton.setOnAction(event -> applyChanges());
-        cancelButton.setOnAction(event -> cancelEdit());
+        createButton.setOnAction(event -> createProperty());
+        cancelButton.setOnAction(event -> cancelCreation());
     }
 
     public void setCallbacks(Consumer<PropertyData> onSave, Runnable onCancel) {
@@ -47,12 +48,12 @@ public class EditView {
         });
     }
 
-    private void applyChanges() {
+    private void createProperty() {
         try {
             PropertyData data = validateAndCollectData();
             if (data != null && onSaveCallback != null) {
                 onSaveCallback.accept(data);
-                showAlert(Alert.AlertType.INFORMATION, "Success", "Property updated successfully.");
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Property created successfully.");
             }
         } catch (ValidationException e) {
             showAlert(Alert.AlertType.ERROR, "Validation Error", e.getMessage());
@@ -98,7 +99,7 @@ public class EditView {
         }
     }
 
-    private void cancelEdit() {
+    private void cancelCreation() {
         clearAllFields();
         if (onCancelCallback != null) {
             onCancelCallback.run();

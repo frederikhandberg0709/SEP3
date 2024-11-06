@@ -1,4 +1,4 @@
-package via.sep.logic.View;
+package via.sep.gui.View;
 
 
 

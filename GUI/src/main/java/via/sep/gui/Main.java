@@ -1,3 +1,5 @@
+package via.sep.gui;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,7 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/via/sep/gui/View/DashBoard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/via/sep/gui/View/Register.fxml"));
         Pane root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
