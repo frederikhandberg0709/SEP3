@@ -1,6 +1,8 @@
 package via.sep.restful_server.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import via.sep.restful_server.dto.PropertyDTO;
 import via.sep.restful_server.model.Apartment;
@@ -19,6 +21,7 @@ public class PropertyController {
     private final HouseRepository houseRepository;
     private final ApartmentRepository apartmentRepository;
 
+    @Autowired
     public PropertyController(PropertyRepository propertyRepository,
                               HouseRepository houseRepository,
                               ApartmentRepository apartmentRepository) {
@@ -28,6 +31,7 @@ public class PropertyController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> createProperty(@RequestBody PropertyDTO propertyDTO) {
         Property property = new Property();
         property.setPropertyType(propertyDTO.getPropertyType());
@@ -100,7 +104,48 @@ public class PropertyController {
         return ResponseEntity.ok(propertyRepository.findAll());
     }
 
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> updateProperty(@PathVariable Long id, @RequestBody PropertyDTO propertyDTO) {
+        return propertyRepository.findById(id)
+                .map(property -> {
+                    property.setPropertyType(propertyDTO.getPropertyType());
+                    property.setAddress(propertyDTO.getAddress());
+                    property.setFloorArea(propertyDTO.getFloorArea());
+                    property.setPrice(propertyDTO.getPrice());
+                    property.setNumBedrooms(propertyDTO.getNumBedrooms());
+                    property.setNumBathrooms(propertyDTO.getNumBathrooms());
+                    property.setYearBuilt(propertyDTO.getYearBuilt());
+                    property.setDescription(propertyDTO.getDescription());
+
+                    Property updatedProperty = propertyRepository.save(property);
+
+                    if ("House".equals(propertyDTO.getPropertyType())) {
+                        houseRepository.findByProperty_PropertyId(id)
+                                .ifPresent(house -> {
+                                    house.setLotSize(propertyDTO.getLotSize());
+                                    house.setHasGarage(propertyDTO.getHasGarage());
+                                    house.setNumFloors(propertyDTO.getNumFloors());
+                                    houseRepository.save(house);
+                                });
+                    } else if ("Apartment".equals(propertyDTO.getPropertyType())) {
+                        apartmentRepository.findByProperty_PropertyId(id)
+                                .ifPresent(apartment -> {
+                                    apartment.setFloorNumber(propertyDTO.getFloorNumber());
+                                    apartment.setBuildingName(propertyDTO.getBuildingName());
+                                    apartment.setHasElevator(propertyDTO.getHasElevator());
+                                    apartment.setHasBalcony(propertyDTO.getHasBalcony());
+                                    apartmentRepository.save(apartment);
+                                });
+                    }
+
+                    return ResponseEntity.ok(updatedProperty);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteProperty(@PathVariable Long id) {
         return propertyRepository.findById(id)
                 .map(property -> {
