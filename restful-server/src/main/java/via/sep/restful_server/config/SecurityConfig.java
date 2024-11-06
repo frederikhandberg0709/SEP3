@@ -24,8 +24,7 @@ public class SecurityConfig {
                                 "/api/users",
                                 "/api/users/{id}",
                                 "/api/properties",
-                                "/api/properties/{id}",
-                                "/api/properties/{id}/images"
+                                "/api/properties/{id}"
                         ).permitAll()
                         // Secured endpoints
                         .anyRequest().authenticated()

@@ -3,7 +3,6 @@ package via.sep.restful_server.dto;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Data
 public class PropertyDTO {
@@ -15,7 +14,6 @@ public class PropertyDTO {
     private Integer numBathrooms;
     private Integer yearBuilt;
     private String description;
-    private List<Long> imageIds;
 
     // House
     private BigDecimal lotSize;
