@@ -1,23 +1,18 @@
 package via.sep.restful_server.api;
 
-import org.springframework.http.MediaType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import via.sep.restful_server.dto.PropertyDTO;
 import via.sep.restful_server.model.Apartment;
 import via.sep.restful_server.model.House;
-import via.sep.restful_server.model.Image;
 import via.sep.restful_server.model.Property;
 import via.sep.restful_server.repository.ApartmentRepository;
 import via.sep.restful_server.repository.HouseRepository;
-import via.sep.restful_server.repository.ImageRepository;
 import via.sep.restful_server.repository.PropertyRepository;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/properties")
@@ -25,19 +20,18 @@ public class PropertyController {
     private final PropertyRepository propertyRepository;
     private final HouseRepository houseRepository;
     private final ApartmentRepository apartmentRepository;
-    private final ImageRepository imageRepository;
 
+    @Autowired
     public PropertyController(PropertyRepository propertyRepository,
                               HouseRepository houseRepository,
-                              ApartmentRepository apartmentRepository,
-                              ImageRepository imageRepository) {
+                              ApartmentRepository apartmentRepository) {
         this.propertyRepository = propertyRepository;
         this.houseRepository = houseRepository;
         this.apartmentRepository = apartmentRepository;
-        this.imageRepository = imageRepository;
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> createProperty(@RequestBody PropertyDTO propertyDTO) {
         Property property = new Property();
         property.setPropertyType(propertyDTO.getPropertyType());
@@ -100,12 +94,6 @@ public class PropertyController {
                         });
                     }
 
-                    List<Long> imageIds = imageRepository.findByProperty_PropertyId(id)
-                            .stream()
-                            .map(Image::getId)
-                            .collect(Collectors.toList());
-                    dto.setImageIds(imageIds);
-
                     return ResponseEntity.ok(dto);
                 })
                 .orElse(ResponseEntity.notFound().build());
@@ -116,74 +104,48 @@ public class PropertyController {
         return ResponseEntity.ok(propertyRepository.findAll());
     }
 
-    // Image related endpoints
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> updateProperty(@PathVariable Long id, @RequestBody PropertyDTO propertyDTO) {
+        return propertyRepository.findById(id)
+                .map(property -> {
+                    property.setPropertyType(propertyDTO.getPropertyType());
+                    property.setAddress(propertyDTO.getAddress());
+                    property.setFloorArea(propertyDTO.getFloorArea());
+                    property.setPrice(propertyDTO.getPrice());
+                    property.setNumBedrooms(propertyDTO.getNumBedrooms());
+                    property.setNumBathrooms(propertyDTO.getNumBathrooms());
+                    property.setYearBuilt(propertyDTO.getYearBuilt());
+                    property.setDescription(propertyDTO.getDescription());
 
-    @PostMapping("/{id}/images")
-    public ResponseEntity<?> addImageToProperty(@PathVariable Long id,
-                                                @RequestParam("image") MultipartFile file) {
-        try {
-            return propertyRepository.findById(id)
-                    .map(property -> {
-                        try {
-                            Image image = new Image();
-                            image.setProperty(property);
-                            image.setImageData(file.getBytes());
-                            Image savedImage = imageRepository.save(image);
+                    Property updatedProperty = propertyRepository.save(property);
 
-                            return ResponseEntity.ok()
-                                    .body(Map.of("message", "Image uploaded successfully",
-                                            "imageId", savedImage.getId()));
-                        } catch (IOException e) {
-                            return ResponseEntity.internalServerError()
-                                    .body("Failed to process image");
-                        }
-                    })
-                    .orElse(ResponseEntity.notFound().build());
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError()
-                    .body("Failed to upload image");
-        }
-    }
-
-    @GetMapping("/{propertyId}/images/{imageId}")
-    public ResponseEntity<?> getPropertyImage(@PathVariable Long propertyId,
-                                              @PathVariable Long imageId) {
-        return imageRepository.findById(imageId)
-                .map(image -> {
-                    if (!image.getProperty().getPropertyId().equals(propertyId)) {
-                        return ResponseEntity.notFound().build();
+                    if ("House".equals(propertyDTO.getPropertyType())) {
+                        houseRepository.findByProperty_PropertyId(id)
+                                .ifPresent(house -> {
+                                    house.setLotSize(propertyDTO.getLotSize());
+                                    house.setHasGarage(propertyDTO.getHasGarage());
+                                    house.setNumFloors(propertyDTO.getNumFloors());
+                                    houseRepository.save(house);
+                                });
+                    } else if ("Apartment".equals(propertyDTO.getPropertyType())) {
+                        apartmentRepository.findByProperty_PropertyId(id)
+                                .ifPresent(apartment -> {
+                                    apartment.setFloorNumber(propertyDTO.getFloorNumber());
+                                    apartment.setBuildingName(propertyDTO.getBuildingName());
+                                    apartment.setHasElevator(propertyDTO.getHasElevator());
+                                    apartment.setHasBalcony(propertyDTO.getHasBalcony());
+                                    apartmentRepository.save(apartment);
+                                });
                     }
-                    return ResponseEntity.ok()
-                            .contentType(MediaType.IMAGE_JPEG)
-                            .body(image.getImageData());
-                })
-                .orElse(ResponseEntity.notFound().build());
-    }
 
-    @GetMapping("/{id}/images")
-    public ResponseEntity<List<Long>> getPropertyImageIds(@PathVariable Long id) {
-        List<Long> imageIds = imageRepository.findByProperty_PropertyId(id)
-                .stream()
-                .map(Image::getId)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(imageIds);
-    }
-
-    @DeleteMapping("/{propertyId}/images/{imageId}")
-    public ResponseEntity<?> deletePropertyImage(@PathVariable Long propertyId,
-                                                 @PathVariable Long imageId) {
-        return imageRepository.findById(imageId)
-                .map(image -> {
-                    if (!image.getProperty().getPropertyId().equals(propertyId)) {
-                        return ResponseEntity.notFound().build();
-                    }
-                    imageRepository.delete(image);
-                    return ResponseEntity.noContent().build();
+                    return ResponseEntity.ok(updatedProperty);
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteProperty(@PathVariable Long id) {
         return propertyRepository.findById(id)
                 .map(property -> {

@@ -1,5 +1,6 @@
 package via.sep.restful_server.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ public class UserController {
     private final UserProfileRepository userProfileRepository;
     private final PasswordEncoder passwordEncoder;
 
+    @Autowired
     public UserController(LoginRepository loginRepository,
                           UserProfileRepository userProfileRepository,
                           PasswordEncoder passwordEncoder) {
@@ -78,7 +80,13 @@ public class UserController {
         Login login = new Login();
         login.setUsername(registration.getUsername());
         login.setPassword(encodedPassword);
-        login.setRole("USER");
+
+        String role = registration.getRole() != null ?
+                registration.getRole().toUpperCase() : "USER";
+        if (!role.equals("ADMIN") && !role.equals("USER")) {
+            role = "USER";
+        }
+        login.setRole(role);
 
         Login savedLogin = loginRepository.save(login);
 
@@ -94,6 +102,7 @@ public class UserController {
         Map<String, Object> response = new HashMap<>();
         response.put("accountId", savedLogin.getAccountId());
         response.put("username", savedLogin.getUsername());
+        response.put("role", savedLogin.getRole());
         response.put("fullName", savedProfile.getFullName());
 
         return ResponseEntity.ok(response);
