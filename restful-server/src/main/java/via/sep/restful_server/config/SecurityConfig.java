@@ -1,5 +1,6 @@
 package via.sep.restful_server.config;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -89,7 +90,17 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .userDetailsService(userDetailsService)
-                .httpBasic(Customizer.withDefaults());
+                .httpBasic(
+                        basic -> basic
+                                .authenticationEntryPoint((request, response, authException) -> {
+                                    response.setContentType("application/json");
+                                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                                    response.getWriter().write(
+                                            "{\"error\": \"" + authException.getMessage() + "\", " +
+                                                    "\"status\": \"401\"}"
+                                    );
+                                })
+                );
 
         return http.build();
     }
