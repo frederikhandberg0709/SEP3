@@ -3,41 +3,36 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0"
-            prefWidth="699.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="via.sep.gui.View.DashBoardView">
-    <Button fx:id="createPropertyButton" layoutX="14.0" layoutY="169.0" mnemonicParsing="false" prefHeight="26.0"
-            prefWidth="102.0" text="Create Property " onAction="#handleCreateProperty"/>
-    <Button fx:id="deletePropertyButton" layoutX="130.0" layoutY="169.0" mnemonicParsing="false" text="Delete Property "
-            onAction="#handleDeleteProperty"/>
-    <Button fx:id="editPropertyButton" layoutX="239.0" layoutY="169.0" mnemonicParsing="false" prefHeight="26.0"
-            prefWidth="102.0" text="Edit Property " onAction="#handleEditProperty"/>
-    <Text layoutX="61.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Real RealEstate"
-          textAlignment="CENTER" wrappingWidth="208.183837890625">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="via.sep.gui.View.DashBoardView">
+    <Button fx:id="createPropertyButton" layoutX="14.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleCreateProperty" prefHeight="26.0" prefWidth="102.0" text="Create Property " />
+    <Button fx:id="deletePropertyButton" layoutX="130.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleDeleteProperty" text="Delete Property " />
+    <Button fx:id="editPropertyButton" layoutX="239.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleEditProperty" prefHeight="26.0" prefWidth="102.0" text="Edit Property " />
+    <Text layoutX="223.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Real RealEstate Manager" textAlignment="CENTER" wrappingWidth="235.38385009765625">
         <font>
-            <Font name="Book Antiqua" size="27.0"/>
+            <Font name="Book Antiqua" size="27.0" />
         </font>
     </Text>
     <TableView fx:id="propertyTableView" layoutY="221.0" prefHeight="200.0" prefWidth="698.0">
         <columns>
-            <TableColumn prefWidth="91.20001065731049" text="Address "/>
-            <TableColumn prefWidth="95.20001983642578" text="Client Name"/>
-            <TableColumn prefWidth="125.5999755859375" text="Phone Number"/>
-            <TableColumn prefWidth="88.79998779296875" text="Lease Period "/>
-            <TableColumn prefWidth="99.99993896484375" text="Email "/>
-            <TableColumn prefWidth="99.99993896484375" text="Propoerty Type"/>
-            <TableColumn prefWidth="99.99993896484375" text="Price"/>
+            <TableColumn prefWidth="91.20001065731049" text="Address " />
+            <TableColumn prefWidth="95.20001983642578" text="Client Name" />
+            <TableColumn prefWidth="125.5999755859375" text="Phone Number" />
+            <TableColumn prefWidth="88.79998779296875" text="Lease Period " />
+            <TableColumn prefWidth="99.99993896484375" text="Email " />
+            <TableColumn prefWidth="99.99993896484375" text="Propoerty Type" />
+            <TableColumn prefWidth="99.99993896484375" text="Price" />
         </columns>
     </TableView>
-    <ImageView fitHeight="47.0" fitWidth="54.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true"
-               preserveRatio="true">
-        <Image url="@../Images/realestate.png"/>
+    <ImageView fitHeight="47.0" fitWidth="54.0" layoutX="181.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../Images/realestate.png" />
     </ImageView>
+   <Button fx:id="editPropertyButton1" layoutX="350.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleEditProperty" prefHeight="26.0" prefWidth="102.0" text="Book agent" />
+   <TextField fx:id="SearchField" layoutX="464.0" layoutY="170.0" prefHeight="26.0" prefWidth="222.0" promptText="Search property" />
 </AnchorPane>

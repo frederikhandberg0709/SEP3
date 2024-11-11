@@ -1,63 +1,87 @@
 package via.sep.gui.View;
 
-
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import via.sep.gui.ViewModel.RegisterViewModel;
 
+/**
+ * View for the Registration view.
+ * Handles user input and interactions for user registration.
+ */
 public class RegisterView {
 
     @FXML
-    private TextField usernameField;
-
+    private TextField usernameRegister;
     @FXML
-    private TextField emailField;
-
+    private TextField passwordRegister;
     @FXML
-    private TextField passwordField;
-
+    private Button createAccountButton;
     @FXML
-    private Button registerButton;
+    private Button goBackToLoginButton;
 
-    @FXML
-    private Button cancelButton;
+    private RegisterViewModel ViewModel;
 
+    /**
+     * Sets the ViewModel for the Registration view.
+     *
+     * @param viewModel the RegisterViewModel to be set
+     */
+    public void setViewModel(RegisterViewModel viewModel) {
+        this.ViewModel = viewModel;
+    }
+
+    /**
+     * Initializes the View. Binds UI components to the ViewModel properties and sets up event handlers.
+     */
     @FXML
     private void initialize() {
-        registerButton.setOnAction(event -> handleRegister());
-        cancelButton.setOnAction(event -> handleCancel());
+        // Property-binding with the RegisterViewModel
+        usernameRegister.textProperty().bindBidirectional(ViewModel.usernameProperty());
+        passwordRegister.textProperty().bindBidirectional(ViewModel.passwordProperty());
+
+        // Initializing clickable buttons
+        createAccountButton.setOnAction(event -> handleCreateAccount());
+        goBackToLoginButton.setOnAction(event -> goBackToLogin());
+
+        // Listener that checks for either Success or Error and sends messages accordingly
+        ViewModel.registrationStatusProperty().addListener((observableValue, oldStatus, newStatus) -> {
+            if (newStatus != null && !newStatus.isEmpty()) {
+                showRegistrationAlert(newStatus.startsWith("Success") ? "Success" : "Error", newStatus);
+                if (newStatus.startsWith("Success")) {
+                    goBackToLogin(); // Goes back to the login screen after account creation for user-friendliness
+                }
+                ViewModel.registrationStatusProperty().set(""); // Resets UI status message to prevent repeated messages
+            }
+        });
     }
 
-    private void handleRegister() {
-        String username = usernameField.getText();
-        String email = emailField.getText();
-        String password = passwordField.getText();
-
-        if (isValidInput(username, email, password)) {
-            showAlert("Registration Successful", "Welcome " + username + "!");
-        } else {
-            showAlert("Registration Failed", "Please fill in all fields correctly.");
-        }
+    /**
+     * Navigates back to the login view.
+     */
+    private void goBackToLogin() {
+        SceneManager.showLogin();
     }
 
-    private void handleCancel() {
-        usernameField.clear();
-        emailField.clear();
-        passwordField.clear();
+    /**
+     * Handles the action when the user clicks the create account button.
+     */
+    private void handleCreateAccount() {
+        ViewModel.registerAccount();
     }
 
-    private boolean isValidInput(String username, String email, String password) {
-        // Replace with actual validation logic
-        return !username.isEmpty() && !email.isEmpty() && !password.isEmpty();
-    }
-
-    private void showAlert(String title, String content) {
+    /**
+     * Shows an alert dialog for registration messages.
+     *
+     * @param title   the title of the alert
+     * @param message the message of the alert
+     */
+    private void showRegistrationAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
-        alert.setContentText(content);
+        alert.setContentText(message);
         alert.showAndWait();
     }
 }

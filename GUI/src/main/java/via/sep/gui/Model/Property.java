@@ -2,29 +2,39 @@ package via.sep.gui.Model;
 
 public class Property {
     private final String address;
-    private final String clientName;
-    private final String phoneNumber;
-    private final String leasePeriod;
-    private final String email;
     private final String propertyType;
+    private final int bathroomNum;
+    private final int roomsNum;
+    private final String fullName;
+    private final int floorNum;
+    private final String status;
+    private final double size;
     private final double price;
 
     // Constructor, getters, and setters
-    public Property(String address, String clientName, String phoneNumber, String leasePeriod, String email, String propertyType, double price) {
+    public Property(String address, String propertyType, int bathroomNum, int roomsNum, String fullName, int floorNum, String status, double size, double price) {
         this.address = address;
-        this.clientName = clientName;
-        this.phoneNumber = phoneNumber;
-        this.leasePeriod = leasePeriod;
-        this.email = email;
         this.propertyType = propertyType;
+        this.bathroomNum = bathroomNum;
+        this.roomsNum = roomsNum;
+        this.fullName = fullName;
+        this.floorNum = floorNum;
+        this.status = status;
+        this.size = size;
         this.price = price;
     }
 
     public String getAddress() { return address; }
-    public String getClientName() { return clientName; }
-    public String getPhoneNumber() { return phoneNumber; }
-    public String getLeasePeriod() { return leasePeriod; }
-    public String getEmail() { return email; }
     public String getPropertyType() { return propertyType; }
+    public int getBathroomNum() { return bathroomNum; }
+    public int getRoomsNum() { return roomsNum; }
+    public String getFullName() { return fullName; }
+    public int getFloorNum() { return floorNum; }
+    public String getStatus() { return status; }
+    public double getSize() { return size; }
     public double getPrice() { return price; }
+
+    public Object getId() {
+        return getId();
+    }
 }
