@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SignalR Test Client</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+    <style>
+        .notification {
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .notification pre {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        #status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .connected {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .disconnected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+<h2>SignalR Test Client</h2>
+<div>
+    <input type="text" id="token-input" placeholder="Paste your JWT token here">
+    <button id="connect-button" onclick="connectWithToken()">Connect</button>
+</div>
+<div id="status" class="disconnected">Status: Disconnected</div>
+<div id="notifications"></div>
+
+<script>
+    if (typeof signalR === 'undefined') {
+        console.error('SignalR library not loaded!');
+    }
+    
+    let connection;
+
+    function createConnection(token) {
+        try {
+            connection = new signalR.HubConnectionBuilder()
+                .withUrl("http://localhost:5168/hubs/notifications", {
+                    accessTokenFactory: () => token
+                })
+                .withAutomaticReconnect()
+                .build();
+            console.log("Connection created successfully");
+        } catch (error) {
+            console.error("Error creating connection:", error);
+        }
+    }
+
+    async function connectWithToken() {
+        const token = document.getElementById('token-input').value.trim();
+        if (!token) {
+            alert('Please enter a JWT token');
+            return;
+        }
+
+        console.log("Attempting to connect with token:", token.substring(0, 20) + "...");
+        console.log("Token parts:", token.split('.').map(part => {
+            try {
+                return JSON.parse(atob(part));
+            } catch (e) {
+                return part;
+            }
+        }));
+
+        if (connection) {
+            try {
+                await connection.stop();
+                console.log("Stopped existing connection");
+            } catch (error) {
+                console.error("Error stopping connection:", error);
+            }
+        }
+
+        createConnection(token);
+        setupEventHandlers();
+
+        try {
+            await connection.start();
+            console.log("Connected successfully!");
+            updateStatus(true);
+            document.getElementById('connect-button').textContent = 'Disconnect';
+        } catch (err) {
+            console.error("Connection error:", err);
+            updateStatus(false);
+            document.getElementById('connect-button').textContent = 'Connect';
+            alert('Failed to connect: ' + err.message);
+        }
+    }
+
+    function setupEventHandlers() {
+        if (!connection) {
+            console.error("No connection to set up handlers for!");
+            return;
+        }
+
+        connection.on("OnNewProperty", (notification) => {
+            console.log("New property:", notification);
+            addNotification("New Property", notification);
+        });
+
+        connection.on("OnPropertyUpdated", (notification) => {
+            console.log("Property updated:", notification);
+            addNotification("Property Updated", notification);
+        });
+
+        connection.on("OnPropertySold", (notification) => {
+            console.log("Property sold:", notification);
+            addNotification("Property Sold", notification);
+        });
+
+        connection.on("OnPriceChanged", (notification) => {
+            console.log("Price changed:", notification);
+            addNotification("Price Changed", notification);
+        });
+
+        connection.on("OnPropertyStatusChanged", (notification) => {
+            console.log("Status changed:", notification);
+            addNotification("Status Changed", notification);
+        });
+
+        connection.on("OnPropertyDeleted", (notification) => {
+            console.log("Property deleted:", notification);
+            addNotification("Property Deleted", notification);
+        });
+
+        connection.onreconnecting(() => {
+            console.log("Reconnecting...");
+            updateStatus(false);
+        });
+
+        connection.onreconnected(() => {
+            console.log("Reconnected!");
+            updateStatus(true);
+        });
+
+        connection.onclose(() => {
+            console.log("Disconnected");
+            updateStatus(false);
+            document.getElementById('connect-button').textContent = 'Connect';
+        });
+    }
+    
+    function addNotification(type, notification) {
+        const div = document.createElement("div");
+        div.className = "notification";
+
+        let message = '';
+        switch(type) {
+            case "New Property":
+                message = `New property listing available at ${notification.address}
+                      Price: $${notification.price.toLocaleString()}
+                      Type: ${notification.propertyType}
+                      Bedrooms: ${notification.details.numBedrooms}
+                      Bathrooms: ${notification.details.numBathrooms}`;
+                break;
+            case "Price Changed":
+                const priceDiff = notification.newPrice - notification.oldPrice;
+                const direction = priceDiff > 0 ? 'increased' : 'decreased';
+                message = `Price ${direction} for property at ${notification.address}
+                      From: $${notification.oldPrice.toLocaleString()}
+                      To: $${notification.newPrice.toLocaleString()}`;
+                break;
+            case "Property Updated":
+                message = `Property at ${notification.address} has been updated`;
+                break;
+            case "Property Sold":
+                message = `Property at ${notification.address} has been sold!`;
+                break;
+            default:
+                message = JSON.stringify(notification, null, 2);
+        }
+
+        div.innerHTML = `
+        <h3>${type}</h3>
+        <p>${message}</p>
+        <small>Time: ${new Date().toLocaleTimeString()}</small>
+    `;
+
+        document.getElementById("notifications").prepend(div);
+    }
+
+    function updateStatus(connected) {
+        const statusDiv = document.getElementById("status");
+        statusDiv.className = connected ? "connected" : "disconnected";
+        statusDiv.textContent = `Status: ${connected ? "Connected" : "Disconnected"}`;
+    }
+</script>
+</body>
+</html>

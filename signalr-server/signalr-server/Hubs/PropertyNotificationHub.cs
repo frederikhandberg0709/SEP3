@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using signalr_server.Models;
 using signalr_server.Services;
 
 namespace signalr_server.Hubs;
 
+[Authorize(Roles = "ADMIN")]
 public class PropertyNotificationHub : Hub<IPropertyNotificationClient>
 {
     private readonly ILogger<PropertyNotificationHub> _logger;

@@ -1,11 +1,39 @@
 {
   "Version": 1,
-  "Hash": "t1CIDfZPFK0mGVYYVXi4s9gW60bYqdtmwmZv39qIj3o=",
+  "Hash": "nkZPCRD8eMGRl7a2gu1toXDUTGNvEjEdSbCRAmSkx/I=",
   "Source": "signalr-server",
   "BasePath": "_content/signalr-server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "signalr-server/wwwroot",
+      "Source": "signalr-server",
+      "ContentRoot": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/wwwroot/",
+      "BasePath": "_content/signalr-server",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/wwwroot/test-client.html",
+      "SourceId": "signalr-server",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/wwwroot/",
+      "BasePath": "_content/signalr-server",
+      "RelativePath": "test-client.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/test-client.html"
+    }
+  ]
 }
