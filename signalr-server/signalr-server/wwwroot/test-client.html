@@ -171,7 +171,7 @@
             case "Price Changed":
                 const priceDiff = notification.newPrice - notification.oldPrice;
                 const direction = priceDiff > 0 ? 'increased' : 'decreased';
-                message = `Price ${direction} for property at ${notification.address}
+                message = `Price ${direction} for property at ${notification.address}.
                       From: $${notification.oldPrice.toLocaleString()}
                       To: $${notification.newPrice.toLocaleString()}`;
                 break;
