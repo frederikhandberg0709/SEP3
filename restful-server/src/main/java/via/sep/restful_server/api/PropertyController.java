@@ -8,10 +8,14 @@ import via.sep.restful_server.dto.PropertyDTO;
 import via.sep.restful_server.model.Apartment;
 import via.sep.restful_server.model.House;
 import via.sep.restful_server.model.Property;
+import via.sep.restful_server.notification.dto.PriceChangeNotificationDTO;
+import via.sep.restful_server.notification.service.NotificationService;
 import via.sep.restful_server.repository.ApartmentRepository;
 import via.sep.restful_server.repository.HouseRepository;
 import via.sep.restful_server.repository.PropertyRepository;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -20,14 +24,17 @@ public class PropertyController {
     private final PropertyRepository propertyRepository;
     private final HouseRepository houseRepository;
     private final ApartmentRepository apartmentRepository;
+    private final NotificationService notificationService;
 
     @Autowired
     public PropertyController(PropertyRepository propertyRepository,
                               HouseRepository houseRepository,
-                              ApartmentRepository apartmentRepository) {
+                              ApartmentRepository apartmentRepository,
+                              NotificationService notificationService) {
         this.propertyRepository = propertyRepository;
         this.houseRepository = houseRepository;
         this.apartmentRepository = apartmentRepository;
+        this.notificationService = notificationService;
     }
 
     @PostMapping
@@ -104,11 +111,14 @@ public class PropertyController {
         return ResponseEntity.ok(propertyRepository.findAll());
     }
 
+    // Change all fields
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> updateProperty(@PathVariable Long id, @RequestBody PropertyDTO propertyDTO) {
         return propertyRepository.findById(id)
                 .map(property -> {
+                    BigDecimal oldPrice = property.getPrice(); // Saving old price for notification
+
                     property.setPropertyType(propertyDTO.getPropertyType());
                     property.setAddress(propertyDTO.getAddress());
                     property.setFloorArea(propertyDTO.getFloorArea());
@@ -119,6 +129,18 @@ public class PropertyController {
                     property.setDescription(propertyDTO.getDescription());
 
                     Property updatedProperty = propertyRepository.save(property);
+
+                    // Notify price change only if price has changed
+                    if (!oldPrice.equals(propertyDTO.getPrice())) {
+                        PriceChangeNotificationDTO notificationData = new PriceChangeNotificationDTO(
+                                id.toString(),
+                                property.getAddress(),
+                                oldPrice,
+                                propertyDTO.getPrice(),
+                                LocalDateTime.now()
+                        );
+                        notificationService.notifyPriceChange(notificationData);
+                    }
 
                     if ("House".equals(propertyDTO.getPropertyType())) {
                         houseRepository.findByProperty_PropertyId(id)
@@ -138,6 +160,33 @@ public class PropertyController {
                                     apartmentRepository.save(apartment);
                                 });
                     }
+
+                    return ResponseEntity.ok(updatedProperty);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    // Only change price
+    @PatchMapping("/{id}/price")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> updatePropertyPrice(
+            @PathVariable Long id,
+            @RequestBody BigDecimal newPrice) {
+        return propertyRepository.findById(id)
+                .map(property -> {
+                    BigDecimal oldPrice = property.getPrice();
+                    property.setPrice(newPrice);
+                    Property updatedProperty = propertyRepository.save(property);
+
+                    // Send notification
+                    PriceChangeNotificationDTO notificationData = new PriceChangeNotificationDTO(
+                            id.toString(),
+                            property.getAddress(),
+                            oldPrice,
+                            newPrice,
+                            LocalDateTime.now()
+                    );
+                    notificationService.notifyPriceChange(notificationData);
 
                     return ResponseEntity.ok(updatedProperty);
                 })

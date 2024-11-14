@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class AgentNotificationData {
+public class AgentNotificationDTO {
     private String agentId;
     private String name;
     private String contactInfo;

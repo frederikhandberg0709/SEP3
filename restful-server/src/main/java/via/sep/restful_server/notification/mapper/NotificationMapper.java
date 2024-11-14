@@ -4,11 +4,9 @@ import org.springframework.stereotype.Component;
 import via.sep.restful_server.dto.AgentDTO;
 import via.sep.restful_server.dto.BookingDTO;
 import via.sep.restful_server.dto.PropertyDTO;
-import via.sep.restful_server.notification.dto.AgentNotificationData;
-import via.sep.restful_server.notification.dto.BookingNotificationData;
-import via.sep.restful_server.notification.dto.NotificationDTO;
-import via.sep.restful_server.notification.dto.PropertyNotificationData;
+import via.sep.restful_server.notification.dto.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +14,7 @@ import java.util.Map;
 @Component
 public class NotificationMapper {
     public NotificationDTO toPropertyNotification(PropertyDTO propertyDTO, String action, String propertyId) {
-        PropertyNotificationData data = new PropertyNotificationData(
+        PropertyNotificationDTO data = new PropertyNotificationDTO(
                 propertyId,
                 propertyDTO.getAddress(),
                 propertyDTO.getPrice(),
@@ -55,7 +53,7 @@ public class NotificationMapper {
     }
 
     public NotificationDTO toBookingNotification(BookingDTO bookingDTO, String action, String bookingId) {
-        BookingNotificationData data = new BookingNotificationData(
+        BookingNotificationDTO data = new BookingNotificationDTO(
                 bookingId,
                 bookingDTO.getPropertyId().toString(),
                 bookingDTO.getAgentId().toString(),
@@ -73,7 +71,7 @@ public class NotificationMapper {
     }
 
     public NotificationDTO toAgentNotification(AgentDTO agentDTO, String action, String agentId) {
-        AgentNotificationData data = new AgentNotificationData(
+        AgentNotificationDTO data = new AgentNotificationDTO(
                 agentId,
                 agentDTO.getName(),
                 agentDTO.getContactInfo()
@@ -83,6 +81,24 @@ public class NotificationMapper {
                 "AGENT",
                 action,
                 agentId,
+                LocalDateTime.now(),
+                data
+        );
+    }
+
+    public NotificationDTO toPriceChangeNotification(PropertyDTO propertyDTO, BigDecimal oldPrice, String propertyId) {
+        PriceChangeNotificationDTO data = new PriceChangeNotificationDTO(
+                propertyId,
+                propertyDTO.getAddress(),
+                oldPrice,
+                propertyDTO.getPrice(),
+                LocalDateTime.now()
+        );
+
+        return new NotificationDTO(
+                "PROPERTY",
+                "PRICE_CHANGE",
+                propertyId,
                 LocalDateTime.now(),
                 data
         );

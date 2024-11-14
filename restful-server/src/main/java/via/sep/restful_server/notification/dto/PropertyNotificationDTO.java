@@ -4,15 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Map;
 
 @Data
 @AllArgsConstructor
-public class BookingNotificationData {
-    private String bookingId;
+public class PropertyNotificationDTO {
     private String propertyId;
-    private String agentId;
-    private LocalDateTime bookingDate;
-    private String status;
+    private String address;
+    private BigDecimal price;
+    private String propertyType;
+    private Map<String, Object> details;
 }

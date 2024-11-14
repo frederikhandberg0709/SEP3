@@ -1,55 +1,34 @@
 package via.sep.restful_server.config;
 
-import jakarta.servlet.http.HttpServletResponse;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
 import via.sep.restful_server.service.CustomUserDetailsService;
+import java.nio.charset.StandardCharsets;
 
-//@Configuration
-//@EnableWebSecurity
-//public class SecurityConfig {
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http
-//                .csrf(csrf -> csrf.disable())
-//                .cors(Customizer.withDefaults())
-//                .authorizeHttpRequests(auth -> auth
-//                        // Public endpoints
-//                        .requestMatchers(
-//                                "/api/users/register",
-//                                "/api/users",
-//                                "/api/users/{id}",
-//                                "/api/properties",
-//                                "/api/properties/{id}",
-//                                "/api/agents",
-//                                "/api/agents/{id}",
-//                                "/api/bookings",
-//                                "/api/bookings/{id}"
-//                        ).permitAll()
-//                        // Secured endpoints
-//                        .anyRequest().authenticated()
-//                );
-//
-//        return http.build();
-//    }
-//
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-//}
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
     private final CustomUserDetailsService userDetailsService;
+
+    @Value("${jwt.secret}")
+    private String jwtSecret;
 
     public SecurityConfig(CustomUserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
@@ -61,6 +40,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/.well-known/openid-configuration").permitAll()
                         // Public GET endpoints
                         .requestMatchers(HttpMethod.GET,
                                 "/api/properties/**",
@@ -69,13 +49,14 @@ public class SecurityConfig {
                         ).permitAll()
 
                         // Public registration
-                        .requestMatchers(HttpMethod.POST, "/api/users/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/users/register", "/api/users/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/properties/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/bookings/**").permitAll()
 
                         // Admin-only operations
                         .requestMatchers(HttpMethod.POST, "/api/properties/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/properties/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/properties/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/properties/**").hasRole("ADMIN")
 
                         .requestMatchers(HttpMethod.POST, "/api/agents/**").hasRole("ADMIN")
@@ -89,20 +70,34 @@ public class SecurityConfig {
                         // Default
                         .anyRequest().authenticated()
                 )
-                .userDetailsService(userDetailsService)
-                .httpBasic(
-                        basic -> basic
-                                .authenticationEntryPoint((request, response, authException) -> {
-                                    response.setContentType("application/json");
-                                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                                    response.getWriter().write(
-                                            "{\"error\": \"" + authException.getMessage() + "\", " +
-                                                    "\"status\": \"401\"}"
-                                    );
-                                })
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+                .oauth2ResourceServer(oauth2 -> oauth2
+                        .jwt(jwt -> jwt
+                                .decoder(jwtDecoder())
+                                .jwtAuthenticationConverter(jwtAuthenticationConverter())
+                        )
                 );
-
         return http.build();
+    }
+
+    @Bean
+    public JwtDecoder jwtDecoder() {
+        return NimbusJwtDecoder.withSecretKey(
+                Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8))
+        ).build();
+    }
+
+    @Bean
+    public JwtAuthenticationConverter jwtAuthenticationConverter() {
+        JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+        grantedAuthoritiesConverter.setAuthoritiesClaimName("role");
+        grantedAuthoritiesConverter.setAuthorityPrefix("ROLE_");
+
+        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
+        return jwtAuthenticationConverter;
     }
 
     @Bean

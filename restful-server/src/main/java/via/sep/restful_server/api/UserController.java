@@ -1,15 +1,20 @@
 package via.sep.restful_server.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+import via.sep.restful_server.dto.LoginRequestDTO;
+import via.sep.restful_server.dto.LoginResponseDTO;
 import via.sep.restful_server.dto.RegistrationDTO;
 import via.sep.restful_server.dto.UserResponseDTO;
 import via.sep.restful_server.model.Login;
 import via.sep.restful_server.model.UserProfile;
 import via.sep.restful_server.repository.LoginRepository;
 import via.sep.restful_server.repository.UserProfileRepository;
+import via.sep.restful_server.service.JwtService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,14 +27,16 @@ public class UserController {
     private final LoginRepository loginRepository;
     private final UserProfileRepository userProfileRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     @Autowired
     public UserController(LoginRepository loginRepository,
                           UserProfileRepository userProfileRepository,
-                          PasswordEncoder passwordEncoder) {
+                          PasswordEncoder passwordEncoder, JwtService jwtService) {
         this.loginRepository = loginRepository;
         this.userProfileRepository = userProfileRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
     @GetMapping
@@ -63,6 +70,29 @@ public class UserController {
                 ))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO loginRequest) {
+        return loginRepository.findByUsername(loginRequest.getUsername())
+                .filter(login -> passwordEncoder.matches(loginRequest.getPassword(), login.getPassword()))
+                .map(login -> {
+                    String token = jwtService.generateToken(
+                            login.getUsername(),
+                            login.getRole(),
+                            login.getAccountId()
+                    );
+                    return ResponseEntity.ok(new LoginResponseDTO(
+                            token,
+                            login.getUsername(),
+                            login.getRole(),
+                            login.getAccountId()
+                    ));
+                })
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.UNAUTHORIZED,
+                        "Invalid username or password"
+                ));
     }
 
     @PostMapping("/register")
