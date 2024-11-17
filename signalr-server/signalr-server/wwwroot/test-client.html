@@ -133,11 +133,6 @@
             addNotification("Status Changed", notification);
         });
 
-        connection.on("OnPropertyDeleted", (notification) => {
-            console.log("Property deleted:", notification);
-            addNotification("Property Deleted", notification);
-        });
-
         connection.onreconnecting(() => {
             console.log("Reconnecting...");
             updateStatus(false);
@@ -158,6 +153,8 @@
     function addNotification(type, notification) {
         const div = document.createElement("div");
         div.className = "notification";
+        console.log("Received notification:", type, notification);
+        console.log("Notification data:", notification);
 
         let message = '';
         switch(type) {
@@ -165,8 +162,11 @@
                 message = `New property listing available at ${notification.address}
                       Price: $${notification.price.toLocaleString()}
                       Type: ${notification.propertyType}
+                      Details:
                       Bedrooms: ${notification.details.numBedrooms}
-                      Bathrooms: ${notification.details.numBathrooms}`;
+                      Bathrooms: ${notification.details.numBathrooms}
+                      Floor Area: ${notification.details.floorArea}m²
+                      Year Built: ${notification.details.yearBuilt}`;
                 break;
             case "Price Changed":
                 const priceDiff = notification.newPrice - notification.oldPrice;

@@ -69,6 +69,8 @@ public class PropertyController {
             apartmentRepository.save(apartment);
         }
 
+        notificationService.notifyPropertyCreated(propertyDTO, savedProperty.getPropertyId().toString());
+
         return ResponseEntity.ok(savedProperty);
     }
 
@@ -178,7 +180,7 @@ public class PropertyController {
                     property.setPrice(newPrice);
                     Property updatedProperty = propertyRepository.save(property);
 
-                    // Send notification
+                    // Send price update notification
                     PriceChangeNotificationDTO notificationData = new PriceChangeNotificationDTO(
                             id.toString(),
                             property.getAddress(),
@@ -198,7 +200,9 @@ public class PropertyController {
     public ResponseEntity<?> deleteProperty(@PathVariable Long id) {
         return propertyRepository.findById(id)
                 .map(property -> {
+
                     propertyRepository.delete(property);
+
                     return ResponseEntity.noContent().build();
                 })
                 .orElse(ResponseEntity.notFound().build());

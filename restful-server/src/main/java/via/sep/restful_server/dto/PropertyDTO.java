@@ -25,5 +25,4 @@ public class PropertyDTO {
     private String buildingName;
     private Boolean hasElevator;
     private Boolean hasBalcony;
-
 }

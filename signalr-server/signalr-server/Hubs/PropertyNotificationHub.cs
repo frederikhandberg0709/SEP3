@@ -56,18 +56,4 @@ public class PropertyNotificationHub : Hub<IPropertyNotificationClient>
         _logger.LogInformation("Client disconnected: {ConnectionId}", Context.ConnectionId);
         await base.OnDisconnectedAsync(exception);
     }
-    
-    public async Task NotifyPropertyDeleted(PropertyDeletedNotification notification)
-    {
-        try
-        {
-            await Clients.All.OnPropertyDeleted(notification);
-            _logger.LogInformation("Property deleted notification sent: {PropertyId}", notification.PropertyId);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error sending property deleted notification", notification.PropertyId);
-            throw;
-        }
-    }
 }

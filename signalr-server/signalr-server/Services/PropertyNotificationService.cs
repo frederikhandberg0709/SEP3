@@ -46,10 +46,4 @@ public class PropertyNotificationService : IPropertyNotificationService
         await _hubContext.Clients.All.OnPropertyStatusChanged(notification);
         _logger.LogInformation("Status change notification sent: {PropertyId}", notification.PropertyId);
     }
-
-    public async Task NotifyPropertyDeletedAsync(PropertyDeletedNotification notification)
-    {
-        await _hubContext.Clients.All.OnPropertyDeleted(notification);
-        _logger.LogInformation("Property deleted notification sent: {PropertyId}", notification.PropertyId);
-    }
 }

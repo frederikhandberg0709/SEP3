@@ -9,5 +9,4 @@ public interface IPropertyNotificationService
     Task NotifyPropertySoldAsync(PropertyNotification notification);
     Task NotifyPriceChangeAsync(PriceChangeNotification notification);
     Task NotifyStatusChangeAsync(PropertyUpdateNotification notification);
-    Task NotifyPropertyDeletedAsync(PropertyDeletedNotification notification);
 }

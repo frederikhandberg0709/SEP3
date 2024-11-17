@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "ManifestType": "Build",
+  "Endpoints": [
+    {
+      "Route": "test-client.e1pvfh5ndp.html",
+      "AssetFile": "test-client.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6830"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gvPfBDNutKIkpKtkuWLnoWjRO+YU34G3L4XNskovTIo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 14 Nov 2024 14:59:18 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "e1pvfh5ndp"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-gvPfBDNutKIkpKtkuWLnoWjRO+YU34G3L4XNskovTIo="
+        },
+        {
+          "Name": "label",
+          "Value": "test-client.html"
+        }
+      ]
+    },
+    {
+      "Route": "test-client.html",
+      "AssetFile": "test-client.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6830"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gvPfBDNutKIkpKtkuWLnoWjRO+YU34G3L4XNskovTIo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 14 Nov 2024 14:59:18 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-gvPfBDNutKIkpKtkuWLnoWjRO+YU34G3L4XNskovTIo="
+        }
+      ]
+    }
+  ]
+}

@@ -19,7 +19,8 @@ public class NotificationMapper {
                 propertyDTO.getAddress(),
                 propertyDTO.getPrice(),
                 propertyDTO.getPropertyType(),
-                createPropertyDetails(propertyDTO)
+                createPropertyDetails(propertyDTO),
+                LocalDateTime.now()
         );
 
         return new NotificationDTO(

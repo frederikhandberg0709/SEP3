@@ -1,16 +1,9 @@
 package via.sep.restful_server.notification.service;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonIncludeProperties;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
@@ -22,11 +15,7 @@ import via.sep.restful_server.notification.dto.PriceChangeNotificationDTO;
 import via.sep.restful_server.notification.mapper.NotificationMapper;
 import via.sep.restful_server.service.JwtService;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 @Slf4j
@@ -67,30 +56,10 @@ public class NotificationService {
     }
 
     public void notifyPriceChange(PriceChangeNotificationDTO priceChangeDTO) {
-//        NotificationDTO notification = new NotificationDTO(
-//                "PROPERTY",
-//                "PRICE_CHANGE",
-//                priceChangeDTO.getPropertyId(),
-//                LocalDateTime.now(),
-//                priceChangeDTO
-//        );
-//        sendNotification(notification);
-
-//        log.info("Sending price change notification: {}", priceChangeDTO);
         String token = jwtService.generateToken("system", "ADMIN", 0L);
 
-//        ObjectMapper mapper = new ObjectMapper();
-//        mapper.registerModule(new JavaTimeModule());
-//        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-
         try {
-//            Map<String, Object> wrapper = new HashMap<>();
-//            wrapper.put("notification", priceChangeDTO);
-
             priceChangeDTO.setTimestamp(priceChangeDTO.getTimestamp().truncatedTo(ChronoUnit.SECONDS));
-
-//            String jsonBody = mapper.writeValueAsString(wrapper);
-//            log.info("Sending JSON payload: {}", jsonBody);
 
             log.debug("Sending notification: {}", priceChangeDTO);
 
@@ -102,7 +71,6 @@ public class NotificationService {
                     .toBodilessEntity()
                     .subscribe(
                             response -> log.info("Price change notification sent successfully"),
-//                            error -> log.error("Failed to send price change notification: {}", error.getMessage())
                             error -> {
                                 log.error("Failed to send price change notification: {} - Body: {}",
                                         error.getMessage(),
@@ -123,26 +91,19 @@ public class NotificationService {
                 notification.getType().toLowerCase(), action);
 
         log.info("Sending notification to endpoint: {}", endpoint);
+        log.info("Notification data: {}", notification);
 
         try {
             webClient.post()
-                    .uri(endpoint)  // This will create: /api/notification/property/price-change
+                    .uri(endpoint)
                     .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
-                    .bodyValue(notification)
+                    .bodyValue(notification.getData())
                     .retrieve()
                     .toBodilessEntity()
                     .subscribe(
                             response -> log.info("Notification sent successfully: {}", notification.getType()),
                             error -> log.error("Failed to send notification: {}", error.getMessage())
                     );
-//                    .uri("/api/notification/" + notification.getType().toLowerCase())
-//                    .bodyValue(notification)
-//                    .retrieve()
-//                    .toBodilessEntity()
-//                    .subscribe(
-//                            response -> log.info("Notification sent successfully: {}", notification.getType()),
-//                            error -> log.error("Failed to send notification: {}", error.getMessage())
-//                    );
         } catch (Exception e) {
             log.error("Failed to send notification", e);
         }

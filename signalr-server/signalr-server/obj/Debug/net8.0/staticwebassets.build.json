@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nkZPCRD8eMGRl7a2gu1toXDUTGNvEjEdSbCRAmSkx/I=",
+  "Hash": "cgbg1jMmsbSUC8x85zHzk5qLwGFiwdQp+vziaN5VbXk=",
   "Source": "signalr-server",
   "BasePath": "_content/signalr-server",
   "Mode": "Default",
@@ -22,18 +22,104 @@
       "SourceType": "Discovered",
       "ContentRoot": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/wwwroot/",
       "BasePath": "_content/signalr-server",
-      "RelativePath": "test-client.html",
+      "RelativePath": "test-client#[.{fingerprint}]?.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "e1pvfh5ndp",
+      "Integrity": "gvPfBDNutKIkpKtkuWLnoWjRO+YU34G3L4XNskovTIo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/test-client.html"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "test-client.e1pvfh5ndp.html",
+      "AssetFile": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/wwwroot/test-client.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6830"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gvPfBDNutKIkpKtkuWLnoWjRO+YU34G3L4XNskovTIo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 14 Nov 2024 14:59:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "e1pvfh5ndp"
+        },
+        {
+          "Name": "label",
+          "Value": "test-client.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-gvPfBDNutKIkpKtkuWLnoWjRO+YU34G3L4XNskovTIo="
+        }
+      ]
+    },
+    {
+      "Route": "test-client.html",
+      "AssetFile": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/wwwroot/test-client.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6830"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gvPfBDNutKIkpKtkuWLnoWjRO+YU34G3L4XNskovTIo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 14 Nov 2024 14:59:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-gvPfBDNutKIkpKtkuWLnoWjRO+YU34G3L4XNskovTIo="
+        }
+      ]
     }
   ]
 }

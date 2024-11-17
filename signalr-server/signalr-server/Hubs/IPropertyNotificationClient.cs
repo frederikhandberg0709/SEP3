@@ -9,5 +9,4 @@ public interface IPropertyNotificationClient
     Task OnPropertySold(PropertyNotification notification);
     Task OnPriceChanged(PriceChangeNotification notification);
     Task OnPropertyStatusChanged(PropertyUpdateNotification notification);
-    Task OnPropertyDeleted(PropertyDeletedNotification notification);
 }

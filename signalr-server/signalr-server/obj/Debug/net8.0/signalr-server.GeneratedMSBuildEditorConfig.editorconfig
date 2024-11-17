@@ -17,3 +17,5 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = /Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server
 build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 

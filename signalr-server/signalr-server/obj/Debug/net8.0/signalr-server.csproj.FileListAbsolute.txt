@@ -41,3 +41,6 @@
 /Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
 /Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
+/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/bin/Debug/net8.0/signalr-server.staticwebassets.endpoints.json
+/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/obj/Debug/net8.0/staticwebassets.build.endpoints.json
+/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/obj/Debug/net8.0/staticwebassets/msbuild.signalr-server.Microsoft.AspNetCore.StaticWebAssetEndpoints.props

@@ -109,19 +109,4 @@ public class NotificationController : ControllerBase
             return StatusCode(500, "Failed to send notification");
         }
     }
-    
-    [HttpPost("property/deleted")]
-    public async Task<IActionResult> NotifyPropertyDeleted([FromBody] PropertyDeletedNotification notification)
-    {
-        try
-        {
-            await _notificationService.NotifyPropertyDeletedAsync(notification);
-            return Ok();
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Failed to send property deleted notification");
-            return StatusCode(500, "Failed to send notification");
-        }
-    }
 }
