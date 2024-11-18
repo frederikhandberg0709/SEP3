@@ -12,6 +12,8 @@ import via.sep.restful_server.dto.BookingDTO;
 import via.sep.restful_server.dto.PropertyDTO;
 import via.sep.restful_server.notification.dto.NotificationDTO;
 import via.sep.restful_server.notification.dto.PriceChangeNotificationDTO;
+import via.sep.restful_server.notification.dto.PropertyNotificationDTO;
+import via.sep.restful_server.notification.dto.PropertyUpdateNotificationDTO;
 import via.sep.restful_server.notification.mapper.NotificationMapper;
 import via.sep.restful_server.service.JwtService;
 
@@ -40,6 +42,17 @@ public class NotificationService {
     public void notifyPropertyCreated(PropertyDTO propertyDTO, String propertyId) {
         NotificationDTO notification = notificationMapper
                 .toPropertyNotification(propertyDTO, "CREATED", propertyId);
+        sendNotification(notification);
+    }
+
+    public void notifyPropertyUpdated(PropertyUpdateNotificationDTO notificationData) {
+        NotificationDTO notification = new NotificationDTO(
+                "PROPERTY",
+                "UPDATED",
+                notificationData.getPropertyId(),
+                notificationData.getTimestamp(),
+                notificationData
+        );
         sendNotification(notification);
     }
 

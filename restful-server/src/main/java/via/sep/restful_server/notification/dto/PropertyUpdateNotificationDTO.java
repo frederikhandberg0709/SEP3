@@ -5,17 +5,20 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Data
-@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BookingNotificationDTO {
-    private String bookingId;
+@AllArgsConstructor
+public class PropertyUpdateNotificationDTO {
     private String propertyId;
-    private String agentId;
-    private LocalDateTime bookingDate;
-    private String status;
+    private String address;
+    private BigDecimal oldPrice;
+    private BigDecimal newPrice;
+    private String propertyType;
+    private Map<String, Object> updatedFields;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime timestamp;

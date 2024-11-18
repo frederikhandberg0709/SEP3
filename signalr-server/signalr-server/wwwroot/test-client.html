@@ -168,15 +168,20 @@
                       Floor Area: ${notification.details.floorArea}m²
                       Year Built: ${notification.details.yearBuilt}`;
                 break;
+            case "Property Updated":
+                message = `Property updated at ${notification.address}
+                Type: ${notification.propertyType}
+                Price changed from: $${notification.oldPrice.toLocaleString()} 
+                to: $${notification.newPrice.toLocaleString()}
+                Updated fields:
+                ${Object.entries(notification.updatedFields).map(([key, value]) => `${key}: ${value}`).join('\n')}`;
+                break;
             case "Price Changed":
                 const priceDiff = notification.newPrice - notification.oldPrice;
                 const direction = priceDiff > 0 ? 'increased' : 'decreased';
                 message = `Price ${direction} for property at ${notification.address}.
                       From: $${notification.oldPrice.toLocaleString()}
                       To: $${notification.newPrice.toLocaleString()}`;
-                break;
-            case "Property Updated":
-                message = `Property at ${notification.address} has been updated`;
                 break;
             case "Property Sold":
                 message = `Property at ${notification.address} has been sold!`;

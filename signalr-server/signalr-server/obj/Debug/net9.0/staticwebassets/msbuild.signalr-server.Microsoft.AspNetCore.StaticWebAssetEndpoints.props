@@ -1,16 +1,16 @@
 ﻿<Project>
   <ItemGroup>
-    <StaticWebAssetEndpoint Include="_content/signalr-server/test-client.7rny5h17ri.html">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\test-client.html'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"7rny5h17ri"},{"Name":"integrity","Value":"sha256-w4XzGceicB51iPn9XmVyDRMRD9ZamxmPiC4ZmpRXc\u002B4="},{"Name":"label","Value":"_content/signalr-server/test-client.html"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"6986"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022w4XzGceicB51iPn9XmVyDRMRD9ZamxmPiC4ZmpRXc\u002B4=\u0022"},{"Name":"Last-Modified","Value":"Sun, 17 Nov 2024 18:54:56 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/signalr-server/test-client.html">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\test-client.html'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-w4XzGceicB51iPn9XmVyDRMRD9ZamxmPiC4ZmpRXc\u002B4="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"6986"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022w4XzGceicB51iPn9XmVyDRMRD9ZamxmPiC4ZmpRXc\u002B4=\u0022"},{"Name":"Last-Modified","Value":"Sun, 17 Nov 2024 18:54:56 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-94giAkYm1gi\u002BAX2VBNvb1U9BywmRdmBoqGBUHYIvnVg="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"7403"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u002294giAkYm1gi\u002BAX2VBNvb1U9BywmRdmBoqGBUHYIvnVg=\u0022"},{"Name":"Last-Modified","Value":"Mon, 18 Nov 2024 14:20:58 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/signalr-server/test-client.pwz1fznzak.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\test-client.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"pwz1fznzak"},{"Name":"integrity","Value":"sha256-94giAkYm1gi\u002BAX2VBNvb1U9BywmRdmBoqGBUHYIvnVg="},{"Name":"label","Value":"_content/signalr-server/test-client.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"7403"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u002294giAkYm1gi\u002BAX2VBNvb1U9BywmRdmBoqGBUHYIvnVg=\u0022"},{"Name":"Last-Modified","Value":"Mon, 18 Nov 2024 14:20:58 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cofRLJz/A0ziOy2KdVQUj7tuvbDqg8/YEPFPABeCIaI=",
+  "Hash": "VUMQGO3PEupGMvW2mRji2+UHyYzVfKFF5DCnyYFaiCA=",
   "Source": "signalr-server",
   "BasePath": "_content/signalr-server",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/obj/Debug/net9.0/compressed/ikiity7ogb-7rny5h17ri.gz",
+      "Identity": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/obj/Debug/net9.0/compressed/ikiity7ogb-pwz1fznzak.gz",
       "SourceId": "signalr-server",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/signalr-server",
-      "RelativePath": "test-client#[.{fingerprint=7rny5h17ri}]?.html.gz",
+      "RelativePath": "test-client#[.{fingerprint=pwz1fznzak}]?.html.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -31,8 +31,8 @@
       "RelatedAsset": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/wwwroot/test-client.html",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "ar36f6zdid",
-      "Integrity": "hg/DkljHhdgkwkt34lwxePxKpYH1H0xae06eYqJTs4M=",
+      "Fingerprint": "2do7ffbruc",
+      "Integrity": "6g1WHDKSy87F2C8zWMTuo+1gdhD6ivPFUgYm855h+i0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/wwwroot/test-client.html"
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "7rny5h17ri",
-      "Integrity": "w4XzGceicB51iPn9XmVyDRMRD9ZamxmPiC4ZmpRXc+4=",
+      "Fingerprint": "pwz1fznzak",
+      "Integrity": "94giAkYm1gi+AX2VBNvb1U9BywmRdmBoqGBUHYIvnVg=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/test-client.html"
@@ -61,13 +61,13 @@
   ],
   "Endpoints": [
     {
-      "Route": "test-client.7rny5h17ri.html",
-      "AssetFile": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/obj/Debug/net9.0/compressed/ikiity7ogb-7rny5h17ri.gz",
+      "Route": "test-client.html",
+      "AssetFile": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/obj/Debug/net9.0/compressed/ikiity7ogb-pwz1fznzak.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000532481363"
+          "Quality": "0.000508130081"
         }
       ],
       "ResponseHeaders": [
@@ -77,19 +77,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1877"
+          "Value": "1967"
         },
         {
           "Name": "ETag",
-          "Value": "\"hg/DkljHhdgkwkt34lwxePxKpYH1H0xae06eYqJTs4M=\""
+          "Value": "\"6g1WHDKSy87F2C8zWMTuo+1gdhD6ivPFUgYm855h+i0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 17 Nov 2024 18:54:56 GMT"
+          "Value": "Mon, 18 Nov 2024 14:20:58 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
+          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -105,26 +105,18 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"w4XzGceicB51iPn9XmVyDRMRD9ZamxmPiC4ZmpRXc+4=\""
+          "Value": "W/\"94giAkYm1gi+AX2VBNvb1U9BywmRdmBoqGBUHYIvnVg=\""
         }
       ],
       "EndpointProperties": [
         {
-          "Name": "fingerprint",
-          "Value": "7rny5h17ri"
-        },
-        {
-          "Name": "label",
-          "Value": "test-client.html"
-        },
-        {
           "Name": "integrity",
-          "Value": "sha256-w4XzGceicB51iPn9XmVyDRMRD9ZamxmPiC4ZmpRXc+4="
+          "Value": "sha256-94giAkYm1gi+AX2VBNvb1U9BywmRdmBoqGBUHYIvnVg="
         }
       ]
     },
     {
-      "Route": "test-client.7rny5h17ri.html",
+      "Route": "test-client.html",
       "AssetFile": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/wwwroot/test-client.html",
       "Selectors": [],
       "ResponseHeaders": [
@@ -134,7 +126,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6986"
+          "Value": "7403"
         },
         {
           "Name": "Content-Type",
@@ -142,11 +134,156 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"w4XzGceicB51iPn9XmVyDRMRD9ZamxmPiC4ZmpRXc+4=\""
+          "Value": "\"94giAkYm1gi+AX2VBNvb1U9BywmRdmBoqGBUHYIvnVg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 17 Nov 2024 18:54:56 GMT"
+          "Value": "Mon, 18 Nov 2024 14:20:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-94giAkYm1gi+AX2VBNvb1U9BywmRdmBoqGBUHYIvnVg="
+        }
+      ]
+    },
+    {
+      "Route": "test-client.html.gz",
+      "AssetFile": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/obj/Debug/net9.0/compressed/ikiity7ogb-pwz1fznzak.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1967"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6g1WHDKSy87F2C8zWMTuo+1gdhD6ivPFUgYm855h+i0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 18 Nov 2024 14:20:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6g1WHDKSy87F2C8zWMTuo+1gdhD6ivPFUgYm855h+i0="
+        }
+      ]
+    },
+    {
+      "Route": "test-client.pwz1fznzak.html",
+      "AssetFile": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/obj/Debug/net9.0/compressed/ikiity7ogb-pwz1fznzak.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000508130081"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1967"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6g1WHDKSy87F2C8zWMTuo+1gdhD6ivPFUgYm855h+i0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 18 Nov 2024 14:20:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"94giAkYm1gi+AX2VBNvb1U9BywmRdmBoqGBUHYIvnVg=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "pwz1fznzak"
+        },
+        {
+          "Name": "label",
+          "Value": "test-client.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-94giAkYm1gi+AX2VBNvb1U9BywmRdmBoqGBUHYIvnVg="
+        }
+      ]
+    },
+    {
+      "Route": "test-client.pwz1fznzak.html",
+      "AssetFile": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/wwwroot/test-client.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7403"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"94giAkYm1gi+AX2VBNvb1U9BywmRdmBoqGBUHYIvnVg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 18 Nov 2024 14:20:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -156,7 +293,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "7rny5h17ri"
+          "Value": "pwz1fznzak"
         },
         {
           "Name": "label",
@@ -164,13 +301,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-w4XzGceicB51iPn9XmVyDRMRD9ZamxmPiC4ZmpRXc+4="
+          "Value": "sha256-94giAkYm1gi+AX2VBNvb1U9BywmRdmBoqGBUHYIvnVg="
         }
       ]
     },
     {
-      "Route": "test-client.7rny5h17ri.html.gz",
-      "AssetFile": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/obj/Debug/net9.0/compressed/ikiity7ogb-7rny5h17ri.gz",
+      "Route": "test-client.pwz1fznzak.html.gz",
+      "AssetFile": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/obj/Debug/net9.0/compressed/ikiity7ogb-pwz1fznzak.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -179,7 +316,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1877"
+          "Value": "1967"
         },
         {
           "Name": "Content-Type",
@@ -187,11 +324,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hg/DkljHhdgkwkt34lwxePxKpYH1H0xae06eYqJTs4M=\""
+          "Value": "\"6g1WHDKSy87F2C8zWMTuo+1gdhD6ivPFUgYm855h+i0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 17 Nov 2024 18:54:56 GMT"
+          "Value": "Mon, 18 Nov 2024 14:20:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -209,7 +346,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "7rny5h17ri"
+          "Value": "pwz1fznzak"
         },
         {
           "Name": "label",
@@ -217,144 +354,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-hg/DkljHhdgkwkt34lwxePxKpYH1H0xae06eYqJTs4M="
-        }
-      ]
-    },
-    {
-      "Route": "test-client.html",
-      "AssetFile": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/obj/Debug/net9.0/compressed/ikiity7ogb-7rny5h17ri.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000532481363"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1877"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"hg/DkljHhdgkwkt34lwxePxKpYH1H0xae06eYqJTs4M=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 17 Nov 2024 18:54:56 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"w4XzGceicB51iPn9XmVyDRMRD9ZamxmPiC4ZmpRXc+4=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-w4XzGceicB51iPn9XmVyDRMRD9ZamxmPiC4ZmpRXc+4="
-        }
-      ]
-    },
-    {
-      "Route": "test-client.html",
-      "AssetFile": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/wwwroot/test-client.html",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "6986"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"w4XzGceicB51iPn9XmVyDRMRD9ZamxmPiC4ZmpRXc+4=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 17 Nov 2024 18:54:56 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-w4XzGceicB51iPn9XmVyDRMRD9ZamxmPiC4ZmpRXc+4="
-        }
-      ]
-    },
-    {
-      "Route": "test-client.html.gz",
-      "AssetFile": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/signalr-server/signalr-server/obj/Debug/net9.0/compressed/ikiity7ogb-7rny5h17ri.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1877"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"hg/DkljHhdgkwkt34lwxePxKpYH1H0xae06eYqJTs4M=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 17 Nov 2024 18:54:56 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-hg/DkljHhdgkwkt34lwxePxKpYH1H0xae06eYqJTs4M="
+          "Value": "sha256-6g1WHDKSy87F2C8zWMTuo+1gdhD6ivPFUgYm855h+i0="
         }
       ]
     }

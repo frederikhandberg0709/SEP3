@@ -59,7 +59,8 @@ public class NotificationMapper {
                 bookingDTO.getPropertyId().toString(),
                 bookingDTO.getAgentId().toString(),
                 bookingDTO.getBookingDate().atStartOfDay(),
-                "CREATED" // or other status
+                "CREATED", // or other status
+                LocalDateTime.now()
         );
 
         return new NotificationDTO(

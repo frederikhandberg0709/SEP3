@@ -9,6 +9,8 @@ import via.sep.restful_server.model.Apartment;
 import via.sep.restful_server.model.House;
 import via.sep.restful_server.model.Property;
 import via.sep.restful_server.notification.dto.PriceChangeNotificationDTO;
+import via.sep.restful_server.notification.dto.PropertyNotificationDTO;
+import via.sep.restful_server.notification.dto.PropertyUpdateNotificationDTO;
 import via.sep.restful_server.notification.service.NotificationService;
 import via.sep.restful_server.repository.ApartmentRepository;
 import via.sep.restful_server.repository.HouseRepository;
@@ -16,7 +18,9 @@ import via.sep.restful_server.repository.PropertyRepository;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/properties")
@@ -132,36 +136,50 @@ public class PropertyController {
 
                     Property updatedProperty = propertyRepository.save(property);
 
-                    // Notify price change only if price has changed
-                    if (!oldPrice.equals(propertyDTO.getPrice())) {
-                        PriceChangeNotificationDTO notificationData = new PriceChangeNotificationDTO(
-                                id.toString(),
-                                property.getAddress(),
-                                oldPrice,
-                                propertyDTO.getPrice(),
-                                LocalDateTime.now()
-                        );
-                        notificationService.notifyPriceChange(notificationData);
-                    }
+                    Map<String, Object> updatedFields = createPropertyDetails(propertyDTO);
 
-                    if ("House".equals(propertyDTO.getPropertyType())) {
-                        houseRepository.findByProperty_PropertyId(id)
-                                .ifPresent(house -> {
-                                    house.setLotSize(propertyDTO.getLotSize());
-                                    house.setHasGarage(propertyDTO.getHasGarage());
-                                    house.setNumFloors(propertyDTO.getNumFloors());
-                                    houseRepository.save(house);
-                                });
-                    } else if ("Apartment".equals(propertyDTO.getPropertyType())) {
-                        apartmentRepository.findByProperty_PropertyId(id)
-                                .ifPresent(apartment -> {
-                                    apartment.setFloorNumber(propertyDTO.getFloorNumber());
-                                    apartment.setBuildingName(propertyDTO.getBuildingName());
-                                    apartment.setHasElevator(propertyDTO.getHasElevator());
-                                    apartment.setHasBalcony(propertyDTO.getHasBalcony());
-                                    apartmentRepository.save(apartment);
-                                });
-                    }
+                    // Notify price change only if price has changed
+//                    if (!oldPrice.equals(propertyDTO.getPrice())) {
+//                        PriceChangeNotificationDTO notificationData = new PriceChangeNotificationDTO(
+//                                id.toString(),
+//                                property.getAddress(),
+//                                oldPrice,
+//                                propertyDTO.getPrice(),
+//                                LocalDateTime.now()
+//                        );
+//                        notificationService.notifyPriceChange(notificationData);
+//                    }
+
+//                    if ("House".equals(propertyDTO.getPropertyType())) {
+//                        houseRepository.findByProperty_PropertyId(id)
+//                                .ifPresent(house -> {
+//                                    house.setLotSize(propertyDTO.getLotSize());
+//                                    house.setHasGarage(propertyDTO.getHasGarage());
+//                                    house.setNumFloors(propertyDTO.getNumFloors());
+//                                    houseRepository.save(house);
+//                                });
+//                    } else if ("Apartment".equals(propertyDTO.getPropertyType())) {
+//                        apartmentRepository.findByProperty_PropertyId(id)
+//                                .ifPresent(apartment -> {
+//                                    apartment.setFloorNumber(propertyDTO.getFloorNumber());
+//                                    apartment.setBuildingName(propertyDTO.getBuildingName());
+//                                    apartment.setHasElevator(propertyDTO.getHasElevator());
+//                                    apartment.setHasBalcony(propertyDTO.getHasBalcony());
+//                                    apartmentRepository.save(apartment);
+//                                });
+//                    }
+
+                    PropertyUpdateNotificationDTO notificationData = new PropertyUpdateNotificationDTO(
+                            id.toString(),
+                            property.getAddress(),
+                            oldPrice,
+                            propertyDTO.getPrice(),
+                            property.getPropertyType(),
+                            updatedFields,
+                            LocalDateTime.now()
+                    );
+
+                    notificationService.notifyPropertyUpdated(notificationData);
 
                     return ResponseEntity.ok(updatedProperty);
                 })
@@ -206,5 +224,26 @@ public class PropertyController {
                     return ResponseEntity.noContent().build();
                 })
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    private Map<String, Object> createPropertyDetails(PropertyDTO propertyDTO) {
+        Map<String, Object> details = new HashMap<>();
+        details.put("numBedrooms", propertyDTO.getNumBedrooms());
+        details.put("numBathrooms", propertyDTO.getNumBathrooms());
+        details.put("floorArea", propertyDTO.getFloorArea());
+        details.put("yearBuilt", propertyDTO.getYearBuilt());
+
+        if ("House".equals(propertyDTO.getPropertyType())) {
+            details.put("lotSize", propertyDTO.getLotSize());
+            details.put("hasGarage", propertyDTO.getHasGarage());
+            details.put("numFloors", propertyDTO.getNumFloors());
+        } else if ("Apartment".equals(propertyDTO.getPropertyType())) {
+            details.put("floorNumber", propertyDTO.getFloorNumber());
+            details.put("buildingName", propertyDTO.getBuildingName());
+            details.put("hasElevator", propertyDTO.getHasElevator());
+            details.put("hasBalcony", propertyDTO.getHasBalcony());
+        }
+
+        return details;
     }
 }
