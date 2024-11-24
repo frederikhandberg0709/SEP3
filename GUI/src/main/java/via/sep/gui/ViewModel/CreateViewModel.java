@@ -1,12 +1,10 @@
 package via.sep.gui.ViewModel;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import via.sep.gui.Model.Property;
 
+import java.util.UUID;
 
 public class CreateViewModel {
     private final StringProperty address = new SimpleStringProperty();
@@ -18,73 +16,6 @@ public class CreateViewModel {
     private final StringProperty status = new SimpleStringProperty();
     private final StringProperty size = new SimpleStringProperty();
     private final StringProperty price = new SimpleStringProperty();
-
-    private final Property propertyService = new Property() {
-        @Override
-        public void addListener(InvalidationListener invalidationListener) {
-
-        }
-
-        @Override
-        public void removeListener(InvalidationListener invalidationListener) {
-
-        }
-
-        @Override
-        public void addListener(ChangeListener changeListener) {
-
-        }
-
-        @Override
-        public void removeListener(ChangeListener changeListener) {
-
-        }
-
-        @Override
-        public Object getValue() {
-            return null;
-        }
-
-        @Override
-        public void setValue(Object o) {
-
-        }
-
-        @Override
-        public Object getBean() {
-            return null;
-        }
-
-        @Override
-        public String getName() {
-            return "";
-        }
-
-        @Override
-        public void bind(ObservableValue observableValue) {
-
-        }
-
-        @Override
-        public void unbind() {
-
-        }
-
-        @Override
-        public boolean isBound() {
-            return false;
-        }
-
-        @Override
-        public void bindBidirectional(Property property) {
-
-        }
-
-        @Override
-        public void unbindBidirectional(Property property) {
-
-        }
-    };
 
     public StringProperty addressProperty() {
         return address;
@@ -122,7 +53,8 @@ public class CreateViewModel {
         return price;
     }
 
-    public void createProperty() {
+    public Property createProperty() {
+        UUID id = UUID.randomUUID();
         String addressValue = address.get();
         String propertyTypeValue = propertyType.get();
         int bathroomNumValue = Integer.parseInt(bathroomNum.get());
@@ -133,7 +65,17 @@ public class CreateViewModel {
         double sizeValue = Double.parseDouble(size.get());
         double priceValue = Double.parseDouble(price.get());
 
-        propertyService.createProperty(addressValue, propertyTypeValue, bathroomNumValue, roomsNumValue, fullNameValue, floorNumValue, statusValue, sizeValue, priceValue);
+        return  Property.createProperty(
+                id,
+                addressValue,
+                propertyTypeValue,
+                bathroomNumValue,
+                roomsNumValue,
+                fullNameValue,
+                floorNumValue,
+                statusValue,
+                sizeValue,
+                priceValue);
     }
 
     public void cancelCreation() {
