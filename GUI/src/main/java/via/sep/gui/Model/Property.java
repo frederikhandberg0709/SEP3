@@ -37,4 +37,9 @@ public class Property {
     public Object getId() {
         return getId();
     }
+
+    // Static method to create a new Property
+    public static Property createProperty(String address, String propertyType, int bathroomNum, int roomsNum, String fullName, int floorNum, String status, double size, double price) {
+        return new Property(address, propertyType, bathroomNum, roomsNum, fullName, floorNum, status, size, price);
+    }
 }

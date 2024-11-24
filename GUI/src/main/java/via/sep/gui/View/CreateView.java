@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import via.sep.gui.ViewModel.CreateViewModel;
+
 import java.util.function.Consumer;
 
 public class CreateView {
@@ -168,5 +170,10 @@ public class CreateView {
         public ValidationException(String message) {
             super(message);
         }
+    }
+
+
+    public void setViewModel(CreateViewModel viewModel) {
+
     }
 }

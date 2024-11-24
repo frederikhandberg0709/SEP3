@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import via.sep.gui.ViewModel.EditViewModel;
+
 import java.util.function.Consumer;
 
 public class EditView {
@@ -167,5 +169,10 @@ public class EditView {
         public ValidationException(String message) {
             super(message);
         }
+    }
+
+
+    public void setViewModel(EditViewModel viewModel) {
+        // Implementation to bind the view model to the view
     }
 }

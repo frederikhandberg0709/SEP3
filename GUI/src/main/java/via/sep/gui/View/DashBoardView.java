@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import via.sep.gui.Model.Property;
+import via.sep.gui.ViewModel.DashboardViewModel;
 
 public class DashBoardView {
 
@@ -90,5 +91,10 @@ public class DashBoardView {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+
+    public void setViewModel(DashboardViewModel viewModel) {
+
     }
 }
