@@ -33,51 +33,52 @@
 /Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/RealEstateBlazor.pdb
 /Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/RealEstateBlazor.genruntimeconfig.cache
 /Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/ref/RealEstateBlazor.dll
-/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/vdwqntar8c-fwiltovtra.gz
-/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/y08qe7kvtk-da95v2qkru.gz
-/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/xikgp88dd0-6gzpyzhau4.gz
 /Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/il9ad6ymqx-8inm30yfxf.gz
-/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/isoxwiu6wr-8xd09dgrah.gz
-/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/wdmy37j2v3-xa61771fag.gz
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\bin\Debug\net9.0\appsettings.Development.json
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\bin\Debug\net9.0\appsettings.json
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\bin\Debug\net9.0\RealEstateBlazor.staticwebassets.runtime.json
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\bin\Debug\net9.0\RealEstateBlazor.staticwebassets.endpoints.json
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\bin\Debug\net9.0\RealEstateBlazor.exe
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\bin\Debug\net9.0\RealEstateBlazor.deps.json
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\bin\Debug\net9.0\RealEstateBlazor.runtimeconfig.json
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\bin\Debug\net9.0\RealEstateBlazor.dll
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\bin\Debug\net9.0\RealEstateBlazor.pdb
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.AssemblyInfoInputs.cache
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.AssemblyInfo.cs
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.csproj.CoreCompileInputs.cache
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.sourcelink.json
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\scopedcss\bundle\RealEstateBlazor.styles.css
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\scopedcss\projectbundle\RealEstateBlazor.bundle.scp.css
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\vdwqntar8c-fwiltovtra.gz
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\y08qe7kvtk-da95v2qkru.gz
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\xikgp88dd0-6gzpyzhau4.gz
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\il9ad6ymqx-8inm30yfxf.gz
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\isoxwiu6wr-8xd09dgrah.gz
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\wdmy37j2v3-xa61771fag.gz
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\k2hfzjq5xg-vs7lsqcpur.gz
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\9aqtp4qh3u-vs7lsqcpur.gz
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\staticwebassets.build.json
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\staticwebassets.development.json
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\staticwebassets\msbuild.RealEstateBlazor.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\staticwebassets\msbuild.RealEstateBlazor.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\staticwebassets\msbuild.build.RealEstateBlazor.props
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.RealEstateBlazor.props
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.RealEstateBlazor.props
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\staticwebassets.pack.json
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.dll
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\refint\RealEstateBlazor.dll
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.pdb
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.genruntimeconfig.cache
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\ref\RealEstateBlazor.dll
-C:\Users\Nikolai\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\gy2031n9pq-wvqemrflvp.gz
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/bin/Debug/net9.0/appsettings.Development.json
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/bin/Debug/net9.0/appsettings.json
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/bin/Debug/net9.0/RealEstateBlazor.staticwebassets.runtime.json
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/bin/Debug/net9.0/RealEstateBlazor.staticwebassets.endpoints.json
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/bin/Debug/net9.0/RealEstateBlazor.exe
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/bin/Debug/net9.0/RealEstateBlazor.deps.json
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/bin/Debug/net9.0/RealEstateBlazor.runtimeconfig.json
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/bin/Debug/net9.0/RealEstateBlazor.dll
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/bin/Debug/net9.0/RealEstateBlazor.pdb
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/RealEstateBlazor.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/RealEstateBlazor.AssemblyInfoInputs.cache
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/RealEstateBlazor.AssemblyInfo.cs
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/RealEstateBlazor.csproj.CoreCompileInputs.cache
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/RealEstateBlazor.MvcApplicationPartsAssemblyInfo.cache
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/RealEstateBlazor.sourcelink.json
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/scopedcss/Components/Layout/MainLayout.razor.rz.scp.css
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/scopedcss/Components/Layout/NavMenu.razor.rz.scp.css
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/scopedcss/bundle/RealEstateBlazor.styles.css
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/scopedcss/projectbundle/RealEstateBlazor.bundle.scp.css
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/vdwqntar8c-fwiltovtra.gz
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/y08qe7kvtk-da95v2qkru.gz
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/xikgp88dd0-6gzpyzhau4.gz
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/il9ad6ymqx-8inm30yfxf.gz
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/isoxwiu6wr-8xd09dgrah.gz
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/wdmy37j2v3-xa61771fag.gz
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/k2hfzjq5xg-vs7lsqcpur.gz
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/9aqtp4qh3u-vs7lsqcpur.gz
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/staticwebassets.build.json
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/staticwebassets.development.json
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/staticwebassets.build.endpoints.json
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/staticwebassets/msbuild.RealEstateBlazor.Microsoft.AspNetCore.StaticWebAssets.props
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/staticwebassets/msbuild.RealEstateBlazor.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/staticwebassets/msbuild.build.RealEstateBlazor.props
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/staticwebassets/msbuild.buildMultiTargeting.RealEstateBlazor.props
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/staticwebassets/msbuild.buildTransitive.RealEstateBlazor.props
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/staticwebassets.pack.json
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/RealEstateBlazor.dll
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/refint/RealEstateBlazor.dll
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/RealEstateBlazor.pdb
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/RealEstateBlazor.genruntimeconfig.cache
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/ref/RealEstateBlazor.dll
+C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/gy2031n9pq-wvqemrflvp.gz
+/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/vdwqntar8c-37l8rbpmre.gz
+/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/y08qe7kvtk-v5b7vqvy3h.gz
+/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/xikgp88dd0-bpk8xqwxhs.gz
+/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/gy2031n9pq-xossy0aysi.gz
+/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/isoxwiu6wr-12kr32rfdh.gz
+/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/wdmy37j2v3-s5phnmpgg4.gz

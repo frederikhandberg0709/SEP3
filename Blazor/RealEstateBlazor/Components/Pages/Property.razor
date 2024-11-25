@@ -1,0 +1,112 @@
+@page "/property/{Id}"
+@using RealEstateBlazor.Services
+@inject IPropertyService PropertyService
+
+<PageTitle>Property</PageTitle>
+
+@if (loading)
+{
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+}
+else if (error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @error
+    </div>
+}
+else if (property != null)
+{
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-4">
+                    <h5 class="text-muted">Price</h5>
+                    <p class="lead fw-bold">@property.Price.ToString("C")</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="text-muted">Address</h5>
+                    <p class="lead">@property.Address</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="text-muted">Property Type</h5>
+                    <p>@property.PropertyType</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="text-muted">Floor Area</h5>
+                    <p>@property.FloorArea.ToString("N2") sq ft</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="mb-4">
+                    <h5 class="text-muted">Bedrooms</h5>
+                    <p>@(property.NumBedrooms ?? 0)</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="text-muted">Bathrooms</h5>
+                    <p>@(property.NumBathrooms ?? 0)</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="text-muted">Year Built</h5>
+                    <p>@(property.YearBuilt?.ToString() ?? "N/A")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private Data.Models.Property? property;
+    private bool loading = true;
+    private string? error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadProperty();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id != null && (property == null || property.PropertyId.ToString() != Id))
+        {
+            await LoadProperty();
+        }
+    }
+
+    private async Task LoadProperty()
+    {
+        try
+        {
+            loading = true;
+            error = null;
+
+            if (string.IsNullOrEmpty(Id))
+            {
+                error = "No property ID provided";
+                return;
+            }
+
+            property = await PropertyService.GetPropertyByIdAsync(Id);
+        }
+        catch (Exception ex)
+        {
+            error = $"Error loading property: {ex.Message}";
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+}
