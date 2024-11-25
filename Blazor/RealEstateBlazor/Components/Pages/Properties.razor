@@ -1,0 +1,70 @@
+﻿@page "/properties"
+<PageTitle>Properties</PageTitle>
+
+<head>
+    <link href="Properties.css" rel="stylesheet" />
+</head>
+
+<div class="properties-container">
+    <h1>Our Properties</h1>
+
+    <!-- Filter Dropdown -->
+    <div class="filter-section">
+        <label for="filter">Filter by Type:</label>
+        <select id="filter" @bind="_selectedType">
+            <option value="">All</option>
+            <option value="Apartment">Apartment</option>
+            <option value="House">House</option>
+            <option value="Commercial">Commercial</option>
+        </select>
+    </div>
+
+    <!-- Property Grid -->
+    <div class="property-grid">
+        @if (FilteredProperties.Any())
+        {
+            @foreach (var property in FilteredProperties)
+            {
+                <div class="property-card">
+                    <img src="@property.Image" alt="@property.Name" />
+                    <div class="property-details">
+                        <h2>@property.Name</h2>
+                        <p class="price">@property.Price</p>
+                        <p class="type">@property.Type</p>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="no-results">No properties match the selected filter.</p>
+        }
+    </div>
+</div>
+
+@code {
+    private List<RealEstateProperty> PropertyList = new()
+    {
+        new RealEstateProperty { Name = "Modern Apartment", Price = "$1,500/month", Type = "Apartment", Image = "images/property1.jpg" },
+        new RealEstateProperty { Name = "Family House", Price = "$300,000", Type = "House", Image = "images/property2.jpg" },
+        new RealEstateProperty { Name = "Luxury Villa", Price = "$750,000", Type = "House", Image = "images/property3.jpg" },
+        new RealEstateProperty { Name = "Commercial Space", Price = "$2,000/month", Type = "Commercial", Image = "images/property4.jpg" },
+        new RealEstateProperty { Name = "Cozy Studio", Price = "$900/month", Type = "Apartment", Image = "images/property5.jpg" },
+        new RealEstateProperty { Name = "Penthouse Suite", Price = "$1,200,000", Type = "Apartment", Image = "images/property6.jpg" },
+        new RealEstateProperty { Name = "Retail Storefront", Price = "$3,500/month", Type = "Commercial", Image = "images/property7.jpg" },
+        new RealEstateProperty { Name = "Country Home", Price = "$450,000", Type = "House", Image = "images/property8.jpg" }
+    };
+
+    private string _selectedType = "";
+
+    private IEnumerable<RealEstateProperty> FilteredProperties =>
+        PropertyList.Where(p => string.IsNullOrEmpty(_selectedType) || p.Type.Equals(_selectedType, StringComparison.OrdinalIgnoreCase));
+
+    public class RealEstateProperty
+    {
+        public string Name { get; set; } = string.Empty;
+        public string Price { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty;
+        public string Image { get; set; } = string.Empty;
+    }
+}

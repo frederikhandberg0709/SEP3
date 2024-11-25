@@ -1,0 +1,99 @@
+﻿@page "/account"
+@attribute [StreamRendering]
+
+<head>
+    <link href="Account.css" rel="stylesheet" />
+</head>
+
+<PageTitle>Account</PageTitle>
+
+<div class="account-container">
+    <!-- User Info Section -->
+    <div class="user-info">
+        <img class="profile-pic" src="images/default-profile.png" alt="Profile Picture" />
+        <div class="info">
+            <h2>@userName</h2>
+            <p>Email: <span>@userEmail</span></p>
+            <p>Phone: <span>@userPhone</span></p>
+            <button class="update-btn">Update Info</button>
+        </div>
+    </div>
+
+    <!-- Owned Properties Section -->
+    <div class="owned-properties">
+        <h3>Owned Properties</h3>
+        <div class="property-grid">
+            @if (OwnedProperties.Any())
+            {
+            @foreach (var property in OwnedProperties)
+            {
+            <div class="property-box">
+                <img class="property-image" src="@property.Image" alt="@property.Name" />
+                <h4>@property.Name</h4>
+                <p>@property.Price</p>
+                <p>@property.Type</p>
+            </div>
+            }
+            }
+            else
+            {
+            <p>You don't own any properties yet.</p>
+            }
+        </div>
+    </div>
+
+    <!-- Wishlist Section -->
+    <div class="wishlist">
+        <h3>Wishlist</h3>
+        <div class="property-grid">
+            @if (Wishlist.Any())
+            {
+            @foreach (var property in Wishlist)
+            {
+            <div class="property-box">
+                <img class="property-image" src="@property.Image" alt="@property.Name" />
+                <h4>@property.Name</h4>
+                <p>@property.Price</p>
+                <p>@property.Type</p>
+                <button class="remove-btn" @onclick="() => RemoveFromWishlist(property)">Remove</button>
+            </div>
+            }
+            }
+            else
+            {
+            <p>Your wishlist is empty.</p>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+private string userName = "Jack Mayhoff";
+private string userEmail = "Mustard51@gmail.com";
+private string userPhone = "+123 456 7890";
+
+private List<Property> OwnedProperties = new()
+{
+new Property { Name = "Luxury Villa", Price = "$750,000", Type = "House", Image = "images/luxury-villa.jpg" },
+new Property { Name = "Modern Apartment", Price = "$1,500/month", Type = "Apartment", Image = "images/modern-apartment.jpg" }
+};
+
+private List<Property> Wishlist = new()
+{
+new Property { Name = "Penthouse Suite", Price = "$1,200,000", Type = "Apartment", Image = "images/penthouse-suite.jpg" },
+new Property { Name = "Retail Storefront", Price = "$3,500/month", Type = "Commercial", Image = "images/retail-storefront.jpg" }
+};
+
+private void RemoveFromWishlist(Property property)
+{
+Wishlist.Remove(property);
+}
+
+private class Property
+{
+public string Name { get; set; }
+public string Price { get; set; }
+public string Type { get; set; }
+public string Image { get; set; }
+}
+}
