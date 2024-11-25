@@ -1,0 +1,79 @@
+﻿@page "/Forms"
+@using System.ComponentModel.DataAnnotations
+
+<PageTitle>Forms</PageTitle>
+
+<h3>Add Property Information</h3>
+
+<EditForm Model="@newProperty" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="address">Address:</label>
+        <InputText id="address" @bind-Value="newProperty.Address" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="floorarea">Floor Area (m^2):</label>
+        <InputNumber id="floorarea" @bind-Value="newProperty.FloorArea" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price (DKK):</label>
+        <InputNumber id="price" @bind-Value="newProperty.Price" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="bedrooms">Number of Bedrooms:</label>
+        <InputNumber id="bedrooms" @bind-Value="newProperty.Bedrooms" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="bathrooms">Number of Bathrooms:</label>
+        <InputNumber id="bathrooms" @bind-Value="newProperty.Bathrooms" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="floors">Number of Floors:</label>
+        <InputNumber id="floors" @bind-Value="newProperty.Floors" class="form-control" />
+    </div>
+    
+    <div class="form-group">
+        <label for="yearBuilt">Year Built:</label>
+        <InputNumber id="yearBuilt" @bind-Value="newProperty.YearBuilt" class="form-control" />
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@if (isSubmitted)
+{
+    <p class="success-message">Property added successfully!</p>
+}
+
+@code {
+    private Property newProperty = new Property();
+    private bool isSubmitted = false;
+
+    private void HandleSubmit()
+    {
+        // Handle the logic here for submitting forms, save in a database
+        // Simulate a successful submission. Placeholder.
+        isSubmitted = true;
+
+        // Reset after added
+        newProperty = new Property();
+    }
+
+    public class Property
+    {
+        public string Address { get; set; }
+        public int FloorArea { get; set; }
+        public decimal Price { get; set; }
+        public int Bedrooms { get; set; }
+        public int Bathrooms { get; set; }
+        public int YearBuilt { get; set; }
+        public int Floors { get; set; }
+    }
+}

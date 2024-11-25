@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RealEstateBlazor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+612a04ec7db80b6a357837619061d65830d81b48")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d8025ae11fc80507b9da99cf8ff1278e6f0f5b79")]
 [assembly: System.Reflection.AssemblyProductAttribute("RealEstateBlazor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RealEstateBlazor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

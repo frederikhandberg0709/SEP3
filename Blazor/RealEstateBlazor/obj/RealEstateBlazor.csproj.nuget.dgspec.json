@@ -1,21 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/RealEstateBlazor.csproj": {}
+    "C:\\Users\\Nikolai\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\RealEstateBlazor.csproj": {}
   },
   "projects": {
-    "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/RealEstateBlazor.csproj": {
+    "C:\\Users\\Nikolai\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\RealEstateBlazor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/RealEstateBlazor.csproj",
+        "projectUniqueName": "C:\\Users\\Nikolai\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\RealEstateBlazor.csproj",
         "projectName": "RealEstateBlazor",
-        "projectPath": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/RealEstateBlazor.csproj",
-        "packagesPath": "/Users/unknownuser/.nuget/packages/",
-        "outputPath": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/",
+        "projectPath": "C:\\Users\\Nikolai\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\RealEstateBlazor.csproj",
+        "packagesPath": "C:\\Users\\Nikolai\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nikolai\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
-          "/Users/unknownuser/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Nikolai\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -62,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\Nikolai\\.dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
