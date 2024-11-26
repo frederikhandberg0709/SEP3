@@ -2,6 +2,7 @@ module via.sep.gui {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
+    requires org.postgresql.jdbc;
 
     // Export the main package for application entry point
     exports via.sep.gui;

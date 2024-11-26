@@ -1,10 +1,12 @@
 package via.sep.gui.ViewModel;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import via.sep.gui.Model.Property;
-
-import java.util.UUID;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import via.sep.gui.Model.propertyService;
 
 public class CreateViewModel {
     private final StringProperty address = new SimpleStringProperty();
@@ -16,6 +18,8 @@ public class CreateViewModel {
     private final StringProperty status = new SimpleStringProperty();
     private final StringProperty size = new SimpleStringProperty();
     private final StringProperty price = new SimpleStringProperty();
+
+    private final propertyService propertyService = new propertyService();
 
     public StringProperty addressProperty() {
         return address;
@@ -53,8 +57,7 @@ public class CreateViewModel {
         return price;
     }
 
-    public Property createProperty() {
-        UUID id = UUID.randomUUID();
+    public void createProperty() {
         String addressValue = address.get();
         String propertyTypeValue = propertyType.get();
         int bathroomNumValue = Integer.parseInt(bathroomNum.get());
@@ -65,17 +68,7 @@ public class CreateViewModel {
         double sizeValue = Double.parseDouble(size.get());
         double priceValue = Double.parseDouble(price.get());
 
-        return  Property.createProperty(
-                id,
-                addressValue,
-                propertyTypeValue,
-                bathroomNumValue,
-                roomsNumValue,
-                fullNameValue,
-                floorNumValue,
-                statusValue,
-                sizeValue,
-                priceValue);
+        propertyService.createProperty(addressValue, propertyTypeValue, bathroomNumValue, roomsNumValue, fullNameValue, floorNumValue, statusValue, sizeValue, priceValue);
     }
 
     public void cancelCreation() {
@@ -88,5 +81,53 @@ public class CreateViewModel {
         status.set("");
         size.set("");
         price.set("");
+    }
+
+    public void addListener(InvalidationListener listener) {
+        address.addListener(listener);
+        propertyType.addListener(listener);
+        bathroomNum.addListener(listener);
+        roomsNum.addListener(listener);
+        fullName.addListener(listener);
+        floorNum.addListener(listener);
+        status.addListener(listener);
+        size.addListener(listener);
+        price.addListener(listener);
+    }
+
+    public void removeListener(InvalidationListener listener) {
+        address.removeListener(listener);
+        propertyType.removeListener(listener);
+        bathroomNum.removeListener(listener);
+        roomsNum.removeListener(listener);
+        fullName.removeListener(listener);
+        floorNum.removeListener(listener);
+        status.removeListener(listener);
+        size.removeListener(listener);
+        price.removeListener(listener);
+    }
+
+    public void addListener(ChangeListener<? super String> listener) {
+        address.addListener(listener);
+        propertyType.addListener(listener);
+        bathroomNum.addListener(listener);
+        roomsNum.addListener(listener);
+        fullName.addListener(listener);
+        floorNum.addListener(listener);
+        status.addListener(listener);
+        size.addListener(listener);
+        price.addListener(listener);
+    }
+
+    public void removeListener(ChangeListener<? super String> listener) {
+        address.removeListener(listener);
+        propertyType.removeListener(listener);
+        bathroomNum.removeListener(listener);
+        roomsNum.removeListener(listener);
+        fullName.removeListener(listener);
+        floorNum.removeListener(listener);
+        status.removeListener(listener);
+        size.removeListener(listener);
+        price.removeListener(listener);
     }
 }

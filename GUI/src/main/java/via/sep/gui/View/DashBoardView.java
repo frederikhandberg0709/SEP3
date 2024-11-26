@@ -57,13 +57,13 @@ public class DashBoardView {
     }
 
     @FXML
-    private void handleCreateProperty(MouseEvent event) {
+    private void handleCreateProperty() {
         // Logic to create a new property (e.g., open a form to add property details)
         showAlert("Create Property", "This will open a form to create a new property.");
     }
 
     @FXML
-    private void handleDeleteProperty(MouseEvent event) {
+    private void handleDeleteProperty() {
         // Logic to delete the selected property
         Property selectedProperty = propertyTableView.getSelectionModel().getSelectedItem();
         if (selectedProperty != null) {
@@ -75,7 +75,7 @@ public class DashBoardView {
     }
 
     @FXML
-    private void handleEditProperty(MouseEvent event) {
+    private void handleEditProperty() {
         // Logic to edit the selected property (e.g., open a form to edit property details)
         Property selectedProperty = propertyTableView.getSelectionModel().getSelectedItem();
         if (selectedProperty != null) {

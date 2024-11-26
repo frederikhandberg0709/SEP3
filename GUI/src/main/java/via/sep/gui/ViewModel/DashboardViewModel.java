@@ -19,12 +19,12 @@ public class DashboardViewModel {
         propertyList.remove(property);
     }
 
-   public void editProperty(Property property) {
-    for (int i = 0; i < propertyList.size(); i++) {
-        if (propertyList.get(i).getId().equals(property.getId())) {
-            propertyList.set(i, property);
-            break;
+    public void editProperty(Property property) {
+        for (int i = 0; i < propertyList.size(); i++) {
+            if (propertyList.get(i).getId().equals(property.getId())) {
+                propertyList.set(i, property);
+                break;
+            }
         }
     }
-}
 }

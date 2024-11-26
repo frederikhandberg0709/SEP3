@@ -21,13 +21,13 @@
     </Text>
     <TableView fx:id="propertyTableView" layoutY="221.0" prefHeight="200.0" prefWidth="698.0">
         <columns>
-            <TableColumn prefWidth="91.20001065731049" text="Address " />
-            <TableColumn prefWidth="95.20001983642578" text="Client Name" />
-            <TableColumn prefWidth="125.5999755859375" text="Phone Number" />
-            <TableColumn prefWidth="88.79998779296875" text="Lease Period " />
-            <TableColumn prefWidth="99.99993896484375" text="Email " />
-            <TableColumn prefWidth="99.99993896484375" text="Propoerty Type" />
-            <TableColumn prefWidth="99.99993896484375" text="Price" />
+            <TableColumn fx:id="addressColumn" prefWidth="91.2000106573104" text="Address" />
+            <TableColumn fx:id="clientNameColumn" prefWidth="95.2000198364258" text="Client Name" />
+            <TableColumn fx:id="phoneNumberColumn" prefWidth="125.599975585934" text="Phone Number" />
+            <TableColumn fx:id="leasePeriodColumn" prefWidth="88.7999779292688" text="Lease Period" />
+            <TableColumn fx:id="emailColumn" prefWidth="99.9999389648438" text="Email" />
+            <TableColumn fx:id="propertyTypeColumn" prefWidth="99.9999389648438" text="Property Type" />
+            <TableColumn fx:id="priceColumn" prefWidth="99.9999389648438" text="Price" />
         </columns>
     </TableView>
     <ImageView fitHeight="47.0" fitWidth="54.0" layoutX="181.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">

@@ -6,8 +6,6 @@ import javafx.beans.property.StringProperty;
 import via.sep.gui.Model.Property;
 
 public class EditViewModel {
-    private Property currentProperty;
-
     private final StringProperty address = new SimpleStringProperty();
     private final StringProperty propertyType = new SimpleStringProperty();
     private final StringProperty bathroomNum = new SimpleStringProperty();
@@ -17,19 +15,6 @@ public class EditViewModel {
     private final StringProperty status = new SimpleStringProperty();
     private final StringProperty size = new SimpleStringProperty();
     private final StringProperty price = new SimpleStringProperty();
-
-    public void loadProperty(Property property) {
-        this.currentProperty = property;
-        address.set(property.getAddress());
-        propertyType.set(property.getPropertyType());
-        bathroomNum.set(String.valueOf(property.getBathroomNum()));
-        roomsNum.set(String.valueOf(property.getRoomsNum()));
-        fullName.set(property.getFullName());
-        floorNum.set(String.valueOf(property.getFloorNum()));
-        status.set(property.getStatus());
-        size.set(String.valueOf(property.getSize()));
-        price.set(String.valueOf(property.getPrice()));
-    }
 
     public StringProperty addressProperty() {
         return address;
@@ -67,11 +52,7 @@ public class EditViewModel {
         return price;
     }
 
-   public Property applyChanges() {
-        if (currentProperty == null) {
-            throw new IllegalStateException("No property loaded for editing");
-        }
-
+    public void applyChanges() {
         String addressValue = address.get();
         String propertyTypeValue = propertyType.get();
         int bathroomNumValue = Integer.parseInt(bathroomNum.get());
@@ -82,33 +63,19 @@ public class EditViewModel {
         double sizeValue = Double.parseDouble(size.get());
         double priceValue = Double.parseDouble(price.get());
 
-        return Property.updateProperty(
-                currentProperty.getId(),
-                addressValue,
-                propertyTypeValue,
-                bathroomNumValue,
-                roomsNumValue,
-                fullNameValue,
-                floorNumValue,
-                statusValue,
-                sizeValue,
-                priceValue
-        );
+
+        Property.updateProperty(addressValue, propertyTypeValue, bathroomNumValue, roomsNumValue, fullNameValue, floorNumValue, statusValue, sizeValue, priceValue);
     }
 
     public void cancelEdit() {
-        if (currentProperty != null) {
-            loadProperty(currentProperty);
-        } else {
-            address.set("");
-            propertyType.set("");
-            bathroomNum.set("");
-            roomsNum.set("");
-            fullName.set("");
-            floorNum.set("");
-            status.set("");
-            size.set("");
-            price.set("");
-        }
+        address.set("");
+        propertyType.set("");
+        bathroomNum.set("");
+        roomsNum.set("");
+        fullName.set("");
+        floorNum.set("");
+        status.set("");
+        size.set("");
+        price.set("");
     }
 }
