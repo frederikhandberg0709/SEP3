@@ -19,6 +19,12 @@ builder.Services.AddHttpClient<IPropertyService, PropertyService>(client =>
     client.BaseAddress = new Uri(baseUrl);
 });
 
+builder.Services.AddHttpClient<IImageService, ImageService>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"] 
+                                 ?? throw new InvalidOperationException("API Base URL not configured"));
+});
+
 builder.Services.AddScoped<IPropertyService, PropertyService>();
 
 var app = builder.Build();

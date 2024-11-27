@@ -11,4 +11,5 @@ public class Property
     public int? NumBathrooms { get; set; }
     public int? YearBuilt { get; set; }
     public string Description { get; set; }
+    public List<Image> Images { get; set; } = new();
 }

@@ -2,11 +2,11 @@ package via.sep.restful_server.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
-import java.awt.*;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "properties", schema = "properties")
@@ -39,4 +39,18 @@ public class Property {
     private Integer yearBuilt;
 
     private String description;
+
+    @OneToMany(targetEntity = Image.class, mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<Image> images = new ArrayList<>();
+
+    public void addImage(Image image) {
+        images.add(image);
+        image.setProperty(this);
+    }
+
+    public void removeImage(Image image) {
+        images.remove(image);
+        image.setProperty(null);
+    }
 }
