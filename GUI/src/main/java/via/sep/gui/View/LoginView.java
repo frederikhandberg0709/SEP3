@@ -22,6 +22,15 @@ public class LoginView {
 
     private LoginViewModel loginViewModel;
 
+
+    /**
+     * Default constructor required by FXML.
+     */
+    public LoginView() {
+        // Default constructor
+    }
+
+
     /**
      * Constructs a LoginView with the specified {@link LoginViewModel}.
      *
@@ -36,6 +45,10 @@ public class LoginView {
      */
     @FXML
     private void initialize() {
+
+        if (loginViewModel == null) {
+            loginViewModel = new LoginViewModel();
+        }
         // Bind text fields to ViewModel properties
         usernameField.textProperty().bindBidirectional(loginViewModel.usernameProperty());
         passwordField.textProperty().bindBidirectional(loginViewModel.passwordProperty());
@@ -69,5 +82,6 @@ public class LoginView {
     }
 
     public void setViewModel(LoginViewModel loginViewModel) {
+        this.loginViewModel = loginViewModel;
     }
 }

@@ -38,6 +38,10 @@ public class RegisterView {
      */
     @FXML
     private void initialize() {
+
+        if (ViewModel == null) {
+            ViewModel = new RegisterViewModel();
+        }
         // Property-binding with the RegisterViewModel
         usernameRegister.textProperty().bindBidirectional(ViewModel.usernameProperty());
         passwordRegister.textProperty().bindBidirectional(ViewModel.passwordProperty());

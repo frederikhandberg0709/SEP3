@@ -5,15 +5,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
+import via.sep.gui.View.CreateView;
+import via.sep.gui.View.LoginView;
+import via.sep.gui.View.RegisterView;
+import via.sep.gui.ViewModel.CreateViewModel;
+import via.sep.gui.ViewModel.LoginViewModel;
+import via.sep.gui.ViewModel.RegisterViewModel;
 
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/via.sep.gui/View/DashBoard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/via.sep.gui/View/Create.fxml"));
         Pane root = loader.load();
+
+        // Get the controller instance and set the ViewModel
+        CreateView createView = loader.getController();
+        createView.setViewModel(new CreateViewModel());
+
+
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Property Management");

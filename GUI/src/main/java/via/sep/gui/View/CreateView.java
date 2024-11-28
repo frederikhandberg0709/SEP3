@@ -27,6 +27,8 @@ public class CreateView {
 
     @FXML
     private void initialize() {
+
+
         setupNumericValidation(bathroomNumField);
         setupNumericValidation(roomsNumField);
         setupNumericValidation(floorNumField);
