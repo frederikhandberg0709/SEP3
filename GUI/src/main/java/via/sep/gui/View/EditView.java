@@ -26,14 +26,24 @@ public class EditView {
 
     @FXML
     private void initialize() {
-        setupNumericValidation(bathroomNumField);
-        setupNumericValidation(roomsNumField);
-        setupNumericValidation(floorNumField);
-        setupNumericValidation(sizeField);
-        setupNumericValidation(priceField);
+        // Null checks to prevent NullPointerException
+        if (bathroomNumField != null)
+            setupNumericValidation(bathroomNumField);
+        if (roomsNumField != null)
+            setupNumericValidation(roomsNumField);
+        if (floorNumField != null)
+            setupNumericValidation(floorNumField);
+        if (sizeField != null)
+            setupNumericValidation(sizeField);
+        if (priceField != null)
+            setupNumericValidation(priceField);
 
-        applyChangesButton.setOnAction(event -> applyChanges());
-        cancelButton.setOnAction(event -> cancelEdit());
+        if (applyChangesButton != null)
+            applyChangesButton.setOnAction(event -> applyChanges());
+
+        if (cancelButton != null)
+            cancelButton.setOnAction(event -> cancelEdit());
+
     }
 
     public void setCallbacks(Consumer<PropertyData> onSave, Runnable onCancel) {
@@ -43,6 +53,11 @@ public class EditView {
 
     private void setupNumericValidation(TextField field) {
         field.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null) {
+                field.setText("");
+                return;
+            }
+
             if (!newValue.matches("\\d*(\\.\\d*)?")) {
                 field.setText(oldValue);
             }
@@ -173,6 +188,14 @@ public class EditView {
 
 
     public void setViewModel(EditViewModel viewModel) {
-        // Implementation to bind the view model to the view
+        addressField.textProperty().bindBidirectional(viewModel.addressProperty());
+        propertyTypeField.textProperty().bindBidirectional(viewModel.propertyTypeProperty());
+        bathroomNumField.textProperty().bindBidirectional(viewModel.bathroomNumProperty());
+        roomsNumField.textProperty().bindBidirectional(viewModel.roomsNumProperty());
+        fullNameField.textProperty().bindBidirectional(viewModel.fullNameProperty());
+        floorNumField.textProperty().bindBidirectional(viewModel.floorNumProperty());
+        statusField.textProperty().bindBidirectional(viewModel.statusProperty());
+        sizeField.textProperty().bindBidirectional(viewModel.sizeProperty());
+        priceField.textProperty().bindBidirectional(viewModel.priceProperty());
     }
 }

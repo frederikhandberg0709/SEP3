@@ -8,16 +8,19 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="916.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="via.sep.gui.View.EditView">
    <children>
-      <TextField layoutX="18.0" layoutY="137.0" prefHeight="26.0" prefWidth="620.0" promptText="Enter property addres" />
-      <TextField layoutX="16.0" layoutY="216.0" prefHeight="26.0" prefWidth="620.0" promptText="Enter property type" />
-      <TextField layoutX="16.0" layoutY="710.0" prefHeight="26.0" prefWidth="620.0" promptText="Bathroom num" />
-      <TextField layoutX="16.0" layoutY="633.0" prefHeight="26.0" prefWidth="620.0" promptText="How many rooms? " />
-      <TextField layoutX="20.0" layoutY="293.0" prefHeight="26.0" prefWidth="620.0" promptText="Enter full name " />
-      <TextField layoutX="16.0" layoutY="547.0" prefHeight="26.0" prefWidth="620.0" promptText="What floor? " />
-      <TextField layoutX="23.0" layoutY="376.0" prefHeight="26.0" prefWidth="620.0" promptText="Enter current property status" />
-      <TextField layoutX="20.0" layoutY="461.0" prefHeight="26.0" prefWidth="620.0" promptText="enter property size" />
-      <Text layoutX="193.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Existing Property">
-         <font>
+      <TextField fx:id="addressField" layoutX="18.0" layoutY="137.0" prefHeight="26.0" prefWidth="620.0" promptText="Enter property address" />
+      <TextField fx:id="propertyTypeField" layoutX="16.0" layoutY="216.0" prefHeight="26.0" prefWidth="620.0" promptText="Enter property type" />
+      <TextField fx:id="bathroomNumField" layoutX="16.0" layoutY="710.0" prefHeight="26.0" prefWidth="620.0" promptText="Bathroom num" />
+      <TextField fx:id="roomsNumField" layoutX="16.0" layoutY="633.0" prefHeight="26.0" prefWidth="620.0" promptText="How many rooms?" />
+      <TextField fx:id="fullNameField" layoutX="20.0" layoutY="293.0" prefHeight="26.0" prefWidth="620.0" promptText="Enter full name" />
+      <TextField fx:id="floorNumField" layoutX="16.0" layoutY="547.0" prefHeight="26.0" prefWidth="620.0" promptText="What floor?" />
+      <TextField fx:id="statusField" layoutX="23.0" layoutY="376.0" prefHeight="26.0" prefWidth="620.0" promptText="Enter current property status" />
+      <TextField fx:id="sizeField" layoutX="20.0" layoutY="461.0" prefHeight="26.0" prefWidth="620.0" promptText="Enter property size" />
+      <TextField fx:id="priceField" layoutX="18.0" layoutY="794.0" prefHeight="26.0" prefWidth="620.0" promptText="Evaluated price in $" />
+      <Button fx:id="applyChangesButton" layoutX="540.0" layoutY="877.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" text="Apply changes" textFill="#050505" />
+      <Button fx:id="cancelButton" layoutX="441.0" layoutY="877.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Cancel" />
+        <Text layoutX="23.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Property">
+      <font>
             <Font name="System Bold" size="28.0" />
          </font>
       </Text>
