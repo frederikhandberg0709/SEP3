@@ -1,5 +1,6 @@
 package via.sep.restful_server.api;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/properties")
 public class PropertyController {
@@ -70,6 +72,7 @@ public class PropertyController {
             apartment.setBuildingName(propertyDTO.getBuildingName());
             apartment.setHasElevator(propertyDTO.getHasElevator());
             apartment.setHasBalcony(propertyDTO.getHasBalcony());
+            apartment.setNumFloors(propertyDTO.getNumFloors());
             apartmentRepository.save(apartment);
         }
 
@@ -92,19 +95,40 @@ public class PropertyController {
                     dto.setYearBuilt(property.getYearBuilt());
                     dto.setDescription(property.getDescription());
 
-                    if ("HOUSE".equals(property.getPropertyType())) {
-                        houseRepository.findByProperty_PropertyId(id).ifPresent(house -> {
-                            dto.setLotSize(house.getLotSize());
-                            dto.setHasGarage(house.getHasGarage());
-                            dto.setNumFloors(house.getNumFloors());
-                        });
-                    } else if ("APARTMENT".equals(property.getPropertyType())) {
-                        apartmentRepository.findByProperty_PropertyId(id).ifPresent(apartment -> {
-                            dto.setFloorNumber(apartment.getFloorNumber());
-                            dto.setBuildingName(apartment.getBuildingName());
-                            dto.setHasElevator(apartment.getHasElevator());
-                            dto.setHasBalcony(apartment.getHasBalcony());
-                        });
+                    if ("House".equals(property.getPropertyType())) {
+                        log.debug("Fetching house details for property ID: {}", id);
+
+                        houseRepository.findByProperty_PropertyId(id).ifPresentOrElse(
+                                house -> {
+                                    log.debug("Found house: ID={}, NumFloors={}",
+                                            house.getHouseId(),
+                                            house.getNumFloors());
+
+                                    dto.setLotSize(house.getLotSize());
+                                    dto.setHasGarage(house.getHasGarage());
+                                    dto.setNumFloors(house.getNumFloors());
+                                },
+                                () -> log.debug("No house found for property ID: {}", id)
+                        );
+                    } else if ("Apartment".equals(property.getPropertyType())) {
+                        log.debug("Fetching apartment details for property ID: {}", id);
+
+                        apartmentRepository.findByProperty_PropertyId(id).ifPresentOrElse(
+                                apartment -> {
+                                    log.debug("Found apartment: ID={}, NumFloors={}",
+                                            apartment.getApartmentId(),
+                                            apartment.getNumFloors());
+
+                                    dto.setFloorNumber(apartment.getFloorNumber());
+                                    dto.setBuildingName(apartment.getBuildingName());
+                                    dto.setHasElevator(apartment.getHasElevator());
+                                    dto.setHasBalcony(apartment.getHasBalcony());
+                                    dto.setNumFloors(apartment.getNumFloors());
+                                    dto.setLotSize(apartment.getLotSize());
+                                    dto.setHasGarage(apartment.getHasGarage());
+                                },
+                                () -> log.debug("No apartment found for property ID: {}", id)
+                        );
                     }
 
                     return ResponseEntity.ok(dto);
@@ -136,38 +160,25 @@ public class PropertyController {
 
                     Property updatedProperty = propertyRepository.save(property);
 
+                    if ("HOUSE".equals(property.getPropertyType())) {
+                        houseRepository.findByProperty_PropertyId(id).ifPresent(house -> {
+                            house.setLotSize(propertyDTO.getLotSize());
+                            house.setHasGarage(propertyDTO.getHasGarage());
+                            house.setNumFloors(propertyDTO.getNumFloors());
+                            houseRepository.save(house);
+                        });
+                    } else if ("APARTMENT".equals(property.getPropertyType())) {
+                        apartmentRepository.findByProperty_PropertyId(id).ifPresent(apartment -> {
+                            apartment.setFloorNumber(propertyDTO.getFloorNumber());
+                            apartment.setBuildingName(propertyDTO.getBuildingName());
+                            apartment.setHasElevator(propertyDTO.getHasElevator());
+                            apartment.setHasBalcony(propertyDTO.getHasBalcony());
+                            apartment.setNumFloors(propertyDTO.getNumFloors());
+                            apartmentRepository.save(apartment);
+                        });
+                    }
+
                     Map<String, Object> updatedFields = createPropertyDetails(propertyDTO);
-
-                    // Notify price change only if price has changed
-//                    if (!oldPrice.equals(propertyDTO.getPrice())) {
-//                        PriceChangeNotificationDTO notificationData = new PriceChangeNotificationDTO(
-//                                id.toString(),
-//                                property.getAddress(),
-//                                oldPrice,
-//                                propertyDTO.getPrice(),
-//                                LocalDateTime.now()
-//                        );
-//                        notificationService.notifyPriceChange(notificationData);
-//                    }
-
-//                    if ("House".equals(propertyDTO.getPropertyType())) {
-//                        houseRepository.findByProperty_PropertyId(id)
-//                                .ifPresent(house -> {
-//                                    house.setLotSize(propertyDTO.getLotSize());
-//                                    house.setHasGarage(propertyDTO.getHasGarage());
-//                                    house.setNumFloors(propertyDTO.getNumFloors());
-//                                    houseRepository.save(house);
-//                                });
-//                    } else if ("Apartment".equals(propertyDTO.getPropertyType())) {
-//                        apartmentRepository.findByProperty_PropertyId(id)
-//                                .ifPresent(apartment -> {
-//                                    apartment.setFloorNumber(propertyDTO.getFloorNumber());
-//                                    apartment.setBuildingName(propertyDTO.getBuildingName());
-//                                    apartment.setHasElevator(propertyDTO.getHasElevator());
-//                                    apartment.setHasBalcony(propertyDTO.getHasBalcony());
-//                                    apartmentRepository.save(apartment);
-//                                });
-//                    }
 
                     PropertyUpdateNotificationDTO notificationData = new PropertyUpdateNotificationDTO(
                             id.toString(),
@@ -242,6 +253,7 @@ public class PropertyController {
             details.put("buildingName", propertyDTO.getBuildingName());
             details.put("hasElevator", propertyDTO.getHasElevator());
             details.put("hasBalcony", propertyDTO.getHasBalcony());
+            details.put("numFloors", propertyDTO.getNumFloors());
         }
 
         return details;

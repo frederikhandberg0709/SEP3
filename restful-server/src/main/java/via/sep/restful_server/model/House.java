@@ -25,5 +25,5 @@ public class House {
     private Boolean hasGarage = false;
 
     @Column(name = "num_floors")
-    private Integer numFloors;
+    private Integer numFloors = 1;
 }

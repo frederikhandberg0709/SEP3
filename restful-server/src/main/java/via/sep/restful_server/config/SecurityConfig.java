@@ -44,20 +44,25 @@ public class SecurityConfig {
                         // Public GET endpoints
                         .requestMatchers(HttpMethod.GET,
                                 "/api/properties/**",
+                                "/api/images/**",
                                 "/api/agents/**",
                                 "/api/bookings/**"
                         ).permitAll()
 
+                        .requestMatchers(HttpMethod.GET,
+                                "/api/images/**/*.jpg",
+                                "/api/images/**/*.jpeg",
+                                "/api/images/**/*.png"
+                        ).permitAll()
+
                         // Public registration
                         .requestMatchers(HttpMethod.POST, "/api/users/register", "/api/users/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/properties/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/bookings/**").permitAll()
 
                         // Admin-only operations
-                        .requestMatchers(HttpMethod.POST, "/api/properties/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/properties/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PATCH, "/api/properties/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/properties/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/properties/**", "/api/images/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/properties/**", "/api/images/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/properties/**", "/api/images/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/properties/**", "/api/images/**").hasRole("ADMIN")
 
                         .requestMatchers(HttpMethod.POST, "/api/agents/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/agents/**").hasRole("ADMIN")

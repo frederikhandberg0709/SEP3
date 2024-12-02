@@ -14,13 +14,11 @@ public class PropertyDTO {
     private Integer numBathrooms;
     private Integer yearBuilt;
     private String description;
-
-    // House
+    private Integer numFloors;
     private BigDecimal lotSize;
     private Boolean hasGarage;
-    private Integer numFloors;
 
-    // Apartment
+    // Apartment-specific
     private Integer floorNumber;
     private String buildingName;
     private Boolean hasElevator;

@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "image_data", nullable = false)
-    @Lob
     private byte[] imageData;
 
     @ManyToOne(fetch = FetchType.LAZY)

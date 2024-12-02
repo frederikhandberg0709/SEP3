@@ -13,13 +13,13 @@ public class ImageService : IImageService
         _baseUrl = configuration["ApiSettings:BaseUrl"];
     }
     
-    public async Task<Image> GetImageByIdAsync(string id)
+    public async Task<ImageDTO> GetImageByIdAsync(string id)
     {
         try
         {
             var response = await _httpClient.GetAsync($"{_baseUrl}/api/images/{id}");
             response.EnsureSuccessStatusCode();
-            var image = await response.Content.ReadFromJsonAsync<Image>();
+            var image = await response.Content.ReadFromJsonAsync<ImageDTO>();
             return image ?? throw new Exception("Image not found");
         }
         catch (HttpRequestException ex)
@@ -28,14 +28,14 @@ public class ImageService : IImageService
         }
     }
 
-    public async Task<IEnumerable<Image>> GetImagesForPropertyAsync(string propertyId)
+    public async Task<IEnumerable<ImageDTO>> GetImagesForPropertyAsync(string propertyId)
     {
         try
         {
             var response = await _httpClient.GetAsync($"{_baseUrl}/api/images/property/{propertyId}");
             response.EnsureSuccessStatusCode();
-            var images = await response.Content.ReadFromJsonAsync<IEnumerable<Image>>();
-            return images ?? Enumerable.Empty<Image>();
+            var images = await response.Content.ReadFromJsonAsync<IEnumerable<ImageDTO>>();
+            return images ?? Enumerable.Empty<ImageDTO>();
         }
         catch (HttpRequestException ex)
         {

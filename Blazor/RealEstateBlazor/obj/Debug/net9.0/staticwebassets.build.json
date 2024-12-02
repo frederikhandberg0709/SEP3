@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RTI/AdpTENTLv6XXl+cVMQ0QSzJxV1XSpnnIYqXrBD0=",
+  "Hash": "Wp2EKhLiYerdLhOKd4LjbgHb2WYiZ3UfR0cNzWrXDGA=",
   "Source": "RealEstateBlazor",
   "BasePath": "_content/RealEstateBlazor",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/wwwroot/bootstrap/bootstrap.min.css.map",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "m532s4naxw",
-      "Integrity": "epiz+IkftKdCVrNwM3M3b4/Co3mxoqDpjOfMrHfv/7E=",
+      "Fingerprint": "a5iolpc9xz",
+      "Integrity": "3qo3UHtt1eBcfATKJXtIrY+ZdPuBA21DhCoR49jAwbE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/wwwroot/bootstrap/bootstrap.min.css.map"
@@ -442,7 +442,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -503,7 +503,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -548,7 +548,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -603,7 +603,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -656,7 +656,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -693,7 +693,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -740,7 +740,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -793,7 +793,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -830,7 +830,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -877,7 +877,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -938,7 +938,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -983,7 +983,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1038,7 +1038,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1099,7 +1099,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1144,7 +1144,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1199,7 +1199,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1252,7 +1252,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1287,11 +1287,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"epiz+IkftKdCVrNwM3M3b4/Co3mxoqDpjOfMrHfv/7E=\""
+          "Value": "\"3qo3UHtt1eBcfATKJXtIrY+ZdPuBA21DhCoR49jAwbE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1352,7 +1352,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1393,11 +1393,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"epiz+IkftKdCVrNwM3M3b4/Co3mxoqDpjOfMrHfv/7E=\""
+          "Value": "\"3qo3UHtt1eBcfATKJXtIrY+ZdPuBA21DhCoR49jAwbE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1423,7 +1423,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-epiz+IkftKdCVrNwM3M3b4/Co3mxoqDpjOfMrHfv/7E="
+          "Value": "sha256-3qo3UHtt1eBcfATKJXtIrY+ZdPuBA21DhCoR49jAwbE="
         }
       ]
     },
@@ -1450,7 +1450,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1493,11 +1493,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"epiz+IkftKdCVrNwM3M3b4/Co3mxoqDpjOfMrHfv/7E=\""
+          "Value": "\"3qo3UHtt1eBcfATKJXtIrY+ZdPuBA21DhCoR49jAwbE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1550,7 +1550,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1583,11 +1583,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"epiz+IkftKdCVrNwM3M3b4/Co3mxoqDpjOfMrHfv/7E=\""
+          "Value": "\"3qo3UHtt1eBcfATKJXtIrY+ZdPuBA21DhCoR49jAwbE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1605,7 +1605,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-epiz+IkftKdCVrNwM3M3b4/Co3mxoqDpjOfMrHfv/7E="
+          "Value": "sha256-3qo3UHtt1eBcfATKJXtIrY+ZdPuBA21DhCoR49jAwbE="
         }
       ]
     },
@@ -1632,7 +1632,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1677,7 +1677,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1716,7 +1716,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 13:02:35 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1769,7 +1769,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 13:02:35 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1806,7 +1806,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 13:02:35 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1853,7 +1853,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 13:02:35 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1914,7 +1914,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 13:02:35 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1959,7 +1959,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 13:02:35 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2014,7 +2014,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2075,7 +2075,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2120,7 +2120,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2175,7 +2175,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2228,7 +2228,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2265,7 +2265,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2312,7 +2312,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2365,7 +2365,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2402,7 +2402,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2449,7 +2449,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2510,7 +2510,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2555,7 +2555,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2610,7 +2610,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2671,7 +2671,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2716,7 +2716,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2771,7 +2771,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2832,7 +2832,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2877,7 +2877,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2932,7 +2932,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2985,7 +2985,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3022,7 +3022,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3069,7 +3069,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3122,7 +3122,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3159,7 +3159,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 25 Nov 2024 10:22:37 GMT"
+          "Value": "Wed, 27 Nov 2024 14:57:17 GMT"
         },
         {
           "Name": "Cache-Control",
