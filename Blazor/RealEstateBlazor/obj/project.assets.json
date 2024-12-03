@@ -8,20 +8,20 @@
     "net9.0": []
   },
   "packageFolders": {
-    "/Users/unknownuser/.nuget/packages/": {}
+    "C:\\Users\\45257\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/RealEstateBlazor.csproj",
+      "projectUniqueName": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\RealEstateBlazor.csproj",
       "projectName": "RealEstateBlazor",
-      "projectPath": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/RealEstateBlazor.csproj",
-      "packagesPath": "/Users/unknownuser/.nuget/packages/",
-      "outputPath": "/Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/",
+      "projectPath": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\RealEstateBlazor.csproj",
+      "packagesPath": "C:\\Users\\45257\\.nuget\\packages\\",
+      "outputPath": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\",
       "projectStyle": "PackageReference",
       "UsingMicrosoftNETSdk": false,
       "configFilePaths": [
-        "/Users/unknownuser/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\45257\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -68,7 +68,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\45257\\.dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
