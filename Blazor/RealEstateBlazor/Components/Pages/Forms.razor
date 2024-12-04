@@ -1,4 +1,5 @@
 ﻿@page "/Forms"
+@using Microsoft.AspNetCore.SignalR.Client
 @using System.ComponentModel.DataAnnotations
 
 <PageTitle>Forms</PageTitle>
@@ -12,6 +13,15 @@
     <div class="form-group">
         <label for="address">Address:</label>
         <InputText id="address" @bind-Value="newProperty.Address" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="propertyType">Property Type:</label>
+        <InputSelect id="propertyType" @bind-Value="newProperty.PropertyType" class="form-control">
+            <option value="">-- Select Type --</option>
+            <option value="House">House</option>
+            <option value="Apartment">Apartment</option>
+        </InputSelect>
     </div>
 
     <div class="form-group">
@@ -35,15 +45,45 @@
     </div>
 
     <div class="form-group">
-        <label for="floors">Number of Floors:</label>
-        <InputNumber id="floors" @bind-Value="newProperty.Floors" class="form-control" />
-    </div>
-    
-    <div class="form-group">
         <label for="yearBuilt">Year Built:</label>
         <InputNumber id="yearBuilt" @bind-Value="newProperty.YearBuilt" class="form-control" />
     </div>
-    
+
+    @if (newProperty.PropertyType == "House")
+    {
+        <div class="form-group">
+            <label for="floors">Number of Floors:</label>
+            <InputNumber id="floors" @bind-Value="newProperty.NumFloors" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="garage">Has Garage:</label>
+            <InputCheckbox id="garage" @bind-Value="newProperty.HasGarage" />
+        </div>
+    }
+    else if (newProperty.PropertyType == "Apartment")
+    {
+        <div class="form-group">
+            <label for="buildingName">Building Name:</label>
+            <InputText id="buildingName" @bind-Value="newProperty.BuildingName" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="floorNumber">Floor Number:</label>
+            <InputNumber id="floorNumber" @bind-Value="newProperty.FloorNumber" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="hasElevator">Has Elevator:</label>
+            <InputCheckbox id="hasElevator" @bind-Value="newProperty.HasElevator" />
+        </div>
+
+        <div class="form-group">
+            <label for="hasBalcony">Has Balcony:</label>
+            <InputCheckbox id="hasBalcony" @bind-Value="newProperty.HasBalcony" />
+        </div>
+    }
+
     <button type="submit" class="btn btn-primary">Submit</button>
 </EditForm>
 
@@ -52,28 +92,68 @@
     <p class="success-message">Property added successfully!</p>
 }
 
+@if (notifications.Count > 0)
+{
+    <h4>Notifications:</h4>
+    <ul>
+        @foreach (var notification in notifications)
+        {
+            <li>@notification</li>
+        }
+    </ul>
+}
+
 @code {
     private Property newProperty = new Property();
     private bool isSubmitted = false;
+    private List<string> notifications = new List<string>();
+    private HubConnection hubConnection;
 
-    private void HandleSubmit()
+    protected override async Task OnInitializedAsync()
     {
-        // Handle the logic here for submitting forms, save in a database
-        // Simulate a successful submission. Placeholder.
-        isSubmitted = true;
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl("https://localhost:5168/hubs/notifications")
+            .WithAutomaticReconnect()
+            .Build();
 
-        // Reset after added
+        hubConnection.On<string>("ReceiveNotification", (message) =>
+        {
+            notifications.Add(message);
+            StateHasChanged();
+        });
+
+        await hubConnection.StartAsync();
+    }
+
+    private async Task HandleSubmit()
+    {
+        isSubmitted = true;
         newProperty = new Property();
+        await hubConnection.InvokeAsync("SendNotification", "A new property has been added.");
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.DisposeAsync();
+        }
     }
 
     public class Property
     {
         public string Address { get; set; }
+        public string PropertyType { get; set; } // House or Apartment
         public int FloorArea { get; set; }
         public decimal Price { get; set; }
         public int Bedrooms { get; set; }
         public int Bathrooms { get; set; }
         public int YearBuilt { get; set; }
-        public int Floors { get; set; }
+        public int NumFloors { get; set; } // For Houses
+        public bool HasGarage { get; set; } // For Houses
+        public string BuildingName { get; set; } // For Apartments
+        public int FloorNumber { get; set; } // For Apartments
+        public bool HasElevator { get; set; } // For Apartments
+        public bool HasBalcony { get; set; } // For Apartments
     }
 }
