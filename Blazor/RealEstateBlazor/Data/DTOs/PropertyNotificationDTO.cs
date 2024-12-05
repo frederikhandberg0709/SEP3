@@ -1,0 +1,11 @@
+namespace RealEstateBlazor.Data.Models;
+
+public class PropertyNotificationDTO
+{
+    public string PropertyId { get; set; }
+    public string Address { get; set; }
+    public decimal Price { get; set; }
+    public string PropertyType { get; set; }
+    public Dictionary<string, object> Details { get; set; }
+    public DateTime Timestamp { get; set; }
+}

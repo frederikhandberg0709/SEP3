@@ -26,6 +26,7 @@ builder.Services.AddHttpClient<IImageService, ImageService>(client =>
 });
 
 builder.Services.AddScoped<IPropertyService, PropertyService>();
+builder.Services.AddScoped<INotificationHub, NotificationHub>();
 
 var app = builder.Build();
 
