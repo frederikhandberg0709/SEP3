@@ -1,3 +1,5 @@
+using RealEstateBlazor.Components.Pages;
+
 public class UserProfile
 {
     public long ProfileId { get; set; }

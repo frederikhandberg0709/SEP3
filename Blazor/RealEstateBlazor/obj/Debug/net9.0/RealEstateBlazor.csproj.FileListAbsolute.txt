@@ -82,3 +82,12 @@ C:/Users/Nikolai/Documents/GitHub/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/
 /Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/gy2031n9pq-xossy0aysi.gz
 /Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/isoxwiu6wr-12kr32rfdh.gz
 /Users/unknownuser/Library/CloudStorage/OneDrive-ViaUC/Software Engineering/3rd semester/SEP3/SEP3/Blazor/RealEstateBlazor/obj/Debug/net9.0/compressed/wdmy37j2v3-s5phnmpgg4.gz
+C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.AssemblyInfoInputs.cache
+C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.AssemblyInfo.cs
+C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.csproj.CoreCompileInputs.cache
+C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.MvcApplicationPartsAssemblyInfo.cache
+C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.sourcelink.json
+C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.dll
+C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\refint\RealEstateBlazor.dll
+C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.pdb
