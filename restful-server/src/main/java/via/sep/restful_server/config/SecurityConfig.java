@@ -68,6 +68,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/agents/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/agents/**").hasRole("ADMIN")
 
+                        // Bookmark operations require authentication
+                        .requestMatchers(HttpMethod.POST, "/api/bookmarks/**").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/bookmarks/**").authenticated()
+
                         // Booking operations require authentication
                         .requestMatchers(HttpMethod.POST, "/api/bookings/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/bookings/**").authenticated()
