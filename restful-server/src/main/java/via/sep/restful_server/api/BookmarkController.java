@@ -5,14 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 import via.sep.restful_server.dto.BookmarkDTO;
 import via.sep.restful_server.dto.CreateBookmarkDTO;
 import via.sep.restful_server.exception.ResourceNotFoundException;
-import via.sep.restful_server.repository.BookmarkRepository;
 import via.sep.restful_server.service.BookmarkService;
 
 import java.util.List;
