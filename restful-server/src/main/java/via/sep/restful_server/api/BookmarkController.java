@@ -10,7 +10,13 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 import via.sep.restful_server.dto.BookmarkDTO;
 import via.sep.restful_server.dto.CreateBookmarkDTO;
+import via.sep.restful_server.dto.PropertyDTO;
 import via.sep.restful_server.exception.ResourceNotFoundException;
+import via.sep.restful_server.model.Bookmark;
+import via.sep.restful_server.model.Property;
+import via.sep.restful_server.notification.service.NotificationService;
+import via.sep.restful_server.repository.BookmarkRepository;
+import via.sep.restful_server.repository.PropertyRepository;
 import via.sep.restful_server.service.BookmarkService;
 
 import java.util.List;
@@ -20,10 +26,16 @@ import java.util.List;
 @RequestMapping("/api/bookmarks")
 public class BookmarkController {
     private final BookmarkService bookmarkService;
+    private final NotificationService notificationService;
+    private final PropertyRepository propertyRepository;
+    private final BookmarkRepository bookmarkRepository;
 
     @Autowired
-    public BookmarkController(BookmarkService bookmarkService) {
+    public BookmarkController(BookmarkService bookmarkService, NotificationService notificationService, PropertyRepository propertyRepository, BookmarkRepository bookmarkRepository) {
         this.bookmarkService = bookmarkService;
+        this.notificationService = notificationService;
+        this.propertyRepository = propertyRepository;
+        this.bookmarkRepository = bookmarkRepository;
     }
 
     @PostMapping
@@ -39,6 +51,22 @@ public class BookmarkController {
             }
 
             BookmarkDTO createdBookmark = bookmarkService.createBookmark(dto.getPropertyId(), accountId);
+
+            Property property = propertyRepository.findById(dto.getPropertyId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Property not found"));
+
+            PropertyDTO propertyDTO = new PropertyDTO();
+            propertyDTO.setPropertyType(property.getPropertyType());
+            propertyDTO.setAddress(property.getAddress());
+            propertyDTO.setFloorArea(property.getFloorArea());
+            propertyDTO.setPrice(property.getPrice());
+            propertyDTO.setNumBedrooms(property.getNumBedrooms());
+            propertyDTO.setNumBathrooms(property.getNumBathrooms());
+            propertyDTO.setYearBuilt(property.getYearBuilt());
+            propertyDTO.setDescription(property.getDescription());
+
+            notificationService.notifyBookmarkCreated(createdBookmark, createdBookmark.getBookmarkId().toString());
+
             return ResponseEntity.ok(createdBookmark);
         } catch (ResourceNotFoundException e) {
             log.error("Resource not found: ", e);
@@ -86,7 +114,29 @@ public class BookmarkController {
                         .body("You don't have permission to delete this bookmark");
             }
 
+            Bookmark bookmark = bookmarkRepository.findById(bookmarkId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Bookmark not found"));
+
+            Property property = propertyRepository.findById(bookmark.getProperty().getPropertyId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Property not found"));
+
+            // Convert to DTOs
+            BookmarkDTO bookmarkDTO = new BookmarkDTO(bookmark);
+            PropertyDTO propertyDTO = new PropertyDTO();
+            propertyDTO.setPropertyType(property.getPropertyType());
+            propertyDTO.setAddress(property.getAddress());
+            propertyDTO.setFloorArea(property.getFloorArea());
+            propertyDTO.setPrice(property.getPrice());
+            propertyDTO.setNumBedrooms(property.getNumBedrooms());
+            propertyDTO.setNumBathrooms(property.getNumBathrooms());
+            propertyDTO.setYearBuilt(property.getYearBuilt());
+            propertyDTO.setDescription(property.getDescription());
+
+            // Delete the bookmark
             bookmarkService.deleteBookmark(bookmarkId);
+
+            notificationService.notifyBookmarkDeleted(bookmarkDTO, propertyDTO, bookmarkId.toString());
+
             return ResponseEntity.noContent().build();
         } catch (ResourceNotFoundException e) {
             log.error("Resource not found: ", e);

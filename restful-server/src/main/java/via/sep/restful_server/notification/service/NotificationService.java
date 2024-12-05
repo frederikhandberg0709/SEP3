@@ -9,6 +9,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import via.sep.restful_server.dto.AgentDTO;
 import via.sep.restful_server.dto.BookingDTO;
+import via.sep.restful_server.dto.BookmarkDTO;
 import via.sep.restful_server.dto.PropertyDTO;
 import via.sep.restful_server.model.Forms;
 import via.sep.restful_server.notification.dto.NotificationDTO;
@@ -95,6 +96,18 @@ public class NotificationService {
         } catch (Exception e) {
             log.error("Error sending price change notification", e);
         }
+    }
+
+    public void notifyBookmarkCreated(BookmarkDTO bookmarkDTO, PropertyDTO propertyDTO, String bookmarkId) {
+        NotificationDTO notification = notificationMapper
+                .toBookmarkNotification(bookmarkDTO, propertyDTO, "CREATED", bookmarkId);
+        sendNotification(notification);
+    }
+
+    public void notifyBookmarkDeleted(BookmarkDTO bookmarkDTO, PropertyDTO propertyDTO, String bookmarkId) {
+        NotificationDTO notification = notificationMapper
+                .toBookmarkNotification(bookmarkDTO, propertyDTO, "DELETED", bookmarkId);
+        sendNotification(notification);
     }
 
     private void sendNotification(NotificationDTO notification) {

@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer("Bearer", options =>
     {
-        options.Authority = "http://localhost:8080"; // Pointing to Java server URL
+        options.Authority = "http://localhost:8080"; // Pointing to Java RESTful server URL
         options.RequireHttpsMetadata = false;
         
         options.TokenValidationParameters = new TokenValidationParameters

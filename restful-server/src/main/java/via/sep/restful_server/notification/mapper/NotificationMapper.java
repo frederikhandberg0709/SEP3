@@ -1,11 +1,9 @@
 package via.sep.restful_server.notification.mapper;
 
 import org.springframework.stereotype.Component;
-import via.sep.restful_server.dto.AgentDTO;
-import via.sep.restful_server.dto.BookingDTO;
-import via.sep.restful_server.dto.FormDTO;
-import via.sep.restful_server.dto.PropertyDTO;
+import via.sep.restful_server.dto.*;
 import via.sep.restful_server.model.Forms;
+import via.sep.restful_server.model.Property;
 import via.sep.restful_server.notification.dto.*;
 
 import java.math.BigDecimal;
@@ -53,6 +51,27 @@ public class NotificationMapper {
         }
 
         return details;
+    }
+
+    public NotificationDTO toBookmarkNotification(BookmarkDTO bookmarkDTO, PropertyDTO propertyDTO, String action, String bookmarkId) {
+        BookmarkNotificationDTO data = new BookmarkNotificationDTO(
+                bookmarkId,
+                bookmarkDTO.getPropertyId().toString(),
+                bookmarkDTO.getAccountId().toString(),
+                propertyDTO.getAddress(),
+                propertyDTO.getPrice(),
+                propertyDTO.getPropertyType(),
+                createPropertyDetails(propertyDTO),
+                LocalDateTime.now()
+        );
+
+        return new NotificationDTO(
+                "BOOKMARK",
+                action,
+                bookmarkId,
+                LocalDateTime.now(),
+                data
+        );
     }
 
     public NotificationDTO toBookingNotification(BookingDTO bookingDTO, String action, String bookingId) {
