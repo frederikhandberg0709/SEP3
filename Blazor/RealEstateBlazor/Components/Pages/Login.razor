@@ -1,0 +1,93 @@
+﻿@page "/login"
+@using System.ComponentModel.DataAnnotations
+@using System.Text
+@using System.Text.Json
+@inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
+
+<div class="login-container">
+    <EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <InputText id="username" class="form-control" @bind-Value="loginModel.Username" />
+            <ValidationMessage For="@(() => loginModel.Username)" />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <InputText id="password" type="password" class="form-control" @bind-Value="loginModel.Password" />
+            <ValidationMessage For="@(() => loginModel.Password)" />
+        </div>
+
+        <button type="submit" class="btn btn-primary" disabled="@isLoading">Login</button>
+    </EditForm>
+
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger">
+            @errorMessage
+        </div>
+    }
+</div>
+
+@code {
+    private LoginModel loginModel = new LoginModel();
+    private string errorMessage = string.Empty;
+    private bool isLoading = false;
+
+    private async Task HandleLogin()
+    {
+        isLoading = true;
+        errorMessage = string.Empty;
+
+        try 
+        {
+            var loginDto = new 
+            {
+                username = loginModel.Username,
+                password = loginModel.Password
+            };
+
+            var content = new StringContent(
+                JsonSerializer.Serialize(loginDto), 
+                Encoding.UTF8, 
+                "application/json"
+            );
+
+            var response = await HttpClient.PostAsync("http:///localhost:8080/api/users/login", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                // Optionally parse and store token
+                var token = await response.Content.ReadAsStringAsync();
+                // Store token in local storage or state management
+                NavigationManager.NavigateTo("/dashboard");
+            }
+            else 
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                errorMessage = $"Login failed: {errorContent}";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    public class LoginModel
+    {
+        [Required(ErrorMessage = "Username is required")]
+        public string Username { get; set; }
+
+        [Required(ErrorMessage = "Password is required")]
+        public string Password { get; set; }
+    }
+}
