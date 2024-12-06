@@ -86,6 +86,7 @@ public class PropertyController {
         return propertyRepository.findById(id)
                 .map(property -> {
                     PropertyDTO dto = new PropertyDTO();
+                    dto.setPropertyId(property.getPropertyId());
                     dto.setPropertyType(property.getPropertyType());
                     dto.setAddress(property.getAddress());
                     dto.setFloorArea(property.getFloorArea());

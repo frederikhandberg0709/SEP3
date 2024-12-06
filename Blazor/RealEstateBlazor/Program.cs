@@ -27,6 +27,8 @@ builder.Services.AddHttpClient<IImageService, ImageService>(client =>
 
 builder.Services.AddScoped<IPropertyService, PropertyService>();
 builder.Services.AddScoped<INotificationHub, NotificationHub>();
+builder.Services.AddScoped<IBookmarkService, BookmarkService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 var app = builder.Build();
 

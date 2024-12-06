@@ -1,5 +1,5 @@
-namespace RealEstateBlazor.Data.Models;
-
+namespace RealEstateBlazor.Data.DTOs;
+    
 public class ImageDTO
 {
     public long Id { get; set; }
