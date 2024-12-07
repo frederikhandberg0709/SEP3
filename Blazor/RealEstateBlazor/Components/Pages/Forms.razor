@@ -111,41 +111,25 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        isLoggedIn = authState.User.Identity?.IsAuthenticated ?? false;
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl("https://localhost:5168/hubs/notifications")
+            .WithAutomaticReconnect()
+            .Build();
 
-        if (isLoggedIn)
+        hubConnection.On<string>("ReceiveNotification", (message) =>
         {
-            hubConnection = new HubConnectionBuilder()
-                .WithUrl("https://localhost:5168/hubs/notifications")
-                .WithAutomaticReconnect()
-                .Build();
+            notifications.Add(message);
+            StateHasChanged();
+        });
 
-            hubConnection.On<string>("ReceiveNotification", (message) =>
-            {
-                notifications.Add(message);
-                StateHasChanged();
-            });
-
-            await hubConnection.StartAsync();
-        }
+        await hubConnection.StartAsync();
     }
 
     private async Task HandleSubmit()
     {
-        if (!isLoggedIn)
-        {
-            return; // Prevent submission if not logged in
-        }
-
         isSubmitted = true;
         newProperty = new Property();
         await hubConnection.InvokeAsync("SendNotification", "A new property has been added.");
-    }
-
-    private void RedirectToLogin()
-    {
-        NavigationManager.NavigateTo("/Login");
     }
 
     public async ValueTask DisposeAsync()

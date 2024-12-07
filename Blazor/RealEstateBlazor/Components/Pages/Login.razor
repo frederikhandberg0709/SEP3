@@ -12,6 +12,10 @@
 
 @rendermode InteractiveServer
 
+<head>
+    <link href="Login.css" rel="stylesheet" />
+</head>
+
 <CascadingAuthenticationState>
     <AuthorizeView>
         <NotAuthorized>
@@ -29,7 +33,7 @@
                 </div>
                 
                 <button @onclick="HandleLogin" disabled="@(isLoading || string.IsNullOrWhiteSpace(loginForm.Username) || string.IsNullOrWhiteSpace(loginForm.Password))" class="btn btn-primary">Log in</button>
-                <button @onclick="@(() => NavigationManager.NavigateTo("/register"))" class="btn btn-link">Register new user</button>
+                <button @onclick="@(() => NavigationManager.NavigateTo("/register"))" class="Login-btn-link">Register new user</button>
                 @if (!string.IsNullOrEmpty(errorMessage))
                 {
                     <div class="alert alert-danger mt-3">
