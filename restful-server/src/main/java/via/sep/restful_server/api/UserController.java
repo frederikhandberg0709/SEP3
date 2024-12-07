@@ -85,6 +85,7 @@ public class UserController {
                     return ResponseEntity.ok(new LoginResponseDTO(
                             token,
                             login.getUsername(),
+                            login.getUserProfile().getFullName(),
                             login.getRole(),
                             login.getAccountId()
                     ));

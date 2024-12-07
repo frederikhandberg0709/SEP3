@@ -73,20 +73,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-/*app.Use(async (context, next) =>
-{
-    context.Response.Headers.Add(
-        "Content-Security-Policy",
-        "default-src 'self'; " +
-        "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
-        "script-src-elem 'self' 'unsafe-inline'; " +
-        "style-src 'self' 'unsafe-inline'; " +
-        "connect-src 'self' wss:; " +
-        "img-src 'self' data:;");
-
-    await next();
-});*/
-
 app.UseHttpsRedirection();
 
 app.UseAntiforgery();

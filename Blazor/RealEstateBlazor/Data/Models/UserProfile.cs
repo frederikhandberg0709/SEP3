@@ -1,10 +1,11 @@
-using RealEstateBlazor.Components.Pages;
+namespace RealEstateBlazor.Data.Models;
 
 public class UserProfile
 {
     public long ProfileId { get; set; }
     
     public Login Login { get; set; }
+    
     public long AccountId { get; set; }
     
     public string FullName { get; set; }
