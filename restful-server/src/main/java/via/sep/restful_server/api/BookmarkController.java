@@ -65,7 +65,7 @@ public class BookmarkController {
             propertyDTO.setYearBuilt(property.getYearBuilt());
             propertyDTO.setDescription(property.getDescription());
 
-            notificationService.notifyBookmarkCreated(createdBookmark, createdBookmark.getBookmarkId().toString());
+            notificationService.notifyBookmarkCreated(createdBookmark, propertyDTO, createdBookmark.getBookmarkId().toString());
 
             return ResponseEntity.ok(createdBookmark);
         } catch (ResourceNotFoundException e) {

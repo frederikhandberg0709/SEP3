@@ -13,30 +13,37 @@
 @rendermode InteractiveServer
 
 <CascadingAuthenticationState>
-<AuthorizeView>
-    <NotAuthorized>
-        <div class="login-container">
-            <h3>Please login</h3>
-            <label>User name:</label>
-            <input type="text" @bind="loginForm.Username"/>
-            <label>Password:</label>
-            <input type="password" @bind="loginForm.Password"/>
-            <button @onclick="HandleLogin" disabled="@(isLoading || string.IsNullOrWhiteSpace(loginForm.Username) || string.IsNullOrWhiteSpace(loginForm.Password))" class="btn btn-primary">Log in</button>
-            <button @onclick="@(() => NavigationManager.NavigateTo("/register"))" class="btn btn-link">Register new user</button>
-            @if (!string.IsNullOrEmpty(errorMessage))
-            {
-                <div class="alert alert-danger mt-3">
-                    @errorMessage
+    <AuthorizeView>
+        <NotAuthorized>
+            <div class="login-container">
+                <h3>Please login</h3>
+                
+                <div class="form-group">
+                    <label for="username">User name:</label>
+                    <input type="text" id="username" @bind="loginForm.Username"/>
                 </div>
-            }
-        </div>
-    </NotAuthorized>
-    
-    <Authorized>
-        <h3>Hello, @context.User.Identity.Name</h3>
-        <button @onclick="HandleLogout">Log out</button>
-    </Authorized>
-</AuthorizeView>
+                
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" @bind="loginForm.Password"/>
+                </div>
+                
+                <button @onclick="HandleLogin" disabled="@(isLoading || string.IsNullOrWhiteSpace(loginForm.Username) || string.IsNullOrWhiteSpace(loginForm.Password))" class="btn btn-primary">Log in</button>
+                <button @onclick="@(() => NavigationManager.NavigateTo("/register"))" class="btn btn-link">Register new user</button>
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div class="alert alert-danger mt-3">
+                        @errorMessage
+                    </div>
+                }
+            </div>
+        </NotAuthorized>
+        
+        <Authorized>
+            <h3>Hello, @context.User.Identity.Name</h3>
+            <button @onclick="HandleLogout">Log out</button>
+        </Authorized>
+    </AuthorizeView>
 </CascadingAuthenticationState>
 
 @code {
