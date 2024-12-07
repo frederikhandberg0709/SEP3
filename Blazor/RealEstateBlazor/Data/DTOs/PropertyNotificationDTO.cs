@@ -1,4 +1,4 @@
-namespace RealEstateBlazor.Data.Models;
+namespace RealEstateBlazor.Data.DTOs;
 
 public class PropertyNotificationDTO
 {

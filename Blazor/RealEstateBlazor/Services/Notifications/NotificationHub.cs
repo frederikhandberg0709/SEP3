@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.SignalR.Client;
 using RealEstateBlazor.Data.Models;
+using RealEstateBlazor.Data.DTOs;
 
 namespace RealEstateBlazor.Services;
 

@@ -1,104 +1,97 @@
 ﻿@page "/login"
 
+@using Microsoft.AspNetCore.Components.Authorization
 @using RealEstateBlazor.Data.Models
 @using RealEstateBlazor.Data.DTOs
 @using RealEstateBlazor.Services
 @inject HttpClient HttpClient
 @inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthProvider
 @inject ITokenService TokenService
+@using Microsoft.AspNetCore.Components.Web
 
-<div class="login-container">
-    <EditForm Model="@loginForm" OnValidSubmit="HandleLogin" FormName="LoginForm">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+@rendermode InteractiveServer
 
-        <div class="form-group">
-            <label for="username">Username</label>
-            <InputText id="username" class="form-control" @bind-Value="loginForm.Username" />
-            <ValidationMessage For="@(() => loginForm.Username)" />
+<CascadingAuthenticationState>
+<AuthorizeView>
+    <NotAuthorized>
+        <div class="login-container">
+            <h3>Please login</h3>
+            <label>User name:</label>
+            <input type="text" @bind="loginForm.Username"/>
+            <label>Password:</label>
+            <input type="password" @bind="loginForm.Password"/>
+            <button @onclick="HandleLogin" disabled="@(isLoading || string.IsNullOrWhiteSpace(loginForm.Username) || string.IsNullOrWhiteSpace(loginForm.Password))" class="btn btn-primary">Log in</button>
+            <button @onclick="@(() => NavigationManager.NavigateTo("/register"))" class="btn btn-link">Register new user</button>
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert alert-danger mt-3">
+                    @errorMessage
+                </div>
+            }
         </div>
-
-        <div class="form-group">
-            <label for="password">Password</label>
-            <InputText id="password" type="password" class="form-control" @bind-Value="loginForm.Password" />
-            <ValidationMessage For="@(() => loginForm.Password)" />
-        </div>
-
-        <button type="submit" class="btn btn-primary" disabled="@isLoading">Login</button>
-    </EditForm>
-
-    @if (!string.IsNullOrEmpty(errorMessage))
-    {
-        <div class="alert alert-danger">
-            @errorMessage
-        </div>
-    }
-</div>
+    </NotAuthorized>
+    
+    <Authorized>
+        <h3>Hello, @context.User.Identity.Name</h3>
+        <button @onclick="HandleLogout">Log out</button>
+    </Authorized>
+</AuthorizeView>
+</CascadingAuthenticationState>
 
 @code {
-    [SupplyParameterFromForm(FormName = "LoginForm")]
-    private Data.Models.Login loginForm { get; set; } = new Data.Models.Login();
+    private Data.Models.Login loginForm { get; set; } = new();
     private string errorMessage = string.Empty;
     private bool isLoading = false;
 
     private async Task HandleLogin()
     {
+        Console.WriteLine("HandleLogin called");
         isLoading = true;
         errorMessage = string.Empty;
 
         try
         {
-            var loginRequest = new LoginRequestDTO
+            if (string.IsNullOrWhiteSpace(loginForm.Username) || string.IsNullOrWhiteSpace(loginForm.Password))
             {
-                Username = loginForm.Username,
-                Password = loginForm.Password
-            };
-            
-            if (string.IsNullOrEmpty(loginRequest.Username) || string.IsNullOrEmpty(loginRequest.Password))
-            {
-                throw new ArgumentException("Username and Password are required");
+                errorMessage = "Username and password are required";
+                return;
             }
             
-            Console.WriteLine($"Login Request - Username: {loginRequest.Username}, Password length: {loginRequest.Password?.Length ?? 0}");
+            var authStateProvider = (SimpleAuthProvider)AuthProvider;
             
-            using var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:8080/api/users/login");
-            request.Content = JsonContent.Create(loginRequest);
-            request.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            await authStateProvider.LoginAsync(loginForm.Username, loginForm.Password);
             
-            var response = await HttpClient.SendAsync(request);
-            
-            var responseContent = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine($"Response Status: {response.StatusCode}");
-            Console.WriteLine($"Response Content: {responseContent}");
-
-            if (response.IsSuccessStatusCode)
-            {
-                var loginResponse = await response.Content.ReadFromJsonAsync<LoginReponseDTO>();
-                
-                if (loginResponse?.Token != null)
-                {
-                    TokenService.SetToken(loginResponse.Token);
-                    NavigationManager.NavigateTo("/dashboard");
-                }
-                else 
-                {
-                    errorMessage = "Invalid response from server";
-                }
-            }
-            else 
-            {
-                var errorContent = await response.Content.ReadAsStringAsync();
-                errorMessage = $"Login failed: {errorContent}";
-            }
+            NavigationManager.NavigateTo("/");
         }
         catch (Exception ex)
         {
             errorMessage = $"Error: {ex.Message}";
+            
+            if (ex.Message.Contains("401") || ex.Message.Contains("403"))
+            {
+                errorMessage = "Invalid username or password";
+            }
+            else if (ex.Message.Contains("404"))
+            {
+                errorMessage = "User not found";
+            }
+            else
+            {
+                errorMessage = "Login failed. Please try again later.";
+            }
         }
         finally
         {
             isLoading = false;
         }
+    }
+
+    private async Task HandleLogout()
+    {
+        await (
+            (SimpleAuthProvider)AuthProvider).LogoutAsync();
+        
+        NavigationManager.NavigateTo("/", false);
     }
 }

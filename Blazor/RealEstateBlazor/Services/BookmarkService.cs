@@ -1,6 +1,7 @@
 using System.Net;
 using System.Text.Json;
 using RealEstateBlazor.Data.Models;
+using RealEstateBlazor.Data.DTOs;
 
 namespace RealEstateBlazor.Services;
 
@@ -9,8 +10,9 @@ public class BookmarkService : IBookmarkService
     private readonly HttpClient _httpClient;
     private readonly string _baseUrl;
     private readonly JsonSerializerOptions _jsonOptions;
+    private readonly ITokenService _tokenService;
 
-    public BookmarkService(HttpClient httpClient, IConfiguration configuration)
+    public BookmarkService(HttpClient httpClient, IConfiguration configuration, ITokenService tokenService)
     {
         _httpClient = httpClient;
         _baseUrl = configuration["ApiSettings:BaseUrl"];
@@ -18,14 +20,31 @@ public class BookmarkService : IBookmarkService
         {
             PropertyNameCaseInsensitive = true
         };
+        _tokenService = tokenService;
+    }
+    
+    private void AddAuthorizationHeader()
+    {
+        var token = _tokenService.GetToken();
+        Console.WriteLine($"Token present: {!string.IsNullOrEmpty(token)}");
+        if (!string.IsNullOrEmpty(token))
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = 
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        }
+        else
+        {
+            Console.WriteLine("No token found in TokenService");
+        }
     }
 
-    public async Task<Bookmark> CreateBookmarkAsync(long propertyId, long accountId)
+    public async Task<Bookmark> CreateBookmarkAsync(long propertyId)
     {
         try
         {
-            var createBookmarkDto = new { PropertyId = propertyId };
-            var response = await _httpClient.PostAsJsonAsync($"{_baseUrl}/api/bookmarks", createBookmarkDto);
+            AddAuthorizationHeader();
+            var dto = new CreateBookmarkDTO { PropertyId = propertyId };
+            var response = await _httpClient.PostAsJsonAsync($"{_baseUrl}/api/bookmarks", dto);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<Bookmark>(_jsonOptions) 
                    ?? throw new Exception("Failed to create bookmark");
@@ -36,10 +55,11 @@ public class BookmarkService : IBookmarkService
         }
     }
 
-    public async Task<List<Bookmark>> GetBookmarksByAccountIdAsync(long accountId)
+    public async Task<List<Bookmark>> GetBookmarksByAccountIdAsync()
     {
         try
         {
+            AddAuthorizationHeader();
             var response = await _httpClient.GetAsync($"{_baseUrl}/api/bookmarks");
             response.EnsureSuccessStatusCode();
             var bookmarks = await response.Content.ReadFromJsonAsync<List<Bookmark>>(_jsonOptions);
@@ -55,6 +75,7 @@ public class BookmarkService : IBookmarkService
     {
         try
         {
+            AddAuthorizationHeader();
             var response = await _httpClient.DeleteAsync($"{_baseUrl}/api/bookmarks/{bookmarkId}");
             response.EnsureSuccessStatusCode();
         }
@@ -64,17 +85,20 @@ public class BookmarkService : IBookmarkService
         }
     }
 
-    public async Task<bool> IsBookmarkOwnerAsync(long bookmarkId, long accountId)
+    public async Task<bool> IsBookmarkOwnerAsync(long bookmarkId)
     {
         try
         {
+            AddAuthorizationHeader();
             var response = await _httpClient.GetAsync($"{_baseUrl}/api/bookmarks/{bookmarkId}");
             if (response.StatusCode == HttpStatusCode.NotFound)
                 return false;
                 
             response.EnsureSuccessStatusCode();
+            // var bookmark = await response.Content.ReadFromJsonAsync<Bookmark>(_jsonOptions);
+            // return bookmark?.AccountId == accountId;
             var bookmark = await response.Content.ReadFromJsonAsync<Bookmark>(_jsonOptions);
-            return bookmark?.AccountId == accountId;
+            return bookmark != null;
         }
         catch (HttpRequestException ex)
         {
@@ -82,10 +106,11 @@ public class BookmarkService : IBookmarkService
         }
     }
 
-    public async Task<bool> HasBookmarkedAsync(long accountId, long propertyId)
+    public async Task<bool> HasBookmarkedAsync(long propertyId)
     {
         try
         {
+            AddAuthorizationHeader();
             var response = await _httpClient.GetAsync($"{_baseUrl}/api/bookmarks/property/{propertyId}");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<bool>(_jsonOptions);

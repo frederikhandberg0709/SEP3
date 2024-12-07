@@ -1,3 +1,4 @@
+using RealEstateBlazor.Data.DTOs;
 using RealEstateBlazor.Data.Models;
 
 namespace RealEstateBlazor.Services;
