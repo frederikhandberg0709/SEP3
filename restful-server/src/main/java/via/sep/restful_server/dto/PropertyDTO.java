@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 
 @Data
 public class PropertyDTO {
+    private Long propertyId;
     private String propertyType;
     private String address;
     private BigDecimal floorArea;

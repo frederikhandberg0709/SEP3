@@ -71,6 +71,8 @@ public class SecurityConfig {
                         // Bookmark operations require authentication
                         .requestMatchers(HttpMethod.POST, "/api/bookmarks/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/bookmarks/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/bookmarks").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/bookmarks/property/{id}").authenticated()
 
                         // Booking operations require authentication
                         .requestMatchers(HttpMethod.POST, "/api/bookings/**").authenticated()

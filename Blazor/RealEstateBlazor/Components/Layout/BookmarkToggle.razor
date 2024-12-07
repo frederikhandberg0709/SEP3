@@ -1,0 +1,114 @@
+@implements IDisposable
+
+@inject IBookmarkService BookmarkService
+
+@using RealEstateBlazor.Services
+
+<button class="@ButtonClass" @onclick="ToggleBookmarkAsync" disabled="@(IsLoading || PropertyId <= 0)">
+    @if (IsLoading)
+    {
+        <span>Loading...</span>
+    }
+    else
+    {
+        @if (IsBookmarked)
+        {
+            <span>★ Bookmarked</span>
+        }
+        else
+        {
+            <span>☆ Add Bookmark</span>
+        }
+    }
+</button>
+
+@code {
+    private long _previousPropertyId;
+    
+    [Parameter] public long PropertyId { get; set; }
+    [Parameter] public EventCallback<bool> OnBookmarkChanged { get; set; }
+
+    private bool IsBookmarked { get; set; }
+    private bool IsLoading { get; set; }
+
+    private string ButtonClass => IsBookmarked 
+        ? "btn btn-primary" 
+        : "btn btn-outline-primary";
+    
+    protected override async Task OnInitializedAsync()
+    {
+        _previousPropertyId = PropertyId;
+        if (PropertyId > 0)
+        {
+            await CheckBookmarkStatusAsync();
+        }
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _previousPropertyId = PropertyId;
+        
+        if (PropertyId > 0 && PropertyId != _previousPropertyId)
+        {
+            _previousPropertyId = PropertyId;
+            await CheckBookmarkStatusAsync();
+        }
+    }
+    
+    public void Dispose()
+    {
+        _previousPropertyId = 0;
+    }
+
+    private async Task CheckBookmarkStatusAsync()
+    {
+        try
+        {
+            if (PropertyId <= 0)
+            {
+                Console.WriteLine($"Invalid PropertyId: {PropertyId}");
+                return;
+            }
+            
+            IsBookmarked = await BookmarkService.HasBookmarkedAsync(PropertyId);
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error checking bookmark status: {ex.Message}");
+        }
+    }
+
+    private async Task ToggleBookmarkAsync()
+    {
+        try
+        {
+            IsLoading = true;
+            
+            if (IsBookmarked)
+            {
+                var bookmarks = await BookmarkService.GetBookmarksByAccountIdAsync();
+                var bookmark = bookmarks.FirstOrDefault(b => b.PropertyId == PropertyId);
+                if (bookmark != null)
+                {
+                    await BookmarkService.DeleteBookmarkAsync(bookmark.BookmarkId);
+                }
+            }
+            else
+            {
+                await BookmarkService.CreateBookmarkAsync(PropertyId);
+            }
+
+            IsBookmarked = !IsBookmarked;
+            await OnBookmarkChanged.InvokeAsync(IsBookmarked);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error toggling bookmark: {ex.Message}");
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+}

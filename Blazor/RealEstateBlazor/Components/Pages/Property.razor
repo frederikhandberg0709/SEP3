@@ -1,6 +1,8 @@
 @page "/property/{Id}"
 @using RealEstateBlazor.Data.Models
+@using RealEstateBlazor.Data.DTOs
 @using RealEstateBlazor.Services
+@using RealEstateBlazor.Components.Layout
 @inject IPropertyService PropertyService
 @inject IImageService ImageService
 
@@ -69,6 +71,13 @@ else if (property != null)
         
         <div class="row">
             <div class="col-md-6">
+                <div>
+                    @if (property.PropertyId > 0)
+                    {
+                        <BookmarkToggle PropertyId="@property.PropertyId" OnBookmarkChanged="HandleBookmarkChanged"/>
+                    }
+                </div>
+                
                 <div class="mb-4">
                     <h5 class="text-muted">Price</h5>
                     <p class="lead fw-bold">@property.Price.ToString("C")</p>
@@ -83,27 +92,27 @@ else if (property != null)
                     <h5 class="text-muted">Property Type</h5>
                     <p>@property.PropertyType</p>
                 </div>
-                
+
                 @*<div class="mb-4">
                     <h5 class="text-muted">Number of Floors</h5>
                     <p>@(property.NumFloors) @(property.NumFloors == 1 ? "floor" : "floors")</p>
                 </div>*@
-                
+
                 @if (property.PropertyType?.ToUpper() == "HOUSE")
-               {
-                   var house = property as House;
-                   <div class="mb-4">
-                       <h5 class="text-muted">Number of Floors</h5>
-                       <p>@(house?.NumFloors ?? 1) @(house?.NumFloors == 1 ? "floor" : "floors")</p>
-                   </div>
-               }
-               else if (property.PropertyType?.ToUpper() == "APARTMENT")
-               {
-                   var apartment = property as Apartment;
-                   <div class="mb-4">
-                       <h5 class="text-muted">Number of Floors</h5>
-                       <p>@(apartment?.NumFloors ?? 1) @(apartment?.NumFloors == 1 ? "floor" : "floors")</p>
-                   </div>
+                {
+                    var house = property as House;
+                    <div class="mb-4">
+                        <h5 class="text-muted">Number of Floors</h5>
+                        <p>@(house?.NumFloors ?? 1) @(house?.NumFloors == 1 ? "floor" : "floors")</p>
+                    </div>
+                }
+                else if (property.PropertyType?.ToUpper() == "APARTMENT")
+                {
+                    var apartment = property as Apartment;
+                    <div class="mb-4">
+                        <h5 class="text-muted">Number of Floors</h5>
+                        <p>@(apartment?.NumFloors ?? 1) @(apartment?.NumFloors == 1 ? "floor" : "floors")</p>
+                    </div>
                 }
 
                 <div class="mb-4">
@@ -137,7 +146,7 @@ else if (property != null)
     public string? Id { get; set; }
 
     private Data.Models.Property? property;
-    private IEnumerable<Data.Models.ImageDTO>? images;
+    private IEnumerable<ImageDTO>? images;
     private bool loading = true;
     private string? error;
 
@@ -164,9 +173,11 @@ else if (property != null)
             if (string.IsNullOrEmpty(Id))
             {
                 error = "No property ID provided";
+                Console.WriteLine("No property ID provided");
                 return;
             }
 
+            Console.WriteLine($"Loaded property ID: {property?.PropertyId}");
             property = await PropertyService.GetPropertyByIdAsync(Id);
             images = await ImageService.GetImagesForPropertyAsync(Id);
         }
@@ -177,6 +188,21 @@ else if (property != null)
         finally
         {
             loading = false;
+        }
+    }
+
+    private async Task HandleBookmarkChanged(bool isBookmarked)
+    {
+        try
+        {
+            var status = isBookmarked ? "bookmarked" : "unbookmarked";
+            Console.WriteLine($"Property {property?.Address} was {status}");
+            
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error handling bookmark change: {ex.Message}");
         }
     }
 }
