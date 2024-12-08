@@ -10,8 +10,10 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddAuthorizationCore();
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
+
 builder.Services.AddScoped<AuthenticationStateProvider, SimpleAuthProvider>();
-builder.Services.AddComponentContext();
 
 builder.Services.AddHttpClient<SimpleAuthProvider>(client =>
 {
