@@ -1,0 +1,88 @@
+﻿@page "/book-an-agent"
+<head>
+    <link href="BookAgent.css" rel="stylesheet" />
+</head>
+
+<h3>Book an Agent</h3>
+
+<p>Please fill out the form below to book an appointment with one of our agents.</p>
+
+<EditForm Model="@bookingModel" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <InputText id="name" class="form-control" @bind-Value="bookingModel.Name" />
+        <ValidationMessage For="@(() => bookingModel.Name)" />
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <InputText id="email" type="email" class="form-control" @bind-Value="bookingModel.Email" />
+        <ValidationMessage For="@(() => bookingModel.Email)" />
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description (Optional)</label>
+        <InputTextArea id="description" class="form-control" @bind-Value="bookingModel.Description" />
+    </div>
+
+    <div class="form-group">
+        <label for="date">Select Date</label>
+        <InputDate id="date" class="form-control" @bind-Value="bookingModel.Date" />
+        <ValidationMessage For="@(() => bookingModel.Date)" />
+    </div>
+
+    <div class="form-group buttons">
+        <button type="submit" class="btn btn-primary">Book</button>
+        <button type="button" class="btn btn-secondary" @onclick="CancelBooking">Cancel</button>
+    </div>
+</EditForm>
+
+@if (successMessageVisible)
+{
+    <div class="alert alert-success mt-3">
+        Booking successful! We will contact you shortly.
+    </div>
+}
+
+@if (cancelMessageVisible)
+{
+    <div class="alert alert-warning mt-3">
+        Booking canceled.
+    </div>
+}
+
+@code {
+    private BookingModel bookingModel = new();
+    private bool successMessageVisible = false;
+    private bool cancelMessageVisible = false;
+
+    private void HandleValidSubmit()
+    {
+        successMessageVisible = true;
+        cancelMessageVisible = false;
+
+        // Simulate saving the booking (API or database)
+        Console.WriteLine($"Booking made for {bookingModel.Name} on {bookingModel.Date}");
+    }
+
+    private void CancelBooking()
+    {
+        bookingModel = new BookingModel(); // Reset the form
+        successMessageVisible = false;
+        cancelMessageVisible = true;
+    }
+
+    public class BookingModel
+    {
+        public string Name { get; set; }
+
+        public string Email { get; set; }
+
+        public string Description { get; set; }
+
+        public DateTime? Date { get; set; }
+    }
+}

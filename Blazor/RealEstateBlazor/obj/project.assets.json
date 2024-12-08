@@ -895,20 +895,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\45257\\.nuget\\packages\\": {}
+    "C:\\Users\\elham\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\RealEstateBlazor.csproj",
+      "projectUniqueName": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\RealEstateBlazor.csproj",
       "projectName": "RealEstateBlazor",
-      "projectPath": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\RealEstateBlazor.csproj",
-      "packagesPath": "C:\\Users\\45257\\.nuget\\packages\\",
-      "outputPath": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\",
+      "projectPath": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\RealEstateBlazor.csproj",
+      "packagesPath": "C:\\Users\\elham\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\",
       "projectStyle": "PackageReference",
-      "UsingMicrosoftNETSdk": false,
       "configFilePaths": [
-        "C:\\Users\\45257\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\elham\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -965,7 +964,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\45257\\.dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\elham\\.dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

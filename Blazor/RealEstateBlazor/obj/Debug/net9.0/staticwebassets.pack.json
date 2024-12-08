@@ -1,47 +1,43 @@
 {
   "Files": [
     {
-      "Id": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\RealEstateBlazor.bundle.scp.css",
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\RealEstateBlazor.bundle.scp.css",
       "PackagePath": "staticwebassets\\RealEstateBlazor.4p6dhc4t7j.bundle.scp.css"
     },
     {
-      "Id": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Account.css",
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Account.css",
       "PackagePath": "staticwebassets\\Account.css"
     },
     {
-      "Id": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Forms.css",
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\BookAgent.css",
+      "PackagePath": "staticwebassets\\BookAgent.css"
+    },
+    {
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Forms.css",
       "PackagePath": "staticwebassets\\Forms.css"
     },
     {
-      "Id": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Home.css",
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Home.css",
       "PackagePath": "staticwebassets\\Home.css"
     },
     {
-      "Id": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Login.css",
-      "PackagePath": "staticwebassets\\Login.css"
-    },
-    {
-      "Id": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Properties.css",
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Properties.css",
       "PackagePath": "staticwebassets\\Properties.css"
     },
     {
-      "Id": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Register.css",
-      "PackagePath": "staticwebassets\\Register.css"
-    },
-    {
-      "Id": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\app.css",
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\favicon.png",
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {

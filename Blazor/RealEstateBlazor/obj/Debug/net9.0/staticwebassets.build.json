@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZLdPuw9UBG+KHplvQQJThzGLYBnk+gwOsO4eU+5jzOA=",
+  "Hash": "xjL5zQDTUhng8eU4wC225QfoQM+HwmstFpIcvVwG1W4=",
   "Source": "RealEstateBlazor",
   "BasePath": "_content/RealEstateBlazor",
   "Mode": "Default",
@@ -10,59 +10,17 @@
     {
       "Name": "RealEstateBlazor\\wwwroot",
       "Source": "RealEstateBlazor",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
       "BasePath": "_content/RealEstateBlazor",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\178yz678ug-5ipweew5fc.gz",
-      "SourceId": "RealEstateBlazor",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
-      "BasePath": "_content/RealEstateBlazor",
-      "RelativePath": "Register#[.{fingerprint=5ipweew5fc}]?.css.gz",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Register.css",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "Fingerprint": "5ipweew5fc",
-      "Integrity": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Register.css"
-    },
-    {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\87ou8sra1b-dju8y6vdge.gz",
-      "SourceId": "RealEstateBlazor",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
-      "BasePath": "_content/RealEstateBlazor",
-      "RelativePath": "Login#[.{fingerprint=dju8y6vdge}]?.css.gz",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Login.css",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "Fingerprint": "mr8czmu89w",
-      "Integrity": "nk09qgBNDyCaTRX0e9tJmg3R5JMyPS6uqSC3IeIbf2w=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Login.css"
-    },
-    {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\9aqtp4qh3u-4p6dhc4t7j.gz",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\9aqtp4qh3u-4p6dhc4t7j.gz",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "RealEstateBlazor#[.{fingerprint=4p6dhc4t7j}]!.bundle.scp.css.gz",
       "AssetKind": "All",
@@ -70,20 +28,41 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\RealEstateBlazor.bundle.scp.css",
+      "RelatedAsset": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\RealEstateBlazor.bundle.scp.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "Fingerprint": "jccec6z61k",
       "Integrity": "A0pzfbtwaEM2oasQbFSDhgGNfYgAbgyV06wro/PyW6c=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\RealEstateBlazor.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\RealEstateBlazor.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\gy2031n9pq-wvqemrflvp.gz",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\9kvafohnbv-atx8wyyehw.gz",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/RealEstateBlazor",
+      "RelativePath": "BookAgent#[.{fingerprint=atx8wyyehw}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\BookAgent.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "6k0y759jv5",
+      "Integrity": "ViLaYIejgRFnG4ZFlVKiff63z3LxsKdHHBPlzG/J9ww=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\BookAgent.css"
+    },
+    {
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\gy2031n9pq-wvqemrflvp.gz",
+      "SourceId": "RealEstateBlazor",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "Forms#[.{fingerprint=wvqemrflvp}]?.css.gz",
       "AssetKind": "All",
@@ -91,20 +70,20 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Forms.css",
+      "RelatedAsset": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Forms.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "Fingerprint": "czpix4d1bg",
       "Integrity": "+ErtQQWiBRfrZGjtIdFZiFhtZqpwrgVTfU98YRVSDe0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Forms.css"
+      "OriginalItemSpec": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Forms.css"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\il9ad6ymqx-8inm30yfxf.gz",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\il9ad6ymqx-8inm30yfxf.gz",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "bootstrap/bootstrap.min.css#[.{fingerprint=8inm30yfxf}]?.map.gz",
       "AssetKind": "All",
@@ -112,20 +91,20 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "RelatedAsset": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "a5iolpc9xz",
-      "Integrity": "3qo3UHtt1eBcfATKJXtIrY+ZdPuBA21DhCoR49jAwbE=",
+      "Fingerprint": "m532s4naxw",
+      "Integrity": "epiz+IkftKdCVrNwM3M3b4/Co3mxoqDpjOfMrHfv/7E=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css.map"
+      "OriginalItemSpec": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\isoxwiu6wr-8xd09dgrah.gz",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\isoxwiu6wr-8xd09dgrah.gz",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "Home#[.{fingerprint=8xd09dgrah}]?.css.gz",
       "AssetKind": "All",
@@ -133,20 +112,20 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Home.css",
+      "RelatedAsset": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Home.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "Fingerprint": "nfpn8l4kr0",
       "Integrity": "g5wRiPM4oogD4aw0G6tWOK77cwAwuslkSs7tNA/DP40=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Home.css"
+      "OriginalItemSpec": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Home.css"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\k2hfzjq5xg-4p6dhc4t7j.gz",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\k2hfzjq5xg-4p6dhc4t7j.gz",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "RealEstateBlazor#[.{fingerprint=4p6dhc4t7j}]?.styles.css.gz",
       "AssetKind": "All",
@@ -154,20 +133,20 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\bundle\\RealEstateBlazor.styles.css",
+      "RelatedAsset": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\bundle\\RealEstateBlazor.styles.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "Fingerprint": "jccec6z61k",
       "Integrity": "A0pzfbtwaEM2oasQbFSDhgGNfYgAbgyV06wro/PyW6c=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\bundle\\RealEstateBlazor.styles.css"
+      "OriginalItemSpec": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\bundle\\RealEstateBlazor.styles.css"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\vdwqntar8c-fwiltovtra.gz",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\vdwqntar8c-fwiltovtra.gz",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "Account#[.{fingerprint=fwiltovtra}]?.css.gz",
       "AssetKind": "All",
@@ -175,20 +154,20 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Account.css",
+      "RelatedAsset": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Account.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "Fingerprint": "6rfswe2b92",
       "Integrity": "wjZZ2pXBEwtmNNXHM7/ClMcWymGROVbYXUoFk4UUgNY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Account.css"
+      "OriginalItemSpec": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Account.css"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\wdmy37j2v3-xa61771fag.gz",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\wdmy37j2v3-xa61771fag.gz",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "Properties#[.{fingerprint=xa61771fag}]?.css.gz",
       "AssetKind": "All",
@@ -196,20 +175,20 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Properties.css",
+      "RelatedAsset": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Properties.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "Fingerprint": "55wk4xyd09",
       "Integrity": "Rxhu89ZYnkrNj9KXSdB3qSFIusz/a+BY4w4t3UDf808=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Properties.css"
+      "OriginalItemSpec": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Properties.css"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\xikgp88dd0-6gzpyzhau4.gz",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\xikgp88dd0-6gzpyzhau4.gz",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "bootstrap/bootstrap.min#[.{fingerprint=6gzpyzhau4}]?.css.gz",
       "AssetKind": "All",
@@ -217,20 +196,20 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "RelatedAsset": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "Fingerprint": "7l51xal3e9",
       "Integrity": "dfRdV3FWJNHUyN/ZTK8eRHslFtdOjQxpi1BEcWXtMR8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css"
+      "OriginalItemSpec": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\y08qe7kvtk-da95v2qkru.gz",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\y08qe7kvtk-da95v2qkru.gz",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "app#[.{fingerprint=da95v2qkru}]?.css.gz",
       "AssetKind": "All",
@@ -238,20 +217,20 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\app.css",
+      "RelatedAsset": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\app.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "Fingerprint": "35bsr2s5bp",
       "Integrity": "Z2oZxhy3yCVx4TNMrDOMMpGuoPS7gb7KEuo/dm8OHbc=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\app.css"
+      "OriginalItemSpec": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\app.css"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\bundle\\RealEstateBlazor.styles.css",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\bundle\\RealEstateBlazor.styles.css",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\bundle\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "RealEstateBlazor#[.{fingerprint}]?.styles.css",
       "AssetKind": "All",
@@ -266,13 +245,13 @@
       "Integrity": "KEQJCJpjjc1OUSKjmZyznAXDQRmaGC0Co6edMUmLGtY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\bundle\\RealEstateBlazor.styles.css"
+      "OriginalItemSpec": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\bundle\\RealEstateBlazor.styles.css"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\RealEstateBlazor.bundle.scp.css",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\RealEstateBlazor.bundle.scp.css",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "RealEstateBlazor#[.{fingerprint}]!.bundle.scp.css",
       "AssetKind": "All",
@@ -287,13 +266,13 @@
       "Integrity": "KEQJCJpjjc1OUSKjmZyznAXDQRmaGC0Co6edMUmLGtY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\RealEstateBlazor.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\RealEstateBlazor.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Account.css",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Account.css",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "Account#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -311,10 +290,10 @@
       "OriginalItemSpec": "wwwroot\\Account.css"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\app.css",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\app.css",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "app#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -332,10 +311,31 @@
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\BookAgent.css",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
+      "BasePath": "_content/RealEstateBlazor",
+      "RelativePath": "BookAgent#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "atx8wyyehw",
+      "Integrity": "LuV86kjnxpZqdQrDCENHvkCRPo/gfuUBcEOAorH0YX4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\BookAgent.css"
+    },
+    {
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "SourceId": "RealEstateBlazor",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "bootstrap/bootstrap.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -353,10 +353,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "bootstrap/bootstrap.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -374,10 +374,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\favicon.png",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\favicon.png",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "favicon#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -395,10 +395,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.png"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Forms.css",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Forms.css",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "Forms#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -416,10 +416,10 @@
       "OriginalItemSpec": "wwwroot\\Forms.css"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Home.css",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Home.css",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "Home#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -437,31 +437,10 @@
       "OriginalItemSpec": "wwwroot\\Home.css"
     },
     {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Login.css",
+      "Identity": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Properties.css",
       "SourceId": "RealEstateBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
-      "BasePath": "_content/RealEstateBlazor",
-      "RelativePath": "Login#[.{fingerprint}]?.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "dju8y6vdge",
-      "Integrity": "Z0muB+dwldiuydJBxWQnVi7cDLTS9rncwwTlvEU8IHQ=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Login.css"
-    },
-    {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Properties.css",
-      "SourceId": "RealEstateBlazor",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
       "BasePath": "_content/RealEstateBlazor",
       "RelativePath": "Properties#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -477,33 +456,12 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Properties.css"
-    },
-    {
-      "Identity": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Register.css",
-      "SourceId": "RealEstateBlazor",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\",
-      "BasePath": "_content/RealEstateBlazor",
-      "RelativePath": "Register#[.{fingerprint}]?.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "5ipweew5fc",
-      "Integrity": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Register.css"
     }
   ],
   "Endpoints": [
     {
       "Route": "Account.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\vdwqntar8c-fwiltovtra.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\vdwqntar8c-fwiltovtra.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -526,7 +484,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -558,7 +516,7 @@
     },
     {
       "Route": "Account.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Account.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Account.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -579,7 +537,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -595,7 +553,7 @@
     },
     {
       "Route": "Account.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\vdwqntar8c-fwiltovtra.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\vdwqntar8c-fwiltovtra.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -616,7 +574,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -640,7 +598,7 @@
     },
     {
       "Route": "Account.fwiltovtra.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\vdwqntar8c-fwiltovtra.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\vdwqntar8c-fwiltovtra.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -663,7 +621,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -703,7 +661,7 @@
     },
     {
       "Route": "Account.fwiltovtra.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Account.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Account.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -724,7 +682,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -748,7 +706,7 @@
     },
     {
       "Route": "Account.fwiltovtra.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\vdwqntar8c-fwiltovtra.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\vdwqntar8c-fwiltovtra.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -769,7 +727,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -801,7 +759,7 @@
     },
     {
       "Route": "app.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\y08qe7kvtk-da95v2qkru.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\y08qe7kvtk-da95v2qkru.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -824,7 +782,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:17:40 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -856,7 +814,7 @@
     },
     {
       "Route": "app.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\app.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\app.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -877,7 +835,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:17:40 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -893,7 +851,7 @@
     },
     {
       "Route": "app.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\y08qe7kvtk-da95v2qkru.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\y08qe7kvtk-da95v2qkru.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -914,7 +872,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:17:40 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -938,7 +896,7 @@
     },
     {
       "Route": "app.da95v2qkru.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\y08qe7kvtk-da95v2qkru.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\y08qe7kvtk-da95v2qkru.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -961,7 +919,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:17:40 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1001,7 +959,7 @@
     },
     {
       "Route": "app.da95v2qkru.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\app.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\app.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1022,7 +980,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:17:40 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1046,7 +1004,7 @@
     },
     {
       "Route": "app.da95v2qkru.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\y08qe7kvtk-da95v2qkru.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\y08qe7kvtk-da95v2qkru.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1067,7 +1025,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:17:40 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1098,8 +1056,306 @@
       ]
     },
     {
+      "Route": "BookAgent.atx8wyyehw.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\9kvafohnbv-atx8wyyehw.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001360544218"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "734"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ViLaYIejgRFnG4ZFlVKiff63z3LxsKdHHBPlzG/J9ww=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 08 Dec 2024 19:00:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"LuV86kjnxpZqdQrDCENHvkCRPo/gfuUBcEOAorH0YX4=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "atx8wyyehw"
+        },
+        {
+          "Name": "label",
+          "Value": "BookAgent.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LuV86kjnxpZqdQrDCENHvkCRPo/gfuUBcEOAorH0YX4="
+        }
+      ]
+    },
+    {
+      "Route": "BookAgent.atx8wyyehw.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\BookAgent.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2124"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LuV86kjnxpZqdQrDCENHvkCRPo/gfuUBcEOAorH0YX4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 08 Dec 2024 19:00:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "atx8wyyehw"
+        },
+        {
+          "Name": "label",
+          "Value": "BookAgent.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LuV86kjnxpZqdQrDCENHvkCRPo/gfuUBcEOAorH0YX4="
+        }
+      ]
+    },
+    {
+      "Route": "BookAgent.atx8wyyehw.css.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\9kvafohnbv-atx8wyyehw.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "734"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ViLaYIejgRFnG4ZFlVKiff63z3LxsKdHHBPlzG/J9ww=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 08 Dec 2024 19:00:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "atx8wyyehw"
+        },
+        {
+          "Name": "label",
+          "Value": "BookAgent.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ViLaYIejgRFnG4ZFlVKiff63z3LxsKdHHBPlzG/J9ww="
+        }
+      ]
+    },
+    {
+      "Route": "BookAgent.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\9kvafohnbv-atx8wyyehw.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001360544218"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "734"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ViLaYIejgRFnG4ZFlVKiff63z3LxsKdHHBPlzG/J9ww=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 08 Dec 2024 19:00:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"LuV86kjnxpZqdQrDCENHvkCRPo/gfuUBcEOAorH0YX4=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-LuV86kjnxpZqdQrDCENHvkCRPo/gfuUBcEOAorH0YX4="
+        }
+      ]
+    },
+    {
+      "Route": "BookAgent.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\BookAgent.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2124"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LuV86kjnxpZqdQrDCENHvkCRPo/gfuUBcEOAorH0YX4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 08 Dec 2024 19:00:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-LuV86kjnxpZqdQrDCENHvkCRPo/gfuUBcEOAorH0YX4="
+        }
+      ]
+    },
+    {
+      "Route": "BookAgent.css.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\9kvafohnbv-atx8wyyehw.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "734"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ViLaYIejgRFnG4ZFlVKiff63z3LxsKdHHBPlzG/J9ww=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 08 Dec 2024 19:00:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ViLaYIejgRFnG4ZFlVKiff63z3LxsKdHHBPlzG/J9ww="
+        }
+      ]
+    },
+    {
       "Route": "bootstrap/bootstrap.min.6gzpyzhau4.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\xikgp88dd0-6gzpyzhau4.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\xikgp88dd0-6gzpyzhau4.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -1122,7 +1378,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1162,7 +1418,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.6gzpyzhau4.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1183,7 +1439,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1207,7 +1463,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.6gzpyzhau4.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\xikgp88dd0-6gzpyzhau4.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\xikgp88dd0-6gzpyzhau4.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1228,7 +1484,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1260,7 +1516,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\xikgp88dd0-6gzpyzhau4.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\xikgp88dd0-6gzpyzhau4.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -1283,7 +1539,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1315,7 +1571,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1336,7 +1592,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1352,7 +1608,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css.8inm30yfxf.map",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\il9ad6ymqx-8inm30yfxf.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\il9ad6ymqx-8inm30yfxf.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -1371,11 +1627,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"3qo3UHtt1eBcfATKJXtIrY+ZdPuBA21DhCoR49jAwbE=\""
+          "Value": "\"epiz+IkftKdCVrNwM3M3b4/Co3mxoqDpjOfMrHfv/7E=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1415,7 +1671,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css.8inm30yfxf.map",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1436,7 +1692,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1460,7 +1716,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css.8inm30yfxf.map.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\il9ad6ymqx-8inm30yfxf.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\il9ad6ymqx-8inm30yfxf.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1477,11 +1733,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"3qo3UHtt1eBcfATKJXtIrY+ZdPuBA21DhCoR49jAwbE=\""
+          "Value": "\"epiz+IkftKdCVrNwM3M3b4/Co3mxoqDpjOfMrHfv/7E=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1507,13 +1763,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-3qo3UHtt1eBcfATKJXtIrY+ZdPuBA21DhCoR49jAwbE="
+          "Value": "sha256-epiz+IkftKdCVrNwM3M3b4/Co3mxoqDpjOfMrHfv/7E="
         }
       ]
     },
     {
       "Route": "bootstrap/bootstrap.min.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\xikgp88dd0-6gzpyzhau4.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\xikgp88dd0-6gzpyzhau4.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1534,7 +1790,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1558,7 +1814,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css.map",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\il9ad6ymqx-8inm30yfxf.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\il9ad6ymqx-8inm30yfxf.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -1577,11 +1833,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"3qo3UHtt1eBcfATKJXtIrY+ZdPuBA21DhCoR49jAwbE=\""
+          "Value": "\"epiz+IkftKdCVrNwM3M3b4/Co3mxoqDpjOfMrHfv/7E=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1613,7 +1869,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css.map",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1634,7 +1890,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1650,7 +1906,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css.map.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\il9ad6ymqx-8inm30yfxf.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\il9ad6ymqx-8inm30yfxf.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1667,11 +1923,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"3qo3UHtt1eBcfATKJXtIrY+ZdPuBA21DhCoR49jAwbE=\""
+          "Value": "\"epiz+IkftKdCVrNwM3M3b4/Co3mxoqDpjOfMrHfv/7E=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1689,13 +1945,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-3qo3UHtt1eBcfATKJXtIrY+ZdPuBA21DhCoR49jAwbE="
+          "Value": "sha256-epiz+IkftKdCVrNwM3M3b4/Co3mxoqDpjOfMrHfv/7E="
         }
       ]
     },
     {
       "Route": "favicon.ifv42okdf2.png",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\favicon.png",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\favicon.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1716,7 +1972,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1740,7 +1996,7 @@
     },
     {
       "Route": "favicon.png",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\favicon.png",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\favicon.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1761,7 +2017,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1777,7 +2033,7 @@
     },
     {
       "Route": "Forms.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\gy2031n9pq-wvqemrflvp.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\gy2031n9pq-wvqemrflvp.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -1800,7 +2056,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1832,7 +2088,7 @@
     },
     {
       "Route": "Forms.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Forms.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Forms.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1853,7 +2109,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1869,7 +2125,7 @@
     },
     {
       "Route": "Forms.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\gy2031n9pq-wvqemrflvp.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\gy2031n9pq-wvqemrflvp.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1890,7 +2146,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1914,7 +2170,7 @@
     },
     {
       "Route": "Forms.wvqemrflvp.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\gy2031n9pq-wvqemrflvp.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\gy2031n9pq-wvqemrflvp.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -1937,7 +2193,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1977,7 +2233,7 @@
     },
     {
       "Route": "Forms.wvqemrflvp.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Forms.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Forms.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1998,7 +2254,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2022,7 +2278,7 @@
     },
     {
       "Route": "Forms.wvqemrflvp.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\gy2031n9pq-wvqemrflvp.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\gy2031n9pq-wvqemrflvp.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2043,7 +2299,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2075,7 +2331,7 @@
     },
     {
       "Route": "Home.8xd09dgrah.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\isoxwiu6wr-8xd09dgrah.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\isoxwiu6wr-8xd09dgrah.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -2098,7 +2354,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:17:40 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2138,7 +2394,7 @@
     },
     {
       "Route": "Home.8xd09dgrah.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Home.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Home.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2159,7 +2415,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:17:40 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2183,7 +2439,7 @@
     },
     {
       "Route": "Home.8xd09dgrah.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\isoxwiu6wr-8xd09dgrah.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\isoxwiu6wr-8xd09dgrah.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2204,7 +2460,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:17:40 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2236,7 +2492,7 @@
     },
     {
       "Route": "Home.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\isoxwiu6wr-8xd09dgrah.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\isoxwiu6wr-8xd09dgrah.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -2259,7 +2515,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:17:40 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2291,7 +2547,7 @@
     },
     {
       "Route": "Home.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Home.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Home.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2312,7 +2568,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:17:40 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2328,7 +2584,7 @@
     },
     {
       "Route": "Home.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\isoxwiu6wr-8xd09dgrah.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\isoxwiu6wr-8xd09dgrah.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2349,7 +2605,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:17:40 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2372,306 +2628,8 @@
       ]
     },
     {
-      "Route": "Login.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\87ou8sra1b-dju8y6vdge.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.005376344086"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "185"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"nk09qgBNDyCaTRX0e9tJmg3R5JMyPS6uqSC3IeIbf2w=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:55:46 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"Z0muB+dwldiuydJBxWQnVi7cDLTS9rncwwTlvEU8IHQ=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-Z0muB+dwldiuydJBxWQnVi7cDLTS9rncwwTlvEU8IHQ="
-        }
-      ]
-    },
-    {
-      "Route": "Login.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Login.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "250"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"Z0muB+dwldiuydJBxWQnVi7cDLTS9rncwwTlvEU8IHQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:55:46 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-Z0muB+dwldiuydJBxWQnVi7cDLTS9rncwwTlvEU8IHQ="
-        }
-      ]
-    },
-    {
-      "Route": "Login.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\87ou8sra1b-dju8y6vdge.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "185"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"nk09qgBNDyCaTRX0e9tJmg3R5JMyPS6uqSC3IeIbf2w=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:55:46 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-nk09qgBNDyCaTRX0e9tJmg3R5JMyPS6uqSC3IeIbf2w="
-        }
-      ]
-    },
-    {
-      "Route": "Login.dju8y6vdge.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\87ou8sra1b-dju8y6vdge.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.005376344086"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "185"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"nk09qgBNDyCaTRX0e9tJmg3R5JMyPS6uqSC3IeIbf2w=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:55:46 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"Z0muB+dwldiuydJBxWQnVi7cDLTS9rncwwTlvEU8IHQ=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "dju8y6vdge"
-        },
-        {
-          "Name": "label",
-          "Value": "Login.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-Z0muB+dwldiuydJBxWQnVi7cDLTS9rncwwTlvEU8IHQ="
-        }
-      ]
-    },
-    {
-      "Route": "Login.dju8y6vdge.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Login.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "250"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"Z0muB+dwldiuydJBxWQnVi7cDLTS9rncwwTlvEU8IHQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:55:46 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "dju8y6vdge"
-        },
-        {
-          "Name": "label",
-          "Value": "Login.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-Z0muB+dwldiuydJBxWQnVi7cDLTS9rncwwTlvEU8IHQ="
-        }
-      ]
-    },
-    {
-      "Route": "Login.dju8y6vdge.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\87ou8sra1b-dju8y6vdge.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "185"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"nk09qgBNDyCaTRX0e9tJmg3R5JMyPS6uqSC3IeIbf2w=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 07 Dec 2024 17:55:46 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "dju8y6vdge"
-        },
-        {
-          "Name": "label",
-          "Value": "Login.css.gz"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-nk09qgBNDyCaTRX0e9tJmg3R5JMyPS6uqSC3IeIbf2w="
-        }
-      ]
-    },
-    {
       "Route": "Properties.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\wdmy37j2v3-xa61771fag.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\wdmy37j2v3-xa61771fag.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -2694,7 +2652,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2726,7 +2684,7 @@
     },
     {
       "Route": "Properties.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Properties.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Properties.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2747,7 +2705,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2763,7 +2721,7 @@
     },
     {
       "Route": "Properties.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\wdmy37j2v3-xa61771fag.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\wdmy37j2v3-xa61771fag.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2784,7 +2742,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2808,7 +2766,7 @@
     },
     {
       "Route": "Properties.xa61771fag.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\wdmy37j2v3-xa61771fag.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\wdmy37j2v3-xa61771fag.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -2831,7 +2789,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2871,7 +2829,7 @@
     },
     {
       "Route": "Properties.xa61771fag.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Properties.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Properties.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2892,7 +2850,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2916,7 +2874,7 @@
     },
     {
       "Route": "Properties.xa61771fag.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\wdmy37j2v3-xa61771fag.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\wdmy37j2v3-xa61771fag.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2937,7 +2895,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sat, 07 Dec 2024 18:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2969,7 +2927,7 @@
     },
     {
       "Route": "RealEstateBlazor.4p6dhc4t7j.bundle.scp.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\9aqtp4qh3u-4p6dhc4t7j.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\9aqtp4qh3u-4p6dhc4t7j.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -2992,7 +2950,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
+          "Value": "Sun, 08 Dec 2024 18:56:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3032,7 +2990,7 @@
     },
     {
       "Route": "RealEstateBlazor.4p6dhc4t7j.bundle.scp.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\RealEstateBlazor.bundle.scp.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\RealEstateBlazor.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3053,7 +3011,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
+          "Value": "Sun, 08 Dec 2024 18:56:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3077,7 +3035,7 @@
     },
     {
       "Route": "RealEstateBlazor.4p6dhc4t7j.bundle.scp.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\9aqtp4qh3u-4p6dhc4t7j.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\9aqtp4qh3u-4p6dhc4t7j.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3098,7 +3056,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
+          "Value": "Sun, 08 Dec 2024 18:56:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3130,7 +3088,7 @@
     },
     {
       "Route": "RealEstateBlazor.4p6dhc4t7j.styles.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\k2hfzjq5xg-4p6dhc4t7j.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\k2hfzjq5xg-4p6dhc4t7j.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -3153,7 +3111,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
+          "Value": "Sun, 08 Dec 2024 18:56:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3193,7 +3151,7 @@
     },
     {
       "Route": "RealEstateBlazor.4p6dhc4t7j.styles.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\bundle\\RealEstateBlazor.styles.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\bundle\\RealEstateBlazor.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3214,7 +3172,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
+          "Value": "Sun, 08 Dec 2024 18:56:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3238,7 +3196,7 @@
     },
     {
       "Route": "RealEstateBlazor.4p6dhc4t7j.styles.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\k2hfzjq5xg-4p6dhc4t7j.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\k2hfzjq5xg-4p6dhc4t7j.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3259,7 +3217,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
+          "Value": "Sun, 08 Dec 2024 18:56:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3291,7 +3249,7 @@
     },
     {
       "Route": "RealEstateBlazor.bundle.scp.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\9aqtp4qh3u-4p6dhc4t7j.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\9aqtp4qh3u-4p6dhc4t7j.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -3314,7 +3272,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
+          "Value": "Sun, 08 Dec 2024 18:56:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3346,7 +3304,7 @@
     },
     {
       "Route": "RealEstateBlazor.bundle.scp.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\RealEstateBlazor.bundle.scp.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\RealEstateBlazor.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3367,7 +3325,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
+          "Value": "Sun, 08 Dec 2024 18:56:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3383,7 +3341,7 @@
     },
     {
       "Route": "RealEstateBlazor.bundle.scp.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\9aqtp4qh3u-4p6dhc4t7j.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\9aqtp4qh3u-4p6dhc4t7j.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3404,7 +3362,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
+          "Value": "Sun, 08 Dec 2024 18:56:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3428,7 +3386,7 @@
     },
     {
       "Route": "RealEstateBlazor.styles.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\k2hfzjq5xg-4p6dhc4t7j.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\k2hfzjq5xg-4p6dhc4t7j.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -3451,7 +3409,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
+          "Value": "Sun, 08 Dec 2024 18:56:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3483,7 +3441,7 @@
     },
     {
       "Route": "RealEstateBlazor.styles.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\bundle\\RealEstateBlazor.styles.css",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\bundle\\RealEstateBlazor.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3504,7 +3462,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
+          "Value": "Sun, 08 Dec 2024 18:56:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3520,7 +3478,7 @@
     },
     {
       "Route": "RealEstateBlazor.styles.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\k2hfzjq5xg-4p6dhc4t7j.gz",
+      "AssetFile": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\k2hfzjq5xg-4p6dhc4t7j.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3541,7 +3499,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
+          "Value": "Sun, 08 Dec 2024 18:56:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3560,304 +3518,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-A0pzfbtwaEM2oasQbFSDhgGNfYgAbgyV06wro/PyW6c="
-        }
-      ]
-    },
-    {
-      "Route": "Register.5ipweew5fc.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\178yz678ug-5ipweew5fc.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "1.000000000000"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "0"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 05 Dec 2024 14:25:01 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "5ipweew5fc"
-        },
-        {
-          "Name": "label",
-          "Value": "Register.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
-        }
-      ]
-    },
-    {
-      "Route": "Register.5ipweew5fc.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Register.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "0"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 05 Dec 2024 14:25:01 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "5ipweew5fc"
-        },
-        {
-          "Name": "label",
-          "Value": "Register.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
-        }
-      ]
-    },
-    {
-      "Route": "Register.5ipweew5fc.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\178yz678ug-5ipweew5fc.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "0"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 05 Dec 2024 14:25:01 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "5ipweew5fc"
-        },
-        {
-          "Name": "label",
-          "Value": "Register.css.gz"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
-        }
-      ]
-    },
-    {
-      "Route": "Register.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\178yz678ug-5ipweew5fc.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "1.000000000000"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "0"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 05 Dec 2024 14:25:01 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
-        }
-      ]
-    },
-    {
-      "Route": "Register.css",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Register.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "0"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 05 Dec 2024 14:25:01 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
-        }
-      ]
-    },
-    {
-      "Route": "Register.css.gz",
-      "AssetFile": "C:\\Documents\\IntelliJ work\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\compressed\\178yz678ug-5ipweew5fc.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "0"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 05 Dec 2024 14:25:01 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
         }
       ]
     }
