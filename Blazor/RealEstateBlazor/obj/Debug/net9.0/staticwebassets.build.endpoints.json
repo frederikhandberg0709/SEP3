@@ -1493,13 +1493,174 @@
       ]
     },
     {
+      "Route": "RealEstateBlazor.4p6dhc4t7j.styles.css",
+      "AssetFile": "RealEstateBlazor.styles.css.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000542888165"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1841"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"A0pzfbtwaEM2oasQbFSDhgGNfYgAbgyV06wro/PyW6c=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"KEQJCJpjjc1OUSKjmZyznAXDQRmaGC0Co6edMUmLGtY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4p6dhc4t7j"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KEQJCJpjjc1OUSKjmZyznAXDQRmaGC0Co6edMUmLGtY="
+        },
+        {
+          "Name": "label",
+          "Value": "RealEstateBlazor.styles.css"
+        }
+      ]
+    },
+    {
+      "Route": "RealEstateBlazor.4p6dhc4t7j.styles.css",
+      "AssetFile": "RealEstateBlazor.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6544"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KEQJCJpjjc1OUSKjmZyznAXDQRmaGC0Co6edMUmLGtY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4p6dhc4t7j"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KEQJCJpjjc1OUSKjmZyznAXDQRmaGC0Co6edMUmLGtY="
+        },
+        {
+          "Name": "label",
+          "Value": "RealEstateBlazor.styles.css"
+        }
+      ]
+    },
+    {
+      "Route": "RealEstateBlazor.4p6dhc4t7j.styles.css.gz",
+      "AssetFile": "RealEstateBlazor.styles.css.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1841"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"A0pzfbtwaEM2oasQbFSDhgGNfYgAbgyV06wro/PyW6c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4p6dhc4t7j"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-A0pzfbtwaEM2oasQbFSDhgGNfYgAbgyV06wro/PyW6c="
+        },
+        {
+          "Name": "label",
+          "Value": "RealEstateBlazor.styles.css.gz"
+        }
+      ]
+    },
+    {
       "Route": "RealEstateBlazor.styles.css",
       "AssetFile": "RealEstateBlazor.styles.css.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000560852496"
+          "Quality": "0.000542888165"
         }
       ],
       "ResponseHeaders": [
@@ -1517,7 +1678,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1782"
+          "Value": "1841"
         },
         {
           "Name": "Content-Type",
@@ -1525,15 +1686,15 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"HZEI+UtW4gXYrwppD22Y1hPKNWIazY8b/Ac5pPIP9SI=\""
+          "Value": "\"A0pzfbtwaEM2oasQbFSDhgGNfYgAbgyV06wro/PyW6c=\""
         },
         {
           "Name": "ETag",
-          "Value": "W/\"v14UXOV0KrtNc82SGobdTFlI9ejYbOr/OYeprxyCYTg=\""
+          "Value": "W/\"KEQJCJpjjc1OUSKjmZyznAXDQRmaGC0Co6edMUmLGtY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
         },
         {
           "Name": "Vary",
@@ -1543,7 +1704,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-v14UXOV0KrtNc82SGobdTFlI9ejYbOr/OYeprxyCYTg="
+          "Value": "sha256-KEQJCJpjjc1OUSKjmZyznAXDQRmaGC0Co6edMUmLGtY="
         }
       ]
     },
@@ -1562,7 +1723,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5979"
+          "Value": "6544"
         },
         {
           "Name": "Content-Type",
@@ -1570,17 +1731,17 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"v14UXOV0KrtNc82SGobdTFlI9ejYbOr/OYeprxyCYTg=\""
+          "Value": "\"KEQJCJpjjc1OUSKjmZyznAXDQRmaGC0Co6edMUmLGtY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-v14UXOV0KrtNc82SGobdTFlI9ejYbOr/OYeprxyCYTg="
+          "Value": "sha256-KEQJCJpjjc1OUSKjmZyznAXDQRmaGC0Co6edMUmLGtY="
         }
       ]
     },
@@ -1603,7 +1764,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1782"
+          "Value": "1841"
         },
         {
           "Name": "Content-Type",
@@ -1611,11 +1772,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"HZEI+UtW4gXYrwppD22Y1hPKNWIazY8b/Ac5pPIP9SI=\""
+          "Value": "\"A0pzfbtwaEM2oasQbFSDhgGNfYgAbgyV06wro/PyW6c=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
+          "Value": "Sun, 08 Dec 2024 12:43:16 GMT"
         },
         {
           "Name": "Vary",
@@ -1625,168 +1786,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-HZEI+UtW4gXYrwppD22Y1hPKNWIazY8b/Ac5pPIP9SI="
-        }
-      ]
-    },
-    {
-      "Route": "RealEstateBlazor.vs7lsqcpur.styles.css",
-      "AssetFile": "RealEstateBlazor.styles.css.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000560852496"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1782"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"HZEI+UtW4gXYrwppD22Y1hPKNWIazY8b/Ac5pPIP9SI=\""
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"v14UXOV0KrtNc82SGobdTFlI9ejYbOr/OYeprxyCYTg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "vs7lsqcpur"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-v14UXOV0KrtNc82SGobdTFlI9ejYbOr/OYeprxyCYTg="
-        },
-        {
-          "Name": "label",
-          "Value": "RealEstateBlazor.styles.css"
-        }
-      ]
-    },
-    {
-      "Route": "RealEstateBlazor.vs7lsqcpur.styles.css",
-      "AssetFile": "RealEstateBlazor.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "5979"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"v14UXOV0KrtNc82SGobdTFlI9ejYbOr/OYeprxyCYTg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "vs7lsqcpur"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-v14UXOV0KrtNc82SGobdTFlI9ejYbOr/OYeprxyCYTg="
-        },
-        {
-          "Name": "label",
-          "Value": "RealEstateBlazor.styles.css"
-        }
-      ]
-    },
-    {
-      "Route": "RealEstateBlazor.vs7lsqcpur.styles.css.gz",
-      "AssetFile": "RealEstateBlazor.styles.css.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1782"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"HZEI+UtW4gXYrwppD22Y1hPKNWIazY8b/Ac5pPIP9SI=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 03 Dec 2024 13:02:01 GMT"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "vs7lsqcpur"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-HZEI+UtW4gXYrwppD22Y1hPKNWIazY8b/Ac5pPIP9SI="
-        },
-        {
-          "Name": "label",
-          "Value": "RealEstateBlazor.styles.css.gz"
+          "Value": "sha256-A0pzfbtwaEM2oasQbFSDhgGNfYgAbgyV06wro/PyW6c="
         }
       ]
     },

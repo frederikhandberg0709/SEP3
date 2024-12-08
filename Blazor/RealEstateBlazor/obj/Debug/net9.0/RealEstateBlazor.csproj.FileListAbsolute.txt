@@ -117,8 +117,6 @@ C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compres
 C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\isoxwiu6wr-8xd09dgrah.gz
 C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\wdmy37j2v3-xa61771fag.gz
 C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\178yz678ug-5ipweew5fc.gz
-C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\k2hfzjq5xg-vs7lsqcpur.gz
-C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\9aqtp4qh3u-vs7lsqcpur.gz
 C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\staticwebassets.build.json
 C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\staticwebassets.development.json
 C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\staticwebassets.build.endpoints.json
@@ -132,3 +130,5 @@ C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEst
 C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.genruntimeconfig.cache
 C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\ref\RealEstateBlazor.dll
 C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\87ou8sra1b-dju8y6vdge.gz
+C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\k2hfzjq5xg-4p6dhc4t7j.gz
+C:\Documents\IntelliJ work\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\9aqtp4qh3u-4p6dhc4t7j.gz

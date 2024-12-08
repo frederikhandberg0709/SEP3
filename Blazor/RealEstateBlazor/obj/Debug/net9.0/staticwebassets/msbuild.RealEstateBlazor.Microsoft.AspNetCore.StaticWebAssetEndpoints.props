@@ -108,17 +108,17 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"xa61771fag"},{"Name":"integrity","Value":"sha256-13YSI226kimfVnYmdGAubNKGcrSkyvCtEekhHLHmnpA="},{"Name":"label","Value":"_content/RealEstateBlazor/Properties.css"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1908"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u002213YSI226kimfVnYmdGAubNKGcrSkyvCtEekhHLHmnpA=\u0022"},{"Name":"Last-Modified","Value":"Tue, 03 Dec 2024 13:02:01 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/RealEstateBlazor/RealEstateBlazor.bundle.scp.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RealEstateBlazor.vs7lsqcpur.bundle.scp.css'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/RealEstateBlazor/RealEstateBlazor.4p6dhc4t7j.bundle.scp.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RealEstateBlazor.4p6dhc4t7j.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-v14UXOV0KrtNc82SGobdTFlI9ejYbOr/OYeprxyCYTg="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"5979"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022v14UXOV0KrtNc82SGobdTFlI9ejYbOr/OYeprxyCYTg=\u0022"},{"Name":"Last-Modified","Value":"Tue, 03 Dec 2024 13:02:01 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"4p6dhc4t7j"},{"Name":"integrity","Value":"sha256-KEQJCJpjjc1OUSKjmZyznAXDQRmaGC0Co6edMUmLGtY="},{"Name":"label","Value":"_content/RealEstateBlazor/RealEstateBlazor.bundle.scp.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"6544"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022KEQJCJpjjc1OUSKjmZyznAXDQRmaGC0Co6edMUmLGtY=\u0022"},{"Name":"Last-Modified","Value":"Sun, 08 Dec 2024 12:43:16 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/RealEstateBlazor/RealEstateBlazor.vs7lsqcpur.bundle.scp.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RealEstateBlazor.vs7lsqcpur.bundle.scp.css'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/RealEstateBlazor/RealEstateBlazor.bundle.scp.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RealEstateBlazor.4p6dhc4t7j.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"vs7lsqcpur"},{"Name":"integrity","Value":"sha256-v14UXOV0KrtNc82SGobdTFlI9ejYbOr/OYeprxyCYTg="},{"Name":"label","Value":"_content/RealEstateBlazor/RealEstateBlazor.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5979"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022v14UXOV0KrtNc82SGobdTFlI9ejYbOr/OYeprxyCYTg=\u0022"},{"Name":"Last-Modified","Value":"Tue, 03 Dec 2024 13:02:01 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-KEQJCJpjjc1OUSKjmZyznAXDQRmaGC0Co6edMUmLGtY="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"6544"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022KEQJCJpjjc1OUSKjmZyznAXDQRmaGC0Co6edMUmLGtY=\u0022"},{"Name":"Last-Modified","Value":"Sun, 08 Dec 2024 12:43:16 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/RealEstateBlazor/Register.5ipweew5fc.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Register.css'))</AssetFile>
