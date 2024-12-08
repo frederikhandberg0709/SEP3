@@ -1,5 +1,6 @@
 using System.Net;
 using System.Text.Json;
+using Microsoft.AspNetCore.Components.Authorization;
 using RealEstateBlazor.Data.Models;
 using RealEstateBlazor.Data.DTOs;
 
@@ -10,9 +11,9 @@ public class BookmarkService : IBookmarkService
     private readonly HttpClient _httpClient;
     private readonly string _baseUrl;
     private readonly JsonSerializerOptions _jsonOptions;
-    private readonly ITokenService _tokenService;
+    private readonly AuthenticationStateProvider _authStateProvider;
 
-    public BookmarkService(HttpClient httpClient, IConfiguration configuration, ITokenService tokenService)
+    public BookmarkService(HttpClient httpClient, IConfiguration configuration, AuthenticationStateProvider authStateProvider)
     {
         _httpClient = httpClient;
         _baseUrl = configuration["ApiSettings:BaseUrl"];
@@ -20,21 +21,43 @@ public class BookmarkService : IBookmarkService
         {
             PropertyNameCaseInsensitive = true
         };
-        _tokenService = tokenService;
+        _authStateProvider = authStateProvider;
     }
     
-    private void AddAuthorizationHeader()
+    private async Task AddAuthorizationHeaderAsync()
     {
-        var token = _tokenService.GetToken();
-        Console.WriteLine($"Token present: {!string.IsNullOrEmpty(token)}");
-        if (!string.IsNullOrEmpty(token))
+        try
         {
-            _httpClient.DefaultRequestHeaders.Authorization = 
-                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            Console.WriteLine("Attempting to add auth header");
+            var authState = await _authStateProvider.GetAuthenticationStateAsync();
+            Console.WriteLine($"Auth state retrieved, user authenticated: {authState.User.Identity?.IsAuthenticated}");
+            var token = authState.User.FindFirst("Token")?.Value;
+            Console.WriteLine($"Token present: {!string.IsNullOrEmpty(token)}");
+            
+            if (!string.IsNullOrEmpty(token))
+            {
+                if (_httpClient.DefaultRequestHeaders.Contains("Authorization"))
+                {
+                    _httpClient.DefaultRequestHeaders.Remove("Authorization");
+                }
+            
+                _httpClient.DefaultRequestHeaders.Authorization = 
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            
+                var authHeader = _httpClient.DefaultRequestHeaders.Authorization;
+                Console.WriteLine($"Authorization header set: {authHeader != null}");
+                Console.WriteLine($"Authorization header: {authHeader?.Scheme} {authHeader?.Parameter?.Substring(0, Math.Min(20, authHeader.Parameter?.Length ?? 0))}...");
+            }
+            else
+            {
+                Console.WriteLine("No token available to add to Authorization header");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            Console.WriteLine("No token found in TokenService");
+            Console.WriteLine($"Error in AddAuthorizationHeader: {ex.Message}");
+            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+            throw;
         }
     }
 
@@ -42,7 +65,7 @@ public class BookmarkService : IBookmarkService
     {
         try
         {
-            AddAuthorizationHeader();
+            await AddAuthorizationHeaderAsync();
             var dto = new CreateBookmarkDTO { PropertyId = propertyId };
             var response = await _httpClient.PostAsJsonAsync($"{_baseUrl}/api/bookmarks", dto);
             response.EnsureSuccessStatusCode();
@@ -59,7 +82,7 @@ public class BookmarkService : IBookmarkService
     {
         try
         {
-            AddAuthorizationHeader();
+            await AddAuthorizationHeaderAsync();
             var response = await _httpClient.GetAsync($"{_baseUrl}/api/bookmarks");
             response.EnsureSuccessStatusCode();
             var bookmarks = await response.Content.ReadFromJsonAsync<List<Bookmark>>(_jsonOptions);
@@ -75,7 +98,7 @@ public class BookmarkService : IBookmarkService
     {
         try
         {
-            AddAuthorizationHeader();
+            await AddAuthorizationHeaderAsync();
             var response = await _httpClient.DeleteAsync($"{_baseUrl}/api/bookmarks/{bookmarkId}");
             response.EnsureSuccessStatusCode();
         }
@@ -89,14 +112,12 @@ public class BookmarkService : IBookmarkService
     {
         try
         {
-            AddAuthorizationHeader();
+            await AddAuthorizationHeaderAsync();
             var response = await _httpClient.GetAsync($"{_baseUrl}/api/bookmarks/{bookmarkId}");
             if (response.StatusCode == HttpStatusCode.NotFound)
                 return false;
                 
             response.EnsureSuccessStatusCode();
-            // var bookmark = await response.Content.ReadFromJsonAsync<Bookmark>(_jsonOptions);
-            // return bookmark?.AccountId == accountId;
             var bookmark = await response.Content.ReadFromJsonAsync<Bookmark>(_jsonOptions);
             return bookmark != null;
         }
@@ -110,13 +131,37 @@ public class BookmarkService : IBookmarkService
     {
         try
         {
-            AddAuthorizationHeader();
-            var response = await _httpClient.GetAsync($"{_baseUrl}/api/bookmarks/property/{propertyId}");
+            Console.WriteLine($"Checking bookmark status for property {propertyId}");
+            await AddAuthorizationHeaderAsync();
+
+            var url = $"{_baseUrl}/api/bookmarks/property/{propertyId}";
+            Console.WriteLine($"Making request to: {url}");
+
+            var response = await _httpClient.GetAsync(url);
+            Console.WriteLine($"Response status code: {response.StatusCode}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Error response content: {errorContent}");
+                throw new HttpRequestException($"Request failed with status {response.StatusCode}: {errorContent}");
+            }
+
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<bool>(_jsonOptions);
+            var result = await response.Content.ReadFromJsonAsync<bool>(_jsonOptions);
+            Console.WriteLine($"Bookmark status result: {result}");
+            return result;
         }
         catch (HttpRequestException ex)
         {
+            Console.WriteLine($"HTTP request error: {ex.Message}");
+            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+            throw new Exception("Failed to check bookmark status", ex);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"General error: {ex.Message}");
+            Console.WriteLine($"Stack trace: {ex.StackTrace}");
             throw new Exception("Failed to check bookmark status", ex);
         }
     }

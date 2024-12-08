@@ -11,6 +11,7 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, SimpleAuthProvider>();
+builder.Services.AddComponentContext();
 
 builder.Services.AddHttpClient<SimpleAuthProvider>(client =>
 {
@@ -23,8 +24,6 @@ builder.Services.AddHttpClient<SimpleAuthProvider>(client =>
     
     client.BaseAddress = new Uri(baseUrl);
 });
-
-builder.Services.AddScoped<ITokenService, TokenService>();
 
 builder.Services.AddHttpClient<IPropertyService, PropertyService>(client =>
 {

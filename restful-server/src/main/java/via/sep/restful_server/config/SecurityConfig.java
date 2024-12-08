@@ -46,14 +46,15 @@ public class SecurityConfig {
                                 "/api/properties/**",
                                 "/api/images/**",
                                 "/api/agents/**",
-                                "/api/bookings/**"
+                                "/api/bookings/**",
+                                "/api/images/**"
                         ).permitAll()
 
-                        .requestMatchers(HttpMethod.GET,
-                                "/api/images/**/*.jpg",
-                                "/api/images/**/*.jpeg",
-                                "/api/images/**/*.png"
-                        ).permitAll()
+//                        .requestMatchers(HttpMethod.GET,
+//                                "/api/images/**/*.jpg",
+//                                "/api/images/**/*.jpeg",
+//                                "/api/images/**/*.png"
+//                        ).permitAll()
 
                         // Public registration
                         .requestMatchers(HttpMethod.POST, "/api/users/register", "/api/users/login").permitAll()

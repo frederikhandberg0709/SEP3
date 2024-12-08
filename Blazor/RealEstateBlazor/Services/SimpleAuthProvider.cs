@@ -10,100 +10,119 @@ public class SimpleAuthProvider : AuthenticationStateProvider
 {
     private readonly HttpClient httpClient;
     private readonly IJSRuntime jsRuntime;
-    private readonly ITokenService tokenService;
 
-    public SimpleAuthProvider(HttpClient httpClient, IJSRuntime jsRuntime, ITokenService tokenService)
+    public SimpleAuthProvider(HttpClient httpClient, IJSRuntime jsRuntime)
     {
         this.httpClient = httpClient;
         this.jsRuntime = jsRuntime;
-        this.tokenService = tokenService;
     }
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
-        string tokenAsJson = "";
+        //string tokenAsJson = "";
+        
         try
         {
-            tokenAsJson = await jsRuntime.InvokeAsync<string>("sessionStorage.getItem", "authToken");
+            Console.WriteLine("Getting authentication state");
+            var tokenAsJson = await jsRuntime.InvokeAsync<string>("sessionStorage.getItem", "jwtToken");
+            Console.WriteLine($"Token JSON from storage: {tokenAsJson}");
+
+            if (string.IsNullOrEmpty(tokenAsJson))
+            {
+                Console.WriteLine("No token found in storage");
+                return new AuthenticationState(new ClaimsPrincipal());
+            }
+
+            var loginResponse = JsonSerializer.Deserialize<LoginResponseDTO>(tokenAsJson);
+            if (loginResponse?.Token == null)
+            {
+                Console.WriteLine("Could not deserialize token or token is null");
+                return new AuthenticationState(new ClaimsPrincipal());
+            }
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, loginResponse.Fullname ?? loginResponse.Username),
+                new Claim(ClaimTypes.Role, loginResponse.Role),
+                new Claim("AccountId", loginResponse.AccountId.ToString()),
+                new Claim("Username", loginResponse.Username),
+                new Claim("Token", loginResponse.Token)
+            };
+
+            var identity = new ClaimsIdentity(claims, "jwt");
+            var user = new ClaimsPrincipal(identity);
+            
+            Console.WriteLine($"User authenticated with claims:");
+            foreach (var claim in claims)
+            {
+                Console.WriteLine($"- {claim.Type}: {claim.Value}");
+            }
+            
+            return new AuthenticationState(user);
         }
-        catch (InvalidOperationException)
+        catch (Exception ex)
         {
+            Console.WriteLine($"Error in GetAuthenticationStateAsync: {ex.Message}");
             return new AuthenticationState(new ClaimsPrincipal());
         }
-
-        if (string.IsNullOrEmpty(tokenAsJson))
-        {
-            return new AuthenticationState(new ClaimsPrincipal());
-        }
-
-        var loginResponse = JsonSerializer.Deserialize<LoginResponseDTO>(tokenAsJson);
-        if (loginResponse?.Token == null)
-        {
-            return new AuthenticationState(new ClaimsPrincipal());
-        }
-
-        var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name, loginResponse.Fullname ?? loginResponse.Username), // Use FullName with fallback to Username
-            new Claim(ClaimTypes.Role, loginResponse.Role),
-            new Claim("AccountId", loginResponse.AccountId.ToString()),
-            new Claim("Username", loginResponse.Username),
-            new Claim("Token", loginResponse.Token)
-        };
-
-        var identity = new ClaimsIdentity(claims, "jwt");
-        var user = new ClaimsPrincipal(identity);
-        
-        return new AuthenticationState(user);
     }
 
     public async Task LoginAsync(string username, string password)
     {
-        var loginRequest = new LoginRequestDTO
+        try
         {
-            Username = username,
-            Password = password
-        };
+            var loginRequest = new LoginRequestDTO
+            {
+                Username = username,
+                Password = password
+            };
 
-        using var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:8080/api/users/login");
-        request.Content = JsonContent.Create(loginRequest);
-        
-        var response = await httpClient.SendAsync(request);
-        
-        if (!response.IsSuccessStatusCode)
-        {
-            var error = await response.Content.ReadAsStringAsync();
-            throw new Exception(error);
+            using var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:8080/api/users/login");
+            request.Content = JsonContent.Create(loginRequest);
+            
+            var response = await httpClient.SendAsync(request);
+            
+            if (!response.IsSuccessStatusCode)
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                throw new Exception(error);
+            }
+
+            var loginResponse = await response.Content.ReadFromJsonAsync<LoginResponseDTO>();
+            if (loginResponse?.Token == null)
+            {
+                throw new Exception("Invalid response from server");
+            }
+
+            string serializedToken = JsonSerializer.Serialize(loginResponse);
+            await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "jwtToken", serializedToken);
+            
+            Console.WriteLine($"Login successful. Token: {loginResponse.Token}");
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, loginResponse.Fullname ?? loginResponse.Username),
+                new Claim(ClaimTypes.Role, loginResponse.Role),
+                new Claim("AccountId", loginResponse.AccountId.ToString()),
+                new Claim("Username", loginResponse.Username),
+                new Claim("Token", loginResponse.Token)
+            };
+
+            var identity = new ClaimsIdentity(claims, "jwt");
+            var user = new ClaimsPrincipal(identity);
+
+            NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
         }
-
-        var loginResponse = await response.Content.ReadFromJsonAsync<LoginResponseDTO>();
-        if (loginResponse?.Token == null)
+        catch (Exception ex)
         {
-            throw new Exception("Invalid response from server");
+            Console.WriteLine($"Error in LoginAsync: {ex.Message}");
+            throw;
         }
-
-        string serializedToken = JsonSerializer.Serialize(loginResponse);
-        await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "authToken", serializedToken);
-        tokenService.SetToken(loginResponse.Token);
-
-        var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name, loginResponse.Fullname ?? loginResponse.Username),
-            new Claim(ClaimTypes.Role, loginResponse.Role),
-            new Claim("AccountId", loginResponse.AccountId.ToString()),
-            new Claim("Username", loginResponse.Username),
-        };
-
-        var identity = new ClaimsIdentity(claims, "jwt");
-        var user = new ClaimsPrincipal(identity);
-
-        NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
     }
 
     public async Task LogoutAsync()
     {
-        await jsRuntime.InvokeVoidAsync("sessionStorage.removeItem", "authToken");
-        tokenService.SetToken(null);
+        await jsRuntime.InvokeVoidAsync("sessionStorage.removeItem", "jwtToken");
         
         NotifyAuthenticationStateChanged(
             Task.FromResult(new AuthenticationState(new ClaimsPrincipal()))

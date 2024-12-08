@@ -1,30 +1,49 @@
-@implements IDisposable
+@rendermode InteractiveServer
 
+@inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IBookmarkService BookmarkService
-
+@using Microsoft.AspNetCore.Components.Authorization
 @using RealEstateBlazor.Services
 
-<button class="@ButtonClass" @onclick="ToggleBookmarkAsync" disabled="@(IsLoading || PropertyId <= 0)">
-    @if (IsLoading)
-    {
-        <span>Loading...</span>
-    }
-    else
-    {
-        @if (IsBookmarked)
-        {
-            <span>★ Bookmarked</span>
-        }
-        else
-        {
-            <span>☆ Add Bookmark</span>
-        }
-    }
-</button>
+<CascadingAuthenticationState>
+    <AuthorizeView>
+        <Authorized>
+            @{
+                Console.WriteLine($"AuthorizeView - User authenticated: {context.User.Identity?.IsAuthenticated}");
+                foreach (var claim in context.User.Claims)
+                {
+                    Console.WriteLine($"Claim: {claim.Type} = {claim.Value}");
+                }
+            }
+            <button class="@ButtonClass" @onclick="ToggleBookmarkAsync" disabled="@(IsLoading || PropertyId <= 0)">
+                @if (IsLoading)
+                {
+                    <span>Loading...</span>
+                }
+                else
+                {
+                    @if (IsBookmarked)
+                    {
+                        <span>★ Bookmarked</span>
+                    }
+                    else
+                    {
+                        <span>☆ Add Bookmark</span>
+                    }
+                }
+            </button>
+        </Authorized>
+
+        <NotAuthorized>
+            @{
+                Console.WriteLine("AuthorizeView - User not authorized");
+            }
+            <a href="/login" class="btn btn-outline-primary">Login to Bookmark</a>
+        </NotAuthorized>
+    </AuthorizeView>
+</CascadingAuthenticationState>
 
 @code {
-    private long _previousPropertyId;
-    
     [Parameter] public long PropertyId { get; set; }
     [Parameter] public EventCallback<bool> OnBookmarkChanged { get; set; }
 
@@ -35,47 +54,54 @@
         ? "btn btn-primary" 
         : "btn btn-outline-primary";
     
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        _previousPropertyId = PropertyId;
+        if (firstRender)
+        {
+            await CheckBookmarkStatusAsync();
+        }
+    }
+    
+    protected override async Task OnParametersSetAsync()
+    {
         if (PropertyId > 0)
         {
             await CheckBookmarkStatusAsync();
         }
     }
 
-    protected override async Task OnParametersSetAsync()
-    {
-        _previousPropertyId = PropertyId;
-        
-        if (PropertyId > 0 && PropertyId != _previousPropertyId)
-        {
-            _previousPropertyId = PropertyId;
-            await CheckBookmarkStatusAsync();
-        }
-    }
-    
-    public void Dispose()
-    {
-        _previousPropertyId = 0;
-    }
-
     private async Task CheckBookmarkStatusAsync()
     {
         try
         {
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            
+            var user = authState.User;
+            Console.WriteLine($"User is authenticated: {user.Identity?.IsAuthenticated}");
+            
+            if (user.Identity?.IsAuthenticated == true)
+            {
+                Console.WriteLine($"User token: {user.FindFirst("Token")?.Value}");
+            }
+            
             if (PropertyId <= 0)
             {
                 Console.WriteLine($"Invalid PropertyId: {PropertyId}");
                 return;
             }
-            
+
+            IsLoading = true;
             IsBookmarked = await BookmarkService.HasBookmarkedAsync(PropertyId);
             StateHasChanged();
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error checking bookmark status: {ex.Message}");
+            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+        }
+        finally
+        {
+            IsLoading = false;
         }
     }
 
