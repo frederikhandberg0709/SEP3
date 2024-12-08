@@ -123,7 +123,7 @@
             var client = HttpClientFactory.CreateClient();
             var jsonContent = JsonSerializer.Serialize(newProperty);
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-            var response = await client.PostAsJsonAsync("https://localhost:8080/api/properties", newProperty);
+            var response = await client.PostAsJsonAsync("https://localhost:8080/api/forms", newProperty);
             
             if (response.IsSuccessStatusCode)
             {
