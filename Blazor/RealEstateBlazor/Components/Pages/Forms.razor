@@ -87,73 +87,84 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </EditForm>
 
-@if (isSubmitted)
-{
-    <p class="success-message">Property added successfully!</p>
-}
+ @if (isSubmitted)
+    {
+        <p class="success-message">Property added successfully!</p>
+    }
 
-@if (notifications.Count > 0)
-{
-    <h4>Notifications:</h4>
-    <ul>
-        @foreach (var notification in notifications)
-        {
-            <li>@notification</li>
-        }
-    </ul>
+    @if (errorMessage != null)
+    {
+        <p class="alert alert-danger">@errorMessage</p>
+    }
 }
 
 @code {
     private Property newProperty = new Property();
     private bool isSubmitted = false;
-    private List<string> notifications = new List<string>();
-    private HubConnection hubConnection;
+    private string? errorMessage = null;
+    private bool isLoggedIn = false;
 
     protected override async Task OnInitializedAsync()
     {
-        hubConnection = new HubConnectionBuilder()
-            .WithUrl("https://localhost:5168/hubs/notifications")
-            .WithAutomaticReconnect()
-            .Build();
-
-        hubConnection.On<string>("ReceiveNotification", (message) =>
-        {
-            notifications.Add(message);
-            StateHasChanged();
-        });
-
-        await hubConnection.StartAsync();
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        isLoggedIn = authState.User.Identity?.IsAuthenticated ?? false;
     }
 
     private async Task HandleSubmit()
     {
-        isSubmitted = true;
-        newProperty = new Property();
-        await hubConnection.InvokeAsync("SendNotification", "A new property has been added.");
+        if (!isLoggedIn)
+        {
+            errorMessage = "You must be logged in to submit the form.";
+            return;
+        }
+
+        try
+        {
+            var client = HttpClientFactory.CreateClient();
+            var jsonContent = JsonSerializer.Serialize(newProperty);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            var response = await client.PostAsJsonAsync("https://localhost:8080/api/properties", newProperty);
+            
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<FormNotificationDTO>();
+                newProperty = new Property(); // Reset form
+                
+                if (result != null)
+                {
+                    Console.WriteLine($"Form ID: {result.FormId}, Timestamp: {result.Timestamp}");
+                }
+            }
+            else
+            {
+                errorMessage = $"Error: {response.ReasonPhrase}";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+        }
     }
 
-    public async ValueTask DisposeAsync()
+    private void RedirectToLogin()
     {
-        if (hubConnection is not null)
-        {
-            await hubConnection.DisposeAsync();
-        }
+        NavigationManager.NavigateTo("/login");
     }
 
     public class Property
     {
         public string Address { get; set; }
-        public string PropertyType { get; set; } // House or Apartment
+        public string PropertyType { get; set; }
         public int FloorArea { get; set; }
         public decimal Price { get; set; }
         public int Bedrooms { get; set; }
         public int Bathrooms { get; set; }
         public int YearBuilt { get; set; }
-        public int NumFloors { get; set; } // For Houses
-        public bool HasGarage { get; set; } // For Houses
-        public string BuildingName { get; set; } // For Apartments
-        public int FloorNumber { get; set; } // For Apartments
-        public bool HasElevator { get; set; } // For Apartments
-        public bool HasBalcony { get; set; } // For Apartments
+        public int? NumFloors { get; set; }
+        public bool? HasGarage { get; set; }
+        public string BuildingName { get; set; }
+        public int? FloorNumber { get; set; }
+        public bool? HasElevator { get; set; }
+        public bool? HasBalcony { get; set; }
     }
 }
