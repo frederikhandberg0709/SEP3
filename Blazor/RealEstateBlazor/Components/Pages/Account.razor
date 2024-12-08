@@ -1,7 +1,11 @@
 ﻿@page "/account"
-@using Microsoft.AspNetCore.Authorization
-@attribute [Authorize]
+@*@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]*@
+@using Microsoft.AspNetCore.Components.Authorization
+@inject NavigationManager NavigationManager
 @attribute [StreamRendering]
+
+@rendermode InteractiveServer
 
 <head>
     <link href="Account.css" rel="stylesheet" />
@@ -9,65 +13,76 @@
 
 <PageTitle>Account</PageTitle>
 
-<div class="account-container">
-    <!-- User Info Section -->
-    <div class="user-info">
-        <img class="profile-pic" src="images/default-profile.png" alt="Profile Picture" />
-        <div class="info">
-            <h2>@userName</h2>
-            <p>Email: <span>@userEmail</span></p>
-            <p>Phone: <span>@userPhone</span></p>
-            <button class="update-btn">Update Info</button>
-        </div>
-    </div>
+<CascadingAuthenticationState>
+    <AuthorizeView>
+        <Authorized>
+            <div class="account-container">
+                <!-- User Info Section -->
+                <div class="user-info">
+                    <img class="profile-pic" src="images/default-profile.png" alt="Profile Picture" />
+                    <div class="info">
+                        <h2>@userName</h2>
+                        <p>Email: <span>@userEmail</span></p>
+                        <p>Phone: <span>@userPhone</span></p>
+                        <button class="update-btn">Update Info</button>
+                    </div>
+                </div>
 
-    <!-- Owned Properties Section -->
-    <div class="owned-properties">
-        <h3>Owned Properties</h3>
-        <div class="property-grid">
-            @if (OwnedProperties.Any())
-            {
-            @foreach (var property in OwnedProperties)
-            {
-            <div class="property-box">
-                <img class="property-image" src="@property.Image" alt="@property.Name" />
-                <h4>@property.Name</h4>
-                <p>@property.Price</p>
-                <p>@property.Type</p>
-            </div>
-            }
-            }
-            else
-            {
-            <p>You don't own any properties yet.</p>
-            }
-        </div>
-    </div>
+                <!-- Owned Properties Section -->
+                <div class="owned-properties">
+                    <h3>Owned Properties</h3>
+                    <div class="property-grid">
+                        @if (OwnedProperties.Any())
+                        {
+                            @foreach (var property in OwnedProperties)
+                            {
+                                <div class="property-box">
+                                    <img class="property-image" src="@property.Image" alt="@property.Name" />
+                                    <h4>@property.Name</h4>
+                                    <p>@property.Price</p>
+                                    <p>@property.Type</p>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p>You don't own any properties yet.</p>
+                        }
+                    </div>
+                </div>
 
-    <!-- Wishlist Section -->
-    <div class="wishlist">
-        <h3>Wishlist</h3>
-        <div class="property-grid">
-            @if (Wishlist.Any())
-            {
-            @foreach (var property in Wishlist)
-            {
-            <div class="property-box">
-                <img class="property-image" src="@property.Image" alt="@property.Name" />
-                <h4>@property.Name</h4>
-                <p>@property.Price</p>
-                <p>@property.Type</p>
-                <button class="remove-btn" @onclick="() => RemoveFromWishlist(property)">Remove</button>
+                <!-- Wishlist Section -->
+                <div class="wishlist">
+                    <h3>Wishlist</h3>
+                    <div class="property-grid">
+                        @if (Wishlist.Any())
+                        {
+                            @foreach (var property in Wishlist)
+                            {
+                                <div class="property-box">
+                                    <img class="property-image" src="@property.Image" alt="@property.Name" />
+                                    <h4>@property.Name</h4>
+                                    <p>@property.Price</p>
+                                    <p>@property.Type</p>
+                                    <button class="remove-btn" @onclick="() => RemoveFromWishlist(property)">Remove</button>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p>Your wishlist is empty.</p>
+                        }
+                    </div>
+                </div>
             </div>
-            }
-            }
-            else
-            {
-            <p>Your wishlist is empty.</p>
-            }
-        </div>
-    </div>
-</div>
+        </Authorized>
+        
+        <NotAuthorized>
+            <p>You are not logged in.</p>
+            <button @onclick="@(()=> NavigationManager.NavigateTo("login"))">Login</button>
+        </NotAuthorized>
+    </AuthorizeView>
+</CascadingAuthenticationState>
 
 @code {
 private string userName = "Jack Mayhoff";
