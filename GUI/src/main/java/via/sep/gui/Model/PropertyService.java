@@ -1,45 +1,65 @@
 package via.sep.gui.Model;
 
-import java.util.ArrayList;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import via.sep.gui.Model.domain.Property;
+import via.sep.gui.Model.dto.PropertyDTO;
+import via.sep.gui.Server.ServerConnection;
+
+import java.lang.reflect.Type;
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 public class PropertyService {
-    private final List<Property> properties = new ArrayList<>();
+    private final ServerConnection serverConnection;
+    private final Gson gson;
+    private static final String BASE_PATH = "/properties";
 
-    public Property createProperty(String address, String propertyType, int bathroomNum, int roomsNum, String fullName, int floorNum, String status, double size, double price) {
-        Property property = new Property(address, propertyType, bathroomNum, roomsNum, fullName, floorNum, status, size, price);
-        properties.add(property);
-        return property;
+    public PropertyService(ServerConnection serverConnection, Gson gson) {
+        this.serverConnection = serverConnection;
+        this.gson = gson;
     }
 
-    public Optional<Property> getPropertyById(Long id) {
-        return properties.stream().filter(property -> property.getId().equals(id)).findFirst();
+    public Property createProperty(String address, String propertyType,
+                                   Integer numBathrooms, Integer numBedrooms,
+                                   Integer numFloors, BigDecimal floorArea,
+                                   BigDecimal price, Integer yearBuilt,
+                                   String description) throws Exception {
+        PropertyDTO propertyDTO = new PropertyDTO();
+        ;
+        propertyDTO.setAddress(address);
+        propertyDTO.setPropertyType(propertyType);
+        propertyDTO.setNumBathrooms(numBathrooms);
+        propertyDTO.setNumBedrooms(numBedrooms);
+        propertyDTO.setNumFloors(numFloors);
+        propertyDTO.setFloorArea(floorArea);
+        propertyDTO.setPrice(price);
+        propertyDTO.setYearBuilt(yearBuilt);
+        propertyDTO.setDescription(description);
+
+        String json = gson.toJson(propertyDTO);
+        String response = serverConnection.sendPostRequest(BASE_PATH, json);
+        return gson.fromJson(response, Property.class);
     }
 
-    public List<Property> getAllProperties() {
-        return new ArrayList<>(properties);
+    public Property getPropertyById(Long id) throws Exception {
+        String response = serverConnection.sendGetRequest(BASE_PATH + "/" + id);
+        return gson.fromJson(response, Property.class);
     }
 
-    public boolean updateProperty(Long id, String address, String propertyType, int bathroomNum, int roomsNum, String fullName, int floorNum, String status, double size, double price) {
-        Optional<Property> optionalProperty = getPropertyById(id);
-        if (optionalProperty.isPresent()) {
-            Property property = optionalProperty.get();
-            property.setAddress(address);
-            property.setPropertyType(propertyType);
-            property.setBathroomNum(bathroomNum);
-            property.setRoomsNum(roomsNum);
-            property.setFullName(fullName);
-            property.setFloorNum(floorNum);
-            property.setStatus(status);
-            property.setSize(size);
-            property.setPrice(price);
-            return true;
-        }
-        return false;
+    public List<Property> getAllProperties() throws Exception {
+        String response = serverConnection.sendGetRequest(BASE_PATH);
+        Type listType = new TypeToken<List<Property>>(){}.getType();
+        return gson.fromJson(response, listType);
     }
 
-    public boolean deleteProperty(Long id) {
-        return properties.removeIf(property -> property.getId().equals(id));
+    public Property updateProperty(Long propertyId, PropertyDTO updatedProperty) throws Exception {
+        String json = gson.toJson(updatedProperty);
+        String response = serverConnection.sendPutRequest(BASE_PATH + "/" + propertyId, json);
+        return gson.fromJson(response, Property.class);
+    }
+
+    public void deleteProperty(Long id) throws Exception {
+        serverConnection.sendDeleteRequest(BASE_PATH + "/" + id);
     }
 }

@@ -2,7 +2,6 @@ package via.sep.gui.ViewModel;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import via.sep.gui.Model.Property;
 
 public class DashboardViewModel {
     private final ObservableList<Property> propertyList = FXCollections.observableArrayList();

@@ -3,7 +3,6 @@ package via.sep.gui.ViewModel;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import via.sep.gui.Model.Property;
 
 public class EditViewModel {
     private final StringProperty address = new SimpleStringProperty();
