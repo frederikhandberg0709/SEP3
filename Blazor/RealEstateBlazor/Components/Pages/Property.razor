@@ -1,0 +1,236 @@
+@page "/property/{Id}"
+@using RealEstateBlazor.Data.Models
+@using RealEstateBlazor.Data.DTOs
+@using RealEstateBlazor.Services
+@using RealEstateBlazor.Components.Layout
+@inject IPropertyService PropertyService
+@inject IImageService ImageService
+
+<PageTitle>Property</PageTitle>
+
+@if (loading)
+{
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+}
+else if (error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @error
+    </div>
+}
+else if (property != null)
+{
+    <div class="card-body">
+        @if (images != null && images.Any())
+        {
+            <div id="propertyCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    @for (int i = 0; i < images.Count(); i++)
+                    {
+                        <button type="button"
+                                data-bs-target="#propertyCarousel"
+                                data-bs-slide-to="@i"
+                                class="@(i == 0 ? "active" : "")"
+                                aria-current="@(i == 0 ? "true" : "false")"
+                                aria-label="Slide @(i + 1)"></button>
+                    }
+                </div>
+                <div class="carousel-inner">
+                    @{var first = true;}
+                    @foreach (var image in images)
+                    {
+                        <div class="carousel-item @(first ? "active" : "")">
+                            <img src="data:image/jpeg;base64,@image.Base64ImageData" 
+                                 class="d-block w-100" 
+                                 alt="Property image"
+                                 style="object-fit: cover; height: 400px;">
+                        </div>
+                        first = false;
+                    }
+                </div>
+                    
+                @if (images.Count() > 1)
+                {
+                    <button class="carousel-control-prev" type="button" 
+                            data-bs-target="#propertyCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" 
+                            data-bs-target="#propertyCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                }
+            </div>
+        }
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div>
+                    @if (property.PropertyId > 0)
+                    {
+                        <BookmarkToggle PropertyId="@property.PropertyId" OnBookmarkChanged="HandleBookmarkChanged"/>
+                    }
+                </div>
+                
+                <div class="mb-4">
+                    <h5 class="text-muted">Price</h5>
+                    <p class="lead fw-bold">@property.Price.ToString("C")</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="text-muted">Address</h5>
+                    <p class="lead">@property.Address</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="text-muted">Property Type</h5>
+                    <p>@property.PropertyType</p>
+                </div>
+
+                @*<div class="mb-4">
+                    <h5 class="text-muted">Number of Floors</h5>
+                    <p>@(property.NumFloors) @(property.NumFloors == 1 ? "floor" : "floors")</p>
+                </div>*@
+
+                @if (property.PropertyType?.ToUpper() == "HOUSE")
+                {
+                    var house = property as House;
+                    <div class="mb-4">
+                        <h5 class="text-muted">Number of Floors</h5>
+                        <p>@(house?.NumFloors ?? 1) @(house?.NumFloors == 1 ? "floor" : "floors")</p>
+                    </div>
+                }
+                else if (property.PropertyType?.ToUpper() == "APARTMENT")
+                {
+                    var apartment = property as Apartment;
+                    <div class="mb-4">
+                        <h5 class="text-muted">Number of Floors</h5>
+                        <p>@(apartment?.NumFloors ?? 1) @(apartment?.NumFloors == 1 ? "floor" : "floors")</p>
+                    </div>
+                }
+
+                <div class="mb-4">
+                    <h5 class="text-muted">Floor Area</h5>
+                    <p>@property.FloorArea.ToString("N2") sq ft</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="mb-4">
+                    <h5 class="text-muted">Bedrooms</h5>
+                    <p>@(property.NumBedrooms ?? 0)</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="text-muted">Bathrooms</h5>
+                    <p>@(property.NumBathrooms ?? 0)</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="text-muted">Year Built</h5>
+                    <p>@(property.YearBuilt?.ToString() ?? "N/A")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private Data.Models.Property? property;
+    private IEnumerable<ImageDTO>? images;
+    private bool loading = true;
+    private string? error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadProperty();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id != null && (property == null || property.PropertyId.ToString() != Id))
+        {
+            await LoadProperty();
+        }
+    }
+
+    private async Task LoadProperty()
+    {
+        try
+        {
+            loading = true;
+            error = null;
+
+            if (string.IsNullOrEmpty(Id))
+            {
+                error = "No property ID provided";
+                Console.WriteLine("No property ID provided");
+                return;
+            }
+
+            Console.WriteLine($"Loaded property ID: {property?.PropertyId}");
+            property = await PropertyService.GetPropertyByIdAsync(Id);
+            images = await ImageService.GetImagesForPropertyAsync(Id);
+        }
+        catch (Exception ex)
+        {
+            error = $"Error loading property: {ex.Message}";
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    private async Task HandleBookmarkChanged(bool isBookmarked)
+    {
+        try
+        {
+            var status = isBookmarked ? "bookmarked" : "unbookmarked";
+            Console.WriteLine($"Property {property?.Address} was {status}");
+            
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error handling bookmark change: {ex.Message}");
+        }
+    }
+}
+
+<style>
+    .carousel-item img {
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        background-color: rgba(0,0,0,0.3);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0 20px;
+    }
+
+    .carousel-indicators {
+        margin-bottom: -1rem;
+    }
+
+    .carousel-indicators button {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+</style>

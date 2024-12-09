@@ -1,0 +1,140 @@
+@rendermode InteractiveServer
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IBookmarkService BookmarkService
+@using Microsoft.AspNetCore.Components.Authorization
+@using RealEstateBlazor.Services
+
+<CascadingAuthenticationState>
+    <AuthorizeView>
+        <Authorized>
+            @{
+                Console.WriteLine($"AuthorizeView - User authenticated: {context.User.Identity?.IsAuthenticated}");
+                foreach (var claim in context.User.Claims)
+                {
+                    Console.WriteLine($"Claim: {claim.Type} = {claim.Value}");
+                }
+            }
+            <button class="@ButtonClass" @onclick="ToggleBookmarkAsync" disabled="@(IsLoading || PropertyId <= 0)">
+                @if (IsLoading)
+                {
+                    <span>Loading...</span>
+                }
+                else
+                {
+                    @if (IsBookmarked)
+                    {
+                        <span>★ Bookmarked</span>
+                    }
+                    else
+                    {
+                        <span>☆ Add Bookmark</span>
+                    }
+                }
+            </button>
+        </Authorized>
+
+        <NotAuthorized>
+            @{
+                Console.WriteLine("AuthorizeView - User not authorized");
+            }
+            <a href="/login" class="btn btn-outline-primary">Login to Bookmark</a>
+        </NotAuthorized>
+    </AuthorizeView>
+</CascadingAuthenticationState>
+
+@code {
+    [Parameter] public long PropertyId { get; set; }
+    [Parameter] public EventCallback<bool> OnBookmarkChanged { get; set; }
+
+    private bool IsBookmarked { get; set; }
+    private bool IsLoading { get; set; }
+
+    private string ButtonClass => IsBookmarked 
+        ? "btn btn-primary" 
+        : "btn btn-outline-primary";
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await CheckBookmarkStatusAsync();
+        }
+    }
+    
+    protected override async Task OnParametersSetAsync()
+    {
+        if (PropertyId > 0)
+        {
+            await CheckBookmarkStatusAsync();
+        }
+    }
+
+    private async Task CheckBookmarkStatusAsync()
+    {
+        try
+        {
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            
+            var user = authState.User;
+            Console.WriteLine($"User is authenticated: {user.Identity?.IsAuthenticated}");
+            
+            if (user.Identity?.IsAuthenticated == true)
+            {
+                Console.WriteLine($"User token: {user.FindFirst("Token")?.Value}");
+            }
+            
+            if (PropertyId <= 0)
+            {
+                Console.WriteLine($"Invalid PropertyId: {PropertyId}");
+                return;
+            }
+
+            IsLoading = true;
+            IsBookmarked = await BookmarkService.HasBookmarkedAsync(PropertyId);
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error checking bookmark status: {ex.Message}");
+            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+    private async Task ToggleBookmarkAsync()
+    {
+        try
+        {
+            IsLoading = true;
+            
+            if (IsBookmarked)
+            {
+                var bookmarks = await BookmarkService.GetBookmarksByAccountIdAsync();
+                var bookmark = bookmarks.FirstOrDefault(b => b.PropertyId == PropertyId);
+                if (bookmark != null)
+                {
+                    await BookmarkService.DeleteBookmarkAsync(bookmark.BookmarkId);
+                }
+            }
+            else
+            {
+                await BookmarkService.CreateBookmarkAsync(PropertyId);
+            }
+
+            IsBookmarked = !IsBookmarked;
+            await OnBookmarkChanged.InvokeAsync(IsBookmarked);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error toggling bookmark: {ex.Message}");
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+}

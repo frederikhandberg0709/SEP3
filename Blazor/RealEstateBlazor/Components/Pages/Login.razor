@@ -1,0 +1,107 @@
+﻿@page "/login"
+
+@using Microsoft.AspNetCore.Components.Authorization
+@using RealEstateBlazor.Data.Models
+@using RealEstateBlazor.Data.DTOs
+@using RealEstateBlazor.Services
+@inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthProvider
+@using Microsoft.AspNetCore.Components.Web
+
+@rendermode InteractiveServer
+
+<head>
+    <link href="Login.css" rel="stylesheet" />
+</head>
+
+<CascadingAuthenticationState>
+    <AuthorizeView>
+        <NotAuthorized>
+            <div class="login-container">
+                <h3>Please login</h3>
+                
+                <div class="form-group">
+                    <label for="username">User name:</label>
+                    <input type="text" id="username" @bind="loginForm.Username"/>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" @bind="loginForm.Password"/>
+                </div>
+                
+                <button @onclick="HandleLogin" disabled="@(isLoading || string.IsNullOrWhiteSpace(loginForm.Username) || string.IsNullOrWhiteSpace(loginForm.Password))" class="btn btn-primary">Log in</button>
+                <button @onclick="@(() => NavigationManager.NavigateTo("/register"))" class="Login-btn-link">Register new user</button>
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div class="alert alert-danger mt-3">
+                        @errorMessage
+                    </div>
+                }
+            </div>
+        </NotAuthorized>
+        
+        <Authorized>
+            <h3>Hello, @context.User.Identity.Name</h3>
+            <button @onclick="HandleLogout">Log out</button>
+        </Authorized>
+    </AuthorizeView>
+</CascadingAuthenticationState>
+
+@code {
+    private Data.Models.Login loginForm { get; set; } = new();
+    private string errorMessage = string.Empty;
+    private bool isLoading = false;
+
+    private async Task HandleLogin()
+    {
+        Console.WriteLine("HandleLogin called");
+        isLoading = true;
+        errorMessage = string.Empty;
+
+        try
+        {
+            if (string.IsNullOrWhiteSpace(loginForm.Username) || string.IsNullOrWhiteSpace(loginForm.Password))
+            {
+                errorMessage = "Username and password are required";
+                return;
+            }
+            
+            var authStateProvider = (SimpleAuthProvider)AuthProvider;
+            
+            await authStateProvider.LoginAsync(loginForm.Username, loginForm.Password);
+            
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+            
+            if (ex.Message.Contains("401") || ex.Message.Contains("403"))
+            {
+                errorMessage = "Invalid username or password";
+            }
+            else if (ex.Message.Contains("404"))
+            {
+                errorMessage = "User not found";
+            }
+            else
+            {
+                errorMessage = "Login failed. Please try again later.";
+            }
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task HandleLogout()
+    {
+        await (
+            (SimpleAuthProvider)AuthProvider).LogoutAsync();
+        
+        NavigationManager.NavigateTo("/", false);
+    }
+}

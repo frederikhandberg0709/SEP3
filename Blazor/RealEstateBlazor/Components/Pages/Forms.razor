@@ -1,0 +1,175 @@
+﻿@*
+@page "/Forms"
+@using Microsoft.AspNetCore.SignalR.Client
+@using System.ComponentModel.DataAnnotations
+@using System.Text
+@using System.Text.Json
+@using Microsoft.AspNetCore.Components.Authorization
+
+<PageTitle>Forms</PageTitle>
+
+<h3>Add Property Information</h3>
+
+<EditForm Model="@newProperty" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="address">Address:</label>
+        <InputText id="address" @bind-Value="newProperty.Address" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="propertyType">Property Type:</label>
+        <InputSelect id="propertyType" @bind-Value="newProperty.PropertyType" class="form-control">
+            <option value="">-- Select Type --</option>
+            <option value="House">House</option>
+            <option value="Apartment">Apartment</option>
+        </InputSelect>
+    </div>
+
+    <div class="form-group">
+        <label for="floorarea">Floor Area (m^2):</label>
+        <InputNumber id="floorarea" @bind-Value="newProperty.FloorArea" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price (DKK):</label>
+        <InputNumber id="price" @bind-Value="newProperty.Price" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="bedrooms">Number of Bedrooms:</label>
+        <InputNumber id="bedrooms" @bind-Value="newProperty.Bedrooms" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="bathrooms">Number of Bathrooms:</label>
+        <InputNumber id="bathrooms" @bind-Value="newProperty.Bathrooms" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="yearBuilt">Year Built:</label>
+        <InputNumber id="yearBuilt" @bind-Value="newProperty.YearBuilt" class="form-control" />
+    </div>
+
+    @if (newProperty.PropertyType == "House")
+    {
+        <div class="form-group">
+            <label for="floors">Number of Floors:</label>
+            <InputNumber id="floors" @bind-Value="newProperty.NumFloors" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="garage">Has Garage:</label>
+            <InputCheckbox id="garage" @bind-Value="newProperty.HasGarage" />
+        </div>
+    }
+    else if (newProperty.PropertyType == "Apartment")
+    {
+        <div class="form-group">
+            <label for="buildingName">Building Name:</label>
+            <InputText id="buildingName" @bind-Value="newProperty.BuildingName" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="floorNumber">Floor Number:</label>
+            <InputNumber id="floorNumber" @bind-Value="newProperty.FloorNumber" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="hasElevator">Has Elevator:</label>
+            <InputCheckbox id="hasElevator" @bind-Value="newProperty.HasElevator" />
+        </div>
+
+        <div class="form-group">
+            <label for="hasBalcony">Has Balcony:</label>
+            <InputCheckbox id="hasBalcony" @bind-Value="newProperty.HasBalcony" />
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+ @if (isSubmitted)
+    {
+        <p class="success-message">Property added successfully!</p>
+    }
+
+    @if (errorMessage != null)
+    {
+        <p class="alert alert-danger">@errorMessage</p>
+    }
+}
+
+@code {
+    private Property newProperty = new Property();
+    private bool isSubmitted = false;
+    private string? errorMessage = null;
+    private bool isLoggedIn = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        isLoggedIn = authState.User.Identity?.IsAuthenticated ?? false;
+    }
+
+    private async Task HandleSubmit()
+    {
+        if (!isLoggedIn)
+        {
+            errorMessage = "You must be logged in to submit the form.";
+            return;
+        }
+
+        try
+        {
+            var client = HttpClientFactory.CreateClient();
+            var jsonContent = JsonSerializer.Serialize(newProperty);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            var response = await client.PostAsJsonAsync("https://localhost:8080/api/forms", newProperty);
+            
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<FormNotificationDTO>();
+                newProperty = new Property(); // Reset form
+                
+                if (result != null)
+                {
+                    Console.WriteLine($"Form ID: {result.FormId}, Timestamp: {result.Timestamp}");
+                }
+            }
+            else
+            {
+                errorMessage = $"Error: {response.ReasonPhrase}";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+        }
+    }
+
+    private void RedirectToLogin()
+    {
+        NavigationManager.NavigateTo("/login");
+    }
+
+    public class Property
+    {
+        public string Address { get; set; }
+        public string PropertyType { get; set; }
+        public int FloorArea { get; set; }
+        public decimal Price { get; set; }
+        public int Bedrooms { get; set; }
+        public int Bathrooms { get; set; }
+        public int YearBuilt { get; set; }
+        public int? NumFloors { get; set; }
+        public bool? HasGarage { get; set; }
+        public string BuildingName { get; set; }
+        public int? FloorNumber { get; set; }
+        public bool? HasElevator { get; set; }
+        public bool? HasBalcony { get; set; }
+    }
+}
+*@

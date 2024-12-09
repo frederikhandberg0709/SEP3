@@ -1,0 +1,79 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using RealEstateBlazor.Services
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthProvider
+
+@rendermode InteractiveServer
+
+<CascadingAuthenticationState>
+        <div class="top-row ps-3 navbar navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="">RealEstatePlus</a>
+            </div>
+        </div>
+
+        <input type="checkbox" title="Navigation menu" class="navbar-toggler"/>
+
+        <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+            <nav class="flex-column">
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                        <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                    </NavLink>
+                </div>
+
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="Properties">
+                        <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Properties
+                    </NavLink>
+                </div>
+
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="Account">
+                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Account
+                    </NavLink>
+                </div>
+
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="Forms">
+                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Forms
+                    </NavLink>
+                </div>
+                
+                <AuthorizeView>
+                    <NotAuthorized>
+                        <div class="nav-item px-3">
+                            <NavLink class="nav-link" href="login">
+                                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Login
+                            </NavLink>
+                        </div>
+                        
+                        
+                        <div class="nav-item px-3">
+                            <NavLink class="nav-link" href="register">
+                                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Register
+                            </NavLink>
+                        </div>
+                    </NotAuthorized>
+                    
+                    <Authorized>
+                        <div class="nav-item px-3">
+                            <NavLink class="nav-link" @onclick="HandleLogout">
+                                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Log out
+                            </NavLink>
+                        </div>
+                    </Authorized>
+                </AuthorizeView>
+            </nav>
+        </div>
+</CascadingAuthenticationState>
+
+@code {
+    private async Task HandleLogout()
+    {
+        await (
+            (SimpleAuthProvider)AuthProvider).LogoutAsync();
+        
+        NavigationManager.NavigateTo("/", false);
+    }
+}
