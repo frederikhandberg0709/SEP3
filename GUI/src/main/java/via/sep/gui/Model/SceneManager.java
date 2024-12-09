@@ -27,7 +27,7 @@ public class SceneManager {
 
     public static void showRegister() {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via/sep/gui/View/Register.fxml"));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/Register.fxml"));
             Parent root = loader.load();
 
             RegisterView registerView = loader.getController();
@@ -43,7 +43,7 @@ public class SceneManager {
 
     public static void showLogin() {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via/sep/gui/View/Login.fxml"));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/Login.fxml"));
             Parent root = loader.load();
 
 
@@ -60,7 +60,7 @@ public class SceneManager {
 
     public static void showDashboard() {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via/sep/gui/View/Dashboard.fxml"));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/Dashboard.fxml"));
             Parent root = loader.load();
 
 
@@ -77,7 +77,7 @@ public class SceneManager {
 
     public static void showCreate() {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via/sep/gui/View/Create.fxml"));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/Create.fxml"));
             Parent root = loader.load();
 
 
@@ -94,7 +94,7 @@ public class SceneManager {
 
     public static void showEdit() {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via/sep/gui/View/Edit.fxml"));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/Edit.fxml"));
             Parent root = loader.load();
 
 

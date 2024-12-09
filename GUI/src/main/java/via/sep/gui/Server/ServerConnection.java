@@ -11,7 +11,7 @@ public class ServerConnection {
     private String serverUrl;
 
     public ServerConnection() {
-        this.serverUrl = "http://localhost:8080/properties";
+        this.serverUrl = "http://localhost:8080/api";
     }
 
     public String sendGetRequest(String endpoint) throws Exception {

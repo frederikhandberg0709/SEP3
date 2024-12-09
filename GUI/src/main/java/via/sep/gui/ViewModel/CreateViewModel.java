@@ -1,12 +1,10 @@
 package via.sep.gui.ViewModel;
 
 import javafx.beans.InvalidationListener;
-import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import via.sep.gui.Model.propertyService;
+import via.sep.gui.Model.PropertyService;
 
 public class CreateViewModel {
     private final StringProperty address = new SimpleStringProperty();
@@ -19,7 +17,7 @@ public class CreateViewModel {
     private final StringProperty size = new SimpleStringProperty();
     private final StringProperty price = new SimpleStringProperty();
 
-    private final propertyService propertyService = new propertyService();
+    private final PropertyService propertyService = new PropertyService();
 
     public StringProperty addressProperty() {
         return address;

@@ -1,17 +1,18 @@
 package via.sep.gui.Model;
 
 public class Property {
-    private final String address;
-    private final String propertyType;
-    private final int bathroomNum;
-    private final int roomsNum;
-    private final String fullName;
-    private final int floorNum;
-    private final String status;
-    private final double size;
-    private final double price;
+    private Long id;
+    private String address;
+    private String propertyType;
+    private int bathroomNum;
+    private int roomsNum;
+    private String fullName;
+    private int floorNum;
+    private String status;
+    private double size;
+    private double price;
 
-    // Constructor, getters, and setters
+    // Constructor
     public Property(String address, String propertyType, int bathroomNum, int roomsNum, String fullName, int floorNum, String status, double size, double price) {
         this.address = address;
         this.propertyType = propertyType;
@@ -24,9 +25,8 @@ public class Property {
         this.price = price;
     }
 
-    public static void updateProperty(String addressValue, String propertyTypeValue, int bathroomNumValue, int roomsNumValue, String fullNameValue, int floorNumValue, String statusValue, double sizeValue, double priceValue) {
-    }
-
+    // Getters
+    public Long getId() { return id; }
     public String getAddress() { return address; }
     public String getPropertyType() { return propertyType; }
     public int getBathroomNum() { return bathroomNum; }
@@ -37,17 +37,15 @@ public class Property {
     public double getSize() { return size; }
     public double getPrice() { return price; }
 
-    public Object getId() {
-        return getId();
-    }
-
-    // Static method to create a new Property
-    public static Property createProperty(String address, String propertyType, int bathroomNum, int roomsNum, String fullName, int floorNum, String status, double size, double price) {
-        return new Property(address, propertyType, bathroomNum, roomsNum, fullName, floorNum, status, size, price);
-    }
-
-    // Static method to update a Property
-    public static Property updateProperty(Property property, String address, String propertyType, int bathroomNum, int roomsNum, String fullName, int floorNum, String status, double size, double price) {
-        return new Property(address, propertyType, bathroomNum, roomsNum, fullName, floorNum, status, size, price);
-    }
+    // Setters
+    public void setId(Long id) { this.id = id; }
+    public void setAddress(String address) { this.address = address; }
+    public void setPropertyType(String propertyType) { this.propertyType = propertyType; }
+    public void setBathroomNum(int bathroomNum) { this.bathroomNum = bathroomNum; }
+    public void setRoomsNum(int roomsNum) { this.roomsNum = roomsNum; }
+    public void setFullName(String fullName) { this.fullName = fullName; }
+    public void setFloorNum(int floorNum) { this.floorNum = floorNum; }
+    public void setStatus(String status) { this.status = status; }
+    public void setSize(double size) { this.size = size; }
+    public void setPrice(double price) { this.price = price; }
 }

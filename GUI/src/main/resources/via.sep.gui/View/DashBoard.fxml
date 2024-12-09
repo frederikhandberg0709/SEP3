@@ -33,6 +33,6 @@
     <ImageView fitHeight="47.0" fitWidth="54.0" layoutX="181.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@../Images/realestate.png" />
     </ImageView>
-   <Button fx:id="editPropertyButton1" layoutX="350.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleEditProperty" prefHeight="26.0" prefWidth="102.0" text="Book agent" />
+   <Button fx:id="editPropertyButton1" layoutX="350.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleEditProperty" prefHeight="26.0" prefWidth="102.0" text="Booking List" />
    <TextField fx:id="SearchField" layoutX="464.0" layoutY="170.0" prefHeight="26.0" prefWidth="222.0" promptText="Search property" />
 </AnchorPane>
