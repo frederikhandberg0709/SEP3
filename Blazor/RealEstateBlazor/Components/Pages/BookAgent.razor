@@ -1,13 +1,20 @@
-﻿@page "/book-an-agent"
+﻿@page "/BookAgent"
+@using RealEstateBlazor.Services
+@using RealEstateBlazor.Data.Models
+@inject HttpClient HttpClient
+@using RealEstateBlazor.Data.Models
+@using RealEstateBlazor.Data.DTOs
+
 <head>
     <link href="BookAgent.css" rel="stylesheet" />
+    <title></title>
 </head>
 
 <h3>Book an Agent</h3>
 
 <p>Please fill out the form below to book an appointment with one of our agents.</p>
 
-<EditForm Model="@bookingModel" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@bookingModel" OnValidSubmit="HandleValidSubmit" FormName="BookAgentForm">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -35,15 +42,22 @@
     </div>
 
     <div class="form-group buttons">
-        <button type="submit" class="btn btn-primary">Book</button>
-        <button type="button" class="btn btn-secondary" @onclick="CancelBooking">Cancel</button>
+        <button type="submit" class="btn btn-primary" disabled="@isLoading">Book</button>
+        <button type="button" class="btn btn-secondary" @onclick="CancelBooking" disabled="@isLoading">Cancel</button>
     </div>
 </EditForm>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger mt-3">
+        @errorMessage
+    </div>
+}
 
 @if (successMessageVisible)
 {
     <div class="alert alert-success mt-3">
-        Booking successful! We will contact you shortly.
+        Booking successful for @bookingModel.Name on @bookingModel.Date: We will contact you shortly.
     </div>
 }
 
@@ -58,14 +72,45 @@
     private BookingModel bookingModel = new();
     private bool successMessageVisible = false;
     private bool cancelMessageVisible = false;
+    private bool isLoading = false;
+    private string errorMessage = string.Empty;
 
-    private void HandleValidSubmit()
+    private async Task HandleValidSubmit()
     {
-        successMessageVisible = true;
-        cancelMessageVisible = false;
+        isLoading = true;
+        errorMessage = string.Empty;
 
-        // Simulate saving the booking (API or database)
-        Console.WriteLine($"Booking made for {bookingModel.Name} on {bookingModel.Date}");
+        try
+        {
+            // Serialize booking data
+            var json = System.Text.Json.JsonSerializer.Serialize(bookingModel);
+            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+            // Send POST request to API
+            var response = await HttpClient.PostAsync("http://localhost:5290/BookAgent", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                successMessageVisible = true;
+                cancelMessageVisible = false;
+
+                // Reset the form
+                bookingModel = new BookingModel();
+            }
+            else
+            {
+                var errorDetails = await response.Content.ReadAsStringAsync();
+                errorMessage = $"Booking failed: {response.StatusCode}. Details: {errorDetails}";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
     }
 
     private void CancelBooking()
@@ -73,16 +118,5 @@
         bookingModel = new BookingModel(); // Reset the form
         successMessageVisible = false;
         cancelMessageVisible = true;
-    }
-
-    public class BookingModel
-    {
-        public string Name { get; set; }
-
-        public string Email { get; set; }
-
-        public string Description { get; set; }
-
-        public DateTime? Date { get; set; }
     }
 }
