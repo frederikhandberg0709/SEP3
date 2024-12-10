@@ -7,7 +7,7 @@ public class PropertyDTO {
     private String propertyType;
     private String address;
     private BigDecimal floorArea;
-    private BigDecimal price;
+    private String price;
     private Integer numBedrooms;
     private Integer numBathrooms;
     private Integer yearBuilt;
@@ -28,7 +28,7 @@ public class PropertyDTO {
     public String getPropertyType() { return propertyType; }
     public String getAddress() { return address; }
     public BigDecimal getFloorArea() { return floorArea; }
-    public BigDecimal getPrice() { return price; }
+    public String getPrice() { return price; }
     public Integer getNumBedrooms() { return numBedrooms; }
     public Integer getNumBathrooms() { return numBathrooms; }
     public Integer getYearBuilt() { return yearBuilt; }
@@ -45,7 +45,7 @@ public class PropertyDTO {
     public void setPropertyType(String propertyType) { this.propertyType = propertyType; }
     public void setAddress(String address) { this.address = address; }
     public void setFloorArea(BigDecimal floorArea) { this.floorArea = floorArea; }
-    public void setPrice(BigDecimal price) { this.price = price; }
+    public void setPrice(String price) { this.price = price; }
     public void setNumBedrooms(Integer numBedrooms) { this.numBedrooms = numBedrooms; }
     public void setNumBathrooms(Integer numBathrooms) { this.numBathrooms = numBathrooms; }
     public void setYearBuilt(Integer yearBuilt) { this.yearBuilt = yearBuilt; }

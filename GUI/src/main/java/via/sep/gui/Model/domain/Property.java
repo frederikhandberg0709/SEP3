@@ -23,6 +23,11 @@ public class Property {
     private String buildingName;
     private Boolean hasElevator;
     private Boolean hasBalcony;
+    private Object id;
+
+    public static void updateProperty(String addressValue, String propertyTypeValue, int bathroomNumValue, int roomsNumValue, String fullNameValue, int floorNumValue, String statusValue, double sizeValue, double priceValue) {
+
+    }
 
     public boolean isHouse() {
         return "House".equalsIgnoreCase(propertyType);
@@ -79,4 +84,12 @@ public class Property {
 
     public Boolean getHasBalcony() { return hasBalcony; }
     public void setHasBalcony(Boolean hasBalcony) { this.hasBalcony = hasBalcony; }
+
+    public Object getId() {
+        return id;
+    }
+
+    public void setId(Object id) {
+        this.id = id;
+    }
 }

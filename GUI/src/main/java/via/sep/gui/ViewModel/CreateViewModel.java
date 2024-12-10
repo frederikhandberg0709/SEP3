@@ -5,6 +5,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import via.sep.gui.Model.PropertyService;
+import via.sep.gui.Model.SceneManager;
+import via.sep.gui.Server.ServerConnection;
+import com.google.gson.Gson;
 
 public class CreateViewModel {
     private final StringProperty address = new SimpleStringProperty();
@@ -17,7 +20,13 @@ public class CreateViewModel {
     private final StringProperty size = new SimpleStringProperty();
     private final StringProperty price = new SimpleStringProperty();
 
-    private final PropertyService propertyService = new PropertyService();
+    private final PropertyService propertyService;
+
+    public CreateViewModel() {
+        ServerConnection serverConnection = new ServerConnection();
+        Gson gson = new Gson();
+        this.propertyService = new PropertyService(serverConnection, gson);
+    }
 
     public StringProperty addressProperty() {
         return address;
@@ -55,7 +64,7 @@ public class CreateViewModel {
         return price;
     }
 
-    public void createProperty() {
+    public void createProperty() throws Exception {
         String addressValue = address.get();
         String propertyTypeValue = propertyType.get();
         int bathroomNumValue = Integer.parseInt(bathroomNum.get());
@@ -127,5 +136,9 @@ public class CreateViewModel {
         status.removeListener(listener);
         size.removeListener(listener);
         price.removeListener(listener);
+    }
+
+    public void showCreate() {
+        SceneManager.showCreate();
     }
 }

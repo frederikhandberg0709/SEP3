@@ -22,20 +22,20 @@ public class PropertyService {
 
     public Property createProperty(String address, String propertyType,
                                    Integer numBathrooms, Integer numBedrooms,
-                                   Integer numFloors, BigDecimal floorArea,
-                                   BigDecimal price, Integer yearBuilt,
-                                   String description) throws Exception {
+                                   String numFloors, int floorArea,
+                                   String price, double yearBuilt,
+                                   double description) throws Exception {
         PropertyDTO propertyDTO = new PropertyDTO();
         ;
         propertyDTO.setAddress(address);
         propertyDTO.setPropertyType(propertyType);
         propertyDTO.setNumBathrooms(numBathrooms);
         propertyDTO.setNumBedrooms(numBedrooms);
-        propertyDTO.setNumFloors(numFloors);
-        propertyDTO.setFloorArea(floorArea);
+        propertyDTO.setNumFloors(Integer.valueOf(numFloors));
+        propertyDTO.setFloorArea(BigDecimal.valueOf(floorArea));
         propertyDTO.setPrice(price);
-        propertyDTO.setYearBuilt(yearBuilt);
-        propertyDTO.setDescription(description);
+        propertyDTO.setYearBuilt((int) yearBuilt);
+        propertyDTO.setDescription(String.valueOf(description));
 
         String json = gson.toJson(propertyDTO);
         String response = serverConnection.sendPostRequest(BASE_PATH, json);

@@ -9,6 +9,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import via.sep.gui.Model.SceneManager;
+import via.sep.gui.Model.domain.Property;
 import via.sep.gui.ViewModel.DashboardViewModel;
 
 public class DashBoardView {
@@ -56,8 +58,7 @@ public class DashBoardView {
 
     @FXML
     private void handleCreateProperty() {
-        // Logic to create a new property (e.g., open a form to add property details)
-        showAlert("Create Property", "This will open a form to create a new property.");
+        SceneManager.showCreate();
     }
 
     @FXML
@@ -66,21 +67,25 @@ public class DashBoardView {
         Property selectedProperty = propertyTableView.getSelectionModel().getSelectedItem();
         if (selectedProperty != null) {
             propertyList.remove(selectedProperty);
-            showAlert("Delete Property", "Property has been deleted.");
         } else {
             showAlert("No Selection", "Please select a property to delete.");
         }
     }
 
+
+
     @FXML
     private void handleEditProperty() {
         // Logic to edit the selected property (e.g., open a form to edit property details)
         Property selectedProperty = propertyTableView.getSelectionModel().getSelectedItem();
+        // Show sceneManager to show edit view
         if (selectedProperty != null) {
-            showAlert("Edit Property", "This will open a form to edit the selected property.");
+            SceneManager.showEdit(selectedProperty);
         } else {
             showAlert("No Selection", "Please select a property to edit.");
         }
+
+
     }
 
     private void showAlert(String title, String message) {

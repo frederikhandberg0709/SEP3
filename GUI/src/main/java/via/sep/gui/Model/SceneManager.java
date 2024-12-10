@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import via.sep.gui.Model.domain.Property;
 import via.sep.gui.View.CreateView;
 import via.sep.gui.View.EditView;
 import via.sep.gui.View.LoginView;
@@ -92,14 +93,17 @@ public class SceneManager {
         }
     }
 
-    public static void showEdit() {
+    public static void showEdit(Property selectedProperty) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/Edit.fxml"));
             Parent root = loader.load();
 
-
             EditView editView = loader.getController();
             EditViewModel editViewModel = new EditViewModel();
+
+            // Pass the selected property to the ViewModel
+            editViewModel.setPropertyToEdit(selectedProperty);
+
             editView.setViewModel(editViewModel);
 
             primaryStage.setScene(new Scene(root));
