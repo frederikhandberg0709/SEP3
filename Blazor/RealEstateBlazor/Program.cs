@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
 using RealEstateBlazor.Components;
 using RealEstateBlazor.Services;
+using RealEstateBlazor.Services.Notifications;
 
 var builder = WebApplication.CreateBuilder(args);
 

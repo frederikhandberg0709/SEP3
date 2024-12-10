@@ -2,14 +2,15 @@ using Microsoft.AspNetCore.SignalR.Client;
 using RealEstateBlazor.Data.Models;
 using RealEstateBlazor.Data.DTOs;
 
-namespace RealEstateBlazor.Services;
+namespace RealEstateBlazor.Services.Notifications;
 
-public class NotificationHub : INotificationHub, IAsyncDisposable
+public class NotificationHub : INotificationHub
 {
     private HubConnection? _hubConnection;
     private readonly string _notificationServerUrl;
     private readonly IConfiguration _configuration;
     private bool _isInitialized;
+    public event Action<bool>? OnConnectionStateChanged;
     
     public NotificationHub(IConfiguration configuration)
     {
@@ -25,12 +26,24 @@ public class NotificationHub : INotificationHub, IAsyncDisposable
         try
         {
             _hubConnection = new HubConnectionBuilder()
-                .WithUrl($"{_notificationServerUrl}/notificationHub", options =>
+                .WithUrl($"{_notificationServerUrl}/hubs/notifications", options =>
                 {
                     options.AccessTokenProvider = () => Task.FromResult(userToken);
                 })
                 .WithAutomaticReconnect()
                 .Build();
+            
+            _hubConnection.Closed += async (error) =>
+            {
+                OnConnectionStateChanged?.Invoke(false);
+                await Task.CompletedTask;
+            };
+
+            _hubConnection.Reconnected += async (connectionId) =>
+            {
+                OnConnectionStateChanged?.Invoke(true);
+                await Task.CompletedTask;
+            };
 
             _hubConnection.On<BookmarkNotificationDTO>("ReceiveBookmarkNotification", notification =>
             {
@@ -44,6 +57,7 @@ public class NotificationHub : INotificationHub, IAsyncDisposable
 
             await _hubConnection.StartAsync();
             _isInitialized = true;
+            OnConnectionStateChanged?.Invoke(true);
         }
         catch (Exception ex)
         {

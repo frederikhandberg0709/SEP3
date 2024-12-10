@@ -1,6 +1,8 @@
+using RealEstateBlazor.Services;
+
 namespace RealEstateBlazor.Data.DTOs;
 
-public class BookmarkNotificationDTO
+public class BookmarkNotificationDTO : INotification
 {
     public string BookmarkId { get; set; }
     public string PropertyId { get; set; }
