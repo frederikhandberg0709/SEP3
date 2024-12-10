@@ -1,44 +1,94 @@
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthProvider
+@using Microsoft.AspNetCore.Components.Authorization
+@using RealEstateBlazor.Data.DTOs
+@using RealEstateBlazor.Services
+@inject IBookingService BookingService
+
+@rendermode InteractiveServer
+
 @page "/book-an-agent"
+
 <head>
     <link href="BookAgent.css" rel="stylesheet" />
 </head>
 
 <h3>Book an Agent</h3>
 
-<p>Please fill out the form below to book an appointment with one of our agents.</p>
+<CascadingAuthenticationState>
+    <AuthorizeView>
+        <Authorized>
+            <EditForm Model="@bookingModel" OnValidSubmit="@HandleValidSubmit" Context="formContext">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
 
-<EditForm Model="@bookingModel" OnValidSubmit="HandleValidSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+                <div class="form-group mb-3">
+                    <label for="propertyId">Property ID</label>
+                    <InputNumber id="propertyId" @bind-Value="bookingModel.PropertyId" class="form-control" />
+                    <ValidationMessage For="@(() => bookingModel.PropertyId)" />
+                </div>
 
-    <div class="form-group">
-        <label for="name">Name</label>
-        <InputText id="name" class="form-control" @bind-Value="bookingModel.Name" />
-        <ValidationMessage For="@(() => bookingModel.Name)" />
-    </div>
+                <div class="form-group mb-3">
+                    <label for="date">Select Date</label>
+                    <InputDate id="date" @bind-Value="bookingModel.BookingDate" @bind-Value:after="LoadAvailableAgents" class="form-control" />
+                    <ValidationMessage For="@(() => bookingModel.BookingDate)" />
+                </div>
 
-    <div class="form-group">
-        <label for="email">Email</label>
-        <InputText id="email" type="email" class="form-control" @bind-Value="bookingModel.Email" />
-        <ValidationMessage For="@(() => bookingModel.Email)" />
-    </div>
+                @*@if (availableAgents != null && availableAgents.Any())
+                {
+                    <div class="form-group mb-3">
+                        <label for="agent">Select Agent</label>
+                        <InputSelect id="agent" @bind-Value="bookingModel.AgentId" class="form-control">
+                            <option value="">-- Select an agent --</option>
+                            @foreach (var agent in availableAgents)
+                            {
+                                <option value="@agent.AgentId">@agent.Name - @agent.ContactInfo</option>
+                            }
+                        </InputSelect>
+                        <ValidationMessage For="@(() => bookingModel.AgentId)" />
+                    </div>
+                }*@
 
-    <div class="form-group">
-        <label for="description">Description (Optional)</label>
-        <InputTextArea id="description" class="form-control" @bind-Value="bookingModel.Description" />
-    </div>
+                @if (availableAgents != null && availableAgents.Any())
+                {
+                    <div class="form-group mb-3">
+                        <label for="agent">Select Agent</label>
+                        <InputSelect id="agent" @bind-Value="bookingModel.AgentId" class="form-control">
+                            <option value="">-- Select an agent --</option>
+                            @foreach (var agent in availableAgents)
+                            {
+                                <option value="@agent.AgentId">@agent.Name - @agent.ContactInfo</option>
+                            }
+                        </InputSelect>
+                        <ValidationMessage For="@(() => bookingModel.AgentId)" />
+                    </div>
+                }
 
-    <div class="form-group">
-        <label for="date">Select Date</label>
-        <InputDate id="date" class="form-control" @bind-Value="bookingModel.Date" />
-        <ValidationMessage For="@(() => bookingModel.Date)" />
-    </div>
+                <div class="form-group buttons mt-3">
+                    <button type="submit" class="btn btn-primary" disabled="@isLoading">
+                        @if (isLoading)
+                        {
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <span>Loading...</span>
+                        }
+                        else
+                        {
+                            <span>Book</span>
+                        }
+                    </button>
+                    <button type="button" class="btn btn-secondary" @onclick="CancelBooking">Cancel</button>
+                </div>
+            </EditForm>
+        </Authorized>
 
-    <div class="form-group buttons">
-        <button type="submit" class="btn btn-primary">Book</button>
-        <button type="button" class="btn btn-secondary" @onclick="CancelBooking">Cancel</button>
-    </div>
-</EditForm>
+        <NotAuthorized>
+            <div class="alert alert-warning mt-3">
+                Please log in to book an agent.
+            </div>
+            <a href="/login" class="btn btn-outline-primary">Login to book an agent.</a>
+        </NotAuthorized>
+    </AuthorizeView>
+</CascadingAuthenticationState>
 
 @if (successMessageVisible)
 {
@@ -47,42 +97,80 @@
     </div>
 }
 
-@if (cancelMessageVisible)
+@if (errorMessage != null)
 {
-    <div class="alert alert-warning mt-3">
-        Booking canceled.
+    <div class="alert alert-danger mt-3">
+        @errorMessage
     </div>
 }
 
 @code {
-    private BookingModel bookingModel = new();
-    private bool successMessageVisible = false;
-    private bool cancelMessageVisible = false;
+    private BookingDTO bookingModel = new();
+    private List<AgentDTO> availableAgents;
+    private string errorMessage;
+    private bool isLoading;
+    private bool successMessageVisible;
 
-    private void HandleValidSubmit()
+    protected override async Task OnInitializedAsync()
     {
-        successMessageVisible = true;
-        cancelMessageVisible = false;
+        bookingModel.BookingDate = DateTime.Now;
+        await LoadAvailableAgents();
+    }
 
-        // Simulate saving the booking (API or database)
-        Console.WriteLine($"Booking made for {bookingModel.Name} on {bookingModel.Date}");
+    private async Task LoadAvailableAgents()
+    {
+        if (bookingModel.BookingDate != default)
+        {
+            try
+            {
+                isLoading = true;
+                availableAgents = await BookingService.GetAvailableAgentsAsync(bookingModel.BookingDate);
+                StateHasChanged();
+            }
+            catch (Exception ex)
+            {
+                errorMessage = "Failed to load available agents. Please try again later.";
+                Console.WriteLine($"Error loading agents: {ex.Message}");
+            }
+            finally
+            {
+                isLoading = false;
+            }
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = null;
+
+            var result = await BookingService.CreateBookingAsync(bookingModel);
+            if (result)
+            {
+                successMessageVisible = true;
+                bookingModel = new BookingDTO { BookingDate = DateTime.Now };
+            }
+            else
+            {
+                errorMessage = "Failed to create booking. Please try again.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "An unexpected error occurred. Please try again later.";
+        }
+        finally
+        {
+            isLoading = false;
+        }
     }
 
     private void CancelBooking()
     {
-        bookingModel = new BookingModel(); // Reset the form
+        bookingModel = new BookingDTO { BookingDate = DateTime.Now };
         successMessageVisible = false;
-        cancelMessageVisible = true;
-    }
-
-    public class BookingModel
-    {
-        public string Name { get; set; }
-
-        public string Email { get; set; }
-
-        public string Description { get; set; }
-
-        public DateTime? Date { get; set; }
+        errorMessage = null;
     }
 }
