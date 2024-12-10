@@ -24,5 +24,4 @@ public class Booking {
 
     @Column(name = "booking_date", nullable = false)
     private LocalDate bookingDate = LocalDate.now();
-
 }

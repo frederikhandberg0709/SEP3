@@ -66,6 +66,15 @@ builder.Services.AddHttpClient<BookmarkService>(client =>
     client.BaseAddress = new Uri(baseUrl);
 });
 
+builder.Services.AddScoped<IBookingService, BookingService>();
+
+builder.Services.AddHttpClient<BookingService>(client =>
+{
+    var baseUrl = builder.Configuration["ApiSettings:BaseUrl"]
+                  ?? throw new InvalidOperationException("API Base URL not configured");
+    client.BaseAddress = new Uri(baseUrl);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

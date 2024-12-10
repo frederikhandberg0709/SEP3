@@ -7,6 +7,7 @@ import via.sep.restful_server.dto.AgentDTO;
 import via.sep.restful_server.model.Agent;
 import via.sep.restful_server.repository.AgentRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -39,6 +40,12 @@ public class AgentController {
         return agentRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/available")
+    public ResponseEntity<List<Agent>> getAvailableAgents(@RequestParam LocalDate date) {
+        List<Agent> availableAgents = agentRepository.findAvailableAgentsByDate(date);
+        return ResponseEntity.ok(availableAgents);
     }
 
     @PutMapping("/{id}")
