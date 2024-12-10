@@ -1,6 +1,8 @@
+using RealEstateBlazor.Services;
+
 namespace RealEstateBlazor.Data.DTOs;
 
-public class PropertyNotificationDTO
+public class PropertyNotificationDTO : INotification
 {
     public string PropertyId { get; set; }
     public string Address { get; set; }

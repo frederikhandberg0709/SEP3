@@ -5,7 +5,8 @@ using signalr_server.Services;
 
 namespace signalr_server.Hubs;
 
-[Authorize(Roles = "ADMIN")]
+//[Authorize(Roles = "ADMIN")]
+[Authorize]
 public class PropertyNotificationHub : Hub<IPropertyNotificationClient>
 {
     private readonly ILogger<PropertyNotificationHub> _logger;

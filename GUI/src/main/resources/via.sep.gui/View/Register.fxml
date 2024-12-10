@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="359.0" style="-fx-background-color: #5D76A9;" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="via.sep.gui.View.RegisterView">
+
+
+   <children>
+      <TextField fx:id="usernameRegister" layoutX="74.0" layoutY="135.0" prefHeight="26.0" prefWidth="210.0" promptText="Username" />
+      <TextField fx:id="passwordRegister" layoutX="75.0" layoutY="194.0" prefHeight="26.0" prefWidth="210.0" promptText="Password" />
+      <Text fill="WHITE" layoutX="108.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registration " wrappingWidth="144.8359375">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Button fx:id="createAccountButton" layoutX="130.0" layoutY="248.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #002244;" text="Create Account" textFill="WHITE" />
+      <Button fx:id="goBackToLoginButton" layoutX="130.0" layoutY="306.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #002244;" text="Cancel" textFill="WHITE" />
+   </children>
+</AnchorPane>

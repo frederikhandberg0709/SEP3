@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
 using RealEstateBlazor.Components;
 using RealEstateBlazor.Services;
+using RealEstateBlazor.Services.Notifications;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,6 +60,15 @@ builder.Services.AddScoped<INotificationHub, NotificationHub>();
 builder.Services.AddScoped<IBookmarkService, BookmarkService>();
 
 builder.Services.AddHttpClient<BookmarkService>(client =>
+{
+    var baseUrl = builder.Configuration["ApiSettings:BaseUrl"]
+                  ?? throw new InvalidOperationException("API Base URL not configured");
+    client.BaseAddress = new Uri(baseUrl);
+});
+
+builder.Services.AddScoped<IBookingService, BookingService>();
+
+builder.Services.AddHttpClient<BookingService>(client =>
 {
     var baseUrl = builder.Configuration["ApiSettings:BaseUrl"]
                   ?? throw new InvalidOperationException("API Base URL not configured");
