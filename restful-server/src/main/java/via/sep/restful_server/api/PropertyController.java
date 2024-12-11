@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -138,8 +139,45 @@ public class PropertyController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Property>> getAllProperties() {
-        return ResponseEntity.ok(propertyRepository.findAll());
+    public ResponseEntity<List<PropertyDTO>> getAllProperties() {
+        List<Property> properties = propertyRepository.findAll();
+        List<PropertyDTO> dtos = properties.stream()
+                .map(property -> {
+                    PropertyDTO dto = new PropertyDTO();
+                    dto.setPropertyId(property.getPropertyId());
+                    dto.setPropertyType(property.getPropertyType());
+                    dto.setAddress(property.getAddress());
+                    dto.setFloorArea(property.getFloorArea());
+                    dto.setPrice(property.getPrice());
+                    dto.setNumBedrooms(property.getNumBedrooms());
+                    dto.setNumBathrooms(property.getNumBathrooms());
+                    dto.setYearBuilt(property.getYearBuilt());
+                    dto.setDescription(property.getDescription());
+
+                    // Add specific properties based on type
+                    if ("House".equals(property.getPropertyType())) {
+                        houseRepository.findByProperty_PropertyId(property.getPropertyId())
+                            .ifPresent(house -> {
+                                dto.setLotSize(house.getLotSize());
+                                dto.setHasGarage(house.getHasGarage());
+                                dto.setNumFloors(house.getNumFloors());
+                            });
+                    } else if ("Apartment".equals(property.getPropertyType())) {
+                        apartmentRepository.findByProperty_PropertyId(property.getPropertyId())
+                            .ifPresent(apartment -> {
+                                dto.setFloorNumber(apartment.getFloorNumber());
+                                dto.setBuildingName(apartment.getBuildingName());
+                                dto.setHasElevator(apartment.getHasElevator());
+                                dto.setHasBalcony(apartment.getHasBalcony());
+                                dto.setNumFloors(apartment.getNumFloors());
+                            });
+                    }
+
+                    return dto;
+                })
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(dtos);
     }
 
     // Change all fields

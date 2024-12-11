@@ -91,7 +91,7 @@
         </HBox>
     </VBox>
 
-    <stylesheets>
-        <String fx:value="@../CSS/dashboard.css" />
-    </stylesheets>
+<!--    <stylesheets>-->
+<!--        <String fx:value="../CSS/dashboard.css" />-->
+<!--    </stylesheets>-->
 </AnchorPane>

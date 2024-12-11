@@ -12,4 +12,5 @@ module via.sep.gui {
     // Open specific packages for FXML access
     opens via.sep.gui.View to javafx.fxml;
     opens via.sep.gui.Model.dto to javafx.fxml, com.google.gson;
+    opens via.sep.gui.Model.domain to javafx.fxml, com.google.gson, javafx.base;
 }

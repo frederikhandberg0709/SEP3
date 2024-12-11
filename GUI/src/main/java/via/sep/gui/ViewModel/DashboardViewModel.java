@@ -56,6 +56,7 @@ public class DashboardViewModel {
             propertyList.addAll(properties);
             errorMessage.set("");
         } catch (Exception e) {
+            e.printStackTrace();
             errorMessage.set("Failed to load properties: " + e.getMessage());
         }
     }

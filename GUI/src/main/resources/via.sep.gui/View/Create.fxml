@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.ComboBox?>
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="904.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="via.sep.gui.View.CreateView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="via.sep.gui.View.CreateView">
    <children>
-      <TextField fx:id="addressField" layoutX="18.0" layoutY="137.0" prefHeight="26.0" prefWidth="578.0" promptText="Enter property address" />
+      <TextField fx:id="addressField" layoutX="18.0" layoutY="137.0" prefHeight="26.0" prefWidth="578.0" promptText="Enter property address" AnchorPane.topAnchor="120.0" />
 
-      <ComboBox fx:id="propertyTypeField" layoutX="16.0" layoutY="216.0" prefWidth="578.0" promptText="Select property type">
+      <ComboBox fx:id="propertyTypeField" layoutX="16.0" layoutY="216.0" prefWidth="578.0" promptText="Select property type" AnchorPane.topAnchor="170.0">
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="House" />
@@ -26,13 +26,13 @@
          </items>
       </ComboBox>
 
-      <TextField fx:id="numBathroomsField" layoutX="16.0" layoutY="300.0" prefHeight="26.0" prefWidth="578.0" promptText="Number of bathrooms" />
-      <TextField fx:id="numBedroomsField" layoutX="16.0" layoutY="380.0" prefHeight="26.0" prefWidth="577.0" promptText="Number of bedrooms" />
-      <TextField fx:id="numFloorsField" layoutX="16.0" layoutY="460.0" prefHeight="26.0" prefWidth="578.0" promptText="Number of floors" />
-      <TextField fx:id="floorAreaField" layoutX="20.0" layoutY="540.0" prefHeight="26.0" prefWidth="578.0" promptText="Floor area in sq m" />
-      <TextField fx:id="priceField" layoutX="18.0" layoutY="620.0" prefHeight="26.0" prefWidth="578.0" promptText="Price in $" />
-      <TextField fx:id="yearBuiltField" layoutX="18.0" layoutY="700.0" prefHeight="26.0" prefWidth="578.0" promptText="Year built" />
-      <TextArea fx:id="descriptionField" layoutX="18.0" layoutY="780.0" prefHeight="60.0" prefWidth="578.0" promptText="Property description" />
+      <TextField fx:id="numBathroomsField" layoutX="16.0" layoutY="300.0" prefHeight="26.0" prefWidth="578.0" promptText="Number of bathrooms" AnchorPane.topAnchor="220.0" />
+      <TextField fx:id="numBedroomsField" layoutX="16.0" layoutY="380.0" prefHeight="26.0" prefWidth="577.0" promptText="Number of bedrooms" AnchorPane.topAnchor="270.0" />
+      <TextField fx:id="numFloorsField" layoutX="16.0" layoutY="460.0" prefHeight="26.0" prefWidth="578.0" promptText="Number of floors" AnchorPane.topAnchor="320.0" />
+      <TextField fx:id="floorAreaField" layoutX="20.0" layoutY="540.0" prefHeight="26.0" prefWidth="578.0" promptText="Floor area in sq m" AnchorPane.topAnchor="370.0" />
+      <TextField fx:id="priceField" layoutX="18.0" layoutY="620.0" prefHeight="26.0" prefWidth="578.0" promptText="Price in $" AnchorPane.topAnchor="420.0" />
+      <TextField fx:id="yearBuiltField" layoutX="18.0" layoutY="700.0" prefHeight="26.0" prefWidth="578.0" promptText="Year built" AnchorPane.topAnchor="470.0" />
+      <TextArea fx:id="descriptionField" layoutX="18.0" layoutY="780.0" prefHeight="60.0" prefWidth="578.0" promptText="Property description" AnchorPane.topAnchor="520.0" />
 
       <!-- Property specific fields - visibility controlled by propertyType -->
       <VBox fx:id="houseFields" layoutX="16.0" layoutY="850.0" spacing="10" visible="false">
@@ -47,8 +47,13 @@
          <CheckBox fx:id="hasBalconyField" text="Has Balcony" />
       </VBox>
 
-      <Button fx:id="createButton" layoutX="511.0" layoutY="863.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Create" textFill="#050505" />
-      <Button fx:id="cancelButton" layoutX="422.0" layoutY="863.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Cancel" />
+      <Button fx:id="createButton" layoutX="301.0" layoutY="618.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="74.0" text="Create" textFill="#050505" />
+      <Button fx:id="cancelButton" layoutX="212.0" layoutY="618.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="74.0" text="Cancel" />
       <Label fx:id="errorLabel" layoutX="18.0" layoutY="990.0" textFill="RED" wrapText="true" />
+      <Text layoutX="237.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Property" textAlignment="CENTER" AnchorPane.topAnchor="50.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

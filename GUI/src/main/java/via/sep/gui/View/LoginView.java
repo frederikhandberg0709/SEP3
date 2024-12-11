@@ -57,11 +57,6 @@ public class LoginView {
 
         loginButton.setOnAction(event -> {
             if (viewModel != null) {
-                System.out.println("\nLogin clicked:");
-                System.out.println("TextField username: '" + usernameField.getText() + "'");
-                System.out.println("TextField password: '" + passwordField.getText() + "'");
-                System.out.println("ViewModel username: '" + viewModel.usernameProperty().getValue() + "'");
-                System.out.println("ViewModel password: '" + viewModel.passwordProperty().getValue() + "'");
                 handleLogin();
             } else {
                 System.out.println("ViewModel is null!");
@@ -74,7 +69,6 @@ public class LoginView {
     }
 
     private void handleLogin() {
-        System.out.println("Login button clicked");
         if (viewModel.authenticate()) {
             SceneManager.showDashboard();
         } else {
