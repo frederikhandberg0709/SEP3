@@ -9,9 +9,6 @@ import via.sep.gui.Server.ServerConnection;
 import via.sep.gui.ViewModel.LoginViewModel;
 import via.sep.gui.Model.SceneManager;
 
-/**
- * View for the login view. Handles user input and interactions for logging in.
- */
 public class LoginView {
     @FXML
     private TextField usernameField;
@@ -22,67 +19,74 @@ public class LoginView {
     @FXML
     private Button registerButton;
 
-    private LoginViewModel loginViewModel;
+    private LoginViewModel viewModel;
     private ServerConnection serverConnection;
     private Gson gson;
 
-//    public LoginView(ServerConnection serverConnection, Gson gson) {
-//        this.serverConnection = serverConnection;
-//        this.gson = gson;
-//    }
-
     public LoginView() {}
+
+    public void setViewModel(LoginViewModel viewModel) {
+        this.viewModel = viewModel;
+
+        setupBindings();
+    }
+
+    private void setupBindings() {
+        if (usernameField != null && passwordField != null) {
+            usernameField.textProperty().bindBidirectional(viewModel.usernameProperty());
+            passwordField.textProperty().bindBidirectional(viewModel.passwordProperty());
+
+            registerButton.setOnAction(event -> viewModel.showRegistration());
+
+            viewModel.loginStatusProperty().addListener((observableValue, oldStatus, newStatus) -> {
+                if (newStatus != null && !newStatus.isEmpty()) {
+                    showLoginAlert(newStatus.startsWith("Success") ? "Success" : "Error", newStatus);
+                    if (newStatus.startsWith("Success")) {
+                        SceneManager.showDashboard();
+                    }
+                    viewModel.loginStatusProperty().set("");
+                }
+            });
+        }
+    }
 
     @FXML
     private void initialize() {
         this.serverConnection = SceneManager.getServerConnection();
         this.gson = SceneManager.getGson();
 
-        if (loginViewModel == null) {
-            loginViewModel = new LoginViewModel(serverConnection, gson);
-        }
-
-        usernameField.textProperty().bindBidirectional(loginViewModel.usernameProperty());
-        passwordField.textProperty().bindBidirectional(loginViewModel.passwordProperty());
-
-        // Set up button handlers
-        registerButton.setOnAction(event -> loginViewModel.showRegistration());
-        loginButton.setOnAction(event -> handleLogin());
-
-        // Listen for login status changes
-        loginViewModel.loginStatusProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null && !newValue.isEmpty()) {
-                boolean isError = !loginViewModel.authenticate();
-                if (isError) {
-                    showAlert("Login Error", newValue, Alert.AlertType.ERROR);
-                } else {
-                    SceneManager.showDashboard();
-                }
+        loginButton.setOnAction(event -> {
+            if (viewModel != null) {
+                System.out.println("\nLogin clicked:");
+                System.out.println("TextField username: '" + usernameField.getText() + "'");
+                System.out.println("TextField password: '" + passwordField.getText() + "'");
+                System.out.println("ViewModel username: '" + viewModel.usernameProperty().getValue() + "'");
+                System.out.println("ViewModel password: '" + viewModel.passwordProperty().getValue() + "'");
+                handleLogin();
+            } else {
+                System.out.println("ViewModel is null!");
             }
         });
-    }
 
-//    public LoginView() {
-//        if (loginViewModel.authenticate()) {
-//            SceneManager.showMainView();
-//        }
-//    }
-
-    private void handleLogin() {
-        if (loginViewModel.authenticate()) {
-            SceneManager.showDashboard();
+        if (viewModel != null) {
+            setupBindings();
         }
     }
 
-    private void showAlert(String title, String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
+    private void handleLogin() {
+        System.out.println("Login button clicked");
+        if (viewModel.authenticate()) {
+            SceneManager.showDashboard();
+        } else {
+            showLoginAlert("Error", viewModel.loginStatusProperty().get());
+        }
+    }
+
+    private void showLoginAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-
-    public void setViewModel(LoginViewModel loginViewModel) {
-        this.loginViewModel = loginViewModel;
     }
 }

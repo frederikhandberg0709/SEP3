@@ -44,6 +44,7 @@ public class LoginViewModel {
                 // Store the token and user info for the session
                 SessionManager.getInstance().setCurrentUser(response);
                 loginStatus.set("Login successful");
+
                 return true;
             } else {
                 loginStatus.set("Invalid credentials");

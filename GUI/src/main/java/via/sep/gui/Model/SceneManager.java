@@ -19,7 +19,7 @@ import via.sep.gui.ViewModel.RegisterViewModel;
 import via.sep.gui.ViewModel.DashboardViewModel;
 import via.sep.gui.ViewModel.CreateViewModel;
 import via.sep.gui.ViewModel.EditViewModel;
-import via.sep.gui.View.DashBoardView;
+import via.sep.gui.View.DashboardView;
 
 import java.io.IOException;
 import java.lang.reflect.Modifier;
@@ -38,7 +38,6 @@ public class SceneManager {
     }
 
     public static void setGson(Gson gsonInstance) {
-        //gson = gsonInstance;
         gson = new GsonBuilder()
                 .excludeFieldsWithModifiers(Modifier.TRANSIENT, Modifier.STATIC)
                 .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
@@ -105,8 +104,7 @@ public class SceneManager {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/Dashboard.fxml"));
             Parent root = loader.load();
 
-
-            DashBoardView dashboardView = loader.getController();
+            DashboardView dashboardView = loader.getController();
             PropertyService propertyService = new PropertyService(serverConnection, gson);
             DashboardViewModel dashboardViewModel = new DashboardViewModel(propertyService);
             dashboardView.setViewModel(dashboardViewModel);

@@ -1,31 +1,25 @@
 package via.sep.gui.View;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Alert.AlertType;
-import via.sep.gui.Model.SceneManager;
 import via.sep.gui.Model.domain.Property;
 import via.sep.gui.ViewModel.DashboardViewModel;
 
 import java.math.BigDecimal;
 
-public class DashBoardView {
-    // Buttons
+public class DashboardView {
     @FXML private Button createPropertyButton;
     @FXML private Button deletePropertyButton;
     @FXML private Button editPropertyButton;
     @FXML private Button bookingListButton;
     @FXML private Button refreshButton;
 
-    // Search and status
     @FXML private TextField searchField;
     @FXML private Label statusLabel;
 
-    // TableView and columns
     @FXML private TableView<Property> propertyTableView;
     @FXML private TableColumn<Property, String> addressColumn;
     @FXML private TableColumn<Property, String> propertyTypeColumn;
@@ -41,7 +35,6 @@ public class DashBoardView {
 
     @FXML
     public void initialize() {
-        // Initialize the columns
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         propertyTypeColumn.setCellValueFactory(new PropertyValueFactory<>("propertyType"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -51,10 +44,8 @@ public class DashBoardView {
         yearBuiltColumn.setCellValueFactory(new PropertyValueFactory<>("yearBuilt"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-        // Setup search functionality
         setupSearch();
 
-        // Add double-click handler for editing
         propertyTableView.setRowFactory(tv -> {
             TableRow<Property> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
