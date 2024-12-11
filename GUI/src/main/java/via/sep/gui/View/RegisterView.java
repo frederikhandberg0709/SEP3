@@ -24,15 +24,13 @@ public class RegisterView {
     private Button goBackToLoginButton;
 
     private RegisterViewModel ViewModel;
-//    private final ServerConnection serverConnection;
-//    private final Gson gson;
+    private final ServerConnection serverConnection;
+    private final Gson gson;
 
-//    public RegisterView(ServerConnection serverConnection, Gson gson) {
-//        this.serverConnection = serverConnection;
-//        this.gson = gson;
-//    }
-
-    public RegisterView() {}
+    public RegisterView(ServerConnection serverConnection, Gson gson) {
+        this.serverConnection = serverConnection;
+        this.gson = gson;
+    }
 
     /**
      * Sets the ViewModel for the Registration view.
@@ -48,9 +46,6 @@ public class RegisterView {
      */
     @FXML
     private void initialize() {
-        var serverConnection = SceneManager.getServerConnection();
-        var gson = SceneManager.getGson();
-
         if (ViewModel == null) {
             ViewModel = new RegisterViewModel(serverConnection, gson);
         }

@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import via.sep.gui.Model.RegistrationService;
-import via.sep.gui.Model.SceneManager;
 import via.sep.gui.Server.ServerConnection;
 
 
@@ -48,9 +47,5 @@ public class RegisterViewModel {
                 registrationStatus.set("Error: Registration failed. Please try again.");
             }
         }
-    }
-
-    public void returnToLogin() {
-        SceneManager.showLogin();
     }
 }

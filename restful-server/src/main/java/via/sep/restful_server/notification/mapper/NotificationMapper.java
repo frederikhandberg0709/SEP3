@@ -2,10 +2,9 @@ package via.sep.restful_server.notification.mapper;
 
 import org.springframework.stereotype.Component;
 import via.sep.restful_server.dto.*;
-//import via.sep.restful_server.model.Forms;
+import via.sep.restful_server.model.Forms;
 import via.sep.restful_server.model.Property;
 import via.sep.restful_server.notification.dto.*;
-import via.sep.restful_server.notification.dto.NotificationDTO;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -127,7 +126,7 @@ public class NotificationMapper {
                 data
         );
     }
-    /*public NotificationDTO toFormNotification(Forms form, String action, String formId) {
+    public NotificationDTO toFormNotification(Forms form, String action, String formId) {
         Map<String, Object> formDetails = createFormDetails(form);
 
         FormNotificationDTO data = new FormNotificationDTO(
@@ -188,5 +187,5 @@ public class NotificationMapper {
         }
 
         return form;
-    }*/
+    }
 }

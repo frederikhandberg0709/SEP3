@@ -79,9 +79,6 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/bookings/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/bookings/**").authenticated()
 
-                        // Notifications require authentication
-                        .requestMatchers("/api/notifications/**").authenticated()
-
                         // Default
                         .anyRequest().authenticated()
                 )
