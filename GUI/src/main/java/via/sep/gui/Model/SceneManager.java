@@ -1,7 +1,9 @@
 package via.sep.gui.Model;
 
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,6 +22,7 @@ import via.sep.gui.ViewModel.EditViewModel;
 import via.sep.gui.View.DashBoardView;
 
 import java.io.IOException;
+import java.lang.reflect.Modifier;
 
 public class SceneManager {
     private static Stage primaryStage;
@@ -35,7 +38,15 @@ public class SceneManager {
     }
 
     public static void setGson(Gson gsonInstance) {
-        gson = gson;
+        //gson = gsonInstance;
+        gson = new GsonBuilder()
+                .excludeFieldsWithModifiers(Modifier.TRANSIENT, Modifier.STATIC)
+                .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
+                .setPrettyPrinting()
+                .serializeNulls()
+                .disableInnerClassSerialization()
+                .setLenient()
+                .create();
     }
 
     public static ServerConnection getServerConnection() {
@@ -43,6 +54,16 @@ public class SceneManager {
     }
 
     public static Gson getGson() {
+        if (gson == null) {
+            gson = new GsonBuilder()
+                    .excludeFieldsWithModifiers(Modifier.TRANSIENT, Modifier.STATIC)
+                    .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
+                    .setPrettyPrinting()
+                    .serializeNulls()
+                    .disableInnerClassSerialization()
+                    .setLenient()
+                    .create();
+        }
         return gson;
     }
 
