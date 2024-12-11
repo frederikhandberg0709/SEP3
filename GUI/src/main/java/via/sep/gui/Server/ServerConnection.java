@@ -1,6 +1,8 @@
 package via.sep.gui.Server;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import via.sep.gui.Adapters.LocalDateAdapter;
 import via.sep.gui.Model.SessionManager;
 import via.sep.gui.Model.dto.LoginRequestDTO;
 
@@ -8,16 +10,22 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.LocalDate;
 
 public class ServerConnection {
     private String serverUrl;
     private final HttpClient httpClient;
     private final SessionManager sessionManager;
+    private final Gson gson;
 
     public ServerConnection() {
         this.serverUrl = "http://localhost:8080/api";
         this.httpClient = HttpClient.newHttpClient();
         this.sessionManager = SessionManager.getInstance();
+
+        this.gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
     }
 
     private String getAuthToken() {

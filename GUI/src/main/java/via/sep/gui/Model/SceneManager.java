@@ -10,16 +10,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import via.sep.gui.Model.domain.Property;
 import via.sep.gui.Server.ServerConnection;
-import via.sep.gui.View.CreatePropertyView;
-import via.sep.gui.View.EditPropertyView;
-import via.sep.gui.View.LoginView;
-import via.sep.gui.View.RegisterView;
-import via.sep.gui.ViewModel.LoginViewModel;
-import via.sep.gui.ViewModel.RegisterViewModel;
-import via.sep.gui.ViewModel.DashboardViewModel;
-import via.sep.gui.ViewModel.CreatePropertyViewModel;
-import via.sep.gui.ViewModel.EditPropertyViewModel;
-import via.sep.gui.View.DashboardView;
+import via.sep.gui.View.*;
+import via.sep.gui.ViewModel.*;
 
 import java.io.IOException;
 import java.lang.reflect.Modifier;
@@ -152,6 +144,22 @@ public class SceneManager {
     }
 
     public static void showBookingList() {
-        System.out.println("Booking list view not implemented yet");
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/BookingList.fxml"));
+            Parent root = loader.load();
+
+            BookingListView bookingListView = loader.getController();
+            BookingService bookingService = new BookingService(serverConnection, gson);
+            //BookingListViewModel bookingListViewModel = new BookingListViewModel(serverConnection, gson);
+            BookingListViewModel bookingListViewModel = new BookingListViewModel(bookingService);
+            bookingListView.setViewModel(bookingListViewModel);
+
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

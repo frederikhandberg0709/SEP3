@@ -5,6 +5,8 @@ module via.sep.gui {
     requires org.postgresql.jdbc;
     requires com.google.gson;
     requires java.net.http;
+    requires java.sql;
+    requires java.base;
 
     // Export the main package for application entry point
     exports via.sep.gui;
