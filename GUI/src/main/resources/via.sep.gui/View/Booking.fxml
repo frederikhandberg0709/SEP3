@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="via.sep.gui.View.BookingView">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Property Bookings" style="-fx-font-size: 24;"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <DatePicker fx:id="datePicker" promptText="Filter by date"/>
+        <Button fx:id="refreshButton" text="Refresh"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="backButton" text="Back to Dashboard"/>
+    </HBox>
+
+    <TableView fx:id="bookingTableView" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="dateColumn" text="Date and Time" prefWidth="150"/>
+            <TableColumn fx:id="agentNameColumn" text="Agent Name" prefWidth="150"/>
+            <TableColumn fx:id="agentContactColumn" text="Contact Info" prefWidth="200"/>
+            <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <Label fx:id="statusLabel" style="-fx-text-fill: red;"/>
+</VBox>

@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import via.sep.gui.Model.domain.Property;
 import via.sep.gui.Server.ServerConnection;
@@ -35,7 +36,7 @@ public class SceneManager {
     }
 
     public static void setGson(Gson gsonInstance) {
-        gson = gson;
+        gson = gsonInstance; // fixed
     }
 
     public static ServerConnection getServerConnection() {
@@ -46,12 +47,38 @@ public class SceneManager {
         return gson;
     }
 
+//    public static void showRegister() {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/Register.fxml"));
+//            Parent root = loader.load();
+//
+//            RegisterView registerView = loader.getController();
+//            RegisterViewModel registerViewModel = new RegisterViewModel(serverConnection, gson);
+//            registerView.setViewModel(registerViewModel);
+//
+//            primaryStage.setScene(new Scene(root));
+//            primaryStage.show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     public static void showRegister() {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/Register.fxml"));
+            String fxmlPath = "/via.sep.gui/View/Register.fxml";
+            var fxmlUrl = SceneManager.class.getResource(fxmlPath);
+            if (fxmlUrl == null) {
+                throw new IOException("Cannot find FXML file at: " + fxmlPath);
+            }
+
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
             Parent root = loader.load();
 
             RegisterView registerView = loader.getController();
+            if (registerView == null) {
+                throw new IOException("Failed to load RegisterView controller");
+            }
+
             RegisterViewModel registerViewModel = new RegisterViewModel(serverConnection, gson);
             registerView.setViewModel(registerViewModel);
 
@@ -59,7 +86,16 @@ public class SceneManager {
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
+            showError("Error", "Failed to load registration view: " + e.getMessage());
         }
+    }
+
+    private static void showError(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.show();
     }
 
     public static void showLogin() {
