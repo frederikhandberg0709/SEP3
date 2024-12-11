@@ -63,16 +63,12 @@ public class CreatePropertyViewModel {
                 return false;
             }
 
-            System.out.println("Starting property creation with type: " + propertyType.get());
-
             Integer bathrooms = parseInteger(numBathrooms.get(), "Number of bathrooms");
             Integer bedrooms = parseInteger(numBedrooms.get(), "Number of bedrooms");
             Integer floors = parseInteger(numFloors.get(), "Number of floors");
             BigDecimal area = parseBigDecimal(floorArea.get(), "Floor area");
             BigDecimal propertyPrice = parseBigDecimal(price.get(), "Price");
             Integer year = parseInteger(yearBuilt.get(), "Year built");
-
-            System.out.println("Parsed values successfully");
 
             Property createdProperty = propertyService.createProperty(
                     address.get(),
@@ -86,15 +82,11 @@ public class CreatePropertyViewModel {
                     description.get()
             );
 
-            System.out.println("Property creation attempt completed");
-
             if (createdProperty != null && createdProperty.getPropertyId() != null) {
-                System.out.println("Property created with ID: " + createdProperty.getPropertyId());
                 clearFields();
                 errorMessage.set("Property created successfully!");
                 return true;
             } else {
-                System.out.println("Property creation returned null or invalid ID");
                 errorMessage.set("Failed to create property");
                 return false;
             }
