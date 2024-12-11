@@ -67,10 +67,48 @@ public class DashboardView {
 
                     String lowerCaseFilter = newValue.toLowerCase();
 
-                    return property.getAddress().toLowerCase().contains(lowerCaseFilter)
-                            || property.getPropertyType().toLowerCase().contains(lowerCaseFilter)
-                            || property.getDescription().toLowerCase().contains(lowerCaseFilter)
-                            || property.getPrice().toString().contains(lowerCaseFilter);
+                    if (property.getAddress().toLowerCase().contains(lowerCaseFilter))
+                        return true;
+                    if (property.getPropertyType().toLowerCase().contains(lowerCaseFilter))
+                        return true;
+                    if (property.getDescription() != null &&
+                            property.getDescription().toLowerCase().contains(lowerCaseFilter))
+                        return true;
+
+                    if (property.getPrice().toString().contains(lowerCaseFilter))
+                        return true;
+                    if (property.getNumBedrooms().toString().contains(lowerCaseFilter))
+                        return true;
+                    if (property.getNumBathrooms().toString().contains(lowerCaseFilter))
+                        return true;
+                    if (property.getFloorArea().toString().contains(lowerCaseFilter))
+                        return true;
+                    if (property.getYearBuilt().toString().contains(lowerCaseFilter))
+                        return true;
+
+                    if (property.isHouse()) {
+                        if (property.getLotSize() != null &&
+                                property.getLotSize().toString().contains(lowerCaseFilter))
+                            return true;
+                        if (property.getHasGarage() != null &&
+                                Boolean.toString(property.getHasGarage()).contains(lowerCaseFilter))
+                            return true;
+                    } else if (property.isApartment()) {
+                        if (property.getBuildingName() != null &&
+                                property.getBuildingName().toLowerCase().contains(lowerCaseFilter))
+                            return true;
+                        if (property.getFloorNumber() != null &&
+                                property.getFloorNumber().toString().contains(lowerCaseFilter))
+                            return true;
+                        if (property.getHasElevator() != null &&
+                                Boolean.toString(property.getHasElevator()).contains(lowerCaseFilter))
+                            return true;
+                        if (property.getHasBalcony() != null &&
+                                Boolean.toString(property.getHasBalcony()).contains(lowerCaseFilter))
+                            return true;
+                    }
+
+                    return false;
                 });
             }
         });
@@ -94,7 +132,7 @@ public class DashboardView {
             confirmation.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     viewModel.deleteProperty(selectedProperty);
-                    updateStatusLabel("Property deleted successfully");
+                    viewModel.statusMessageProperty().set("Property deleted successfully");
                 }
             });
         } else {
@@ -131,10 +169,6 @@ public class DashboardView {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-
-    private void updateStatusLabel(String message) {
-        statusLabel.setText(message);
     }
 
     public void setViewModel(DashboardViewModel viewModel) {
