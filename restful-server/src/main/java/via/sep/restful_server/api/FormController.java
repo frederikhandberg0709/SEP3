@@ -24,12 +24,20 @@ public class FormController {
     @PostMapping
     public ResponseEntity<?> submitForm(@RequestBody FormDTO formDTO) {
         try {
+            // Step 0: Validate FormName
+            if (formDTO.getFormName() == null || formDTO.getFormName().isEmpty()) {
+                return ResponseEntity.badRequest().body("An error has occured, try again");
+            }
+    
+            // Log the FormName for tracking
+            log.info("Submitting form with FormName: {}", formDTO.getFormName());
+    
             // Step 1: Register the form (save it in the database and send notifications)
             propertyFormService.registerProperty(formDTO);
-
+    
             // Step 2: Convert FormDTO to PropertyDTO for creating the property
             PropertyDTO propertyDTO = mapFormToProperty(formDTO);
-
+    
             // Step 3: Call PropertyController to create the property
             return propertyController.createProperty(propertyDTO);
         } catch (Exception e) {

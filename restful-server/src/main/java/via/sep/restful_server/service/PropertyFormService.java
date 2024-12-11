@@ -23,14 +23,20 @@ public class PropertyFormService {
 
     @Transactional
     public void registerProperty(FormDTO formDTO) {
-        // Map DTO to Entity
         Forms form = notificationMapper.convertToFormDTO(formDTO);
-
-        // Save to Database
-        Forms savedForm = formsRepository.save(form);
-
-        // Send Notification
-        notificationService.notifyFormSubmitted(savedForm, savedForm.getFormID().toString());
+        
+            // Ensure FormName is set
+            if (formDTO.getFormName() == null || formDTO.getFormName().isEmpty()) {
+                throw new IllegalArgumentException("FormName cannot be null or empty.");
+            }
+            form.setFormName(formDTO.getFormName());
+        
+            // Save to Database
+            Forms savedForm = formsRepository.save(form);
+        
+            // Send Notification
+            notificationService.notifyFormSubmitted(savedForm, savedForm.getFormID().toString());
+        }
     }
 }
 */

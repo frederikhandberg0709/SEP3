@@ -168,6 +168,7 @@ public class NotificationMapper {
     }
     public Forms convertToFormDTO(FormDTO formDTO) {
         Forms form = new Forms();
+        form.setFormName(formDTO.getFormName());
         form.setPropertyType(formDTO.getPropertyType());
         form.setAddress(formDTO.getAddress());
         form.setPrice(formDTO.getPrice());

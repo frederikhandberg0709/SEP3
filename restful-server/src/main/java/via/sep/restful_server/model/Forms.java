@@ -17,8 +17,10 @@ public class Forms {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "form_ID")
     private Long formID;
+   
+    @Column(nullable = false, unique = true)
+    private String formName;
 
     @Column(name = "property_id")
     private Long propertyId;
