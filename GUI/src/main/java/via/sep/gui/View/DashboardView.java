@@ -106,8 +106,8 @@ public class DashboardView {
     private void handleEditProperty() {
         Property selectedProperty = propertyTableView.getSelectionModel().getSelectedItem();
         if (selectedProperty != null) {
+            viewModel.statusMessageProperty().set("Opening edit form for selected property...");
             viewModel.showEditProperty(selectedProperty);
-            updateStatusLabel("Opening edit form for selected property...");
         } else {
             showAlert("No Selection", "Please select a property to edit.", AlertType.WARNING);
         }
@@ -116,13 +116,13 @@ public class DashboardView {
     @FXML
     private void handleBookingList() {
         viewModel.showBookingList();
-        updateStatusLabel("Opening booking list...");
+        viewModel.statusMessageProperty().set("Opening booking list...");
     }
 
     @FXML
     private void handleRefresh() {
         viewModel.refreshProperties();
-        updateStatusLabel("Property list refreshed");
+        viewModel.statusMessageProperty().set("Property list refreshed");
     }
 
     private void showAlert(String title, String message, AlertType type) {
@@ -140,11 +140,9 @@ public class DashboardView {
     public void setViewModel(DashboardViewModel viewModel) {
         this.viewModel = viewModel;
 
-        // Bind the table to the viewModel's property list
         filteredProperties = new FilteredList<>(viewModel.getPropertyList(), p -> true);
         propertyTableView.setItems(filteredProperties);
 
-        // Bind status message
         statusLabel.textProperty().bind(viewModel.statusMessageProperty());
     }
 }

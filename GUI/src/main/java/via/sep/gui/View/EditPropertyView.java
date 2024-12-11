@@ -3,6 +3,8 @@ package via.sep.gui.View;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import via.sep.gui.Model.SceneManager;
 import via.sep.gui.ViewModel.EditPropertyViewModel;
 
 public class EditPropertyView {
@@ -31,6 +33,7 @@ public class EditPropertyView {
     // UI elements
     @FXML private Button applyChangesButton;
     @FXML private Button cancelButton;
+    @FXML private Button resetButton;
     @FXML private Label errorLabel;
 
     private EditPropertyViewModel viewModel;
@@ -50,7 +53,6 @@ public class EditPropertyView {
         propertyTypeField.valueProperty().addListener((obs, oldVal, newVal) -> updatePropertyTypeFields(newVal));
 
         applyChangesButton.setOnAction(event -> saveChanges());
-        cancelButton.setOnAction(event -> viewModel.clearFields());
     }
 
     private void updatePropertyTypeFields(String propertyType) {
@@ -86,7 +88,10 @@ public class EditPropertyView {
         }
     }
 
+    @FXML
     private void showAlert(Alert.AlertType type, String title, String message) {
+        viewModel.errorMessageProperty().set(message);
+
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -120,5 +125,34 @@ public class EditPropertyView {
 
         // Bind error message
         errorLabel.textProperty().bind(viewModel.errorMessageProperty());
+    }
+
+    @FXML
+    private void applyChangesButton() {
+        applyChangesButton.setDisable(true);
+        try {
+            boolean success = viewModel.saveChanges();
+            if (success) {
+                Stage currentStage = (Stage) applyChangesButton.getScene().getWindow();
+                currentStage.close();
+                SceneManager.showDashboard();
+            }
+        } finally {
+            applyChangesButton.setDisable(false);
+        }
+    }
+
+    @FXML
+    private void cancelButton() {
+        viewModel.errorMessageProperty().set("");
+        Stage currentStage = (Stage) cancelButton.getScene().getWindow();
+        currentStage.close();
+
+        SceneManager.showDashboard();
+    }
+
+    @FXML
+    private void resetValues() {
+        viewModel.resetToOriginal();
     }
 }

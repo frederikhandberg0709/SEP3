@@ -12,6 +12,8 @@ import via.sep.gui.Model.dto.PropertyDTO;
 import java.math.BigDecimal;
 
 public class EditPropertyViewModel {
+    private Property originalProperty;
+
     private final StringProperty address = new SimpleStringProperty();
     private final StringProperty propertyType = new SimpleStringProperty();
     private final StringProperty numBathrooms = new SimpleStringProperty();
@@ -58,6 +60,7 @@ public class EditPropertyViewModel {
     public StringProperty errorMessageProperty() { return errorMessage; }
 
     public void loadProperty(Property property) {
+        this.originalProperty = property;
         this.propertyId = property.getPropertyId();
         address.set(property.getAddress());
         propertyType.set(property.getPropertyType());
@@ -135,6 +138,13 @@ public class EditPropertyViewModel {
             return false;
         }
         return true;
+    }
+
+    public void resetToOriginal() {
+        if (originalProperty != null) {
+            loadProperty(originalProperty);
+            errorMessage.set("Values reset to original");
+        }
     }
 
     private boolean isNullOrEmpty(String value) {
