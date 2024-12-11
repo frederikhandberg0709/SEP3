@@ -83,6 +83,8 @@
 
 .nav-scrollable {
     display: none;
+    overflow-y: hidden;
+    overflow-x:hidden;
 }
 
 .navbar-toggler:checked ~ .nav-scrollable {
@@ -100,7 +102,8 @@
 
         /* Allow sidebar to scroll for tall menus */
         height: calc(100vh - 3.5rem);
-        overflow-y: auto;
+        overflow-y: hidden;
+        overflow-x:hidden;
     }
 
 

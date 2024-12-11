@@ -183,6 +183,8 @@ main[b-rhu10d1l9f] {
 
 .nav-scrollable[b-wzeo2yepuu] {
     display: none;
+    overflow-y: hidden;
+    overflow-x:hidden;
 }
 
 .navbar-toggler:checked ~ .nav-scrollable[b-wzeo2yepuu] {
@@ -200,44 +202,9 @@ main[b-rhu10d1l9f] {
 
         /* Allow sidebar to scroll for tall menus */
         height: calc(100vh - 3.5rem);
-        overflow-y: auto;
+        overflow-y: hidden;
+        overflow-x:hidden;
     }
 
 
-}
-
-
-.nav-login[b-wzeo2yepuu] {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1rem;
-    height: 3.5rem;
-}
-
-.nav-login a[b-wzeo2yepuu] {
-    color: white;
-    text-decoration: none;
-}
-
-.nav-login a:hover[b-wzeo2yepuu] {
-    text-decoration: underline;
-}
-
-
-.nav-register[b-wzeo2yepuu] {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1rem;
-    height: 3.5rem;
-}
-
-.nav-register a[b-wzeo2yepuu] {
-    color: white;
-    text-decoration: none;
-}
-
-.nav-register a:hover[b-wzeo2yepuu] {
-    text-decoration: underline;
 }

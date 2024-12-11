@@ -1,4 +1,4 @@
-package via.sep.restful_server.service;
+/*package via.sep.restful_server.service;
 
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -33,3 +33,4 @@ public class PropertyFormService {
         notificationService.notifyFormSubmitted(savedForm, savedForm.getFormID().toString());
     }
 }
+*/

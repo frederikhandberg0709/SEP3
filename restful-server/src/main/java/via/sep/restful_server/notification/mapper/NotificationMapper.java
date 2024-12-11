@@ -1,4 +1,4 @@
-package via.sep.restful_server.notification.mapper;
+/*package via.sep.restful_server.notification.mapper;
 
 import org.springframework.stereotype.Component;
 import via.sep.restful_server.dto.*;
@@ -189,3 +189,4 @@ public class NotificationMapper {
         return form;
     }
 }
+*/

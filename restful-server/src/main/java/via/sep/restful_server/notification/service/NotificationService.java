@@ -1,4 +1,4 @@
-package via.sep.restful_server.notification.service;
+/*package via.sep.restful_server.notification.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -140,3 +140,4 @@ public class NotificationService {
         sendNotification(notification);
     }
 }
+*/

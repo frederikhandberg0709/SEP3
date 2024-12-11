@@ -1,4 +1,4 @@
-package via.sep.restful_server.api;
+/*package via.sep.restful_server.api;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -260,3 +260,4 @@ public class PropertyController {
         return details;
     }
 }
+*/

@@ -19,6 +19,8 @@ html, body {
     background-color: #2c3e50; /* Dark navy background */
     color: white;
     padding: 1rem;
+    overflow-y: hidden;
+    overflow-x:hidden;
 }
 
 .sidebar a {
@@ -144,25 +146,3 @@ button:disabled, .btn:disabled {
     cursor: not-allowed;
 }
 
-/* Error UI */
-#blazor-error-ui {
-    background-color: #e74c3c;
-    color: white;
-    padding: 1rem;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    z-index: 1000;
-}
-
-#blazor-error-ui a {
-    color: #ecf0f1;
-    text-decoration: underline;
-    margin: 0 0.5rem;
-}
-
-#blazor-error-ui a:hover {
-    text-decoration: none;
-}
