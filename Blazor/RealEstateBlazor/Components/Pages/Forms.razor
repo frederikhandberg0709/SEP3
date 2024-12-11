@@ -1,4 +1,4 @@
-﻿@*
+﻿
 @page "/Forms"
 @using Microsoft.AspNetCore.SignalR.Client
 @using System.ComponentModel.DataAnnotations
@@ -14,6 +14,9 @@
     <DataAnnotationsValidator />
     <ValidationSummary />
 
+    <!-- Hidden input to store the unique FormName -->
+    <InputText id="formName" @bind-Value="newProperty.FormName" class="d-none" />
+    
     <div class="form-group">
         <label for="address">Address:</label>
         <InputText id="address" @bind-Value="newProperty.Address" class="form-control" />
@@ -108,10 +111,22 @@
     private string? errorMessage = null;
     private bool isLoggedIn = false;
 
+    private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+    private NavigationManager NavigationManager { get; set; }
+    
     protected override async Task OnInitializedAsync()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        isLoggedIn = authState.User.Identity?.IsAuthenticated ?? false;
+        var user = authState.User;
+        isLoggedIn = user.Identity?.IsAuthenticated ?? false;
+        
+        if (isLoggedIn)
+        {
+            string userName = user.Identity?.Name ?? "guest";
+            string timestamp = DateTime.UtcNow.ToString("yyyyMMddHHmmssfff");
+
+            newProperty.FormName = $"{userName}_{timestamp}";
+        }
     }
 
     private async Task HandleSubmit()
@@ -131,6 +146,7 @@
             
             if (response.IsSuccessStatusCode)
             {
+                isSubmitted = true;
                 var result = await response.Content.ReadFromJsonAsync<FormNotificationDTO>();
                 newProperty = new Property(); // Reset form
                 
@@ -155,8 +171,9 @@
         NavigationManager.NavigateTo("/login");
     }
 
-    public class Property
+    public class PropertyForm
     {
+        public string FormName { get; set; }
         public string Address { get; set; }
         public string PropertyType { get; set; }
         public int FloorArea { get; set; }
@@ -172,4 +189,3 @@
         public bool? HasBalcony { get; set; }
     }
 }
-*@

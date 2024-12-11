@@ -10,29 +10,88 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.Region?>
+
+<?import java.lang.String?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="via.sep.gui.View.DashBoardView">
-    <Button fx:id="createPropertyButton" layoutX="14.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleCreateProperty" prefHeight="26.0" prefWidth="102.0" text="Create Property " />
-    <Button fx:id="deletePropertyButton" layoutX="130.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleDeleteProperty" text="Delete Property " />
-    <Button fx:id="editPropertyButton" layoutX="239.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleEditProperty" prefHeight="26.0" prefWidth="102.0" text="Edit Property " />
-    <Text layoutX="223.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Real RealEstate Manager" textAlignment="CENTER" wrappingWidth="235.38385009765625">
-        <font>
-            <Font name="Book Antiqua" size="27.0" />
-        </font>
-    </Text>
-    <TableView fx:id="propertyTableView" layoutY="221.0" prefHeight="200.0" prefWidth="698.0">
-        <columns>
-            <TableColumn fx:id="addressColumn" prefWidth="91.2000106573104" text="Address" />
-            <TableColumn fx:id="clientNameColumn" prefWidth="95.2000198364258" text="Client Name" />
-            <TableColumn fx:id="phoneNumberColumn" prefWidth="125.599975585934" text="Phone Number" />
-            <TableColumn fx:id="leasePeriodColumn" prefWidth="88.7999779292688" text="Lease Period" />
-            <TableColumn fx:id="emailColumn" prefWidth="99.9999389648438" text="Email" />
-            <TableColumn fx:id="propertyTypeColumn" prefWidth="99.9999389648438" text="Property Type" />
-            <TableColumn fx:id="priceColumn" prefWidth="99.9999389648438" text="Price" />
-        </columns>
-    </TableView>
-    <ImageView fitHeight="47.0" fitWidth="54.0" layoutX="181.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
-        <Image url="@../Images/realestate.png" />
-    </ImageView>
-   <Button fx:id="editPropertyButton1" layoutX="350.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleEditProperty" prefHeight="26.0" prefWidth="102.0" text="Booking List" />
-   <TextField fx:id="SearchField" layoutX="464.0" layoutY="170.0" prefHeight="26.0" prefWidth="222.0" promptText="Search property" />
+    <VBox spacing="15" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+        <!-- Header -->
+        <HBox alignment="CENTER" spacing="10">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Real Estate Manager">
+                <font>
+                    <Font name="System Bold" size="28.0" />
+                </font>
+            </Text>
+        </HBox>
+
+        <!-- Action Buttons and Search -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Button fx:id="createPropertyButton" mnemonicParsing="false" onAction="#handleCreateProperty"
+                    styleClass="action-button" text="Create Property">
+                <tooltip>
+                    <Tooltip text="Create a new property listing" />
+                </tooltip>
+            </Button>
+            <Button fx:id="editPropertyButton" mnemonicParsing="false" onAction="#handleEditProperty"
+                    styleClass="action-button" text="Edit Property">
+                <tooltip>
+                    <Tooltip text="Edit selected property" />
+                </tooltip>
+            </Button>
+            <Button fx:id="deletePropertyButton" mnemonicParsing="false" onAction="#handleDeleteProperty"
+                    styleClass="action-button" text="Delete Property">
+                <tooltip>
+                    <Tooltip text="Delete selected property" />
+                </tooltip>
+            </Button>
+            <Button fx:id="bookingListButton" mnemonicParsing="false" onAction="#handleBookingList"
+                    styleClass="action-button" text="Booking List">
+                <tooltip>
+                    <Tooltip text="View property bookings" />
+                </tooltip>
+            </Button>
+            <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#handleRefresh"
+                    styleClass="action-button" text="Refresh">
+                <tooltip>
+                    <Tooltip text="Refresh property list" />
+                </tooltip>
+            </Button>st
+            <Region HBox.hgrow="ALWAYS" />
+            <TextField fx:id="searchField" prefWidth="250" promptText="Search properties...">
+                <tooltip>
+                    <Tooltip text="Search by address, type, or price" />
+                </tooltip>
+            </TextField>
+        </HBox>
+
+        <!-- Property Table -->
+        <TableView fx:id="propertyTableView" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="addressColumn" prefWidth="150" text="Address" />
+                <TableColumn fx:id="propertyTypeColumn" prefWidth="100" text="Type" />
+                <TableColumn fx:id="priceColumn" prefWidth="100" text="Price" />
+                <TableColumn fx:id="bedroomsColumn" prefWidth="80" text="Bedrooms" />
+                <TableColumn fx:id="bathroomsColumn" prefWidth="80" text="Bathrooms" />
+                <TableColumn fx:id="floorAreaColumn" prefWidth="100" text="Floor Area" />
+                <TableColumn fx:id="yearBuiltColumn" prefWidth="80" text="Year Built" />
+                <TableColumn fx:id="descriptionColumn" prefWidth="200" text="Description" />
+            </columns>
+            <placeholder>
+                <Label text="No properties found" />
+            </placeholder>
+        </TableView>
+
+        <!-- Status Bar -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label fx:id="statusLabel" styleClass="status-label" />
+        </HBox>
+    </VBox>
+
+    <stylesheets>
+        <String fx:value="@../CSS/dashboard.css" />
+    </stylesheets>
 </AnchorPane>
