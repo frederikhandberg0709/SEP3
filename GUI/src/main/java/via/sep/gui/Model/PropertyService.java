@@ -26,7 +26,7 @@ public class PropertyService {
                                    BigDecimal price, Integer yearBuilt,
                                    String description) throws Exception {
         PropertyDTO propertyDTO = new PropertyDTO();
-        ;
+
         propertyDTO.setAddress(address);
         propertyDTO.setPropertyType(propertyType);
         propertyDTO.setNumBathrooms(numBathrooms);

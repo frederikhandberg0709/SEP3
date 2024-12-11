@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import via.sep.gui.Model.domain.Property;
 import via.sep.gui.Server.ServerConnection;
 import via.sep.gui.View.CreateView;
 import via.sep.gui.View.EditView;
@@ -77,7 +78,8 @@ public class SceneManager {
 
 
             DashBoardView dashboardView = loader.getController();
-            DashboardViewModel dashboardViewModel = new DashboardViewModel();
+            PropertyService propertyService = new PropertyService(serverConnection, gson);
+            DashboardViewModel dashboardViewModel = new DashboardViewModel(propertyService);
             dashboardView.setViewModel(dashboardViewModel);
 
             primaryStage.setScene(new Scene(root));
@@ -87,14 +89,14 @@ public class SceneManager {
         }
     }
 
-    public static void showCreate() {
+    public static void showCreateProperty() {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/Create.fxml"));
             Parent root = loader.load();
 
-
             CreateView createView = loader.getController();
-            CreateViewModel createViewModel = new CreateViewModel();
+            PropertyService propertyService = new PropertyService(serverConnection, gson);
+            CreateViewModel createViewModel = new CreateViewModel(propertyService);
             createView.setViewModel(createViewModel);
 
             primaryStage.setScene(new Scene(root));
@@ -104,14 +106,15 @@ public class SceneManager {
         }
     }
 
-    public static void showEdit() {
+    public static void showEditProperty(Property property) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/Edit.fxml"));
             Parent root = loader.load();
 
-
             EditView editView = loader.getController();
-            EditViewModel editViewModel = new EditViewModel();
+            PropertyService propertyService = new PropertyService(serverConnection, gson);
+            EditViewModel editViewModel = new EditViewModel(propertyService);
+            editViewModel.loadProperty(property);
             editView.setViewModel(editViewModel);
 
             primaryStage.setScene(new Scene(root));
@@ -119,5 +122,9 @@ public class SceneManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void showBookingList() {
+        System.out.println("Booking list view not implemented yet");
     }
 }

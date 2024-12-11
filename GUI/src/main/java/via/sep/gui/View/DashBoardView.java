@@ -2,97 +2,158 @@ package via.sep.gui.View;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import via.sep.gui.Model.SceneManager;
+import via.sep.gui.Model.domain.Property;
 import via.sep.gui.ViewModel.DashboardViewModel;
 
+import java.math.BigDecimal;
+
 public class DashBoardView {
+    // Buttons
+    @FXML private Button createPropertyButton;
+    @FXML private Button deletePropertyButton;
+    @FXML private Button editPropertyButton;
+    @FXML private Button bookingListButton;
+    @FXML private Button refreshButton;
 
-    @FXML
-    private Button createPropertyButton;
-    @FXML
-    private Button deletePropertyButton;
-    @FXML
-    private Button editPropertyButton;
-    @FXML
-    private TableView<Property> propertyTableView;
-    @FXML
-    private TableColumn<Property, String> addressColumn;
-    @FXML
-    private TableColumn<Property, String> clientNameColumn;
-    @FXML
-    private TableColumn<Property, String> phoneNumberColumn;
-    @FXML
-    private TableColumn<Property, String> leasePeriodColumn;
-    @FXML
-    private TableColumn<Property, String> emailColumn;
-    @FXML
-    private TableColumn<Property, String> propertyTypeColumn;
-    @FXML
-    private TableColumn<Property, Double> priceColumn;
+    // Search and status
+    @FXML private TextField searchField;
+    @FXML private Label statusLabel;
 
-    private ObservableList<Property> propertyList;
+    // TableView and columns
+    @FXML private TableView<Property> propertyTableView;
+    @FXML private TableColumn<Property, String> addressColumn;
+    @FXML private TableColumn<Property, String> propertyTypeColumn;
+    @FXML private TableColumn<Property, BigDecimal> priceColumn;
+    @FXML private TableColumn<Property, Integer> bedroomsColumn;
+    @FXML private TableColumn<Property, Integer> bathroomsColumn;
+    @FXML private TableColumn<Property, BigDecimal> floorAreaColumn;
+    @FXML private TableColumn<Property, Integer> yearBuiltColumn;
+    @FXML private TableColumn<Property, String> descriptionColumn;
+
+    private DashboardViewModel viewModel;
+    private FilteredList<Property> filteredProperties;
 
     @FXML
     public void initialize() {
-        // Initialize the columns with Property attributes
+        // Initialize the columns
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
-        clientNameColumn.setCellValueFactory(new PropertyValueFactory<>("clientName"));
-        phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-        leasePeriodColumn.setCellValueFactory(new PropertyValueFactory<>("leasePeriod"));
-        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         propertyTypeColumn.setCellValueFactory(new PropertyValueFactory<>("propertyType"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        bedroomsColumn.setCellValueFactory(new PropertyValueFactory<>("numBedrooms"));
+        bathroomsColumn.setCellValueFactory(new PropertyValueFactory<>("numBathrooms"));
+        floorAreaColumn.setCellValueFactory(new PropertyValueFactory<>("floorArea"));
+        yearBuiltColumn.setCellValueFactory(new PropertyValueFactory<>("yearBuilt"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-        // Initialize the ObservableList
-        propertyList = FXCollections.observableArrayList();
-        propertyTableView.setItems(propertyList);
+        // Setup search functionality
+        setupSearch();
+
+        // Add double-click handler for editing
+        propertyTableView.setRowFactory(tv -> {
+            TableRow<Property> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && !row.isEmpty()) {
+                    handleEditProperty();
+                }
+            });
+            return row;
+        });
+    }
+
+    private void setupSearch() {
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (filteredProperties != null) {
+                filteredProperties.setPredicate(property -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+
+                    String lowerCaseFilter = newValue.toLowerCase();
+
+                    return property.getAddress().toLowerCase().contains(lowerCaseFilter)
+                            || property.getPropertyType().toLowerCase().contains(lowerCaseFilter)
+                            || property.getDescription().toLowerCase().contains(lowerCaseFilter)
+                            || property.getPrice().toString().contains(lowerCaseFilter);
+                });
+            }
+        });
     }
 
     @FXML
     private void handleCreateProperty() {
-        // Logic to create a new property (e.g., open a form to add property details)
-        showAlert("Create Property", "This will open a form to create a new property.");
+        viewModel.showCreateProperty();
+        updateStatusLabel("Opening create property form...");
     }
 
     @FXML
     private void handleDeleteProperty() {
-        // Logic to delete the selected property
         Property selectedProperty = propertyTableView.getSelectionModel().getSelectedItem();
         if (selectedProperty != null) {
-            propertyList.remove(selectedProperty);
-            showAlert("Delete Property", "Property has been deleted.");
+            Alert confirmation = new Alert(AlertType.CONFIRMATION);
+            confirmation.setTitle("Confirm Delete");
+            confirmation.setHeaderText("Delete Property");
+            confirmation.setContentText("Are you sure you want to delete this property?");
+
+            confirmation.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    viewModel.deleteProperty(selectedProperty);
+                    updateStatusLabel("Property deleted successfully");
+                }
+            });
         } else {
-            showAlert("No Selection", "Please select a property to delete.");
+            showAlert("No Selection", "Please select a property to delete.", AlertType.WARNING);
         }
     }
 
     @FXML
     private void handleEditProperty() {
-        // Logic to edit the selected property (e.g., open a form to edit property details)
         Property selectedProperty = propertyTableView.getSelectionModel().getSelectedItem();
         if (selectedProperty != null) {
-            showAlert("Edit Property", "This will open a form to edit the selected property.");
+            viewModel.showEditProperty(selectedProperty);
+            updateStatusLabel("Opening edit form for selected property...");
         } else {
-            showAlert("No Selection", "Please select a property to edit.");
+            showAlert("No Selection", "Please select a property to edit.", AlertType.WARNING);
         }
     }
 
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(AlertType.INFORMATION);
+    @FXML
+    private void handleBookingList() {
+        viewModel.showBookingList();
+        updateStatusLabel("Opening booking list...");
+    }
+
+    @FXML
+    private void handleRefresh() {
+        viewModel.refreshProperties();
+        updateStatusLabel("Property list refreshed");
+    }
+
+    private void showAlert(String title, String message, AlertType type) {
+        Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
 
+    private void updateStatusLabel(String message) {
+        statusLabel.setText(message);
+    }
 
     public void setViewModel(DashboardViewModel viewModel) {
+        this.viewModel = viewModel;
 
+        // Bind the table to the viewModel's property list
+        filteredProperties = new FilteredList<>(viewModel.getPropertyList(), p -> true);
+        propertyTableView.setItems(filteredProperties);
+
+        // Bind status message
+        statusLabel.textProperty().bind(viewModel.statusMessageProperty());
     }
 }
