@@ -58,4 +58,15 @@
       <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Update="Components\Images\Apartment-picture1.webp">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Components\Images\favicon.png">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>

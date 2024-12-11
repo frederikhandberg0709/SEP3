@@ -2,7 +2,11 @@
   "Files": [
     {
       "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\RealEstateBlazor.bundle.scp.css",
-      "PackagePath": "staticwebassets\\RealEstateBlazor.gpnirim3c2.bundle.scp.css"
+      "PackagePath": "staticwebassets\\RealEstateBlazor.y0b00z0cv7.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\About.css",
+      "PackagePath": "staticwebassets\\About.css"
     },
     {
       "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Account.css",
@@ -13,12 +17,52 @@
       "PackagePath": "staticwebassets\\BookAgent.css"
     },
     {
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Contact.css",
+      "PackagePath": "staticwebassets\\Contact.css"
+    },
+    {
       "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Forms.css",
       "PackagePath": "staticwebassets\\Forms.css"
     },
     {
       "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Home.css",
       "PackagePath": "staticwebassets\\Home.css"
+    },
+    {
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Images\\Apartment-picture1.jpg",
+      "PackagePath": "staticwebassets\\Images\\Apartment-picture1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Images\\CommercialBuilding1.jpg",
+      "PackagePath": "staticwebassets\\Images\\CommercialBuilding1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Images\\CountryHouse1.jpg",
+      "PackagePath": "staticwebassets\\Images\\CountryHouse1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Images\\CozyStudio1.jpg",
+      "PackagePath": "staticwebassets\\Images\\CozyStudio1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Images\\Family-house1.jpg",
+      "PackagePath": "staticwebassets\\Images\\Family-house1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Images\\LuxuryVilla.jpg",
+      "PackagePath": "staticwebassets\\Images\\LuxuryVilla.jpg"
+    },
+    {
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Images\\Penthouse1.jpg",
+      "PackagePath": "staticwebassets\\Images\\Penthouse1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Images\\StoreFront1.jpg",
+      "PackagePath": "staticwebassets\\Images\\StoreFront1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Images\\favicon.png",
+      "PackagePath": "staticwebassets\\Images\\favicon.png"
     },
     {
       "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\Properties.css",
@@ -35,10 +79,6 @@
     {
       "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
-    },
-    {
-      "Id": "C:\\Users\\elham\\OneDrive\\Documents\\GitHub\\SEP3\\Blazor\\RealEstateBlazor\\wwwroot\\favicon.png",
-      "PackagePath": "staticwebassets\\favicon.png"
     },
     {
       "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.RealEstateBlazor.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

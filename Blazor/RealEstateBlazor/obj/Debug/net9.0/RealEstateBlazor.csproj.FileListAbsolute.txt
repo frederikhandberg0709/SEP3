@@ -161,7 +161,6 @@ C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\
 C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\xikgp88dd0-6gzpyzhau4.gz
 C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\il9ad6ymqx-8inm30yfxf.gz
 C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\gy2031n9pq-wvqemrflvp.gz
-C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\isoxwiu6wr-8xd09dgrah.gz
 C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\wdmy37j2v3-xa61771fag.gz
 C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\staticwebassets.development.json
@@ -178,6 +177,9 @@ C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\
 C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.pdb
 C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\RealEstateBlazor.genruntimeconfig.cache
 C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\ref\RealEstateBlazor.dll
-C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\k2hfzjq5xg-gpnirim3c2.gz
-C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\9aqtp4qh3u-gpnirim3c2.gz
 C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\y08qe7kvtk-c6mk74le3a.gz
+C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\isoxwiu6wr-6zgm5wmueh.gz
+C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\k2hfzjq5xg-y0b00z0cv7.gz
+C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\9aqtp4qh3u-y0b00z0cv7.gz
+C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\4cq56dwps2-tpkcgyz7yn.gz
+C:\Users\elham\OneDrive\Documents\GitHub\SEP3\Blazor\RealEstateBlazor\obj\Debug\net9.0\compressed\j0kakq8p20-hko3bxkj3z.gz

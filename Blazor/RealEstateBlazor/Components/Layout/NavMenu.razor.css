@@ -17,8 +17,23 @@
 
 .top-row {
     min-height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+    border-radius: 0.5rem; /* Rounded corners */
+    display: flex; /* Enables Flexbox */
+    justify-content: center; /* Horizontally centers content */
+    align-items: center; /* Vertically centers content */
+    padding: 0; /* Removes any padding that could affect centering */
+    margin: 0 auto; /* Ensures the entire navbar is centered */
+    width: fit-content; /* Makes the navbar width just fit the content */
 }
+.navbar-brand {
+    color: white; /* White text color */
+    font-size: 1.25rem; /* Adjust text size if necessary */
+    text-decoration: none; /* Ensures no underline for text */
+}
+
+
+
 
 .navbar-brand {
     font-size: 1.1rem;

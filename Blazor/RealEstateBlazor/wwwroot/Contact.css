@@ -1,0 +1,96 @@
+﻿/* General Page Styles */
+.contact-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #3f51b5; /* Accent color */
+}
+
+/* Company Information Section */
+.company-info {
+    margin-bottom: 30px;
+}
+
+.company-info p {
+    margin: 8px 0;
+    font-size: 1rem;
+}
+
+.company-info a {
+    color: #3f51b5; /* Accent color for links */
+    text-decoration: none;
+}
+
+.company-info a:hover {
+    text-decoration: underline;
+}
+
+/* Contact Form */
+.contact-form {
+    margin-bottom: 30px;
+}
+
+.contact-form h2 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.contact-form div {
+    margin-bottom: 15px;
+}
+
+.contact-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.contact-form .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.contact-form .form-control:focus {
+    outline: none;
+    border-color: #3f51b5; /* Highlight color on focus */
+    box-shadow: 0 0 5px rgba(63, 81, 181, 0.2);
+}
+
+.contact-form button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #3f51b5;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #303f9f;
+}
+
+/* Map Section */
+.map {
+    margin-top: 20px;
+}
+
+.map iframe {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
