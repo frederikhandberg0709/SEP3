@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import via.sep.gui.Server.ServerConnection;
 import via.sep.gui.ViewModel.LoginViewModel;
+import via.sep.gui.Model.SceneManager;
 
 /**
  * View for the login view. Handles user input and interactions for logging in.
@@ -22,16 +23,21 @@ public class LoginView {
     private Button registerButton;
 
     private LoginViewModel loginViewModel;
-    private final ServerConnection serverConnection;
-    private final Gson gson;
+    private ServerConnection serverConnection;
+    private Gson gson;
 
-    public LoginView(ServerConnection serverConnection, Gson gson) {
-        this.serverConnection = serverConnection;
-        this.gson = gson;
-    }
+//    public LoginView(ServerConnection serverConnection, Gson gson) {
+//        this.serverConnection = serverConnection;
+//        this.gson = gson;
+//    }
+
+    public LoginView() {}
 
     @FXML
     private void initialize() {
+        this.serverConnection = SceneManager.getServerConnection();
+        this.gson = SceneManager.getGson();
+
         if (loginViewModel == null) {
             loginViewModel = new LoginViewModel(serverConnection, gson);
         }
@@ -50,21 +56,21 @@ public class LoginView {
                 if (isError) {
                     showAlert("Login Error", newValue, Alert.AlertType.ERROR);
                 } else {
-                    SceneManager.showMainView();
+                    SceneManager.showDashboard();
                 }
             }
         });
     }
 
-    public LoginView() {
-        if (loginViewModel.authenticate()) {
-            SceneManager.showMainView();
-        }
-    }
+//    public LoginView() {
+//        if (loginViewModel.authenticate()) {
+//            SceneManager.showMainView();
+//        }
+//    }
 
     private void handleLogin() {
         if (loginViewModel.authenticate()) {
-            SceneManager.showMainView();
+            SceneManager.showDashboard();
         }
     }
 

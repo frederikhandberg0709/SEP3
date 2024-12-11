@@ -38,6 +38,14 @@ public class SceneManager {
         gson = gson;
     }
 
+    public static ServerConnection getServerConnection() {
+        return serverConnection;
+    }
+
+    public static Gson getGson() {
+        return gson;
+    }
+
     public static void showRegister() {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/Register.fxml"));
