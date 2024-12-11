@@ -1,3 +1,4 @@
+/*
 package via.sep.restful_server.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,3 +13,4 @@ public interface FormRepository extends JpaRepository<Forms, Long> {
 
     Optional<Forms> findByFormID(Long formID);
 }
+*/

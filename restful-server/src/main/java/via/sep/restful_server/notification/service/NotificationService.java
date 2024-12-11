@@ -11,7 +11,7 @@ import via.sep.restful_server.dto.AgentDTO;
 import via.sep.restful_server.dto.BookingDTO;
 import via.sep.restful_server.dto.BookmarkDTO;
 import via.sep.restful_server.dto.PropertyDTO;
-import via.sep.restful_server.model.Forms;
+//import via.sep.restful_server.model.Forms;
 import via.sep.restful_server.notification.dto.NotificationDTO;
 import via.sep.restful_server.notification.dto.PriceChangeNotificationDTO;
 import via.sep.restful_server.notification.dto.PropertyNotificationDTO;
@@ -135,8 +135,8 @@ public class NotificationService {
             log.error("Failed to send notification", e);
         }
     }
-    public void notifyFormSubmitted(Forms form, String formId) {
-        NotificationDTO notification = notificationMapper.toFormNotification(form, "SUBMITTED", formId);
-        sendNotification(notification);
-    }
+//    public void notifyFormSubmitted(Forms form, String formId) {
+//        NotificationDTO notification = notificationMapper.toFormNotification(form, "SUBMITTED", formId);
+//        sendNotification(notification);
+//    }
 }

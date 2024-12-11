@@ -1,3 +1,4 @@
+/*
 package via.sep.restful_server.model;
 
 import jakarta.persistence.*;
@@ -65,3 +66,4 @@ public class Forms {
 
     private String description;
 }
+*/
