@@ -1,10 +1,12 @@
 package via.sep.gui.Model;
 
 
+import com.google.gson.Gson;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import via.sep.gui.Server.ServerConnection;
 import via.sep.gui.View.CreateView;
 import via.sep.gui.View.EditView;
 import via.sep.gui.View.LoginView;
@@ -20,9 +22,19 @@ import java.io.IOException;
 
 public class SceneManager {
     private static Stage primaryStage;
+    private static ServerConnection serverConnection;
+    private static Gson gson;
 
     public static void setPrimaryStage(Stage stage) {
         primaryStage = stage;
+    }
+
+    public static void setServerConnection(ServerConnection connection) {
+        serverConnection = connection;
+    }
+
+    public static void setGson(Gson gsonInstance) {
+        gson = gson;
     }
 
     public static void showRegister() {
@@ -31,7 +43,7 @@ public class SceneManager {
             Parent root = loader.load();
 
             RegisterView registerView = loader.getController();
-            RegisterViewModel registerViewModel = new RegisterViewModel();
+            RegisterViewModel registerViewModel = new RegisterViewModel(serverConnection, gson);
             registerView.setViewModel(registerViewModel);
 
             primaryStage.setScene(new Scene(root));
@@ -48,7 +60,7 @@ public class SceneManager {
 
 
             LoginView loginView = loader.getController();
-            LoginViewModel loginViewModel = new LoginViewModel();
+            LoginViewModel loginViewModel = new LoginViewModel(serverConnection, gson);
             loginView.setViewModel(loginViewModel);
 
             primaryStage.setScene(new Scene(root));

@@ -7,7 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ServerConnection {
-
     private String serverUrl;
 
     public ServerConnection() {
