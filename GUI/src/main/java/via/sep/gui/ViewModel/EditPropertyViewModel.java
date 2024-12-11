@@ -11,7 +11,7 @@ import via.sep.gui.Model.dto.PropertyDTO;
 
 import java.math.BigDecimal;
 
-public class EditViewModel {
+public class EditPropertyViewModel {
     private final StringProperty address = new SimpleStringProperty();
     private final StringProperty propertyType = new SimpleStringProperty();
     private final StringProperty numBathrooms = new SimpleStringProperty();
@@ -36,7 +36,7 @@ public class EditViewModel {
     private final PropertyService propertyService;
     private Long propertyId;
 
-    public EditViewModel(PropertyService propertyService) {
+    public EditPropertyViewModel(PropertyService propertyService) {
         this.propertyService = propertyService;
     }
 

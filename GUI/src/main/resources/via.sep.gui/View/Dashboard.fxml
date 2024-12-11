@@ -90,8 +90,4 @@
             <Label fx:id="statusLabel" styleClass="status-label" />
         </HBox>
     </VBox>
-
-<!--    <stylesheets>-->
-<!--        <String fx:value="../CSS/dashboard.css" />-->
-<!--    </stylesheets>-->
 </AnchorPane>

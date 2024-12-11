@@ -10,15 +10,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import via.sep.gui.Model.domain.Property;
 import via.sep.gui.Server.ServerConnection;
-import via.sep.gui.View.CreateView;
-import via.sep.gui.View.EditView;
+import via.sep.gui.View.CreatePropertyView;
+import via.sep.gui.View.EditPropertyView;
 import via.sep.gui.View.LoginView;
 import via.sep.gui.View.RegisterView;
 import via.sep.gui.ViewModel.LoginViewModel;
 import via.sep.gui.ViewModel.RegisterViewModel;
 import via.sep.gui.ViewModel.DashboardViewModel;
-import via.sep.gui.ViewModel.CreateViewModel;
-import via.sep.gui.ViewModel.EditViewModel;
+import via.sep.gui.ViewModel.CreatePropertyViewModel;
+import via.sep.gui.ViewModel.EditPropertyViewModel;
 import via.sep.gui.View.DashboardView;
 
 import java.io.IOException;
@@ -118,12 +118,12 @@ public class SceneManager {
 
     public static void showCreateProperty() {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/Create.fxml"));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/CreateProperty.fxml"));
             Parent root = loader.load();
 
-            CreateView createView = loader.getController();
+            CreatePropertyView createView = loader.getController();
             PropertyService propertyService = new PropertyService(serverConnection, gson);
-            CreateViewModel createViewModel = new CreateViewModel(propertyService);
+            CreatePropertyViewModel createViewModel = new CreatePropertyViewModel(propertyService);
             createView.setViewModel(createViewModel);
 
             primaryStage.setScene(new Scene(root));
@@ -135,12 +135,12 @@ public class SceneManager {
 
     public static void showEditProperty(Property property) {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/Edit.fxml"));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/EditProperty.fxml"));
             Parent root = loader.load();
 
-            EditView editView = loader.getController();
+            EditPropertyView editView = loader.getController();
             PropertyService propertyService = new PropertyService(serverConnection, gson);
-            EditViewModel editViewModel = new EditViewModel(propertyService);
+            EditPropertyViewModel editViewModel = new EditPropertyViewModel(propertyService);
             editViewModel.loadProperty(property);
             editView.setViewModel(editViewModel);
 

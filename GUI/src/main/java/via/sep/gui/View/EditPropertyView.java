@@ -3,11 +3,9 @@ package via.sep.gui.View;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import via.sep.gui.ViewModel.CreateViewModel;
+import via.sep.gui.ViewModel.EditPropertyViewModel;
 
-import java.util.function.Consumer;
-
-public class CreateView {
+public class EditPropertyView {
     @FXML private TextField addressField;
     @FXML private ComboBox<String> propertyTypeField;
     @FXML private TextField numBathroomsField;
@@ -30,11 +28,12 @@ public class CreateView {
     @FXML private CheckBox hasElevatorField;
     @FXML private CheckBox hasBalconyField;
 
-    @FXML private Button createButton;
+    // UI elements
+    @FXML private Button applyChangesButton;
     @FXML private Button cancelButton;
     @FXML private Label errorLabel;
 
-    private CreateViewModel viewModel;
+    private EditPropertyViewModel viewModel;
 
     @FXML
     private void initialize() {
@@ -45,17 +44,12 @@ public class CreateView {
         setupDecimalValidation(floorAreaField);
         setupDecimalValidation(priceField);
         setupDecimalValidation(lotSizeField);
+        setupNumericValidation(floorNumberField);
 
         propertyTypeField.getItems().addAll("House", "Apartment");
         propertyTypeField.valueProperty().addListener((obs, oldVal, newVal) -> updatePropertyTypeFields(newVal));
 
-        createButton.setOnAction(event -> {
-            boolean success = viewModel.createProperty();
-            if (success) {
-                // Handle successful creation (e.g., close window or clear fields)
-            }
-        });
-
+        applyChangesButton.setOnAction(event -> saveChanges());
         cancelButton.setOnAction(event -> viewModel.clearFields());
     }
 
@@ -67,34 +61,6 @@ public class CreateView {
             houseFields.setVisible(false);
             apartmentFields.setVisible(true);
         }
-    }
-
-    public void setViewModel(CreateViewModel viewModel) {
-        this.viewModel = viewModel;
-
-        // Bind all fields
-        addressField.textProperty().bindBidirectional(viewModel.addressProperty());
-        propertyTypeField.valueProperty().bindBidirectional(viewModel.propertyTypeProperty());
-        numBathroomsField.textProperty().bindBidirectional(viewModel.numBathroomsProperty());
-        numBedroomsField.textProperty().bindBidirectional(viewModel.numBedroomsProperty());
-        numFloorsField.textProperty().bindBidirectional(viewModel.numFloorsProperty());
-        floorAreaField.textProperty().bindBidirectional(viewModel.floorAreaProperty());
-        priceField.textProperty().bindBidirectional(viewModel.priceProperty());
-        yearBuiltField.textProperty().bindBidirectional(viewModel.yearBuiltProperty());
-        descriptionField.textProperty().bindBidirectional(viewModel.descriptionProperty());
-
-        // House specific bindings
-        lotSizeField.textProperty().bindBidirectional(viewModel.lotSizeProperty());
-        hasGarageField.selectedProperty().bindBidirectional(viewModel.hasGarageProperty());
-
-        // Apartment specific bindings
-        floorNumberField.textProperty().bindBidirectional(viewModel.floorNumberProperty());
-        buildingNameField.textProperty().bindBidirectional(viewModel.buildingNameProperty());
-        hasElevatorField.selectedProperty().bindBidirectional(viewModel.hasElevatorProperty());
-        hasBalconyField.selectedProperty().bindBidirectional(viewModel.hasBalconyProperty());
-
-        // Error message binding
-        errorLabel.textProperty().bind(viewModel.errorMessageProperty());
     }
 
     private void setupNumericValidation(TextField field) {
@@ -111,5 +77,48 @@ public class CreateView {
                 field.setText(oldVal);
             }
         });
+    }
+
+    private void saveChanges() {
+        boolean success = viewModel.saveChanges();
+        if (success) {
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Property updated successfully");
+        }
+    }
+
+    private void showAlert(Alert.AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public void setViewModel(EditPropertyViewModel viewModel) {
+        this.viewModel = viewModel;
+
+        // Bind basic property fields
+        addressField.textProperty().bindBidirectional(viewModel.addressProperty());
+        propertyTypeField.valueProperty().bindBidirectional(viewModel.propertyTypeProperty());
+        numBathroomsField.textProperty().bindBidirectional(viewModel.numBathroomsProperty());
+        numBedroomsField.textProperty().bindBidirectional(viewModel.numBedroomsProperty());
+        numFloorsField.textProperty().bindBidirectional(viewModel.numFloorsProperty());
+        floorAreaField.textProperty().bindBidirectional(viewModel.floorAreaProperty());
+        priceField.textProperty().bindBidirectional(viewModel.priceProperty());
+        yearBuiltField.textProperty().bindBidirectional(viewModel.yearBuiltProperty());
+        descriptionField.textProperty().bindBidirectional(viewModel.descriptionProperty());
+
+        // Bind house specific fields
+        lotSizeField.textProperty().bindBidirectional(viewModel.lotSizeProperty());
+        hasGarageField.selectedProperty().bindBidirectional(viewModel.hasGarageProperty());
+
+        // Bind apartment specific fields
+        floorNumberField.textProperty().bindBidirectional(viewModel.floorNumberProperty());
+        buildingNameField.textProperty().bindBidirectional(viewModel.buildingNameProperty());
+        hasElevatorField.selectedProperty().bindBidirectional(viewModel.hasElevatorProperty());
+        hasBalconyField.selectedProperty().bindBidirectional(viewModel.hasBalconyProperty());
+
+        // Bind error message
+        errorLabel.textProperty().bind(viewModel.errorMessageProperty());
     }
 }

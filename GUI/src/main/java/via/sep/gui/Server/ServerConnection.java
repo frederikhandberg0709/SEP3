@@ -1,11 +1,10 @@
 package via.sep.gui.Server;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
+import com.google.gson.Gson;
+import via.sep.gui.Model.SessionManager;
+import via.sep.gui.Model.dto.LoginRequestDTO;
+
 import java.net.URI;
-import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -13,10 +12,16 @@ import java.net.http.HttpResponse;
 public class ServerConnection {
     private String serverUrl;
     private final HttpClient httpClient;
+    private final SessionManager sessionManager;
 
     public ServerConnection() {
         this.serverUrl = "http://localhost:8080/api";
         this.httpClient = HttpClient.newHttpClient();
+        this.sessionManager = SessionManager.getInstance();
+    }
+
+    private String getAuthToken() {
+        return sessionManager.getAuthToken();
     }
 
     public String sendGetRequest(String endpoint) throws Exception {
@@ -33,10 +38,51 @@ public class ServerConnection {
         }
     }
 
+    public String loginRequest(String username, String password) throws Exception {
+        LoginRequestDTO loginRequest = new LoginRequestDTO(username, password);
+        String jsonInputString = new Gson().toJson(loginRequest);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/users/login"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonInputString))
+                .build();
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == 200) {
+            return response.body();
+        } else {
+            throw new Exception("Login failed with response code: " + response.statusCode());
+        }
+    }
+
+    public String registerRequest(String jsonInputString) throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/users/register"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonInputString))
+                .build();
+
+        System.out.println("Sending registration request to: " + serverUrl + "/users/register");
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == 200 || response.statusCode() == 201) {
+            return response.body();
+        } else {
+            throw new Exception("Registration failed with response code: " + response.statusCode()
+                    + ", Response body: " + response.body());
+        }
+    }
+
     public String sendPostRequest(String endpoint, String jsonInputString) throws Exception {
+        if (!sessionManager.isLoggedIn() || !sessionManager.isAdmin()) {
+            throw new Exception("Unauthorized: Must be logged in as admin");
+        }
+
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(serverUrl + endpoint))
                 .header("Content-Type", "application/json")
+                .header("Authorization", "Bearer " + getAuthToken())
                 .POST(HttpRequest.BodyPublishers.ofString(jsonInputString))
                 .build();
 
@@ -49,9 +95,14 @@ public class ServerConnection {
     }
 
     public String sendPutRequest(String endpoint, String jsonInputString) throws Exception {
+        if (!sessionManager.isLoggedIn() || !sessionManager.isAdmin()) {
+            throw new Exception("Unauthorized: Must be logged in as admin");
+        }
+
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(serverUrl + endpoint))
                 .header("Content-Type", "application/json")
+                .header("Authorization", "Bearer " + getAuthToken())
                 .PUT(HttpRequest.BodyPublishers.ofString(jsonInputString))
                 .build();
 
@@ -64,8 +115,13 @@ public class ServerConnection {
     }
 
     public void sendDeleteRequest(String endpoint) throws Exception {
+        if (!sessionManager.isLoggedIn() || !sessionManager.isAdmin()) {
+            throw new Exception("Unauthorized: Must be logged in as admin");
+        }
+
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(serverUrl + endpoint))
+                .header("Authorization", "Bearer " + getAuthToken())
                 .DELETE()
                 .build();
 
@@ -74,98 +130,4 @@ public class ServerConnection {
             throw new Exception("DELETE request failed with response code: " + response.statusCode());
         }
     }
-
-//    public ServerConnection() {
-//        this.serverUrl = "http://localhost:8080/api";
-//    }
-//
-//    public String sendGetRequest(String endpoint) throws Exception {
-//        URL url = new URL(serverUrl + endpoint);
-//        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//        connection.setRequestMethod("GET");
-//
-//        int responseCode = connection.getResponseCode();
-//        if (responseCode == HttpURLConnection.HTTP_OK) {
-//            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-//            String inputLine;
-//            StringBuilder response = new StringBuilder();
-//
-//            while ((inputLine = in.readLine()) != null) {
-//                response.append(inputLine);
-//            }
-//            in.close();
-//            return response.toString();
-//        } else {
-//            throw new Exception("GET request failed with response code: " + responseCode);
-//        }
-//    }
-//
-//    public String sendPostRequest(String endpoint, String jsonInputString) throws Exception {
-//        URL url = new URL(serverUrl + endpoint);
-//        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//        connection.setRequestMethod("POST");
-//        connection.setRequestProperty("Content-Type", "application/json; utf-8");
-//        connection.setRequestProperty("Accept", "application/json");
-//        connection.setDoOutput(true);
-//
-//        try (OutputStream os = connection.getOutputStream()) {
-//            byte[] input = jsonInputString.getBytes("utf-8");
-//            os.write(input, 0, input.length);
-//        }
-//
-//        int responseCode = connection.getResponseCode();
-//        if (responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_CREATED) {
-//            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-//            String inputLine;
-//            StringBuilder response = new StringBuilder();
-//
-//            while ((inputLine = in.readLine()) != null) {
-//                response.append(inputLine);
-//            }
-//            in.close();
-//            return response.toString();
-//        } else {
-//            throw new Exception("POST request failed with response code: " + responseCode);
-//        }
-//    }
-//
-//    public String sendPutRequest(String endpoint, String jsonInputString) throws Exception {
-//        URL url = new URL(serverUrl + endpoint);
-//        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//        connection.setRequestMethod("PUT");
-//        connection.setRequestProperty("Content-Type", "application/json; utf-8");
-//        connection.setRequestProperty("Accept", "application/json");
-//        connection.setDoOutput(true);
-//
-//        try (OutputStream os = connection.getOutputStream()) {
-//            byte[] input = jsonInputString.getBytes("utf-8");
-//            os.write(input, 0, input.length);
-//        }
-//
-//        int responseCode = connection.getResponseCode();
-//        if (responseCode == HttpURLConnection.HTTP_OK) {
-//            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-//            String inputLine;
-//            StringBuilder response = new StringBuilder();
-//
-//            while ((inputLine = in.readLine()) != null) {
-//                response.append(inputLine);
-//            }
-//            in.close();
-//            return response.toString();
-//        } else {
-//            throw new Exception("PUT request failed with response code: " + responseCode);
-//        }
-//    }
-//
-//    public void sendDeleteRequest(String endpoint) throws Exception {
-//        URL url = new URL(serverUrl + endpoint);
-//        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//        connection.setRequestMethod("DELETE");
-//
-//        int responseCode = connection.getResponseCode();
-//        if (responseCode != HttpURLConnection.HTTP_NO_CONTENT && responseCode != HttpURLConnection.HTTP_OK) {
-//            throw new Exception("DELETE request failed with response code: " + responseCode);
-//        }
-//    }
 }

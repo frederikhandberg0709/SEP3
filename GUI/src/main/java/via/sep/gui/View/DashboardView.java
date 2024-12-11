@@ -78,8 +78,8 @@ public class DashboardView {
 
     @FXML
     private void handleCreateProperty() {
+        viewModel.statusMessageProperty().set("Opening create property form...");
         viewModel.showCreateProperty();
-        updateStatusLabel("Opening create property form...");
     }
 
     @FXML

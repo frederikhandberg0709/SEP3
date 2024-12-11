@@ -15,7 +15,7 @@
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="916.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="via.sep.gui.View.EditView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="916.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="via.sep.gui.View.EditPropertyView">
    <children>
       <VBox spacing="15" padding="20">
          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Property">

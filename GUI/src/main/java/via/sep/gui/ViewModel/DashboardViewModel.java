@@ -33,7 +33,12 @@ public class DashboardViewModel {
     }
 
     public void showCreateProperty() {
-        SceneManager.showCreateProperty();
+        try {
+            SceneManager.showCreateProperty();
+            statusMessage.set("");
+        } catch (Exception e) {
+            errorMessage.set("Error opening create property form: " + e.getMessage());
+        }
     }
 
     public void showEditProperty(Property property) {

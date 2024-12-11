@@ -2,9 +2,7 @@ package via.sep.gui.Model;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import via.sep.gui.Model.dto.LoginRequestDTO;
-import via.sep.gui.Model.dto.LoginResponseDTO;
-import via.sep.gui.Model.dto.UserResponseDTO;
+import via.sep.gui.Model.dto.*;
 import via.sep.gui.Server.ServerConnection;
 
 import java.lang.reflect.Type;
@@ -21,10 +19,14 @@ public class UserService {
     }
 
     public LoginResponseDTO login(String username, String password) throws Exception {
-        LoginRequestDTO loginRequest = new LoginRequestDTO(username, password);
-        String json = gson.toJson(loginRequest);
-        String response = serverConnection.sendPostRequest(BASE_PATH + "/login", json);
+        String response = serverConnection.loginRequest(username, password);
         return gson.fromJson(response, LoginResponseDTO.class);
+    }
+
+    public RegisterResponseDTO register(RegisterRequestDTO registerRequest) throws Exception {
+        String jsonInputString = gson.toJson(registerRequest);
+        String response = serverConnection.registerRequest(jsonInputString);
+        return gson.fromJson(response, RegisterResponseDTO.class);
     }
 
     public List<UserResponseDTO> getAllUsers() throws Exception {
