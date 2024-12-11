@@ -1,10 +1,12 @@
 package via.sep.gui.View;
 
+import com.google.gson.Gson;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import via.sep.gui.Model.SceneManager;
+import via.sep.gui.Server.ServerConnection;
 import via.sep.gui.ViewModel.RegisterViewModel;
 
 /**
@@ -12,7 +14,6 @@ import via.sep.gui.ViewModel.RegisterViewModel;
  * Handles user input and interactions for user registration.
  */
 public class RegisterView {
-
     @FXML
     private TextField usernameRegister;
     @FXML
@@ -23,6 +24,13 @@ public class RegisterView {
     private Button goBackToLoginButton;
 
     private RegisterViewModel ViewModel;
+    private final ServerConnection serverConnection;
+    private final Gson gson;
+
+    public RegisterView(ServerConnection serverConnection, Gson gson) {
+        this.serverConnection = serverConnection;
+        this.gson = gson;
+    }
 
     /**
      * Sets the ViewModel for the Registration view.
@@ -38,10 +46,10 @@ public class RegisterView {
      */
     @FXML
     private void initialize() {
-
         if (ViewModel == null) {
-            ViewModel = new RegisterViewModel();
+            ViewModel = new RegisterViewModel(serverConnection, gson);
         }
+
         // Property-binding with the RegisterViewModel
         usernameRegister.textProperty().bindBidirectional(ViewModel.usernameProperty());
         passwordRegister.textProperty().bindBidirectional(ViewModel.passwordProperty());

@@ -1,131 +1,160 @@
 package via.sep.gui.ViewModel;
 
 import javafx.beans.InvalidationListener;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import via.sep.gui.Model.PropertyService;
+import via.sep.gui.Model.domain.Property;
+
+import java.math.BigDecimal;
 
 public class CreateViewModel {
     private final StringProperty address = new SimpleStringProperty();
     private final StringProperty propertyType = new SimpleStringProperty();
-    private final StringProperty bathroomNum = new SimpleStringProperty();
-    private final StringProperty roomsNum = new SimpleStringProperty();
-    private final StringProperty fullName = new SimpleStringProperty();
-    private final StringProperty floorNum = new SimpleStringProperty();
-    private final StringProperty status = new SimpleStringProperty();
-    private final StringProperty size = new SimpleStringProperty();
+    private final StringProperty numBathrooms = new SimpleStringProperty();
+    private final StringProperty numBedrooms = new SimpleStringProperty();
+    private final StringProperty numFloors = new SimpleStringProperty();
+    private final StringProperty floorArea = new SimpleStringProperty();
     private final StringProperty price = new SimpleStringProperty();
+    private final StringProperty yearBuilt = new SimpleStringProperty();
+    private final StringProperty description = new SimpleStringProperty();
 
-    private final PropertyService propertyService = new PropertyService();
+    // House specific
+    private final StringProperty lotSize = new SimpleStringProperty();
+    private final BooleanProperty hasGarage = new SimpleBooleanProperty(false);
 
-    public StringProperty addressProperty() {
-        return address;
+    // Apartment specific
+    private final StringProperty floorNumber = new SimpleStringProperty();
+    private final StringProperty buildingName = new SimpleStringProperty();
+    private final BooleanProperty hasElevator = new SimpleBooleanProperty(false);
+    private final BooleanProperty hasBalcony = new SimpleBooleanProperty(false);
+
+    private final StringProperty errorMessage = new SimpleStringProperty();
+    private final PropertyService propertyService;
+
+    public CreateViewModel(PropertyService propertyService) {
+        this.propertyService = propertyService;
+
+        propertyType.set("Apartment");
     }
 
-    public StringProperty propertyTypeProperty() {
-        return propertyType;
+    public StringProperty addressProperty() { return address; }
+    public StringProperty propertyTypeProperty() { return propertyType; }
+    public StringProperty numBathroomsProperty() { return numBathrooms; }
+    public StringProperty numBedroomsProperty() { return numBedrooms; }
+    public StringProperty numFloorsProperty() { return numFloors; }
+    public StringProperty floorAreaProperty() { return floorArea; }
+    public StringProperty priceProperty() { return price; }
+    public StringProperty yearBuiltProperty() { return yearBuilt; }
+    public StringProperty descriptionProperty() { return description; }
+    public StringProperty lotSizeProperty() { return lotSize; }
+    public BooleanProperty hasGarageProperty() { return hasGarage; }
+    public StringProperty floorNumberProperty() { return floorNumber; }
+    public StringProperty buildingNameProperty() { return buildingName; }
+    public BooleanProperty hasElevatorProperty() { return hasElevator; }
+    public BooleanProperty hasBalconyProperty() { return hasBalcony; }
+    public StringProperty errorMessageProperty() { return errorMessage; }
+
+    public boolean createProperty() {
+        try {
+            // Validate required fields
+            if (!validateRequiredFields()) {
+                return false;
+            }
+
+            // Parse numeric values
+            Integer bathrooms = parseInteger(numBathrooms.get(), "Number of bathrooms");
+            Integer bedrooms = parseInteger(numBedrooms.get(), "Number of bedrooms");
+            Integer floors = parseInteger(numFloors.get(), "Number of floors");
+            BigDecimal area = parseBigDecimal(floorArea.get(), "Floor area");
+            BigDecimal propertyPrice = parseBigDecimal(price.get(), "Price");
+            Integer year = parseInteger(yearBuilt.get(), "Year built");
+
+            // Create property
+            Property createdProperty = propertyService.createProperty(
+                    address.get(),
+                    propertyType.get(),
+                    bathrooms,
+                    bedrooms,
+                    floors,
+                    area,
+                    propertyPrice,
+                    year,
+                    description.get()
+            );
+
+            if (createdProperty != null && createdProperty.getPropertyId() != null) {
+                clearFields();
+                errorMessage.set("Property created successfully!");
+                return true;
+            } else {
+                errorMessage.set("Failed to create property");
+                return false;
+            }
+
+        } catch (NumberFormatException e) {
+            errorMessage.set("Please enter valid numbers for numeric fields");
+            return false;
+        } catch (Exception e) {
+            errorMessage.set("Error creating property: " + e.getMessage());
+            return false;
+        }
     }
 
-    public StringProperty bathroomNumProperty() {
-        return bathroomNum;
+    private boolean validateRequiredFields() {
+        if (isNullOrEmpty(address.get()) ||
+                isNullOrEmpty(propertyType.get()) ||
+                isNullOrEmpty(numBathrooms.get()) ||
+                isNullOrEmpty(numBedrooms.get()) ||
+                isNullOrEmpty(numFloors.get()) ||
+                isNullOrEmpty(floorArea.get()) ||
+                isNullOrEmpty(price.get()) ||
+                isNullOrEmpty(yearBuilt.get())) {
+
+            errorMessage.set("Please fill in all required fields");
+            return false;
+        }
+        return true;
     }
 
-    public StringProperty roomsNumProperty() {
-        return roomsNum;
+    private boolean isNullOrEmpty(String value) {
+        return value == null || value.trim().isEmpty();
     }
 
-    public StringProperty fullNameProperty() {
-        return fullName;
+    private Integer parseInteger(String value, String fieldName) {
+        try {
+            return Integer.parseInt(value.trim());
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Invalid " + fieldName);
+        }
     }
 
-    public StringProperty floorNumProperty() {
-        return floorNum;
+    private BigDecimal parseBigDecimal(String value, String fieldName) {
+        try {
+            return new BigDecimal(value.trim());
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Invalid " + fieldName);
+        }
     }
 
-    public StringProperty statusProperty() {
-        return status;
-    }
-
-    public StringProperty sizeProperty() {
-        return size;
-    }
-
-    public StringProperty priceProperty() {
-        return price;
-    }
-
-    public void createProperty() {
-        String addressValue = address.get();
-        String propertyTypeValue = propertyType.get();
-        int bathroomNumValue = Integer.parseInt(bathroomNum.get());
-        int roomsNumValue = Integer.parseInt(roomsNum.get());
-        String fullNameValue = fullName.get();
-        int floorNumValue = Integer.parseInt(floorNum.get());
-        String statusValue = status.get();
-        double sizeValue = Double.parseDouble(size.get());
-        double priceValue = Double.parseDouble(price.get());
-
-        propertyService.createProperty(addressValue, propertyTypeValue, bathroomNumValue, roomsNumValue, fullNameValue, floorNumValue, statusValue, sizeValue, priceValue);
-    }
-
-    public void cancelCreation() {
+    public void clearFields() {
         address.set("");
-        propertyType.set("");
-        bathroomNum.set("");
-        roomsNum.set("");
-        fullName.set("");
-        floorNum.set("");
-        status.set("");
-        size.set("");
+        numBathrooms.set("");
+        numBedrooms.set("");
+        numFloors.set("");
+        floorArea.set("");
         price.set("");
-    }
-
-    public void addListener(InvalidationListener listener) {
-        address.addListener(listener);
-        propertyType.addListener(listener);
-        bathroomNum.addListener(listener);
-        roomsNum.addListener(listener);
-        fullName.addListener(listener);
-        floorNum.addListener(listener);
-        status.addListener(listener);
-        size.addListener(listener);
-        price.addListener(listener);
-    }
-
-    public void removeListener(InvalidationListener listener) {
-        address.removeListener(listener);
-        propertyType.removeListener(listener);
-        bathroomNum.removeListener(listener);
-        roomsNum.removeListener(listener);
-        fullName.removeListener(listener);
-        floorNum.removeListener(listener);
-        status.removeListener(listener);
-        size.removeListener(listener);
-        price.removeListener(listener);
-    }
-
-    public void addListener(ChangeListener<? super String> listener) {
-        address.addListener(listener);
-        propertyType.addListener(listener);
-        bathroomNum.addListener(listener);
-        roomsNum.addListener(listener);
-        fullName.addListener(listener);
-        floorNum.addListener(listener);
-        status.addListener(listener);
-        size.addListener(listener);
-        price.addListener(listener);
-    }
-
-    public void removeListener(ChangeListener<? super String> listener) {
-        address.removeListener(listener);
-        propertyType.removeListener(listener);
-        bathroomNum.removeListener(listener);
-        roomsNum.removeListener(listener);
-        fullName.removeListener(listener);
-        floorNum.removeListener(listener);
-        status.removeListener(listener);
-        size.removeListener(listener);
-        price.removeListener(listener);
+        yearBuilt.set("");
+        description.set("");
+        lotSize.set("");
+        hasGarage.set(false);
+        floorNumber.set("");
+        buildingName.set("");
+        hasElevator.set(false);
+        hasBalcony.set(false);
+        errorMessage.set("");
     }
 }

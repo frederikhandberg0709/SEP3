@@ -1,137 +1,91 @@
 package via.sep.gui.View;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import via.sep.gui.ViewModel.EditViewModel;
 
 import java.util.function.Consumer;
 
 public class EditView {
     @FXML private TextField addressField;
-    @FXML private TextField propertyTypeField;
-    @FXML private TextField bathroomNumField;
-    @FXML private TextField roomsNumField;
-    @FXML private TextField fullNameField;
-    @FXML private TextField floorNumField;
-    @FXML private TextField statusField;
-    @FXML private TextField sizeField;
+    @FXML private ComboBox<String> propertyTypeField;
+    @FXML private TextField numBathroomsField;
+    @FXML private TextField numBedroomsField;
+    @FXML private TextField numFloorsField;
+    @FXML private TextField floorAreaField;
     @FXML private TextField priceField;
+    @FXML private TextField yearBuiltField;
+    @FXML private TextArea descriptionField;
+
+    // House specific fields
+    @FXML private VBox houseFields;
+    @FXML private TextField lotSizeField;
+    @FXML private CheckBox hasGarageField;
+
+    // Apartment specific fields
+    @FXML private VBox apartmentFields;
+    @FXML private TextField floorNumberField;
+    @FXML private TextField buildingNameField;
+    @FXML private CheckBox hasElevatorField;
+    @FXML private CheckBox hasBalconyField;
+
+    // UI elements
     @FXML private Button applyChangesButton;
     @FXML private Button cancelButton;
+    @FXML private Label errorLabel;
 
-    private Consumer<PropertyData> onSaveCallback;
-    private Runnable onCancelCallback;
+    private EditViewModel viewModel;
 
     @FXML
     private void initialize() {
-        // Null checks to prevent NullPointerException
-        if (bathroomNumField != null)
-            setupNumericValidation(bathroomNumField);
-        if (roomsNumField != null)
-            setupNumericValidation(roomsNumField);
-        if (floorNumField != null)
-            setupNumericValidation(floorNumField);
-        if (sizeField != null)
-            setupNumericValidation(sizeField);
-        if (priceField != null)
-            setupNumericValidation(priceField);
+        setupNumericValidation(numBathroomsField);
+        setupNumericValidation(numBedroomsField);
+        setupNumericValidation(numFloorsField);
+        setupNumericValidation(yearBuiltField);
+        setupDecimalValidation(floorAreaField);
+        setupDecimalValidation(priceField);
+        setupDecimalValidation(lotSizeField);
+        setupNumericValidation(floorNumberField);
 
-        if (applyChangesButton != null)
-            applyChangesButton.setOnAction(event -> applyChanges());
+        propertyTypeField.getItems().addAll("House", "Apartment");
+        propertyTypeField.valueProperty().addListener((obs, oldVal, newVal) -> updatePropertyTypeFields(newVal));
 
-        if (cancelButton != null)
-            cancelButton.setOnAction(event -> cancelEdit());
-
+        applyChangesButton.setOnAction(event -> saveChanges());
+        cancelButton.setOnAction(event -> viewModel.clearFields());
     }
 
-    public void setCallbacks(Consumer<PropertyData> onSave, Runnable onCancel) {
-        this.onSaveCallback = onSave;
-        this.onCancelCallback = onCancel;
+    private void updatePropertyTypeFields(String propertyType) {
+        if ("House".equals(propertyType)) {
+            houseFields.setVisible(true);
+            apartmentFields.setVisible(false);
+        } else if ("Apartment".equals(propertyType)) {
+            houseFields.setVisible(false);
+            apartmentFields.setVisible(true);
+        }
     }
 
     private void setupNumericValidation(TextField field) {
-        field.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == null) {
-                field.setText("");
-                return;
-            }
-
-            if (!newValue.matches("\\d*(\\.\\d*)?")) {
-                field.setText(oldValue);
+        field.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null && !newVal.matches("\\d*")) {
+                field.setText(oldVal);
             }
         });
     }
 
-    private void applyChanges() {
-        try {
-            PropertyData data = validateAndCollectData();
-            if (data != null && onSaveCallback != null) {
-                onSaveCallback.accept(data);
-                showAlert(Alert.AlertType.INFORMATION, "Success", "Property updated successfully.");
+    private void setupDecimalValidation(TextField field) {
+        field.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null && !newVal.matches("\\d*\\.?\\d*")) {
+                field.setText(oldVal);
             }
-        } catch (ValidationException e) {
-            showAlert(Alert.AlertType.ERROR, "Validation Error", e.getMessage());
+        });
+    }
+
+    private void saveChanges() {
+        boolean success = viewModel.saveChanges();
+        if (success) {
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Property updated successfully");
         }
-    }
-
-    private PropertyData validateAndCollectData() throws ValidationException {
-        String address = getValidatedField(addressField, "Address");
-        String propertyType = getValidatedField(propertyTypeField, "Property Type");
-        int bathroomNum = getValidatedIntField(bathroomNumField, "Number of Bathrooms");
-        int roomsNum = getValidatedIntField(roomsNumField, "Number of Rooms");
-        String fullName = getValidatedField(fullNameField, "Full Name");
-        int floorNum = getValidatedIntField(floorNumField, "Floor Number");
-        String status = getValidatedField(statusField, "Status");
-        double size = getValidatedDoubleField(sizeField, "Size");
-        double price = getValidatedDoubleField(priceField, "Price");
-
-        return new PropertyData(address, propertyType, bathroomNum, roomsNum,
-                              fullName, floorNum, status, size, price);
-    }
-
-    private String getValidatedField(TextField field, String fieldName) throws ValidationException {
-        String value = field.getText().trim();
-        if (value.isEmpty()) {
-            throw new ValidationException(fieldName + " cannot be empty");
-        }
-        return value;
-    }
-
-    private int getValidatedIntField(TextField field, String fieldName) throws ValidationException {
-        try {
-            return Integer.parseInt(getValidatedField(field, fieldName));
-        } catch (NumberFormatException e) {
-            throw new ValidationException(fieldName + " must be a valid number");
-        }
-    }
-
-    private double getValidatedDoubleField(TextField field, String fieldName) throws ValidationException {
-        try {
-            return Double.parseDouble(getValidatedField(field, fieldName));
-        } catch (NumberFormatException e) {
-            throw new ValidationException(fieldName + " must be a valid decimal number");
-        }
-    }
-
-    private void cancelEdit() {
-        clearAllFields();
-        if (onCancelCallback != null) {
-            onCancelCallback.run();
-        }
-    }
-
-    private void clearAllFields() {
-        addressField.clear();
-        propertyTypeField.clear();
-        bathroomNumField.clear();
-        roomsNumField.clear();
-        fullNameField.clear();
-        floorNumField.clear();
-        statusField.clear();
-        sizeField.clear();
-        priceField.clear();
     }
 
     private void showAlert(Alert.AlertType type, String title, String message) {
@@ -142,60 +96,31 @@ public class EditView {
         alert.showAndWait();
     }
 
-    // Helper classes
-    public static class PropertyData {
-        private final String address;
-        private final String propertyType;
-        private final int bathroomNum;
-        private final int roomsNum;
-        private final String fullName;
-        private final int floorNum;
-        private final String status;
-        private final double size;
-        private final double price;
-
-        public PropertyData(String address, String propertyType, int bathroomNum,
-                          int roomsNum, String fullName, int floorNum,
-                          String status, double size, double price) {
-            this.address = address;
-            this.propertyType = propertyType;
-            this.bathroomNum = bathroomNum;
-            this.roomsNum = roomsNum;
-            this.fullName = fullName;
-            this.floorNum = floorNum;
-            this.status = status;
-            this.size = size;
-            this.price = price;
-        }
-
-        // Add getters for all fields
-        public String getAddress() { return address; }
-        public String getPropertyType() { return propertyType; }
-        public int getBathroomNum() { return bathroomNum; }
-        public int getRoomsNum() { return roomsNum; }
-        public String getFullName() { return fullName; }
-        public int getFloorNum() { return floorNum; }
-        public String getStatus() { return status; }
-        public double getSize() { return size; }
-        public double getPrice() { return price; }
-    }
-
-    private static class ValidationException extends Exception {
-        public ValidationException(String message) {
-            super(message);
-        }
-    }
-
-
     public void setViewModel(EditViewModel viewModel) {
+        this.viewModel = viewModel;
+
+        // Bind basic property fields
         addressField.textProperty().bindBidirectional(viewModel.addressProperty());
-        propertyTypeField.textProperty().bindBidirectional(viewModel.propertyTypeProperty());
-        bathroomNumField.textProperty().bindBidirectional(viewModel.bathroomNumProperty());
-        roomsNumField.textProperty().bindBidirectional(viewModel.roomsNumProperty());
-        fullNameField.textProperty().bindBidirectional(viewModel.fullNameProperty());
-        floorNumField.textProperty().bindBidirectional(viewModel.floorNumProperty());
-        statusField.textProperty().bindBidirectional(viewModel.statusProperty());
-        sizeField.textProperty().bindBidirectional(viewModel.sizeProperty());
+        propertyTypeField.valueProperty().bindBidirectional(viewModel.propertyTypeProperty());
+        numBathroomsField.textProperty().bindBidirectional(viewModel.numBathroomsProperty());
+        numBedroomsField.textProperty().bindBidirectional(viewModel.numBedroomsProperty());
+        numFloorsField.textProperty().bindBidirectional(viewModel.numFloorsProperty());
+        floorAreaField.textProperty().bindBidirectional(viewModel.floorAreaProperty());
         priceField.textProperty().bindBidirectional(viewModel.priceProperty());
+        yearBuiltField.textProperty().bindBidirectional(viewModel.yearBuiltProperty());
+        descriptionField.textProperty().bindBidirectional(viewModel.descriptionProperty());
+
+        // Bind house specific fields
+        lotSizeField.textProperty().bindBidirectional(viewModel.lotSizeProperty());
+        hasGarageField.selectedProperty().bindBidirectional(viewModel.hasGarageProperty());
+
+        // Bind apartment specific fields
+        floorNumberField.textProperty().bindBidirectional(viewModel.floorNumberProperty());
+        buildingNameField.textProperty().bindBidirectional(viewModel.buildingNameProperty());
+        hasElevatorField.selectedProperty().bindBidirectional(viewModel.hasElevatorProperty());
+        hasBalconyField.selectedProperty().bindBidirectional(viewModel.hasBalconyProperty());
+
+        // Bind error message
+        errorLabel.textProperty().bind(viewModel.errorMessageProperty());
     }
 }

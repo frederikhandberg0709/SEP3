@@ -1,4 +1,4 @@
-﻿@inject NavigationManager NavigationManager
+@inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthProvider
 @using Microsoft.AspNetCore.Components.Authorization
 @using RealEstateBlazor.Data.DTOs
@@ -80,7 +80,7 @@
                 </div>
             </EditForm>
         </Authorized>
-        
+
         <NotAuthorized>
             <div class="alert alert-warning mt-3">
                 Please log in to book an agent.
@@ -110,7 +110,7 @@
     private string errorMessage;
     private bool isLoading;
     private bool successMessageVisible;
-    
+
     protected override async Task OnInitializedAsync()
     {
         bookingModel.BookingDate = DateTime.Now;

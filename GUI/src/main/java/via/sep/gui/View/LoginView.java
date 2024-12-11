@@ -1,16 +1,18 @@
 package via.sep.gui.View;
 
+import com.google.gson.Gson;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import via.sep.gui.Server.ServerConnection;
 import via.sep.gui.ViewModel.LoginViewModel;
+import via.sep.gui.Model.SceneManager;
 
 /**
  * View for the login view. Handles user input and interactions for logging in.
  */
 public class LoginView {
-
     @FXML
     private TextField usernameField;
     @FXML
@@ -21,60 +23,59 @@ public class LoginView {
     private Button registerButton;
 
     private LoginViewModel loginViewModel;
+    private ServerConnection serverConnection;
+    private Gson gson;
 
+//    public LoginView(ServerConnection serverConnection, Gson gson) {
+//        this.serverConnection = serverConnection;
+//        this.gson = gson;
+//    }
 
-    /**
-     * Default constructor required by FXML.
-     */
-    public LoginView() {
-        // Default constructor
-    }
+    public LoginView() {}
 
-
-    /**
-     * Constructs a LoginView with the specified {@link LoginViewModel}.
-     *
-     * @param loginViewModel the {@link LoginViewModel} to use for login operations
-     */
-    public LoginView(LoginViewModel loginViewModel) {
-        this.loginViewModel = loginViewModel;
-    }
-
-    /**
-     * Initializes the View. Binds the UI fields to the view model properties and sets up event handlers.
-     */
     @FXML
     private void initialize() {
+        this.serverConnection = SceneManager.getServerConnection();
+        this.gson = SceneManager.getGson();
 
         if (loginViewModel == null) {
-            loginViewModel = new LoginViewModel();
+            loginViewModel = new LoginViewModel(serverConnection, gson);
         }
-        // Bind text fields to ViewModel properties
+
         usernameField.textProperty().bindBidirectional(loginViewModel.usernameProperty());
         passwordField.textProperty().bindBidirectional(loginViewModel.passwordProperty());
 
+        // Set up button handlers
         registerButton.setOnAction(event -> loginViewModel.showRegistration());
         loginButton.setOnAction(event -> handleLogin());
+
+        // Listen for login status changes
+        loginViewModel.loginStatusProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && !newValue.isEmpty()) {
+                boolean isError = !loginViewModel.authenticate();
+                if (isError) {
+                    showAlert("Login Error", newValue, Alert.AlertType.ERROR);
+                } else {
+                    SceneManager.showDashboard();
+                }
+            }
+        });
     }
 
-    /**
-     * Handles the login action. Calls the view model to authenticate the user and shows an alert if authentication fails.
-     */
+//    public LoginView() {
+//        if (loginViewModel.authenticate()) {
+//            SceneManager.showMainView();
+//        }
+//    }
+
     private void handleLogin() {
-        boolean success = loginViewModel.authenticate();
-        if (!success) {
-            showLoginAlert("Login Failed", "Invalid username or password");
+        if (loginViewModel.authenticate()) {
+            SceneManager.showDashboard();
         }
     }
 
-    /**
-     * Shows an alert dialog for login errors.
-     *
-     * @param title   the title of the alert
-     * @param message the message of the alert
-     */
-    private void showLoginAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+    private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
