@@ -49,6 +49,10 @@ public class DashboardViewModel {
         SceneManager.showBookingList();
     }
 
+    public void showAgentList() {
+        SceneManager.showAgentList();
+    }
+
     public void deleteProperty(Property property) {
         removeProperty(property);
     }

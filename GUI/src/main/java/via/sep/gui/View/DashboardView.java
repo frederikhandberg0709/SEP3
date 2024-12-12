@@ -15,6 +15,7 @@ public class DashboardView {
     @FXML private Button deletePropertyButton;
     @FXML private Button editPropertyButton;
     @FXML private Button bookingListButton;
+    @FXML private Button agentListButton;
     @FXML private Button refreshButton;
 
     @FXML private TextField searchField;
@@ -155,6 +156,12 @@ public class DashboardView {
     private void handleBookingList() {
         viewModel.showBookingList();
         viewModel.statusMessageProperty().set("Opening booking list...");
+    }
+
+    @FXML
+    private void handleAgentList() {
+        viewModel.showAgentList();
+        viewModel.statusMessageProperty().set("Opening agent list...");
     }
 
     @FXML

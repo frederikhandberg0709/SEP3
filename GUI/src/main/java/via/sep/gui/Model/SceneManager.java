@@ -190,4 +190,23 @@ public class SceneManager {
             throw new RuntimeException(e);
         }
     }
+
+    public static void showAgentList() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/AgentList.fxml"));
+            Parent root = loader.load();
+
+            AgentListView agentListView = loader.getController();
+            AgentService agentService = new AgentService(serverConnection, gson);
+            AgentListViewModel agentListViewModel = new AgentListViewModel(agentService);
+            agentListView.setViewModel(agentListViewModel);
+
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
