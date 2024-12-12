@@ -1,6 +1,8 @@
 package via.sep.restful_server.notification.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -12,14 +14,19 @@ import via.sep.restful_server.dto.BookingDTO;
 import via.sep.restful_server.dto.BookmarkDTO;
 import via.sep.restful_server.dto.PropertyDTO;
 //import via.sep.restful_server.model.Forms;
+import via.sep.restful_server.model.Bookmark;
+import via.sep.restful_server.model.Notification;
 import via.sep.restful_server.notification.dto.NotificationDTO;
 import via.sep.restful_server.notification.dto.PriceChangeNotificationDTO;
 import via.sep.restful_server.notification.dto.PropertyNotificationDTO;
 import via.sep.restful_server.notification.dto.PropertyUpdateNotificationDTO;
 import via.sep.restful_server.notification.mapper.NotificationMapper;
+import via.sep.restful_server.repository.BookmarkRepository;
+import via.sep.restful_server.repository.NotificationRepository;
 import via.sep.restful_server.service.JwtService;
 
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -27,6 +34,12 @@ public class NotificationService {
     private final WebClient webClient;
     private final NotificationMapper notificationMapper;
     private final JwtService jwtService;
+    @Autowired
+    private NotificationRepository notificationRepository;
+    @Autowired
+    private BookmarkRepository bookmarkRepository;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     public NotificationService(
             @Value("${notification.server.url}") String notificationBaseUrl,
@@ -39,6 +52,10 @@ public class NotificationService {
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
         this.jwtService = jwtService;
+    }
+
+    public List<Notification> getNotificationHistory(Long accountId) {
+        return notificationRepository.findByAccountIdOrderByTimestampDesc(accountId);
     }
 
     public void notifyPropertyCreated(PropertyDTO propertyDTO, String propertyId) {
@@ -74,6 +91,36 @@ public class NotificationService {
         String token = jwtService.generateToken("system", "ADMIN", 0L);
 
         try {
+            List<Bookmark> bookmarks = bookmarkRepository.findByProperty_PropertyId(Long.parseLong(priceChangeDTO.getPropertyId()));
+
+            for (Bookmark bookmark : bookmarks) {
+                Notification notification = new Notification();
+                notification.setAccountId(bookmark.getAccountId());
+                notification.setType("PRICE_CHANGE");
+                notification.setMessage(String.format("Price changed from %s to %s for property at %s",
+                        priceChangeDTO.getOldPrice(),
+                        priceChangeDTO.getNewPrice(),
+                        priceChangeDTO.getAddress()));
+                notification.setDetails(objectMapper.writeValueAsString(priceChangeDTO));
+                notification.setTimestamp(priceChangeDTO.getTimestamp());
+                notification.setRead(false);
+                notification.setReferenceId(priceChangeDTO.getPropertyId());
+
+                notificationRepository.save(notification);
+            }
+
+            Notification notification = new Notification();
+            notification.setAccountId(0L);
+            notification.setType("PRICE_CHANGE");
+            notification.setMessage(String.format("Price changed from %s to %s for property at %s",
+                    priceChangeDTO.getOldPrice(),
+                    priceChangeDTO.getNewPrice(),
+                    priceChangeDTO.getAddress()));
+            notification.setDetails(objectMapper.writeValueAsString(priceChangeDTO));
+            notification.setTimestamp(priceChangeDTO.getTimestamp());
+            notification.setRead(false);
+            notification.setReferenceId(priceChangeDTO.getPropertyId());
+
             priceChangeDTO.setTimestamp(priceChangeDTO.getTimestamp().truncatedTo(ChronoUnit.SECONDS));
 
             log.debug("Sending notification: {}", priceChangeDTO);

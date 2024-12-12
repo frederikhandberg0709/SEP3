@@ -1,8 +1,11 @@
 @page "/notifications"
 @using Microsoft.AspNetCore.Components.Authorization
 @using RealEstateBlazor.Data.DTOs
+@using RealEstateBlazor.Data.Models
 @using RealEstateBlazor.Services
+@using RealEstateBlazor.Services.Notifications
 @inject INotificationHub NotificationHub
+@inject INotificationService NotificationService
 @inject AuthenticationStateProvider AuthStateProvider
 @implements IAsyncDisposable
 @rendermode InteractiveServer
@@ -16,15 +19,35 @@
                 <h1>My Notifications</h1>
                 <p>You will receive notifications from the properties you have bookmarked.</p>
         
-                @if (!NotificationHub.IsConnected)
+                @*@if (!NotificationHub.IsConnected)
                 {
                     <div class="alert alert-warning" role="alert">
                         Connecting to notification service...
                     </div>
+                }*@
+
+                @if (!NotificationHub.IsConnected)
+                {
+                    <div class="alert alert-warning" role="alert">
+                        @if (!initialized)
+                        {
+                            <span>Initializing notification service...</span>
+                        }
+                        else
+                        {
+                            <span>Connecting to notification service... (Initialized but not connected)</span>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-success" role="alert">
+                        Connected to notification service
+                    </div>
                 }
 
                 <div class="notifications-list">
-                    @if (notifications.Any())
+                    @if (notifications.Any() || notificationHistory.Any())
                     {
                         @foreach (var notification in notifications.OrderByDescending(n => n.Timestamp))
                         {
@@ -54,12 +77,31 @@
                                             }
                                         </p>
                                     }
-                                    <small class="text-muted">@notification.Timestamp.ToLocalTime().ToString("g")</small>
+                                    else if (notification is PriceChangeNotificationDTO priceNotification)
+                                    {
+                                        <h5 class="card-title">Price Change: @priceNotification.Address</h5>
+                                        <p class="card-text">
+                                            Old Price: @priceNotification.OldPrice.ToString("C")<br/>
+                                            New Price: @priceNotification.NewPrice.ToString("C")<br/>
+                                        </p>
+                                    }
+                                    <small class="text-muted">@notification.Timestamp.ToLocalTime().AddHours(-1).ToString("g")</small>
+                                </div>
+                            </div>
+                        }
+                        
+                        @foreach (var notification in notificationHistory.OrderByDescending(n => n.Timestamp))
+                        {
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">@notification.Type</h5>
+                                    <p class="card-text">@notification.Message</p>
+                                    <small class="text-muted">@notification.Timestamp.ToLocalTime().AddHours(-1).ToString("g")</small>
                                 </div>
                             </div>
                         }
 
-                        @if (!notifications.Any())
+                        @if (!notifications.Any() && !notificationHistory.Any())
                         {
                             <div class="alert alert-info" role="alert">
                                 No notifications yet. When there are updates to your bookmarked properties, they'll appear here.
@@ -81,53 +123,79 @@
 
 @code {
     private List<INotification> notifications = new();
+    private List<NotificationHistory> notificationHistory = new();
     private string? errorMessage;
     private bool initialized = false;
-
-    /*protected override async Task OnInitializedAsync()
-    {
-        try
-        {
-            NotificationHub.OnPropertyNotificationReceived += HandlePropertyNotification;
-            NotificationHub.OnBookmarkNotificationReceived += HandleBookmarkNotification;
-        }
-        catch (Exception ex)
-        {
-            errorMessage = $"Error initializing notifications: {ex.Message}";
-        }
-    }*/
     
-    /*protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            var authState = await AuthStateProvider.GetAuthenticationStateAsync();
-            var user = authState.User;
-            
-            if (user.Identity?.IsAuthenticated == true)
+            try
             {
-                var token = user.FindFirst("Token")?.Value;
-                if (!string.IsNullOrEmpty(token) && !initialized)
+                var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+                var user = authState.User;
+                
+                if (user.Identity?.IsAuthenticated == true)
                 {
-                    initialized = true;
-                    await InitializeHub(token);
+                    var token = user.FindFirst("Token")?.Value;
+                    var accountIdClaim = user.FindFirst("AccountId")?.Value;
+                    
+                    if (!string.IsNullOrEmpty(token) && !initialized)
+                    {
+                        Console.WriteLine("Initializing hub conntection...");
+                        initialized = true;
+                        await InitializeHub(token);
+                        
+                        if (long.TryParse(accountIdClaim, out long accountId))
+                        {
+                            Console.WriteLine($"Loading notification history for account {accountId}");
+                            notificationHistory = await NotificationService.GetNotificationHistoryAsync(accountId);
+                            StateHasChanged();
+                        }
+                    }
+                    else if (string.IsNullOrEmpty(token))
+                    {
+                        Console.WriteLine("No token found in claims"); // Debug log
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("User is not authenticated");
                 }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
-    }*/
+    }
 
     private async Task InitializeHub(string token)
     {
         try
         {
-            await NotificationHub.InitializeAsync(token);
+            Console.WriteLine("Starting hub initialization...");
             NotificationHub.OnPropertyNotificationReceived += HandlePropertyNotification;
             NotificationHub.OnBookmarkNotificationReceived += HandleBookmarkNotification;
+            NotificationHub.OnPriceChangeNotificationReceived += HandlePriceChangeNotification;
             NotificationHub.OnConnectionStateChanged += HandleConnectionStateChanged;
+            
+            await NotificationHub.InitializeAsync(token);
+            Console.WriteLine("Hub initialized successfully");
+            
+            StateHasChanged();
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error initializing notification hub: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
+            }
+            initialized = false; // Reset initialization flag on error
+            StateHasChanged();
         }
     }
     
@@ -142,10 +210,30 @@
         notifications.Insert(0, notification);
         StateHasChanged();
     }
-
-    private void HandleConnectionStateChanged(bool connected)
+    
+    private void HandlePriceChangeNotification(PriceChangeNotificationDTO notification)
     {
-        InvokeAsync(StateHasChanged);
+        Console.WriteLine($"Handling price change in Notifications page: Property {notification.PropertyId}");
+        notifications.Insert(0, notification);
+        InvokeAsync(StateHasChanged);  // Make sure UI updates
+    }
+
+    private async void HandleConnectionStateChanged(bool connected)
+    {
+        try
+        {
+            Console.WriteLine($"Connection state changed: {connected}");
+            
+            await InvokeAsync(() =>
+            {
+                InvokeAsync(StateHasChanged);
+            });
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error handling connection state change: {ex.Message}");
+        }
     }
     
     public async ValueTask DisposeAsync()
@@ -154,6 +242,7 @@
         {
             NotificationHub.OnPropertyNotificationReceived -= HandlePropertyNotification;
             NotificationHub.OnBookmarkNotificationReceived -= HandleBookmarkNotification;
+            NotificationHub.OnPriceChangeNotificationReceived -= HandlePriceChangeNotification;
             NotificationHub.OnConnectionStateChanged -= HandleConnectionStateChanged;
             
             await NotificationHub.DisposeAsync();
@@ -165,13 +254,5 @@
     .notifications-list {
         max-width: 800px;
         margin: 0 auto;
-    }
-
-    .card {
-        transition: transform 0.2s;
-    }
-
-    .card:hover {
-        transform: translateY(-2px);
     }
 </style>

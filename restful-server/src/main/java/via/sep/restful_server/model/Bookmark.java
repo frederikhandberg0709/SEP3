@@ -31,4 +31,8 @@ public class Bookmark {
     @Column(name = "updated_at", nullable = false)
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    public Long getAccountId() {
+        return account.getAccountId();
+    }
 }

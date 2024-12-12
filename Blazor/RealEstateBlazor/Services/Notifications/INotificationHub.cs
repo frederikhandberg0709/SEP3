@@ -10,4 +10,5 @@ public interface INotificationHub : IAsyncDisposable
     event Action<bool> OnConnectionStateChanged;
     event Action<BookmarkNotificationDTO>? OnBookmarkNotificationReceived;
     event Action<PropertyNotificationDTO>? OnPropertyNotificationReceived;
+    event Action<PriceChangeNotificationDTO>? OnPriceChangeNotificationReceived;
 }
