@@ -82,6 +82,27 @@ public class ServerConnection {
         }
     }
 
+    public String sendPostRequestMultipart(String endpoint, byte[] multipartData, String boundary) throws Exception {
+        if (!sessionManager.isLoggedIn() || !sessionManager.isAdmin()) {
+            throw new Exception("Unauthorized: Must be logged in as admin");
+        }
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + endpoint))
+                .header("Content-Type", "multipart/form-data; boundary=" + boundary)
+                .header("Authorization", "Bearer " + getAuthToken())
+                .POST(HttpRequest.BodyPublishers.ofByteArray(multipartData))
+                .build();
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == 200 || response.statusCode() == 201) {
+            return response.body();
+        } else {
+            throw new Exception("POST request failed with response code: " + response.statusCode() +
+                    " Response: " + response.body());
+        }
+    }
+
     public String sendPostRequest(String endpoint, String jsonInputString) throws Exception {
         if (!sessionManager.isLoggedIn() || !sessionManager.isAdmin()) {
             throw new Exception("Unauthorized: Must be logged in as admin");

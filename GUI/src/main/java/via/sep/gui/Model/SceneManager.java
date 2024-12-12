@@ -7,6 +7,7 @@ import com.google.gson.GsonBuilder;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import via.sep.gui.Model.domain.Property;
 import via.sep.gui.Server.ServerConnection;
@@ -115,8 +116,14 @@ public class SceneManager {
 
             CreatePropertyView createView = loader.getController();
             PropertyService propertyService = new PropertyService(serverConnection, gson);
-            CreatePropertyViewModel createViewModel = new CreatePropertyViewModel(propertyService);
+            ImageService imageService = new ImageService(serverConnection, gson);
+            CreatePropertyViewModel createViewModel = new CreatePropertyViewModel(propertyService, imageService);
+            //ImageUploadViewModel imageUploadViewModel = new ImageUploadViewModel(imageService);
+
             createView.setViewModel(createViewModel);
+            createView.setImageService(imageService);
+            createView.setImageUploadViewModel(createViewModel.getImageUploadViewModel());
+            //createView.setImageUploadViewModel(imageUploadViewModel);
 
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
@@ -143,6 +150,28 @@ public class SceneManager {
         }
     }
 
+    public static void showImageUploadForProperty(ImageUploadViewModel imageUploadViewModel) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/ImageUpload.fxml"));
+            Parent root = loader.load();
+
+            ImageUploadView imageUploadView = loader.getController();
+//            ImageService imageService = new ImageService(serverConnection, gson);
+//            ImageUploadViewModel imageUploadViewModel = new ImageUploadViewModel(imageService);
+
+            imageUploadView.setViewModel(imageUploadViewModel);
+            //imageUploadView.setPropertyId(propertyId);
+
+            Stage imageStage = new Stage();
+            imageStage.initModality(Modality.APPLICATION_MODAL);
+            imageStage.initOwner(primaryStage);
+            imageStage.setScene(new Scene(root));
+            imageStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void showBookingList() {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/via.sep.gui/View/BookingList.fxml"));
@@ -150,7 +179,6 @@ public class SceneManager {
 
             BookingListView bookingListView = loader.getController();
             BookingService bookingService = new BookingService(serverConnection, gson);
-            //BookingListViewModel bookingListViewModel = new BookingListViewModel(serverConnection, gson);
             BookingListViewModel bookingListViewModel = new BookingListViewModel(bookingService);
             bookingListView.setViewModel(bookingListViewModel);
 

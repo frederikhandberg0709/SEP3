@@ -47,14 +47,15 @@
          <CheckBox fx:id="hasBalconyField" text="Has Balcony" />
       </VBox>
 
-      <Button fx:id="createButton" onAction="#handleCreateProperty" alignment="CENTER" layoutX="277.0" layoutY="618.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="74.0" text="Create" textFill="#050505" />
-      <Button fx:id="cancelButton" layoutX="188.0" layoutY="618.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="28.0" prefWidth="74.0" text="Cancel" />
+      <Button fx:id="createButton" alignment="CENTER" layoutX="277.0" layoutY="644.0" mnemonicParsing="false" onAction="#handleCreateProperty" prefHeight="28.0" prefWidth="74.0" text="Create" textFill="#050505" />
+      <Button fx:id="cancelButton" layoutX="188.0" layoutY="644.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="28.0" prefWidth="74.0" text="Cancel" />
       <Label fx:id="errorLabel" layoutX="18.0" layoutY="990.0" textFill="RED" wrapText="true" />
       <Text layoutX="237.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Property" textAlignment="CENTER" AnchorPane.topAnchor="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Button fx:id="resetButton" onAction="#resetFields" alignment="CENTER_RIGHT" layoutX="371.0" layoutY="618.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="74.0" text="Reset" textFill="#050505" />
+      <Button fx:id="resetButton" alignment="CENTER_RIGHT" layoutX="371.0" layoutY="644.0" mnemonicParsing="false" onAction="#resetFields" prefHeight="28.0" prefWidth="74.0" text="Reset" textFill="#050505" />
+      <Button fx:id="uploadImagesButton" layoutX="20.0" layoutY="601.0" mnemonicParsing="false" onAction="#handleShowImageUpload" prefHeight="28.0" prefWidth="74.0" text="Images" />
    </children>
 </AnchorPane>

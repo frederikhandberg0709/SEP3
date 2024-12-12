@@ -1,9 +1,7 @@
 package via.sep.gui.ViewModel;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
+import via.sep.gui.Model.ImageService;
 import via.sep.gui.Model.PropertyService;
 import via.sep.gui.Model.domain.Property;
 
@@ -32,9 +30,12 @@ public class CreatePropertyViewModel {
 
     private final StringProperty errorMessage = new SimpleStringProperty();
     private final PropertyService propertyService;
+    private final ImageUploadViewModel imageUploadViewModel;
+    private final ObjectProperty<Long> createdPropertyId = new SimpleObjectProperty<>(0L);
 
-    public CreatePropertyViewModel(PropertyService propertyService) {
+    public CreatePropertyViewModel(PropertyService propertyService, ImageService imageService) {
         this.propertyService = propertyService;
+        this.imageUploadViewModel = new ImageUploadViewModel(imageService);
 
         propertyType.set("Apartment");
     }
@@ -85,6 +86,7 @@ public class CreatePropertyViewModel {
             if (createdProperty != null && createdProperty.getPropertyId() != null) {
                 clearFields();
                 errorMessage.set("Property created successfully!");
+                createdPropertyId.set(createdProperty.getPropertyId());
                 return true;
             } else {
                 errorMessage.set("Failed to create property");
@@ -100,6 +102,18 @@ public class CreatePropertyViewModel {
             errorMessage.set("Error creating property: " + e.getMessage());
             return false;
         }
+    }
+
+    public ObjectProperty<Long> createdPropertyIdProperty() {
+        return createdPropertyId;
+    }
+
+    public Long getCreatedPropertyId() {
+        return createdPropertyId.get();
+    }
+
+    public ImageUploadViewModel getImageUploadViewModel() {
+        return imageUploadViewModel;
     }
 
     private boolean validateRequiredFields() {
@@ -154,5 +168,6 @@ public class CreatePropertyViewModel {
         hasElevator.set(false);
         hasBalcony.set(false);
         errorMessage.set("");
+        createdPropertyId.set(null);
     }
 }

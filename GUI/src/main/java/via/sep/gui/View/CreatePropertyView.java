@@ -4,8 +4,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import via.sep.gui.Model.ImageService;
 import via.sep.gui.Model.SceneManager;
 import via.sep.gui.ViewModel.CreatePropertyViewModel;
+import via.sep.gui.ViewModel.ImageUploadViewModel;
+
+import java.io.File;
+import java.util.List;
 
 public class CreatePropertyView {
     @FXML private TextField addressField;
@@ -30,12 +35,15 @@ public class CreatePropertyView {
     @FXML private CheckBox hasElevatorField;
     @FXML private CheckBox hasBalconyField;
 
+    @FXML private Button uploadImagesButton;
     @FXML private Button createButton;
     @FXML private Button cancelButton;
     @FXML private Button resetButton;
     @FXML private Label errorLabel;
 
     private CreatePropertyViewModel viewModel;
+    private ImageService imageService;
+    private ImageUploadViewModel imageUploadViewModel;
 
     @FXML
     private void initialize() {
@@ -89,6 +97,10 @@ public class CreatePropertyView {
 
         // Error message binding
         errorLabel.textProperty().bind(viewModel.errorMessageProperty());
+
+        uploadImagesButton.disableProperty().bind(
+                viewModel.createdPropertyIdProperty().isNull()
+        );
     }
 
     private void setupNumericValidation(TextField field) {
@@ -107,6 +119,41 @@ public class CreatePropertyView {
         });
     }
 
+    public void setImageService(ImageService imageService) {
+        this.imageService = imageService;
+    }
+
+    public void setImageUploadViewModel(ImageUploadViewModel imageUploadViewModel) {
+        this.imageUploadViewModel = imageUploadViewModel;
+    }
+
+    @FXML
+    private void handleShowImageUpload() {
+        //Long propertyId = viewModel.getCreatedPropertyId();
+
+//        if (propertyId == null) {
+//            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.setTitle("Warning");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Please save the property first before uploading images.");
+//            alert.showAndWait();
+//            return;
+//        }
+//
+//        SceneManager.showImageUploadForProperty(propertyId);
+
+        if (imageUploadViewModel == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Image upload service not initialized.");
+            alert.showAndWait();
+            return;
+        }
+
+        SceneManager.showImageUploadForProperty(imageUploadViewModel);
+    }
+
     @FXML
     private void handleCreateProperty() {
         createButton.setDisable(true);
@@ -114,6 +161,32 @@ public class CreatePropertyView {
         try {
             boolean success = viewModel.createProperty();
             if (success) {
+                //List<File> selectedFiles = imageUploadViewModel.getSelectedFiles();
+                Long propertyId = viewModel.getCreatedPropertyId();
+//                if (!selectedFiles.isEmpty()) {
+//                    for (File imageFile : selectedFiles) {
+//                        try {
+//                            imageService.uploadImage(propertyId, imageFile);
+//                        } catch (Exception e) {
+//                            System.err.println("Failed to upload image: " + imageFile.getName());
+//                        }
+//                    }
+//                }
+
+                if (imageUploadViewModel != null) {
+                    List<File> selectedFiles = imageUploadViewModel.getSelectedFiles();
+                    if (!selectedFiles.isEmpty()) {
+                        for (File imageFile : selectedFiles) {
+                            try {
+                                imageService.uploadImage(propertyId, imageFile);
+                            } catch (Exception e) {
+                                System.err.println("Failed to upload image: " + imageFile.getName());
+                                // Continue with other images even if one fails
+                            }
+                        }
+                    }
+                }
+
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Success");
                 alert.setHeaderText(null);
@@ -139,6 +212,9 @@ public class CreatePropertyView {
         houseFields.setVisible(false);
         apartmentFields.setVisible(false);
         viewModel.errorMessageProperty().set("");
+        if (imageUploadViewModel != null) {
+            imageUploadViewModel.clearSelectedFiles();
+        }
     }
 
     @FXML

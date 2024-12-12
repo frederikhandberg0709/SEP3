@@ -15,4 +15,5 @@ module via.sep.gui {
     opens via.sep.gui.View to javafx.fxml;
     opens via.sep.gui.Model.dto to javafx.fxml, com.google.gson;
     opens via.sep.gui.Model.domain to javafx.fxml, com.google.gson, javafx.base;
+    opens via.sep.gui.Model to com.google.gson;
 }
