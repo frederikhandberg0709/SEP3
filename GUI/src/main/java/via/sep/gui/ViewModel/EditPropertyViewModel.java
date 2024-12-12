@@ -5,11 +5,14 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import via.sep.gui.Model.ImageService;
 import via.sep.gui.Model.PropertyService;
 import via.sep.gui.Model.domain.Property;
 import via.sep.gui.Model.dto.PropertyDTO;
 
+import java.io.File;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class EditPropertyViewModel {
     private Property originalProperty;
@@ -36,10 +39,19 @@ public class EditPropertyViewModel {
 
     private final StringProperty errorMessage = new SimpleStringProperty();
     private final PropertyService propertyService;
+    private final ImageService imageService;
     private Long propertyId;
 
-    public EditPropertyViewModel(PropertyService propertyService) {
+    private final ImageUploadViewModel imageUploadViewModel;
+
+    public EditPropertyViewModel(PropertyService propertyService, ImageService imageService) {
         this.propertyService = propertyService;
+        this.imageService = imageService;
+        this.imageUploadViewModel = new ImageUploadViewModel(imageService);
+    }
+
+    public ImageUploadViewModel getImageUploadViewModel() {
+        return imageUploadViewModel;
     }
 
     public StringProperty addressProperty() { return address; }
@@ -81,6 +93,8 @@ public class EditPropertyViewModel {
             hasElevator.set(property.getHasElevator() != null && property.getHasElevator());
             hasBalcony.set(property.getHasBalcony() != null && property.getHasBalcony());
         }
+
+        imageUploadViewModel.loadImagesForProperty(propertyId);
     }
 
     public boolean saveChanges() {
@@ -111,7 +125,30 @@ public class EditPropertyViewModel {
                 propertyDTO.setHasBalcony(hasBalcony.get());
             }
 
-            propertyService.updateProperty(propertyId, propertyDTO);
+            //propertyService.updateProperty(propertyId, propertyDTO);
+
+            List<Long> imagesToDelete = imageUploadViewModel.getImagesToDelete();
+            for (Long imageId : imagesToDelete) {
+                try {
+                    imageService.deleteImage(imageId);
+                } catch (Exception e) {
+                    System.err.println("Failed to delete image: " + imageId);
+                }
+            }
+
+            List<File> selectedFiles = imageUploadViewModel.getSelectedFiles();
+            if (!selectedFiles.isEmpty()) {
+                for (File imageFile : selectedFiles) {
+                    try {
+                        imageService.uploadImage(propertyId, imageFile);
+                    } catch (Exception e) {
+                        System.err.println("Failed to upload image: " + imageFile.getName());
+                    }
+                }
+            }
+
+            imageUploadViewModel.clearSelectedFiles();
+
             errorMessage.set("Property updated successfully");
             return true;
 

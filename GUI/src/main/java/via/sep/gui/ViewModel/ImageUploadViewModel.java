@@ -18,6 +18,7 @@ public class ImageUploadViewModel {
     private final ObservableList<ImageViewModel> images;
     private final StringProperty statusMessage = new SimpleStringProperty();
     private final List<File> selectedFiles = new ArrayList<>();
+    private final List<Long> imagesToDelete = new ArrayList<>();
 
     public ImageUploadViewModel(ImageService imageService) {
         this.imageService = imageService;
@@ -51,14 +52,11 @@ public class ImageUploadViewModel {
         }
     }
 
-    //public void addImage(Long propertyId, File file) {
     public void addImages(List<File> files) {
         selectedFiles.addAll(files);
 
         for(File file : files) {
             try {
-//                String fileUri = file.toURI().toString();
-//                images.add(new ImageViewModel(null, null, fileUri));
                 images.add(new ImageViewModel(file));
             } catch(Exception e) {
                 statusMessage.set("Error previewing image: " + file.getName());
@@ -74,17 +72,24 @@ public class ImageUploadViewModel {
 
     public void deleteImage(Long imageId) {
         try {
-            imageService.deleteImage(imageId);
+            //imageService.deleteImage(imageId);
+            imagesToDelete.add(imageId);
             images.removeIf(img -> img.getId().equals(imageId));
-            statusMessage.set("Image removed successfully");
+            statusMessage.set("Image marked for deletion");
         } catch (Exception e) {
-            statusMessage.set("Error removing image: " + e.getMessage());
+            statusMessage.set("Error marking image for deletion: " + e.getMessage());
         }
     }
+
+    public List<Long> getImagesToDelete() {
+        return imagesToDelete;
+    }
+
 
     public void clearSelectedFiles() {
         selectedFiles.clear();
         images.clear();
+        imagesToDelete.clear();
         statusMessage.set("");
     }
 }

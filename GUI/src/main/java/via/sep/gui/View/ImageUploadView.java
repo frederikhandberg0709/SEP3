@@ -78,7 +78,14 @@ public class ImageUploadView {
                     imageView.setPreserveRatio(true);
 
                     Button deleteButton = new Button("Remove");
-                    deleteButton.setOnAction(e -> viewModel.removePreviewImage(image));
+                    deleteButton.setOnAction(e -> {
+                        if (image.getId() != null) {
+                            viewModel.deleteImage(image.getId());
+                        } else {
+                            viewModel.removePreviewImage(image);
+                        }
+                    });
+                        //  viewModel.removePreviewImage(image));
 
                     VBox imageBox = new VBox(10);
                     imageBox.setAlignment(Pos.CENTER);

@@ -63,6 +63,8 @@
          <Label style="-fx-font-weight: bold" text="Description" />
          <TextArea fx:id="descriptionField" prefHeight="60.0" promptText="Enter property description" wrapText="true" />
 
+         <Button fx:id="uploadImagesButton" layoutX="20.0" layoutY="601.0" mnemonicParsing="false" onAction="#handleShowImageUpload" prefHeight="28.0" prefWidth="74.0" text="Images" />
+
          <!-- House-specific fields -->
          <VBox fx:id="houseFields" spacing="10" visible="false">
             <Label style="-fx-font-weight: bold" text="House-specific Details" />
@@ -71,9 +73,9 @@
          </VBox>
 
          <!-- Buttons -->
-         <HBox alignment="CENTER_RIGHT" spacing="10">
+         <HBox alignment="CENTER_RIGHT" prefWidth="620.0" spacing="10">
             <Button fx:id="cancelButton" onAction="#cancelButton" prefWidth="100" text="Cancel" />
-            <Button fx:id="applyChangesButton" onAction="#applyChangesButton" defaultButton="true" prefWidth="120" text="Save Changes" />
+            <Button fx:id="applyChangesButton" defaultButton="true" onAction="#applyChangesButton" prefWidth="120" text="Save Changes" />
             <Button fx:id="resetButton" onAction="#resetValues" prefWidth="100" text="Reset" />
          </HBox>
 

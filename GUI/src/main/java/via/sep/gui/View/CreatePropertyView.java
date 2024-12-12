@@ -129,19 +129,6 @@ public class CreatePropertyView {
 
     @FXML
     private void handleShowImageUpload() {
-        //Long propertyId = viewModel.getCreatedPropertyId();
-
-//        if (propertyId == null) {
-//            Alert alert = new Alert(Alert.AlertType.WARNING);
-//            alert.setTitle("Warning");
-//            alert.setHeaderText(null);
-//            alert.setContentText("Please save the property first before uploading images.");
-//            alert.showAndWait();
-//            return;
-//        }
-//
-//        SceneManager.showImageUploadForProperty(propertyId);
-
         if (imageUploadViewModel == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -161,18 +148,7 @@ public class CreatePropertyView {
         try {
             boolean success = viewModel.createProperty();
             if (success) {
-                //List<File> selectedFiles = imageUploadViewModel.getSelectedFiles();
                 Long propertyId = viewModel.getCreatedPropertyId();
-//                if (!selectedFiles.isEmpty()) {
-//                    for (File imageFile : selectedFiles) {
-//                        try {
-//                            imageService.uploadImage(propertyId, imageFile);
-//                        } catch (Exception e) {
-//                            System.err.println("Failed to upload image: " + imageFile.getName());
-//                        }
-//                    }
-//                }
-
                 if (imageUploadViewModel != null) {
                     List<File> selectedFiles = imageUploadViewModel.getSelectedFiles();
                     if (!selectedFiles.isEmpty()) {

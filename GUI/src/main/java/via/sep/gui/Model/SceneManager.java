@@ -118,12 +118,10 @@ public class SceneManager {
             PropertyService propertyService = new PropertyService(serverConnection, gson);
             ImageService imageService = new ImageService(serverConnection, gson);
             CreatePropertyViewModel createViewModel = new CreatePropertyViewModel(propertyService, imageService);
-            //ImageUploadViewModel imageUploadViewModel = new ImageUploadViewModel(imageService);
 
             createView.setViewModel(createViewModel);
             createView.setImageService(imageService);
             createView.setImageUploadViewModel(createViewModel.getImageUploadViewModel());
-            //createView.setImageUploadViewModel(imageUploadViewModel);
 
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
@@ -139,9 +137,14 @@ public class SceneManager {
 
             EditPropertyView editView = loader.getController();
             PropertyService propertyService = new PropertyService(serverConnection, gson);
-            EditPropertyViewModel editViewModel = new EditPropertyViewModel(propertyService);
-            editViewModel.loadProperty(property);
+            ImageService imageService = new ImageService(serverConnection, gson);
+
+            EditPropertyViewModel editViewModel = new EditPropertyViewModel(propertyService, imageService);
             editView.setViewModel(editViewModel);
+            editView.setImageService(imageService);
+            editView.setImageUploadViewModel(editViewModel.getImageUploadViewModel());
+
+            editViewModel.loadProperty(property);
 
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
@@ -156,11 +159,8 @@ public class SceneManager {
             Parent root = loader.load();
 
             ImageUploadView imageUploadView = loader.getController();
-//            ImageService imageService = new ImageService(serverConnection, gson);
-//            ImageUploadViewModel imageUploadViewModel = new ImageUploadViewModel(imageService);
 
             imageUploadView.setViewModel(imageUploadViewModel);
-            //imageUploadView.setPropertyId(propertyId);
 
             Stage imageStage = new Stage();
             imageStage.initModality(Modality.APPLICATION_MODAL);

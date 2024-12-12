@@ -4,8 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import via.sep.gui.Model.ImageService;
 import via.sep.gui.Model.SceneManager;
 import via.sep.gui.ViewModel.EditPropertyViewModel;
+import via.sep.gui.ViewModel.ImageUploadViewModel;
 
 public class EditPropertyView {
     @FXML private TextField addressField;
@@ -31,12 +33,15 @@ public class EditPropertyView {
     @FXML private CheckBox hasBalconyField;
 
     // UI elements
+    @FXML private Button uploadImagesButton;
     @FXML private Button applyChangesButton;
     @FXML private Button cancelButton;
     @FXML private Button resetButton;
     @FXML private Label errorLabel;
 
     private EditPropertyViewModel viewModel;
+    private ImageService imageService;
+    private ImageUploadViewModel imageUploadViewModel;
 
     @FXML
     private void initialize() {
@@ -125,6 +130,28 @@ public class EditPropertyView {
 
         // Bind error message
         errorLabel.textProperty().bind(viewModel.errorMessageProperty());
+    }
+
+    public void setImageService(ImageService imageService) {
+        this.imageService = imageService;
+    }
+
+    public void setImageUploadViewModel(ImageUploadViewModel imageUploadViewModel) {
+        this.imageUploadViewModel = imageUploadViewModel;
+    }
+
+    @FXML
+    private void handleShowImageUpload() {
+        if (imageUploadViewModel == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Image upload service not initialized.");
+            alert.showAndWait();
+            return;
+        }
+
+        SceneManager.showImageUploadForProperty(imageUploadViewModel);
     }
 
     @FXML
