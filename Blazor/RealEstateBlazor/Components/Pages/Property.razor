@@ -93,11 +93,6 @@ else if (property != null)
                     <p>@property.PropertyType</p>
                 </div>
 
-                @*<div class="mb-4">
-                    <h5 class="text-muted">Number of Floors</h5>
-                    <p>@(property.NumFloors) @(property.NumFloors == 1 ? "floor" : "floors")</p>
-                </div>*@
-
                 @if (property.PropertyType?.ToUpper() == "HOUSE")
                 {
                     var house = property as House;

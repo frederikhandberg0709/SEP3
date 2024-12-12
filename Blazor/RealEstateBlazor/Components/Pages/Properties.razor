@@ -1,70 +1,119 @@
 ﻿@page "/properties"
+@using RealEstateBlazor.Data.DTOs
+@using RealEstateBlazor.Data.Models
+@using RealEstateBlazor.Services
+@inject IPropertyService PropertyService
+@inject NavigationManager NavigationManager
+@inject IImageService ImageService
+
 <PageTitle>Properties</PageTitle>
 
-<head>
-    <link href="Properties.css" rel="stylesheet" />
-</head>
+@rendermode InteractiveServer
+
+<link href="Properties.css" rel="stylesheet" />
 
 <div class="properties-container">
     <h1>Our Properties</h1>
-
-    <!-- Filter Dropdown -->
+    
     <div class="filter-section">
         <label for="filter">Filter by Type:</label>
         <select id="filter" @bind="_selectedType">
             <option value="">All</option>
             <option value="Apartment">Apartment</option>
             <option value="House">House</option>
-            <option value="Commercial">Commercial</option>
         </select>
     </div>
 
-    <!-- Property Grid -->
-    <div class="property-grid">
-        @if (FilteredProperties.Any())
-        {
-            @foreach (var property in FilteredProperties)
+    @if (_loading)
+    {
+        <div class="loading">Loading properties...</div>
+    }
+    else if (_error)
+    {
+        <div class="error">@_errorMessage</div>
+    }
+    else
+    {
+        <div class="property-grid">
+            @if (FilteredProperties.Any())
             {
-                <div class="property-card">
-                    <img src="@property.Image" alt="@property.Name" />
-                    <div class="property-details">
-                        <h2>@property.Name</h2>
-                        <p class="price">@property.Price</p>
-                        <p class="type">@property.Type</p>
+                @foreach (var property in FilteredProperties)
+                {
+                    <div class="property-card" @onclick="@(() => NavigateToProperty(property.PropertyId))">
+                        @{
+                            var propertyImages = _propertyImages.GetValueOrDefault(property.PropertyId);
+                        }
+                        @if (propertyImages != null && propertyImages.Any())
+                        {
+                            <img src="data:image/jpeg;base64,@propertyImages.First().Base64ImageData" alt="Property Image" />
+                        }
+                        else
+                        {
+                            <div class="no-image">No Image Available</div>
+                        }
+                        <div class="property-details">
+                            <h2>@property.Address</h2>
+                            <p class="price">$ @property.Price</p>
+                            <p class="type">@property.PropertyType</p>
+                        </div>
                     </div>
-                </div>
+                }
             }
-        }
-        else
-        {
-            <p class="no-results">No properties match the selected filter.</p>
-        }
-    </div>
+            else
+            {
+                <p class="no-results">No properties match the selected filter.</p>
+            }
+        </div>
+    }
 </div>
 
 @code {
-    private List<RealEstateProperty> PropertyList = new()
-    {
-        new RealEstateProperty { Name = "Modern Apartment", Price = "$1,500/month", Type = "Apartment", Image = "images/property1.jpg" },
-        new RealEstateProperty { Name = "Family House", Price = "$300,000", Type = "House", Image = "images/property2.jpg" },
-        new RealEstateProperty { Name = "Luxury Villa", Price = "$750,000", Type = "House", Image = "images/property3.jpg" },
-        new RealEstateProperty { Name = "Commercial Space", Price = "$2,000/month", Type = "Commercial", Image = "images/property4.jpg" },
-        new RealEstateProperty { Name = "Cozy Studio", Price = "$900/month", Type = "Apartment", Image = "images/property5.jpg" },
-        new RealEstateProperty { Name = "Penthouse Suite", Price = "$1,200,000", Type = "Apartment", Image = "images/property6.jpg" },
-        new RealEstateProperty { Name = "Retail Storefront", Price = "$3,500/month", Type = "Commercial", Image = "images/property7.jpg" },
-        new RealEstateProperty { Name = "Country Home", Price = "$450,000", Type = "House", Image = "images/property8.jpg" }
-    };
-
+    private IEnumerable<Data.Models.Property> _properties = Array.Empty<Data.Models.Property>();
+    private Dictionary<long, IEnumerable<ImageDTO>> _propertyImages = new();
     private string _selectedType = "";
+    private bool _loading = true;
+    private bool _error;
+    private string _errorMessage = "";
 
-    private IEnumerable<RealEstateProperty> FilteredProperties =>
-        PropertyList.Where(p => string.IsNullOrEmpty(_selectedType) || p.Type.Equals(_selectedType, StringComparison.OrdinalIgnoreCase));
+    private IEnumerable<Data.Models.Property> FilteredProperties =>
+        string.IsNullOrEmpty(_selectedType)
+            ? _properties
+            : _properties.Where(p => p.PropertyType.Equals(_selectedType, StringComparison.OrdinalIgnoreCase));
 
-    public class RealEstateProperty
+    protected override async Task OnInitializedAsync()
     {
-        public string Name { get; set; } = string.Empty;
-        public string Price { get; set; } = string.Empty;
-        public string Type { get; set; } = string.Empty;
-        public string Image { get; set; } = string.Empty;
+        try
+        {
+            _loading = true;
+            _properties = await PropertyService.GetAllPropertiesAsync();
+
+            foreach (var property in _properties)
+            {
+                try
+                {
+                    var images = await ImageService.GetImagesForPropertyAsync(property.PropertyId.ToString());
+                    _propertyImages[property.PropertyId] = images;
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine($"Error loading images for property {property.PropertyId}: {ex.Message}");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            _error = true;
+            _errorMessage = "Failed to load properties. Please try again later.";
+            Console.Error.WriteLine($"Error loading properties: {ex}");
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+    
+    private void NavigateToProperty(long propertyId)
+    {
+        NavigationManager.NavigateTo($"/property/{propertyId}");
     }
 }
