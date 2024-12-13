@@ -182,8 +182,4 @@ public class NotificationService {
             log.error("Failed to send notification", e);
         }
     }
-//    public void notifyFormSubmitted(Forms form, String formId) {
-//        NotificationDTO notification = notificationMapper.toFormNotification(form, "SUBMITTED", formId);
-//        sendNotification(notification);
-//    }
 }
