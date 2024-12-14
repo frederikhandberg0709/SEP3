@@ -69,7 +69,7 @@ public class AgentControllerTest {
     }
 
     @Test
-    void createAgent_ShouldCreateAndReturnAgent() throws Exception{
+    void createAgent_ShouldCreateAndReturnAgent() throws Exception {
         when(agentRepository.save(any(Agent.class))).thenReturn(testAgent);
 
         mockMvc.perform(post("/api/agents")

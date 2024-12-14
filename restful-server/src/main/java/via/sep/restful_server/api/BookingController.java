@@ -32,7 +32,6 @@ public class BookingController {
     }
 
     @PostMapping
-    //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> createBooking(@RequestBody BookingDTO bookingDTO) {
         Property property = propertyRepository.findById(bookingDTO.getPropertyId())
                 .orElseThrow(() -> new RuntimeException("Property not found"));
