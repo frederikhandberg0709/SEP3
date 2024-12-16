@@ -318,8 +318,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>ttzdghj9l8</Fingerprint>
-      <Integrity>X6XjKt9Mi4zCoxg6f33tBA/pym5AZnt4pNcYvsc264o=</Integrity>
+      <Fingerprint>755m5zgs6b</Fingerprint>
+      <Integrity>i1QW4AdmZXsYTxjvsHmADTlXDCJx4QAdZgp/StlmpXU=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Images\StoreFront1.jpg'))</OriginalItemSpec>
