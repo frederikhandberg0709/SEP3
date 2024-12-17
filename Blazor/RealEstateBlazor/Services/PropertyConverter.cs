@@ -12,13 +12,17 @@ public class PropertyConverter : JsonConverter<Property>
         {
             throw new JsonException();
         }
+        
+        using var jsonDocument = JsonDocument.Parse(JsonSerializer.Serialize(
+            JsonSerializer.Deserialize<JsonElement>(ref reader)));
 
-        using var jsonDoc = JsonDocument.Parse(reader.GetString() ?? "{}");
-        var root = jsonDoc.RootElement;
-
-        var propertyType = root.GetProperty("propertyType").GetString();
-
+        var root = jsonDocument.RootElement;
+        var propertyType = root.TryGetProperty("propertyType", out var typeElement) 
+            ? typeElement.GetString() 
+            : string.Empty;
+        
         var json = root.GetRawText();
+        
         return propertyType switch
         {
             "House" => JsonSerializer.Deserialize<House>(json, options),

@@ -1,31 +1,26 @@
 package via.sep.gui.View;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Alert.AlertType;
-import via.sep.gui.Model.SceneManager;
 import via.sep.gui.Model.domain.Property;
 import via.sep.gui.ViewModel.DashboardViewModel;
 
 import java.math.BigDecimal;
 
-public class DashBoardView {
-    // Buttons
+public class DashboardView {
     @FXML private Button createPropertyButton;
     @FXML private Button deletePropertyButton;
     @FXML private Button editPropertyButton;
     @FXML private Button bookingListButton;
+    @FXML private Button agentListButton;
     @FXML private Button refreshButton;
 
-    // Search and status
     @FXML private TextField searchField;
     @FXML private Label statusLabel;
 
-    // TableView and columns
     @FXML private TableView<Property> propertyTableView;
     @FXML private TableColumn<Property, String> addressColumn;
     @FXML private TableColumn<Property, String> propertyTypeColumn;
@@ -41,7 +36,6 @@ public class DashBoardView {
 
     @FXML
     public void initialize() {
-        // Initialize the columns
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         propertyTypeColumn.setCellValueFactory(new PropertyValueFactory<>("propertyType"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -51,10 +45,8 @@ public class DashBoardView {
         yearBuiltColumn.setCellValueFactory(new PropertyValueFactory<>("yearBuilt"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-        // Setup search functionality
         setupSearch();
 
-        // Add double-click handler for editing
         propertyTableView.setRowFactory(tv -> {
             TableRow<Property> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -76,10 +68,48 @@ public class DashBoardView {
 
                     String lowerCaseFilter = newValue.toLowerCase();
 
-                    return property.getAddress().toLowerCase().contains(lowerCaseFilter)
-                            || property.getPropertyType().toLowerCase().contains(lowerCaseFilter)
-                            || property.getDescription().toLowerCase().contains(lowerCaseFilter)
-                            || property.getPrice().toString().contains(lowerCaseFilter);
+                    if (property.getAddress().toLowerCase().contains(lowerCaseFilter))
+                        return true;
+                    if (property.getPropertyType().toLowerCase().contains(lowerCaseFilter))
+                        return true;
+                    if (property.getDescription() != null &&
+                            property.getDescription().toLowerCase().contains(lowerCaseFilter))
+                        return true;
+
+                    if (property.getPrice().toString().contains(lowerCaseFilter))
+                        return true;
+                    if (property.getNumBedrooms().toString().contains(lowerCaseFilter))
+                        return true;
+                    if (property.getNumBathrooms().toString().contains(lowerCaseFilter))
+                        return true;
+                    if (property.getFloorArea().toString().contains(lowerCaseFilter))
+                        return true;
+                    if (property.getYearBuilt().toString().contains(lowerCaseFilter))
+                        return true;
+
+                    if (property.isHouse()) {
+                        if (property.getLotSize() != null &&
+                                property.getLotSize().toString().contains(lowerCaseFilter))
+                            return true;
+                        if (property.getHasGarage() != null &&
+                                Boolean.toString(property.getHasGarage()).contains(lowerCaseFilter))
+                            return true;
+                    } else if (property.isApartment()) {
+                        if (property.getBuildingName() != null &&
+                                property.getBuildingName().toLowerCase().contains(lowerCaseFilter))
+                            return true;
+                        if (property.getFloorNumber() != null &&
+                                property.getFloorNumber().toString().contains(lowerCaseFilter))
+                            return true;
+                        if (property.getHasElevator() != null &&
+                                Boolean.toString(property.getHasElevator()).contains(lowerCaseFilter))
+                            return true;
+                        if (property.getHasBalcony() != null &&
+                                Boolean.toString(property.getHasBalcony()).contains(lowerCaseFilter))
+                            return true;
+                    }
+
+                    return false;
                 });
             }
         });
@@ -87,8 +117,8 @@ public class DashBoardView {
 
     @FXML
     private void handleCreateProperty() {
+        viewModel.statusMessageProperty().set("Opening create property form...");
         viewModel.showCreateProperty();
-        updateStatusLabel("Opening create property form...");
     }
 
     @FXML
@@ -103,7 +133,7 @@ public class DashBoardView {
             confirmation.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     viewModel.deleteProperty(selectedProperty);
-                    updateStatusLabel("Property deleted successfully");
+                    viewModel.statusMessageProperty().set("Property deleted successfully");
                 }
             });
         } else {
@@ -115,8 +145,8 @@ public class DashBoardView {
     private void handleEditProperty() {
         Property selectedProperty = propertyTableView.getSelectionModel().getSelectedItem();
         if (selectedProperty != null) {
+            viewModel.statusMessageProperty().set("Opening edit form for selected property...");
             viewModel.showEditProperty(selectedProperty);
-            updateStatusLabel("Opening edit form for selected property...");
         } else {
             showAlert("No Selection", "Please select a property to edit.", AlertType.WARNING);
         }
@@ -125,13 +155,19 @@ public class DashBoardView {
     @FXML
     private void handleBookingList() {
         viewModel.showBookingList();
-        updateStatusLabel("Opening booking list...");
+        viewModel.statusMessageProperty().set("Opening booking list...");
+    }
+
+    @FXML
+    private void handleAgentList() {
+        viewModel.showAgentList();
+        viewModel.statusMessageProperty().set("Opening agent list...");
     }
 
     @FXML
     private void handleRefresh() {
         viewModel.refreshProperties();
-        updateStatusLabel("Property list refreshed");
+        viewModel.statusMessageProperty().set("Property list refreshed");
     }
 
     private void showAlert(String title, String message, AlertType type) {
@@ -142,18 +178,12 @@ public class DashBoardView {
         alert.showAndWait();
     }
 
-    private void updateStatusLabel(String message) {
-        statusLabel.setText(message);
-    }
-
     public void setViewModel(DashboardViewModel viewModel) {
         this.viewModel = viewModel;
 
-        // Bind the table to the viewModel's property list
         filteredProperties = new FilteredList<>(viewModel.getPropertyList(), p -> true);
         propertyTableView.setItems(filteredProperties);
 
-        // Bind status message
         statusLabel.textProperty().bind(viewModel.statusMessageProperty());
     }
 }

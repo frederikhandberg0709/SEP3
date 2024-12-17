@@ -15,10 +15,10 @@ public class RegistrationService {
         this.gson = gson;
     }
 
-    public UserResponseDTO register(String username, String password) throws Exception {
-        RegisterRequestDTO registerRequest = new RegisterRequestDTO(username, password);
+    public UserResponseDTO register(String username, String password, String fullName, String email, String phoneNumber, String address) throws Exception {
+        RegisterRequestDTO registerRequest = new RegisterRequestDTO(username, password, fullName, email, phoneNumber, address);
         String json = gson.toJson(registerRequest);
-        String response = serverConnection.sendPostRequest(REGISTRATION_PATH, json);
+        String response = serverConnection.registerRequest(json);
         return gson.fromJson(response, UserResponseDTO.class);
     }
 }

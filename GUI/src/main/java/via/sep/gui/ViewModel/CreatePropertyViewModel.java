@@ -1,17 +1,13 @@
 package via.sep.gui.ViewModel;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
+import javafx.beans.property.*;
+import via.sep.gui.Model.ImageService;
 import via.sep.gui.Model.PropertyService;
 import via.sep.gui.Model.domain.Property;
 
 import java.math.BigDecimal;
 
-public class CreateViewModel {
+public class CreatePropertyViewModel {
     private final StringProperty address = new SimpleStringProperty();
     private final StringProperty propertyType = new SimpleStringProperty();
     private final StringProperty numBathrooms = new SimpleStringProperty();
@@ -34,9 +30,12 @@ public class CreateViewModel {
 
     private final StringProperty errorMessage = new SimpleStringProperty();
     private final PropertyService propertyService;
+    private final ImageUploadViewModel imageUploadViewModel;
+    private final ObjectProperty<Long> createdPropertyId = new SimpleObjectProperty<>(0L);
 
-    public CreateViewModel(PropertyService propertyService) {
+    public CreatePropertyViewModel(PropertyService propertyService, ImageService imageService) {
         this.propertyService = propertyService;
+        this.imageUploadViewModel = new ImageUploadViewModel(imageService);
 
         propertyType.set("Apartment");
     }
@@ -60,12 +59,11 @@ public class CreateViewModel {
 
     public boolean createProperty() {
         try {
-            // Validate required fields
             if (!validateRequiredFields()) {
+                System.out.println("Validation failed");
                 return false;
             }
 
-            // Parse numeric values
             Integer bathrooms = parseInteger(numBathrooms.get(), "Number of bathrooms");
             Integer bedrooms = parseInteger(numBedrooms.get(), "Number of bedrooms");
             Integer floors = parseInteger(numFloors.get(), "Number of floors");
@@ -73,7 +71,6 @@ public class CreateViewModel {
             BigDecimal propertyPrice = parseBigDecimal(price.get(), "Price");
             Integer year = parseInteger(yearBuilt.get(), "Year built");
 
-            // Create property
             Property createdProperty = propertyService.createProperty(
                     address.get(),
                     propertyType.get(),
@@ -89,6 +86,7 @@ public class CreateViewModel {
             if (createdProperty != null && createdProperty.getPropertyId() != null) {
                 clearFields();
                 errorMessage.set("Property created successfully!");
+                createdPropertyId.set(createdProperty.getPropertyId());
                 return true;
             } else {
                 errorMessage.set("Failed to create property");
@@ -96,12 +94,26 @@ public class CreateViewModel {
             }
 
         } catch (NumberFormatException e) {
+            System.out.println("Number format error: " + e.getMessage());
             errorMessage.set("Please enter valid numbers for numeric fields");
             return false;
         } catch (Exception e) {
+            System.out.println("Error creating property: " + e.getMessage());
             errorMessage.set("Error creating property: " + e.getMessage());
             return false;
         }
+    }
+
+    public ObjectProperty<Long> createdPropertyIdProperty() {
+        return createdPropertyId;
+    }
+
+    public Long getCreatedPropertyId() {
+        return createdPropertyId.get();
+    }
+
+    public ImageUploadViewModel getImageUploadViewModel() {
+        return imageUploadViewModel;
     }
 
     private boolean validateRequiredFields() {
@@ -156,5 +168,6 @@ public class CreateViewModel {
         hasElevator.set(false);
         hasBalcony.set(false);
         errorMessage.set("");
+        createdPropertyId.set(null);
     }
 }

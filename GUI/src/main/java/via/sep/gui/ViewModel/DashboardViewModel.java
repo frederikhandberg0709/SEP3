@@ -33,7 +33,12 @@ public class DashboardViewModel {
     }
 
     public void showCreateProperty() {
-        SceneManager.showCreateProperty();
+        try {
+            SceneManager.showCreateProperty();
+            statusMessage.set("");
+        } catch (Exception e) {
+            errorMessage.set("Error opening create property form: " + e.getMessage());
+        }
     }
 
     public void showEditProperty(Property property) {
@@ -42,6 +47,10 @@ public class DashboardViewModel {
 
     public void showBookingList() {
         SceneManager.showBookingList();
+    }
+
+    public void showAgentList() {
+        SceneManager.showAgentList();
     }
 
     public void deleteProperty(Property property) {
@@ -56,6 +65,7 @@ public class DashboardViewModel {
             propertyList.addAll(properties);
             errorMessage.set("");
         } catch (Exception e) {
+            e.printStackTrace();
             errorMessage.set("Failed to load properties: " + e.getMessage());
         }
     }

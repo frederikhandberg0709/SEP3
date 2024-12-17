@@ -50,12 +50,6 @@ public class SecurityConfig {
                                 "/api/images/**"
                         ).permitAll()
 
-//                        .requestMatchers(HttpMethod.GET,
-//                                "/api/images/**/*.jpg",
-//                                "/api/images/**/*.jpeg",
-//                                "/api/images/**/*.png"
-//                        ).permitAll()
-
                         // Public registration
                         .requestMatchers(HttpMethod.POST, "/api/users/register", "/api/users/login").permitAll()
 

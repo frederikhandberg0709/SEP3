@@ -75,6 +75,18 @@ builder.Services.AddHttpClient<BookingService>(client =>
     client.BaseAddress = new Uri(baseUrl);
 });
 
+builder.Services.AddScoped<INotificationService, NotificationService>();
+
+builder.Services.AddHttpClient<INotificationService, NotificationService>(client =>
+{
+    var baseUrl = builder.Configuration["ApiSettings:BaseUrl"];
+    if (string.IsNullOrEmpty(baseUrl))
+    {
+        throw new InvalidOperationException("API Base URL is not configured");
+    }
+    client.BaseAddress = new Uri(baseUrl);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

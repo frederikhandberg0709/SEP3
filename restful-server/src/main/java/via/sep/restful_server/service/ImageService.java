@@ -43,10 +43,6 @@ public class ImageService {
     }
 
     public ImageDTO getImage(Long id) {
-//        Image image = imageRepository.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Image not found"));
-//
-//        return convertToDTO(image);
         log.debug("Service: Fetching image with id: {}", id);
         try {
             Image image = imageRepository.findById(id)
@@ -70,12 +66,6 @@ public class ImageService {
     }
 
     private ImageDTO convertToDTO(Image image) {
-//        ImageDTO dto = new ImageDTO();
-//        dto.setId(image.getId());
-//        dto.setPropertyId(image.getProperty().getPropertyId());
-//        dto.setBase64ImageData(Base64.getEncoder().encodeToString(image.getImageData()));
-//        return dto;
-
         try {
             ImageDTO dto = new ImageDTO();
             dto.setId(image.getId());
@@ -90,15 +80,6 @@ public class ImageService {
             log.error("Failed to convert image {} to DTO: {}", image.getId(), e.getMessage());
             throw e;
         }
-
-//        ImageDTO dto = new ImageDTO();
-//        dto.setId(image.getId());
-//        dto.setPropertyId(image.getProperty().getPropertyId());
-//        dto.setBase64ImageData(Base64.getEncoder().encodeToString(image.getImageData()));
-//        log.debug("Converted image {} to DTO with data length: {}",
-//                image.getId(),
-//                image.getImageData().length);
-//        return dto;
     }
 
     public void deleteImage(Long id) {

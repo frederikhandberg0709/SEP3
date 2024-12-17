@@ -1,105 +1,162 @@
 package via.sep.gui.Server;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import via.sep.gui.Adapters.LocalDateAdapter;
+import via.sep.gui.Model.SessionManager;
+import via.sep.gui.Model.dto.LoginRequestDTO;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.LocalDate;
 
 public class ServerConnection {
     private String serverUrl;
+    private final HttpClient httpClient;
+    private final SessionManager sessionManager;
+    private final Gson gson;
 
     public ServerConnection() {
         this.serverUrl = "http://localhost:8080/api";
+        this.httpClient = HttpClient.newHttpClient();
+        this.sessionManager = SessionManager.getInstance();
+
+        this.gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
+    }
+
+    private String getAuthToken() {
+        return sessionManager.getAuthToken();
     }
 
     public String sendGetRequest(String endpoint) throws Exception {
-        URL url = new URL(serverUrl + endpoint);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("GET");
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + endpoint))
+                .GET()
+                .build();
 
-        int responseCode = connection.getResponseCode();
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-            return response.toString();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == 200) {
+            return response.body();
         } else {
-            throw new Exception("GET request failed with response code: " + responseCode);
+            throw new Exception("GET request failed with response code: " + response.statusCode());
+        }
+    }
+
+    public String loginRequest(String username, String password) throws Exception {
+        LoginRequestDTO loginRequest = new LoginRequestDTO(username, password);
+        String jsonInputString = new Gson().toJson(loginRequest);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/users/login"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonInputString))
+                .build();
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == 200) {
+            return response.body();
+        } else {
+            throw new Exception("Login failed with response code: " + response.statusCode());
+        }
+    }
+
+    public String registerRequest(String jsonInputString) throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/users/register"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonInputString))
+                .build();
+
+        System.out.println("Sending registration request to: " + serverUrl + "/users/register");
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == 200 || response.statusCode() == 201) {
+            return response.body();
+        } else {
+            throw new Exception("Registration failed with response code: " + response.statusCode()
+                    + ", Response body: " + response.body());
+        }
+    }
+
+    public String sendPostRequestMultipart(String endpoint, byte[] multipartData, String boundary) throws Exception {
+        if (!sessionManager.isLoggedIn() || !sessionManager.isAdmin()) {
+            throw new Exception("Unauthorized: Must be logged in as admin");
+        }
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + endpoint))
+                .header("Content-Type", "multipart/form-data; boundary=" + boundary)
+                .header("Authorization", "Bearer " + getAuthToken())
+                .POST(HttpRequest.BodyPublishers.ofByteArray(multipartData))
+                .build();
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == 200 || response.statusCode() == 201) {
+            return response.body();
+        } else {
+            throw new Exception("POST request failed with response code: " + response.statusCode() +
+                    " Response: " + response.body());
         }
     }
 
     public String sendPostRequest(String endpoint, String jsonInputString) throws Exception {
-        URL url = new URL(serverUrl + endpoint);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("POST");
-        connection.setRequestProperty("Content-Type", "application/json; utf-8");
-        connection.setRequestProperty("Accept", "application/json");
-        connection.setDoOutput(true);
-
-        try (OutputStream os = connection.getOutputStream()) {
-            byte[] input = jsonInputString.getBytes("utf-8");
-            os.write(input, 0, input.length);
+        if (!sessionManager.isLoggedIn() || !sessionManager.isAdmin()) {
+            throw new Exception("Unauthorized: Must be logged in as admin");
         }
 
-        int responseCode = connection.getResponseCode();
-        if (responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_CREATED) {
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + endpoint))
+                .header("Content-Type", "application/json")
+                .header("Authorization", "Bearer " + getAuthToken())
+                .POST(HttpRequest.BodyPublishers.ofString(jsonInputString))
+                .build();
 
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-            return response.toString();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == 200 || response.statusCode() == 201) {
+            return response.body();
         } else {
-            throw new Exception("POST request failed with response code: " + responseCode);
+            throw new Exception("POST request failed with response code: " + response.statusCode());
         }
     }
 
     public String sendPutRequest(String endpoint, String jsonInputString) throws Exception {
-        URL url = new URL(serverUrl + endpoint);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("PUT");
-        connection.setRequestProperty("Content-Type", "application/json; utf-8");
-        connection.setRequestProperty("Accept", "application/json");
-        connection.setDoOutput(true);
-
-        try (OutputStream os = connection.getOutputStream()) {
-            byte[] input = jsonInputString.getBytes("utf-8");
-            os.write(input, 0, input.length);
+        if (!sessionManager.isLoggedIn() || !sessionManager.isAdmin()) {
+            throw new Exception("Unauthorized: Must be logged in as admin");
         }
 
-        int responseCode = connection.getResponseCode();
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + endpoint))
+                .header("Content-Type", "application/json")
+                .header("Authorization", "Bearer " + getAuthToken())
+                .PUT(HttpRequest.BodyPublishers.ofString(jsonInputString))
+                .build();
 
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-            return response.toString();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == 200) {
+            return response.body();
         } else {
-            throw new Exception("PUT request failed with response code: " + responseCode);
+            throw new Exception("PUT request failed with response code: " + response.statusCode());
         }
     }
 
     public void sendDeleteRequest(String endpoint) throws Exception {
-        URL url = new URL(serverUrl + endpoint);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("DELETE");
+        if (!sessionManager.isLoggedIn() || !sessionManager.isAdmin()) {
+            throw new Exception("Unauthorized: Must be logged in as admin");
+        }
 
-        int responseCode = connection.getResponseCode();
-        if (responseCode != HttpURLConnection.HTTP_NO_CONTENT && responseCode != HttpURLConnection.HTTP_OK) {
-            throw new Exception("DELETE request failed with response code: " + responseCode);
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + endpoint))
+                .header("Authorization", "Bearer " + getAuthToken())
+                .DELETE()
+                .build();
+
+        HttpResponse<Void> response = httpClient.send(request, HttpResponse.BodyHandlers.discarding());
+        if (response.statusCode() != 204 && response.statusCode() != 200) {
+            throw new Exception("DELETE request failed with response code: " + response.statusCode());
         }
     }
 }

@@ -11,6 +11,7 @@ public class NotificationHub : INotificationHub
     private readonly IConfiguration _configuration;
     private bool _isInitialized;
     public event Action<bool>? OnConnectionStateChanged;
+    public event Action<PriceChangeNotificationDTO>? OnPriceChangeNotificationReceived;
     
     public NotificationHub(IConfiguration configuration)
     {
@@ -25,16 +26,26 @@ public class NotificationHub : INotificationHub
 
         try
         {
+            Console.WriteLine($"Attempting to connect to: {_notificationServerUrl}/hubs/notifications");
+            Console.WriteLine($"With token: {userToken.Substring(0, 20)}...");
+            
             _hubConnection = new HubConnectionBuilder()
                 .WithUrl($"{_notificationServerUrl}/hubs/notifications", options =>
                 {
                     options.AccessTokenProvider = () => Task.FromResult(userToken);
+                    options.Headers.Add("X-Debug", "true");
+                })
+                .ConfigureLogging(logging =>
+                {
+                    logging.SetMinimumLevel(LogLevel.Debug);
+                    logging.AddConsole();
                 })
                 .WithAutomaticReconnect()
                 .Build();
             
             _hubConnection.Closed += async (error) =>
             {
+                Console.WriteLine($"Connection closed: {error?.Message}");
                 OnConnectionStateChanged?.Invoke(false);
                 await Task.CompletedTask;
             };
@@ -53,6 +64,12 @@ public class NotificationHub : INotificationHub
             _hubConnection.On<PropertyNotificationDTO>("ReceivePropertyNotification", notification =>
             {
                 OnPropertyNotificationReceived?.Invoke(notification);
+            });
+
+            _hubConnection.On<PriceChangeNotificationDTO>("OnPriceChanged", notification =>
+            {
+                Console.WriteLine($"Received price change notification: Property {notification.PropertyId}, New Price: {notification.NewPrice}");
+                OnPriceChangeNotificationReceived?.Invoke(notification);
             });
 
             await _hubConnection.StartAsync();

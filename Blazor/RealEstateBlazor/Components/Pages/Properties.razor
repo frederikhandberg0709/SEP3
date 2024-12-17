@@ -14,7 +14,7 @@
 
 <div class="properties-container">
     <h1>Our Properties</h1>
-
+    
     <div class="filter-section">
         <label for="filter">Filter by Type:</label>
         <select id="filter" @bind="_selectedType">
@@ -111,7 +111,7 @@
             _loading = false;
         }
     }
-
+    
     private void NavigateToProperty(long propertyId)
     {
         NavigationManager.NavigateTo($"/property/{propertyId}");

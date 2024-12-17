@@ -9,87 +9,95 @@ import via.sep.gui.Model.SceneManager;
 import via.sep.gui.Server.ServerConnection;
 import via.sep.gui.ViewModel.RegisterViewModel;
 
-/**
- * View for the Registration view.
- * Handles user input and interactions for user registration.
- */
 public class RegisterView {
     @FXML
     private TextField usernameRegister;
     @FXML
     private TextField passwordRegister;
     @FXML
+    private TextField fullNameRegister;
+    @FXML
+    private TextField emailRegister;
+    @FXML
+    private TextField phoneNumberRegister;
+    @FXML
+    private TextField addressRegister;
+    @FXML
     private Button createAccountButton;
     @FXML
     private Button goBackToLoginButton;
 
-    private RegisterViewModel ViewModel;
-    private final ServerConnection serverConnection;
-    private final Gson gson;
+    private RegisterViewModel viewModel;
+    private ServerConnection serverConnection;
+    private Gson gson;
 
-    public RegisterView(ServerConnection serverConnection, Gson gson) {
-        this.serverConnection = serverConnection;
-        this.gson = gson;
-    }
+    public RegisterView() {}
 
-    /**
-     * Sets the ViewModel for the Registration view.
-     *
-     * @param viewModel the RegisterViewModel to be set
-     */
     public void setViewModel(RegisterViewModel viewModel) {
-        this.ViewModel = viewModel;
+        this.viewModel = viewModel;
+
+        setupBindings();
     }
 
-    /**
-     * Initializes the View. Binds UI components to the ViewModel properties and sets up event handlers.
-     */
+    private void setupBindings() {
+        if (usernameRegister != null && passwordRegister != null && fullNameRegister != null && emailRegister != null && phoneNumberRegister != null && addressRegister != null && viewModel != null) {
+            usernameRegister.textProperty().bindBidirectional(viewModel.usernameProperty());
+            passwordRegister.textProperty().bindBidirectional(viewModel.passwordProperty());
+            fullNameRegister.textProperty().bindBidirectional(viewModel.fullNameProperty());
+            emailRegister.textProperty().bindBidirectional(viewModel.emailProperty());
+            phoneNumberRegister.textProperty().bindBidirectional(viewModel.phoneNumberProperty());
+            addressRegister.textProperty().bindBidirectional(viewModel.addressProperty());
+
+            viewModel.registrationStatusProperty().addListener((observableValue, oldStatus, newStatus) -> {
+                if (newStatus != null && !newStatus.isEmpty()) {
+                    showRegistrationAlert(newStatus.startsWith("Success") ? "Success" : "Error", newStatus);
+                    if (newStatus.startsWith("Success")) {
+                        goBackToLogin();
+                    }
+                    viewModel.registrationStatusProperty().set("");
+                }
+            });
+        }
+    }
+
     @FXML
     private void initialize() {
-        if (ViewModel == null) {
-            ViewModel = new RegisterViewModel(serverConnection, gson);
-        }
+        this.serverConnection = SceneManager.getServerConnection();
+        this.gson = SceneManager.getGson();
 
-        // Property-binding with the RegisterViewModel
-        usernameRegister.textProperty().bindBidirectional(ViewModel.usernameProperty());
-        passwordRegister.textProperty().bindBidirectional(ViewModel.passwordProperty());
-
-        // Initializing clickable buttons
-        createAccountButton.setOnAction(event -> handleCreateAccount());
-        goBackToLoginButton.setOnAction(event -> goBackToLogin());
-
-        // Listener that checks for either Success or Error and sends messages accordingly
-        ViewModel.registrationStatusProperty().addListener((observableValue, oldStatus, newStatus) -> {
-            if (newStatus != null && !newStatus.isEmpty()) {
-                showRegistrationAlert(newStatus.startsWith("Success") ? "Success" : "Error", newStatus);
-                if (newStatus.startsWith("Success")) {
-                    goBackToLogin(); // Goes back to the login screen after account creation for user-friendliness
-                }
-                ViewModel.registrationStatusProperty().set(""); // Resets UI status message to prevent repeated messages
+        createAccountButton.setOnAction(event -> {
+            if (viewModel != null) {
+                System.out.println("\nCreate Account clicked:");
+                System.out.println("TextField username: '" + usernameRegister.getText() + "'");
+                System.out.println("TextField password: '" + passwordRegister.getText() + "'");
+                System.out.println("ViewModel username: '" + viewModel.usernameProperty().getValue() + "'");
+                System.out.println("ViewModel password: '" + viewModel.passwordProperty().getValue() + "'");
+                handleCreateAccount();
+            } else {
+                System.out.println("ViewModel is null!");
             }
         });
+
+        goBackToLoginButton.setOnAction(event -> goBackToLogin());
+
+        if (viewModel != null) {
+            setupBindings();
+        }
     }
 
-    /**
-     * Navigates back to the login view.
-     */
     private void goBackToLogin() {
         SceneManager.showLogin();
     }
 
-    /**
-     * Handles the action when the user clicks the create account button.
-     */
     private void handleCreateAccount() {
-        ViewModel.registerAccount();
+        if (usernameRegister.getText().trim().isEmpty() ||
+                passwordRegister.getText().trim().isEmpty()) {
+            showRegistrationAlert("Error", "Username and password cannot be empty");
+            return;
+        }
+        viewModel.registerAccount();
     }
 
-    /**
-     * Shows an alert dialog for registration messages.
-     *
-     * @param title   the title of the alert
-     * @param message the message of the alert
-     */
     private void showRegistrationAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

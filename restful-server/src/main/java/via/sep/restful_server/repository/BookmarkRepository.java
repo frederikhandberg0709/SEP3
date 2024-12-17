@@ -11,5 +11,6 @@ import java.util.List;
 @Repository
 public interface BookmarkRepository extends JpaRepository<Bookmark, Long> {
     List<Bookmark> findByAccount(Login account);
+    List<Bookmark> findByProperty_PropertyId(Long propertyId);
     boolean existsByAccountAndProperty(Login account, Property property);
 }
