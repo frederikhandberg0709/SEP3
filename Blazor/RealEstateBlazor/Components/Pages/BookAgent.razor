@@ -34,21 +34,6 @@
                     <ValidationMessage For="@(() => bookingModel.BookingDate)" />
                 </div>
 
-                @*@if (availableAgents != null && availableAgents.Any())
-                {
-                    <div class="form-group mb-3">
-                        <label for="agent">Select Agent</label>
-                        <InputSelect id="agent" @bind-Value="bookingModel.AgentId" class="form-control">
-                            <option value="">-- Select an agent --</option>
-                            @foreach (var agent in availableAgents)
-                            {
-                                <option value="@agent.AgentId">@agent.Name - @agent.ContactInfo</option>
-                            }
-                        </InputSelect>
-                        <ValidationMessage For="@(() => bookingModel.AgentId)" />
-                    </div>
-                }*@
-
                 @if (availableAgents != null && availableAgents.Any())
                 {
                     <div class="form-group mb-3">
