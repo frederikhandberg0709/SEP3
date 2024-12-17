@@ -18,9 +18,11 @@
 <CascadingAuthenticationState>
     <AuthorizeView>
         <NotAuthorized>
+            <h3>Register account</h3>
+            
             <div class="form-group mb-3">
                 <label>Username</label>
-                <input type="text" class="form-control" @bind="registration.Username" />
+                <input type="text" class="form-control" @bind="registration.Username"/>
                 @if (!string.IsNullOrEmpty(usernameError))
                 {
                     <small class="text-danger">@usernameError</small>
@@ -29,7 +31,7 @@
 
             <div class="form-group mb-3">
                 <label>Password</label>
-                <input type="password" class="form-control" @bind="registration.Password" />
+                <input type="password" class="form-control" @bind="registration.Password"/>
                 @if (!string.IsNullOrEmpty(passwordError))
                 {
                     <small class="text-danger">@passwordError</small>
@@ -38,7 +40,7 @@
 
             <div class="form-group mb-3">
                 <label>Full Name</label>
-                <input type="text" class="form-control" @bind="registration.FullName" />
+                <input type="text" class="form-control" @bind="registration.FullName"/>
                 @if (!string.IsNullOrEmpty(fullNameError))
                 {
                     <small class="text-danger">@fullNameError</small>
@@ -47,7 +49,7 @@
 
             <div class="form-group mb-3">
                 <label>Email</label>
-                <input type="email" class="form-control" @bind="registration.Email" />
+                <input type="email" class="form-control" @bind="registration.Email"/>
                 @if (!string.IsNullOrEmpty(emailError))
                 {
                     <small class="text-danger">@emailError</small>
@@ -56,7 +58,7 @@
 
             <div class="form-group mb-3">
                 <label>Phone Number</label>
-                <input type="tel" class="form-control" @bind="registration.PhoneNumber" />
+                <input type="tel" class="form-control" @bind="registration.PhoneNumber"/>
                 @if (!string.IsNullOrEmpty(phoneError))
                 {
                     <small class="text-danger">@phoneError</small>
