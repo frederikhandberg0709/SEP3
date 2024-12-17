@@ -18,13 +18,6 @@
             <div class="container mt-4">
                 <h1>My Notifications</h1>
                 <p>You will receive notifications from the properties you have bookmarked.</p>
-        
-                @*@if (!NotificationHub.IsConnected)
-                {
-                    <div class="alert alert-warning" role="alert">
-                        Connecting to notification service...
-                    </div>
-                }*@
 
                 @if (!NotificationHub.IsConnected)
                 {
@@ -85,7 +78,7 @@
                                             New Price: @priceNotification.NewPrice.ToString("C")<br/>
                                         </p>
                                     }
-                                    <small class="text-muted">@notification.Timestamp.ToLocalTime().AddHours(-1).ToString("g")</small>
+                                    <small class="text-muted">@notification.Timestamp.ToLocalTime().ToString("g")</small>
                                 </div>
                             </div>
                         }
@@ -96,7 +89,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">@notification.Type</h5>
                                     <p class="card-text">@notification.Message</p>
-                                    <small class="text-muted">@notification.Timestamp.ToLocalTime().AddHours(-1).ToString("g")</small>
+                                    <small class="text-muted">@notification.Timestamp.ToLocalTime().ToString("g")</small>
                                 </div>
                             </div>
                         }
@@ -156,7 +149,7 @@
                     }
                     else if (string.IsNullOrEmpty(token))
                     {
-                        Console.WriteLine("No token found in claims"); // Debug log
+                        Console.WriteLine("No token found in claims");
                     }
                 }
                 else
@@ -194,7 +187,7 @@
             {
                 Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
             }
-            initialized = false; // Reset initialization flag on error
+            initialized = false;
             StateHasChanged();
         }
     }
@@ -215,7 +208,7 @@
     {
         Console.WriteLine($"Handling price change in Notifications page: Property {notification.PropertyId}");
         notifications.Insert(0, notification);
-        InvokeAsync(StateHasChanged);  // Make sure UI updates
+        InvokeAsync(StateHasChanged);
     }
 
     private async void HandleConnectionStateChanged(bool connected)
