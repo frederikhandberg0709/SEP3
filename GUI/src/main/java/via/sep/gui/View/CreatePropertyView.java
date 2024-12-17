@@ -55,7 +55,6 @@ public class CreatePropertyView {
         setupDecimalValidation(priceField);
         setupDecimalValidation(lotSizeField);
 
-        propertyTypeField.getItems().addAll("House", "Apartment");
         propertyTypeField.valueProperty().addListener((obs, oldVal, newVal) -> updatePropertyTypeFields(newVal));
 
         createButton.setOnAction(event -> handleCreateProperty());
@@ -157,7 +156,6 @@ public class CreatePropertyView {
                                 imageService.uploadImage(propertyId, imageFile);
                             } catch (Exception e) {
                                 System.err.println("Failed to upload image: " + imageFile.getName());
-                                // Continue with other images even if one fails
                             }
                         }
                     }

@@ -13,8 +13,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="via.sep.gui.View.CreatePropertyView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="via.sep.gui.View.CreatePropertyView">
    <children>
+      <Text layoutX="237.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Property" textAlignment="CENTER" AnchorPane.topAnchor="50.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
       <TextField fx:id="addressField" layoutX="18.0" layoutY="137.0" prefHeight="26.0" prefWidth="578.0" promptText="Enter property address" AnchorPane.topAnchor="120.0" />
 
       <ComboBox fx:id="propertyTypeField" layoutX="16.0" layoutY="216.0" prefWidth="578.0" promptText="Select property type" AnchorPane.topAnchor="170.0">
@@ -35,27 +40,22 @@
       <TextArea fx:id="descriptionField" layoutX="18.0" layoutY="780.0" prefHeight="60.0" prefWidth="578.0" promptText="Property description" AnchorPane.topAnchor="520.0" />
 
       <!-- Property specific fields - visibility controlled by propertyType -->
-      <VBox fx:id="houseFields" layoutX="16.0" layoutY="850.0" spacing="10" visible="false">
+      <VBox fx:id="houseFields" layoutX="16.0" layoutY="600.0" spacing="10" visible="false">
          <TextField fx:id="lotSizeField" prefWidth="578.0" promptText="Lot size in sq m" />
          <CheckBox fx:id="hasGarageField" text="Has Garage" />
       </VBox>
 
-      <VBox fx:id="apartmentFields" layoutX="16.0" layoutY="850.0" spacing="10" visible="false">
+      <VBox fx:id="apartmentFields" layoutX="16.0" layoutY="600.0" spacing="10" visible="false">
          <TextField fx:id="floorNumberField" prefWidth="578.0" promptText="Floor number" />
          <TextField fx:id="buildingNameField" prefWidth="578.0" promptText="Building name" />
          <CheckBox fx:id="hasElevatorField" text="Has Elevator" />
          <CheckBox fx:id="hasBalconyField" text="Has Balcony" />
       </VBox>
 
-      <Button fx:id="createButton" alignment="CENTER" layoutX="277.0" layoutY="644.0" mnemonicParsing="false" onAction="#handleCreateProperty" prefHeight="28.0" prefWidth="74.0" text="Create" textFill="#050505" />
-      <Button fx:id="cancelButton" layoutX="188.0" layoutY="644.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="28.0" prefWidth="74.0" text="Cancel" />
-      <Label fx:id="errorLabel" layoutX="18.0" layoutY="990.0" textFill="RED" wrapText="true" />
-      <Text layoutX="237.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Property" textAlignment="CENTER" AnchorPane.topAnchor="50.0">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Text>
-      <Button fx:id="resetButton" alignment="CENTER_RIGHT" layoutX="371.0" layoutY="644.0" mnemonicParsing="false" onAction="#resetFields" prefHeight="28.0" prefWidth="74.0" text="Reset" textFill="#050505" />
-      <Button fx:id="uploadImagesButton" layoutX="20.0" layoutY="601.0" mnemonicParsing="false" onAction="#handleShowImageUpload" prefHeight="28.0" prefWidth="74.0" text="Images" />
+      <Button fx:id="uploadImagesButton" layoutX="20.0" layoutY="750.0" mnemonicParsing="false" onAction="#handleShowImageUpload" prefHeight="28.0" prefWidth="74.0" text="Images" />
+      <Button fx:id="createButton" alignment="CENTER" layoutX="277.0" layoutY="800.0" mnemonicParsing="false" onAction="#handleCreateProperty" prefHeight="28.0" prefWidth="74.0" text="Create" textFill="#050505" />
+      <Button fx:id="cancelButton" layoutX="188.0" layoutY="800.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="28.0" prefWidth="74.0" text="Cancel" />
+      <Label fx:id="errorLabel" layoutX="18.0" layoutY="790.0" textFill="RED" wrapText="true" />
+      <Button fx:id="resetButton" alignment="CENTER_RIGHT" layoutX="371.0" layoutY="800.0" mnemonicParsing="false" onAction="#resetFields" prefHeight="28.0" prefWidth="74.0" text="Reset" textFill="#050505" />
    </children>
 </AnchorPane>
