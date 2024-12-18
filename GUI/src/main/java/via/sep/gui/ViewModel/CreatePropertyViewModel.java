@@ -64,13 +64,6 @@ public class CreatePropertyViewModel {
                 return false;
             }
 
-            Integer bathrooms = parseInteger(numBathrooms.get(), "Number of bathrooms");
-            Integer bedrooms = parseInteger(numBedrooms.get(), "Number of bedrooms");
-            Integer floors = parseInteger(numFloors.get(), "Number of floors");
-            BigDecimal area = parseBigDecimal(floorArea.get(), "Floor area");
-            BigDecimal propertyPrice = parseBigDecimal(price.get(), "Price");
-            Integer year = parseInteger(yearBuilt.get(), "Year built");
-
             Property createdProperty = propertyService.createProperty(
                     address.get(),
                     propertyType.get(),
@@ -155,22 +148,6 @@ public class CreatePropertyViewModel {
 
     private boolean isNullOrEmpty(String value) {
         return value == null || value.trim().isEmpty();
-    }
-
-    private Integer parseInteger(String value, String fieldName) {
-        try {
-            return Integer.parseInt(value.trim());
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("Invalid " + fieldName);
-        }
-    }
-
-    private BigDecimal parseBigDecimal(String value, String fieldName) {
-        try {
-            return new BigDecimal(value.trim());
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("Invalid " + fieldName);
-        }
     }
 
     public void clearFields() {

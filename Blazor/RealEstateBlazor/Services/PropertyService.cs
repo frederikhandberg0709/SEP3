@@ -42,7 +42,6 @@ public class PropertyService : IPropertyService
             var response = await _httpClient.GetAsync($"{_baseUrl}/api/properties/{id}");
             response.EnsureSuccessStatusCode();
 
-            //var jsonString = await response.Content.ReadAsStreamAsync();
             var jsonString = await response.Content.ReadAsStringAsync();
             
             Console.WriteLine($"Raw JSON response: {jsonString}");
@@ -59,16 +58,6 @@ public class PropertyService : IPropertyService
 
             Console.WriteLine($"Deserialized property ID: {property.PropertyId}");
             return property;
-
-            /*var data = JsonDocument.Parse(jsonString);
-            var propertyType = data.RootElement.GetProperty("propertyType").GetString();
-
-            return propertyType switch
-            {
-                "House" => JsonSerializer.Deserialize<House>(jsonString),
-                "Apartment" => JsonSerializer.Deserialize<Apartment>(jsonString),
-                _ => JsonSerializer.Deserialize<Property>(jsonString)
-            } ?? throw new Exception("Property not found");*/
         }
         catch (HttpRequestException ex)
         {
