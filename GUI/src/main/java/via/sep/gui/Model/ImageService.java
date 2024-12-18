@@ -27,8 +27,6 @@ public class ImageService {
         try {
             String response = serverConnection.sendGetRequest(IMAGE_ENDPOINT + "/property/" + propertyId);
             return gson.fromJson(response, new TypeToken<List<ImageDTO>>(){}.getType());
-            //Type listType = new TypeToken<List<ImageDTO>>(){}.getType();
-            //return gson.fromJson(response, listType);
         } catch (Exception e) {
             System.err.println("Error fetching images: " + e.getMessage());
             return Collections.emptyList();

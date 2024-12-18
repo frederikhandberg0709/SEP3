@@ -1,6 +1,8 @@
 package via.sep.gui.Model;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import via.sep.gui.Model.domain.Property;
 import via.sep.gui.Model.dto.PropertyDTO;
@@ -62,7 +64,6 @@ public class PropertyService {
 
     public PropertyDTO getPropertyById(Long id) throws Exception {
         String response = serverConnection.sendGetRequest(BASE_PATH + "/" + id);
-        System.out.println("Response: " + response);
         return gson.fromJson(response, PropertyDTO.class);
     }
 
@@ -107,8 +108,21 @@ public class PropertyService {
         }
 
         String json = gson.toJson(updatedProperty);
-        String response = serverConnection.sendPutRequest(BASE_PATH + "/" + propertyId, json);
-        return gson.fromJson(response, Property.class);
+        
+        try {
+            String response = serverConnection.sendPutRequest(BASE_PATH + "/" + propertyId, json);
+
+            Gson customGson = new GsonBuilder()
+                    .setLenient()
+                    .create();
+
+            return customGson.fromJson(response, Property.class);
+        } catch (JsonSyntaxException e) {
+            PropertyDTO updatedDTO = getPropertyById(propertyId);
+            return gson.fromJson(gson.toJson(updatedDTO), Property.class);
+        } catch (Exception e) {
+            throw new Exception("Failed to update property: " + e.getMessage());
+        }
     }
 
     public void deleteProperty(Long id) throws Exception {

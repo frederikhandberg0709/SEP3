@@ -20,11 +20,9 @@ public class BookingService {
 
     public List<Booking> getAllBookings() throws Exception {
         String jsonResponse = serverConnection.sendGetRequest(BASE_PATH);
-        System.out.println("Server response for bookings: " + jsonResponse);
 
         Type listType = new TypeToken<List<Booking>>() {}.getType();
         List<Booking> bookings = gson.fromJson(jsonResponse, listType);
-        System.out.println("Parsed bookings: " + bookings.size());
         return bookings;
     }
 
