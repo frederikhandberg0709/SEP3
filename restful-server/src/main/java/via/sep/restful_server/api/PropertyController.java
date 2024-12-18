@@ -199,14 +199,14 @@ public class PropertyController {
 
                     Property updatedProperty = propertyRepository.save(property);
 
-                    if ("HOUSE".equals(property.getPropertyType())) {
+                    if ("House".equals(property.getPropertyType())) {
                         houseRepository.findByProperty_PropertyId(id).ifPresent(house -> {
                             house.setLotSize(propertyDTO.getLotSize());
                             house.setHasGarage(propertyDTO.getHasGarage());
                             house.setNumFloors(propertyDTO.getNumFloors());
                             houseRepository.save(house);
                         });
-                    } else if ("APARTMENT".equals(property.getPropertyType())) {
+                    } else if ("Apartment".equals(property.getPropertyType())) {
                         apartmentRepository.findByProperty_PropertyId(id).ifPresent(apartment -> {
                             apartment.setFloorNumber(propertyDTO.getFloorNumber());
                             apartment.setBuildingName(propertyDTO.getBuildingName());
