@@ -171,8 +171,7 @@ else if (property != null)
                 Console.WriteLine("No property ID provided");
                 return;
             }
-
-            Console.WriteLine($"Loaded property ID: {property?.PropertyId}");
+            
             property = await PropertyService.GetPropertyByIdAsync(Id);
             images = await ImageService.GetImagesForPropertyAsync(Id);
         }
