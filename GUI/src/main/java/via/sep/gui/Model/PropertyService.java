@@ -76,10 +76,10 @@ public class PropertyService {
     public Property updateProperty(Long propertyId, PropertyDTO updatedProperty) throws Exception {
         PropertyDTO existingProperty = getPropertyById(propertyId);
 
-        String propertyType = existingProperty.getPropertyType().toUpperCase();
+        String propertyType = existingProperty.getPropertyType();
         updatedProperty.setPropertyType(propertyType);
 
-        if ("HOUSE".equals(propertyType)) {
+        if ("House".equals(propertyType)) {
             if (updatedProperty.getLotSize() == null) {
                 updatedProperty.setLotSize(existingProperty.getLotSize());
             }
@@ -89,7 +89,7 @@ public class PropertyService {
             if (updatedProperty.getNumFloors() == null) {
                 updatedProperty.setNumFloors(existingProperty.getNumFloors());
             }
-        } else if ("APARTMENT".equals(propertyType)) {
+        } else if ("Apartment".equals(propertyType)) {
             if (updatedProperty.getFloorNumber() == null) {
                 updatedProperty.setFloorNumber(existingProperty.getFloorNumber());
             }
@@ -108,7 +108,7 @@ public class PropertyService {
         }
 
         String json = gson.toJson(updatedProperty);
-        
+
         try {
             String response = serverConnection.sendPutRequest(BASE_PATH + "/" + propertyId, json);
 
