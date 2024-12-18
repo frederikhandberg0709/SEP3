@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="916.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="via.sep.gui.View.EditPropertyView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1050.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="via.sep.gui.View.EditPropertyView">
    <children>
       <VBox prefWidth="660.0" spacing="15">
          <padding>
@@ -66,21 +66,14 @@
          <Button fx:id="uploadImagesButton" layoutX="20.0" layoutY="601.0" mnemonicParsing="false" onAction="#handleShowImageUpload" prefHeight="28.0" prefWidth="74.0" text="Images" />
 
          <!-- House-specific fields -->
-         <VBox fx:id="houseFields" spacing="10" visible="false">
+         <VBox fx:id="houseFields" spacing="10" visible="false" managed="false">
             <Label style="-fx-font-weight: bold" text="House-specific Details" />
             <TextField fx:id="lotSizeField" promptText="Enter lot size (sq m)" />
             <CheckBox fx:id="hasGarageField" text="Has Garage" />
          </VBox>
 
-         <!-- Buttons -->
-         <HBox alignment="CENTER_RIGHT" prefWidth="620.0" spacing="10">
-            <Button fx:id="cancelButton" onAction="#cancelButton" prefWidth="100" text="Cancel" />
-            <Button fx:id="applyChangesButton" defaultButton="true" onAction="#applyChangesButton" prefWidth="120" text="Save Changes" />
-            <Button fx:id="resetButton" onAction="#resetValues" prefWidth="100" text="Reset" />
-         </HBox>
-
          <!-- Apartment-specific fields -->
-         <VBox fx:id="apartmentFields" spacing="10" visible="false">
+         <VBox fx:id="apartmentFields" spacing="10" visible="false" managed="false">
             <Label style="-fx-font-weight: bold" text="Apartment-specific Details" />
             <TextField fx:id="floorNumberField" promptText="Enter floor number" />
             <TextField fx:id="buildingNameField" promptText="Enter building name" />
@@ -90,6 +83,13 @@
 
          <!-- Error message -->
          <Label fx:id="errorLabel" textFill="RED" wrapText="true" />
+
+         <!-- Buttons -->
+         <HBox alignment="CENTER_RIGHT" prefWidth="620.0" spacing="10">
+            <Button fx:id="cancelButton" onAction="#cancelButton" prefWidth="100" text="Cancel" />
+            <Button fx:id="applyChangesButton" defaultButton="true" onAction="#applyChangesButton" prefWidth="120" text="Save Changes" />
+            <Button fx:id="resetButton" onAction="#resetValues" prefWidth="100" text="Reset" />
+         </HBox>
       </VBox>
    </children>
 </AnchorPane>

@@ -12,17 +12,6 @@ public class Property {
     private Integer numBathrooms;
     private Integer yearBuilt;
     private String description;
-    private Integer numFloors;
-
-    // House-specific
-    private BigDecimal lotSize;
-    private Boolean hasGarage;
-
-    // Apartment-specific
-    private Integer floorNumber;
-    private String buildingName;
-    private Boolean hasElevator;
-    private Boolean hasBalcony;
 
     public boolean isHouse() {
         return "House".equalsIgnoreCase(propertyType);
@@ -58,25 +47,4 @@ public class Property {
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
-
-    public Integer getNumFloors() { return numFloors; }
-    public void setNumFloors(Integer numFloors) { this.numFloors = numFloors; }
-
-    public BigDecimal getLotSize() { return lotSize; }
-    public void setLotSize(BigDecimal lotSize) { this.lotSize = lotSize; }
-
-    public Boolean getHasGarage() { return hasGarage; }
-    public void setHasGarage(Boolean hasGarage) { this.hasGarage = hasGarage; }
-
-    public Integer getFloorNumber() { return floorNumber; }
-    public void setFloorNumber(Integer floorNumber) { this.floorNumber = floorNumber; }
-
-    public String getBuildingName() { return buildingName; }
-    public void setBuildingName(String buildingName) { this.buildingName = buildingName; }
-
-    public Boolean getHasElevator() { return hasElevator; }
-    public void setHasElevator(Boolean hasElevator) { this.hasElevator = hasElevator; }
-
-    public Boolean getHasBalcony() { return hasBalcony; }
-    public void setHasBalcony(Boolean hasBalcony) { this.hasBalcony = hasBalcony; }
 }

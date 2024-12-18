@@ -9,6 +9,9 @@ import via.sep.gui.Model.SceneManager;
 import via.sep.gui.Model.domain.Property;
 import via.sep.gui.Model.dto.PropertyDTO;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class DashboardViewModel {
     private final ObservableList<Property> propertyList = FXCollections.observableArrayList();
     private final StringProperty errorMessage = new SimpleStringProperty("");
@@ -60,7 +63,11 @@ public class DashboardViewModel {
 
     public void loadProperties() {
         try {
-            var properties = propertyService.getAllProperties();
+            List<PropertyDTO> dtos = propertyService.getAllProperties();
+            List<Property> properties = dtos.stream()
+                    .map(this::convertDTOToProperty)
+                    .collect(Collectors.toList());
+
             propertyList.clear();
             propertyList.addAll(properties);
             errorMessage.set("");
@@ -68,6 +75,21 @@ public class DashboardViewModel {
             e.printStackTrace();
             errorMessage.set("Failed to load properties: " + e.getMessage());
         }
+    }
+
+    private Property convertDTOToProperty(PropertyDTO dto) {
+        Property property = new Property();
+        property.setPropertyId(dto.getPropertyId());
+        property.setAddress(dto.getAddress());
+        property.setPropertyType(dto.getPropertyType());
+        property.setNumBathrooms(dto.getNumBathrooms());
+        property.setNumBedrooms(dto.getNumBedrooms());
+        property.setFloorArea(dto.getFloorArea());
+        property.setPrice(dto.getPrice());
+        property.setYearBuilt(dto.getYearBuilt());
+        property.setDescription(dto.getDescription());
+
+        return property;
     }
 
     public void addProperty(Property property) {
@@ -82,7 +104,15 @@ public class DashboardViewModel {
                     propertyDTO.getFloorArea(),
                     propertyDTO.getPrice(),
                     propertyDTO.getYearBuilt(),
-                    propertyDTO.getDescription()
+                    propertyDTO.getDescription(),
+                    // House-specific fields
+                    propertyDTO.getLotSize(),
+                    propertyDTO.getHasGarage(),
+                    // Apartment-specific fields
+                    propertyDTO.getFloorNumber(),
+                    propertyDTO.getBuildingName(),
+                    propertyDTO.getHasElevator(),
+                    propertyDTO.getHasBalcony()
             );
             propertyList.add(savedProperty);
             errorMessage.set("");
@@ -131,22 +161,10 @@ public class DashboardViewModel {
         dto.setPropertyType(property.getPropertyType());
         dto.setNumBathrooms(property.getNumBathrooms());
         dto.setNumBedrooms(property.getNumBedrooms());
-        dto.setNumFloors(property.getNumFloors());
         dto.setFloorArea(property.getFloorArea());
         dto.setPrice(property.getPrice());
         dto.setYearBuilt(property.getYearBuilt());
         dto.setDescription(property.getDescription());
-
-        // Set type-specific properties
-        if (property.isHouse()) {
-            dto.setLotSize(property.getLotSize());
-            dto.setHasGarage(property.getHasGarage());
-        } else if (property.isApartment()) {
-            dto.setFloorNumber(property.getFloorNumber());
-            dto.setBuildingName(property.getBuildingName());
-            dto.setHasElevator(property.getHasElevator());
-            dto.setHasBalcony(property.getHasBalcony());
-        }
 
         return dto;
     }

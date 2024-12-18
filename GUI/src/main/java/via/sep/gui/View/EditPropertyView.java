@@ -54,7 +54,6 @@ public class EditPropertyView {
         setupDecimalValidation(lotSizeField);
         setupNumericValidation(floorNumberField);
 
-        propertyTypeField.getItems().addAll("House", "Apartment");
         propertyTypeField.valueProperty().addListener((obs, oldVal, newVal) -> updatePropertyTypeFields(newVal));
 
         applyChangesButton.setOnAction(event -> saveChanges());
@@ -63,10 +62,22 @@ public class EditPropertyView {
     private void updatePropertyTypeFields(String propertyType) {
         if ("House".equals(propertyType)) {
             houseFields.setVisible(true);
+            houseFields.setManaged(true);
             apartmentFields.setVisible(false);
+            apartmentFields.setManaged(false);
+
+            floorNumberField.clear();
+            buildingNameField.clear();
+            hasElevatorField.setSelected(false);
+            hasBalconyField.setSelected(false);
         } else if ("Apartment".equals(propertyType)) {
             houseFields.setVisible(false);
+            houseFields.setManaged(false);
             apartmentFields.setVisible(true);
+            apartmentFields.setManaged(true);
+
+            lotSizeField.clear();
+            hasGarageField.setSelected(false);
         }
     }
 

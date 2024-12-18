@@ -74,13 +74,21 @@ public class CreatePropertyViewModel {
             Property createdProperty = propertyService.createProperty(
                     address.get(),
                     propertyType.get(),
-                    bathrooms,
-                    bedrooms,
-                    floors,
-                    area,
-                    propertyPrice,
-                    year,
-                    description.get()
+                    Integer.parseInt(numBathrooms.get()),
+                    Integer.parseInt(numBedrooms.get()),
+                    Integer.parseInt(numFloors.get()),
+                    new BigDecimal(floorArea.get()),
+                    new BigDecimal(price.get()),
+                    Integer.parseInt(yearBuilt.get()),
+                    description.get(),
+                    // House-specific fields
+                    "House".equals(propertyType.get()) ? new BigDecimal(lotSize.get()) : null,
+                    "House".equals(propertyType.get()) ? hasGarage.get() : null,
+                    // Apartment-specific fields
+                    "Apartment".equals(propertyType.get()) ? Integer.parseInt(floorNumber.get()) : null,
+                    "Apartment".equals(propertyType.get()) ? buildingName.get() : null,
+                    "Apartment".equals(propertyType.get()) ? hasElevator.get() : null,
+                    "Apartment".equals(propertyType.get()) ? hasBalcony.get() : null
             );
 
             if (createdProperty != null && createdProperty.getPropertyId() != null) {
@@ -129,6 +137,19 @@ public class CreatePropertyViewModel {
             errorMessage.set("Please fill in all required fields");
             return false;
         }
+
+        if ("Apartment".equals(propertyType.get())) {
+            if (isNullOrEmpty(floorNumber.get()) || isNullOrEmpty(buildingName.get())) {
+                errorMessage.set("Please fill in all apartment details");
+                return false;
+            }
+        } else if ("House".equals(propertyType.get())) {
+            if (isNullOrEmpty(lotSize.get())) {
+                errorMessage.set("Please fill in lot size for house");
+                return false;
+            }
+        }
+
         return true;
     }
 

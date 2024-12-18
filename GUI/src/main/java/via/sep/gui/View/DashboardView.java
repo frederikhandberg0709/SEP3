@@ -87,28 +87,6 @@ public class DashboardView {
                     if (property.getYearBuilt().toString().contains(lowerCaseFilter))
                         return true;
 
-                    if (property.isHouse()) {
-                        if (property.getLotSize() != null &&
-                                property.getLotSize().toString().contains(lowerCaseFilter))
-                            return true;
-                        if (property.getHasGarage() != null &&
-                                Boolean.toString(property.getHasGarage()).contains(lowerCaseFilter))
-                            return true;
-                    } else if (property.isApartment()) {
-                        if (property.getBuildingName() != null &&
-                                property.getBuildingName().toLowerCase().contains(lowerCaseFilter))
-                            return true;
-                        if (property.getFloorNumber() != null &&
-                                property.getFloorNumber().toString().contains(lowerCaseFilter))
-                            return true;
-                        if (property.getHasElevator() != null &&
-                                Boolean.toString(property.getHasElevator()).contains(lowerCaseFilter))
-                            return true;
-                        if (property.getHasBalcony() != null &&
-                                Boolean.toString(property.getHasBalcony()).contains(lowerCaseFilter))
-                            return true;
-                    }
-
                     return false;
                 });
             }

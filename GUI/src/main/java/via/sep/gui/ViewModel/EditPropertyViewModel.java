@@ -10,12 +10,13 @@ import via.sep.gui.Model.PropertyService;
 import via.sep.gui.Model.domain.Property;
 import via.sep.gui.Model.dto.PropertyDTO;
 
+import java.io.Console;
 import java.io.File;
 import java.math.BigDecimal;
 import java.util.List;
 
 public class EditPropertyViewModel {
-    private Property originalProperty;
+    private PropertyDTO originalPropertyDTO;
 
     private final StringProperty address = new SimpleStringProperty();
     private final StringProperty propertyType = new SimpleStringProperty();
@@ -72,29 +73,41 @@ public class EditPropertyViewModel {
     public StringProperty errorMessageProperty() { return errorMessage; }
 
     public void loadProperty(Property property) {
-        this.originalProperty = property;
-        this.propertyId = property.getPropertyId();
-        address.set(property.getAddress());
-        propertyType.set(property.getPropertyType());
-        numBathrooms.set(String.valueOf(property.getNumBathrooms()));
-        numBedrooms.set(String.valueOf(property.getNumBedrooms()));
-        numFloors.set(String.valueOf(property.getNumFloors()));
-        floorArea.set(property.getFloorArea().toString());
-        price.set(property.getPrice().toString());
-        yearBuilt.set(String.valueOf(property.getYearBuilt()));
-        description.set(property.getDescription());
+        try {
+            PropertyDTO propertyDTO = propertyService.getPropertyById(property.getPropertyId());
 
-        if (property.isHouse()) {
-            lotSize.set(property.getLotSize() != null ? property.getLotSize().toString() : "");
-            hasGarage.set(property.getHasGarage() != null && property.getHasGarage());
-        } else if (property.isApartment()) {
-            floorNumber.set(property.getFloorNumber() != null ? property.getFloorNumber().toString() : "");
-            buildingName.set(property.getBuildingName());
-            hasElevator.set(property.getHasElevator() != null && property.getHasElevator());
-            hasBalcony.set(property.getHasBalcony() != null && property.getHasBalcony());
+            this.originalPropertyDTO = propertyDTO;
+            this.propertyId = propertyDTO.getPropertyId();
+
+            loadFieldsFromDTO(propertyDTO);
+
+            imageUploadViewModel.loadImagesForProperty(propertyId);
+        } catch (Exception e) {
+            errorMessage.set("Failed to load property: " + e.getMessage());
         }
+    }
 
-        imageUploadViewModel.loadImagesForProperty(propertyId);
+    private void loadFieldsFromDTO(PropertyDTO dto) {
+        address.set(dto.getAddress());
+        propertyType.set(dto.getPropertyType());
+        numBathrooms.set(String.valueOf(dto.getNumBathrooms()));
+        numBedrooms.set(String.valueOf(dto.getNumBedrooms()));
+        floorArea.set(dto.getFloorArea().toString());
+        price.set(dto.getPrice().toString());
+        yearBuilt.set(String.valueOf(dto.getYearBuilt()));
+        description.set(dto.getDescription());
+
+        if ("House".equals(dto.getPropertyType())) {
+            numFloors.set(String.valueOf(dto.getNumFloors()));
+            lotSize.set(dto.getLotSize() != null ? dto.getLotSize().toString() : "");
+            hasGarage.set(dto.getHasGarage() != null && dto.getHasGarage());
+        } else if ("Apartment".equals(dto.getPropertyType())) {
+            numFloors.set(String.valueOf(dto.getNumFloors()));
+            floorNumber.set(dto.getFloorNumber() != null ? dto.getFloorNumber().toString() : "");
+            buildingName.set(dto.getBuildingName());
+            hasElevator.set(dto.getHasElevator() != null && dto.getHasElevator());
+            hasBalcony.set(dto.getHasBalcony() != null && dto.getHasBalcony());
+        }
     }
 
     public boolean saveChanges() {
@@ -118,14 +131,28 @@ public class EditPropertyViewModel {
             if ("House".equals(propertyType.get())) {
                 propertyDTO.setLotSize(new BigDecimal(lotSize.get()));
                 propertyDTO.setHasGarage(hasGarage.get());
+                propertyDTO.setNumFloors(Integer.parseInt(numFloors.get()));
+
+                propertyDTO.setFloorNumber(null);
+                propertyDTO.setBuildingName(null);
+                propertyDTO.setHasElevator(null);
+                propertyDTO.setHasBalcony(null);
             } else if ("Apartment".equals(propertyType.get())) {
                 propertyDTO.setFloorNumber(Integer.parseInt(floorNumber.get()));
                 propertyDTO.setBuildingName(buildingName.get());
                 propertyDTO.setHasElevator(hasElevator.get());
                 propertyDTO.setHasBalcony(hasBalcony.get());
+                propertyDTO.setNumFloors(Integer.parseInt(numFloors.get()));
+
+                propertyDTO.setLotSize(null);
+                propertyDTO.setHasGarage(null);
             }
 
-            //propertyService.updateProperty(propertyId, propertyDTO);
+            System.out.println("Number of floors: " + propertyDTO.getNumFloors());
+            System.out.println("Floor number: " + propertyDTO.getFloorNumber());
+            System.out.println("Property type: " + propertyType.get());
+
+            propertyService.updateProperty(propertyId, propertyDTO);
 
             List<Long> imagesToDelete = imageUploadViewModel.getImagesToDelete();
             for (Long imageId : imagesToDelete) {
@@ -174,12 +201,25 @@ public class EditPropertyViewModel {
             errorMessage.set("Please fill in all required fields");
             return false;
         }
+
+        if ("House".equals(propertyType.get())) {
+            if (isNullOrEmpty(lotSize.get())) {
+                errorMessage.set("Please fill in lot size for house");
+                return false;
+            }
+        } else if ("Apartment".equals(propertyType.get())) {
+            if (isNullOrEmpty(floorNumber.get()) || isNullOrEmpty(buildingName.get())) {
+                errorMessage.set("Please fill in all apartment details");
+                return false;
+            }
+        }
+
         return true;
     }
 
     public void resetToOriginal() {
-        if (originalProperty != null) {
-            loadProperty(originalProperty);
+        if (originalPropertyDTO != null) {
+            loadFieldsFromDTO(originalPropertyDTO);
             errorMessage.set("Values reset to original");
         }
     }

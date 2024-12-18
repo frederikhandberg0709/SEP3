@@ -21,10 +21,18 @@ public class PropertyService {
     }
 
     public Property createProperty(String address, String propertyType,
-                                   Integer numBathrooms, Integer numBedrooms,
-                                   Integer numFloors, BigDecimal floorArea,
-                                   BigDecimal price, Integer yearBuilt,
-                                   String description) throws Exception {
+            Integer numBathrooms, Integer numBedrooms,
+            Integer numFloors, BigDecimal floorArea,
+            BigDecimal price, Integer yearBuilt,
+            String description,
+            // House-specific fields
+            BigDecimal lotSize,
+            Boolean hasGarage,
+            // Apartment-specific fields
+            Integer floorNumber,
+            String buildingName,
+            Boolean hasElevator,
+            Boolean hasBalcony) throws Exception {
         PropertyDTO propertyDTO = new PropertyDTO();
 
         propertyDTO.setAddress(address);
@@ -37,23 +45,67 @@ public class PropertyService {
         propertyDTO.setYearBuilt(yearBuilt);
         propertyDTO.setDescription(description);
 
+        if ("House".equals(propertyType)) {
+            propertyDTO.setLotSize(lotSize);
+            propertyDTO.setHasGarage(hasGarage);
+        } else if ("Apartment".equals(propertyType)) {
+            propertyDTO.setFloorNumber(floorNumber);
+            propertyDTO.setBuildingName(buildingName);
+            propertyDTO.setHasElevator(hasElevator);
+            propertyDTO.setHasBalcony(hasBalcony);
+        }
+
         String json = gson.toJson(propertyDTO);
         String response = serverConnection.sendPostRequest(BASE_PATH, json);
         return gson.fromJson(response, Property.class);
     }
 
-    public Property getPropertyById(Long id) throws Exception {
+    public PropertyDTO getPropertyById(Long id) throws Exception {
         String response = serverConnection.sendGetRequest(BASE_PATH + "/" + id);
-        return gson.fromJson(response, Property.class);
+        System.out.println("Response: " + response);
+        return gson.fromJson(response, PropertyDTO.class);
     }
 
-    public List<Property> getAllProperties() throws Exception {
+    public List<PropertyDTO> getAllProperties() throws Exception {
         String response = serverConnection.sendGetRequest(BASE_PATH);
-        Type listType = new TypeToken<List<Property>>(){}.getType();
+        Type listType = new TypeToken<List<PropertyDTO>>(){}.getType();
         return gson.fromJson(response, listType);
     }
 
     public Property updateProperty(Long propertyId, PropertyDTO updatedProperty) throws Exception {
+        PropertyDTO existingProperty = getPropertyById(propertyId);
+
+        String propertyType = existingProperty.getPropertyType().toUpperCase();
+        updatedProperty.setPropertyType(propertyType);
+
+        if ("HOUSE".equals(propertyType)) {
+            if (updatedProperty.getLotSize() == null) {
+                updatedProperty.setLotSize(existingProperty.getLotSize());
+            }
+            if (updatedProperty.getHasGarage() == null) {
+                updatedProperty.setHasGarage(existingProperty.getHasGarage());
+            }
+            if (updatedProperty.getNumFloors() == null) {
+                updatedProperty.setNumFloors(existingProperty.getNumFloors());
+            }
+        } else if ("APARTMENT".equals(propertyType)) {
+            if (updatedProperty.getFloorNumber() == null) {
+                updatedProperty.setFloorNumber(existingProperty.getFloorNumber());
+            }
+            if (updatedProperty.getBuildingName() == null) {
+                updatedProperty.setBuildingName(existingProperty.getBuildingName());
+            }
+            if (updatedProperty.getHasElevator() == null) {
+                updatedProperty.setHasElevator(existingProperty.getHasElevator());
+            }
+            if (updatedProperty.getHasBalcony() == null) {
+                updatedProperty.setHasBalcony(existingProperty.getHasBalcony());
+            }
+            if (updatedProperty.getNumFloors() == null) {
+                updatedProperty.setNumFloors(existingProperty.getNumFloors());
+            }
+        }
+
         String json = gson.toJson(updatedProperty);
         String response = serverConnection.sendPutRequest(BASE_PATH + "/" + propertyId, json);
         return gson.fromJson(response, Property.class);
