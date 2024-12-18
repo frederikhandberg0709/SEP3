@@ -40,13 +40,6 @@ builder.Services.AddHttpClient<IPropertyService, PropertyService>(client =>
     client.BaseAddress = new Uri(baseUrl);
 });
 
-/*builder.Services.AddHttpClient<PropertyService>(client =>
-{
-    var baseUrl = builder.Configuration["ApiSettings:BaseUrl"]
-                  ?? throw new InvalidOperationException("API Base URL is not configured");
-    client.BaseAddress = new Uri(baseUrl);
-});*/
-
 builder.Services.AddHttpClient<IImageService, ImageService>(client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"] 
@@ -54,7 +47,6 @@ builder.Services.AddHttpClient<IImageService, ImageService>(client =>
 });
 
 builder.Services.AddScoped<IPropertyService, PropertyService>();
-//builder.Services.AddScoped<IImageService>(sp => sp.GetRequiredService<ImageService>());
 
 builder.Services.AddScoped<INotificationHub, NotificationHub>();
 builder.Services.AddScoped<IBookmarkService, BookmarkService>();

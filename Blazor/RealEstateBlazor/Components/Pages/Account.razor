@@ -1,6 +1,4 @@
 ﻿@page "/account"
-@*@using Microsoft.AspNetCore.Authorization
-@attribute [Authorize]*@
 @using Microsoft.AspNetCore.Components.Authorization
 @using RealEstateBlazor.Data.Models
 @using RealEstateBlazor.Data.DTOs
@@ -27,35 +25,10 @@
                     <img class="profile-pic" src="images/default-profile.png" alt="Profile Picture" />
                     <div class="info">
                         <h2>@context.User.Identity?.Name</h2>
-                        @*<p>Email: <span>@userEmail</span></p>
-                        <p>Phone: <span>@userPhone</span></p>*@
                         <button class="update-btn">Update Info</button>
                     </div>
                 </div>
 
-                <!-- Owned Properties Section -->
-                @*<div class="owned-properties">
-                    <h3>Owned Properties</h3>
-                    <div class="property-grid">
-                        @if (OwnedProperties.Any())
-                        {
-                            @foreach (var property in OwnedProperties)
-                            {
-                                <div class="property-box">
-                                    <img class="property-image" src="@property.Image" alt="@property.Name" />
-                                    <h4>@property.Name</h4>
-                                    <p>@property.Price</p>
-                                    <p>@property.Type</p>
-                                </div>
-                            }
-                        }
-                        else
-                        {
-                            <p>You don't own any properties yet.</p>
-                        }
-                    </div>
-                </div>*@
-                
                 <div class="wishlist">
                     <h3>Bookmarks</h3>
                     <div class="property-grid">
@@ -68,7 +41,6 @@
                             @foreach (var property in bookmarkedProperties)
                             {
                                 <div class="property-box">
-                                    @*<img class="property-image" src="@property.Image" alt="@property.Name" />*@
                                     <h4>@property.Address</h4>
                                     <p>@property.Price</p>
                                     <p>@property.PropertyType</p>
@@ -93,24 +65,6 @@
 </CascadingAuthenticationState>
 
 @code {
-    /*
-    private string userName = "Jack Mayhoff";
-    private string userEmail = "Mustard51@gmail.com";
-    private string userPhone = "+123 456 7890";
-
-    private List<Property> OwnedProperties = new()
-    {
-    new Property { Name = "Luxury Villa", Price = "$750,000", Type = "House", Image = "images/luxury-villa.jpg" },
-    new Property { Name = "Modern Apartment", Price = "$1,500/month", Type = "Apartment", Image = "images/modern-apartment.jpg" }
-    };
-
-    private List<Property> Wishlist = new()
-    {
-    new Property { Name = "Penthouse Suite", Price = "$1,200,000", Type = "Apartment", Image = "images/penthouse-suite.jpg" },
-    new Property { Name = "Retail Storefront", Price = "$3,500/month", Type = "Commercial", Image = "images/retail-storefront.jpg" }
-    };
-    */
-    
     private List<Data.Models.Property>? bookmarkedProperties;
     private bool loading;
 
@@ -153,12 +107,4 @@
             Console.WriteLine($"Error removing bookmark: {ex.Message}");
         }
     }
-
-    /*private class Property
-    {
-    public string Name { get; set; }
-    public string Price { get; set; }
-    public string Type { get; set; }
-    public string Image { get; set; }
-    }*/
 }
