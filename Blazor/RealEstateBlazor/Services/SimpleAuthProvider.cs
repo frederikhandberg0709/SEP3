@@ -19,13 +19,9 @@ public class SimpleAuthProvider : AuthenticationStateProvider
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
-        //string tokenAsJson = "";
-        
         try
         {
-            Console.WriteLine("Getting authentication state");
             var tokenAsJson = await jsRuntime.InvokeAsync<string>("sessionStorage.getItem", "jwtToken");
-            Console.WriteLine($"Token JSON from storage: {tokenAsJson}");
 
             if (string.IsNullOrEmpty(tokenAsJson))
             {
@@ -52,7 +48,6 @@ public class SimpleAuthProvider : AuthenticationStateProvider
             var identity = new ClaimsIdentity(claims, "jwt");
             var user = new ClaimsPrincipal(identity);
             
-            Console.WriteLine($"User authenticated with claims:");
             foreach (var claim in claims)
             {
                 Console.WriteLine($"- {claim.Type}: {claim.Value}");
@@ -96,8 +91,6 @@ public class SimpleAuthProvider : AuthenticationStateProvider
 
             string serializedToken = JsonSerializer.Serialize(loginResponse);
             await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "jwtToken", serializedToken);
-            
-            Console.WriteLine($"Login successful. Token: {loginResponse.Token}");
 
             var claims = new List<Claim>
             {
