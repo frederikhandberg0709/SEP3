@@ -85,7 +85,6 @@ public class ImageUploadView {
                             viewModel.removePreviewImage(image);
                         }
                     });
-                        //  viewModel.removePreviewImage(image));
 
                     VBox imageBox = new VBox(10);
                     imageBox.setAlignment(Pos.CENTER);

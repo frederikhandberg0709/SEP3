@@ -1,4 +1,4 @@
-package via.sep.gui.Model;
+package via.sep.gui.ViewModel;
 
 
 import com.google.gson.FieldNamingPolicy;
@@ -9,10 +9,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import via.sep.gui.Model.AgentService;
+import via.sep.gui.Model.BookingService;
+import via.sep.gui.Model.ImageService;
+import via.sep.gui.Model.PropertyService;
 import via.sep.gui.Model.domain.Property;
 import via.sep.gui.Server.ServerConnection;
 import via.sep.gui.View.*;
-import via.sep.gui.ViewModel.*;
 
 import java.io.IOException;
 import java.lang.reflect.Modifier;

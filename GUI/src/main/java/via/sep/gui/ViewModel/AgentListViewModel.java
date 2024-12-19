@@ -3,7 +3,6 @@ package via.sep.gui.ViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import via.sep.gui.Model.AgentService;
-import via.sep.gui.Model.SceneManager;
 import via.sep.gui.Model.domain.Agent;
 
 public class AgentListViewModel {

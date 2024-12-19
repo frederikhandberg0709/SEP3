@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import via.sep.gui.Server.ServerConnection;
 import via.sep.gui.ViewModel.LoginViewModel;
-import via.sep.gui.Model.SceneManager;
+import via.sep.gui.ViewModel.SceneManager;
 
 public class LoginView {
     @FXML

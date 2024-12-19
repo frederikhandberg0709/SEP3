@@ -72,7 +72,6 @@ public class ImageUploadViewModel {
 
     public void deleteImage(Long imageId) {
         try {
-            //imageService.deleteImage(imageId);
             imagesToDelete.add(imageId);
             images.removeIf(img -> img.getId().equals(imageId));
             statusMessage.set("Image marked for deletion");

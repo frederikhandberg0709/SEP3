@@ -7,7 +7,6 @@ import via.sep.gui.Model.SessionManager;
 import via.sep.gui.Model.UserService;
 import via.sep.gui.Model.dto.LoginResponseDTO;
 import via.sep.gui.Server.ServerConnection;
-import via.sep.gui.Model.SceneManager;
 
 public class LoginViewModel {
     private final StringProperty username = new SimpleStringProperty();

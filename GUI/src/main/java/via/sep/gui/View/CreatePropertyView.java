@@ -5,7 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import via.sep.gui.Model.ImageService;
-import via.sep.gui.Model.SceneManager;
+import via.sep.gui.ViewModel.SceneManager;
 import via.sep.gui.ViewModel.CreatePropertyViewModel;
 import via.sep.gui.ViewModel.ImageUploadViewModel;
 

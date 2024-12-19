@@ -2,14 +2,9 @@ package via.sep.gui;
 
 import com.google.gson.Gson;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import via.sep.gui.Model.SceneManager;
+import via.sep.gui.ViewModel.SceneManager;
 import via.sep.gui.Server.ServerConnection;
-import via.sep.gui.View.*;
-import via.sep.gui.ViewModel.*;
 
 public class Main extends Application {
     private ServerConnection serverConnection;

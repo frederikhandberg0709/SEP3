@@ -5,7 +5,6 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import via.sep.gui.Model.PropertyService;
-import via.sep.gui.Model.SceneManager;
 import via.sep.gui.Model.domain.Property;
 import via.sep.gui.Model.dto.PropertyDTO;
 
