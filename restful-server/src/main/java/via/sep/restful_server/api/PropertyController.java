@@ -219,17 +219,26 @@ public class PropertyController {
 
                     Map<String, Object> updatedFields = createPropertyDetails(propertyDTO);
 
-                    PropertyUpdateNotificationDTO notificationData = new PropertyUpdateNotificationDTO(
+//                    PropertyUpdateNotificationDTO notificationData = new PropertyUpdateNotificationDTO(
+//                            id.toString(),
+//                            property.getAddress(),
+//                            oldPrice,
+//                            propertyDTO.getPrice(),
+//                            property.getPropertyType(),
+//                            updatedFields,
+//                            LocalDateTime.now()
+//                    );
+
+                    PriceChangeNotificationDTO notificationPriceData = new PriceChangeNotificationDTO(
                             id.toString(),
                             property.getAddress(),
                             oldPrice,
                             propertyDTO.getPrice(),
-                            property.getPropertyType(),
-                            updatedFields,
                             LocalDateTime.now()
                     );
 
-                    notificationService.notifyPropertyUpdated(notificationData);
+                    //notificationService.notifyPropertyUpdated(notificationData);
+                    notificationService.notifyPriceChange(notificationPriceData);
 
                     return ResponseEntity.ok(updatedProperty);
                 })

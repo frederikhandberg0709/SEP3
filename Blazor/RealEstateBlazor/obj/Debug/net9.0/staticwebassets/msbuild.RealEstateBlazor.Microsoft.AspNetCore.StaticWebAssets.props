@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>fwiltovtra</Fingerprint>
-      <Integrity>7x9ZRM6DZElKUEwL87+Ha6XclFlR+GfEchzmdKM4Nv0=</Integrity>
+      <Fingerprint>37l8rbpmre</Fingerprint>
+      <Integrity>TzQUwVNDeZA2JLofXAENvECWcfK8G3dCwgxv1Sq6qZI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Account.css'))</OriginalItemSpec>
@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>da95v2qkru</Fingerprint>
-      <Integrity>u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE=</Integrity>
+      <Fingerprint>le6troilsw</Fingerprint>
+      <Integrity>rYBeR7xv6qw7FXcUSTgZCWgrOrA1bcLucsyP9dYn1ME=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app.css'))</OriginalItemSpec>
@@ -48,8 +48,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>atx8wyyehw</Fingerprint>
-      <Integrity>LuV86kjnxpZqdQrDCENHvkCRPo/gfuUBcEOAorH0YX4=</Integrity>
+      <Fingerprint>ntffg9bluo</Fingerprint>
+      <Integrity>JT5spmCAZtbHd++ezAf7V0PNGcQ8p+gWz4RHJzccbcs=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\BookAgent.css'))</OriginalItemSpec>
@@ -66,8 +66,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>6gzpyzhau4</Fingerprint>
-      <Integrity>SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0=</Integrity>
+      <Fingerprint>bpk8xqwxhs</Fingerprint>
+      <Integrity>z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\bootstrap\bootstrap.min.css'))</OriginalItemSpec>
@@ -120,8 +120,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>wvqemrflvp</Fingerprint>
-      <Integrity>nNHt++pali4/jdrr8l+E3ugJ6rqosZ3qtekJoPrPIc4=</Integrity>
+      <Fingerprint>xossy0aysi</Fingerprint>
+      <Integrity>v/2kkQgeWGadEvyG3EA/tkJba/AqZCKVUpqr5On7/pg=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Forms.css'))</OriginalItemSpec>
@@ -138,8 +138,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>8xd09dgrah</Fingerprint>
-      <Integrity>fANxbRlJXNocoZxoTUW9v+SGf+MsXiZE/u2N/e8OtJs=</Integrity>
+      <Fingerprint>12kr32rfdh</Fingerprint>
+      <Integrity>STlDhvt0XLtuVPbY4nLT+GRdfDn/DA8seTTiYX7hRcY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Home.css'))</OriginalItemSpec>
@@ -156,29 +156,29 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>xa61771fag</Fingerprint>
-      <Integrity>13YSI226kimfVnYmdGAubNKGcrSkyvCtEekhHLHmnpA=</Integrity>
+      <Fingerprint>l1gq0za6vg</Fingerprint>
+      <Integrity>uV+S456jVhtHUJ8NQd4Vwu1xZeXijae3/Q9tNy12PaM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Properties.css'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RealEstateBlazor.4p6dhc4t7j.bundle.scp.css'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RealEstateBlazor.4xfhaztmgt.bundle.scp.css'))">
       <SourceType>Package</SourceType>
       <SourceId>RealEstateBlazor</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/RealEstateBlazor</BasePath>
-      <RelativePath>RealEstateBlazor.4p6dhc4t7j.bundle.scp.css</RelativePath>
+      <RelativePath>RealEstateBlazor.4xfhaztmgt.bundle.scp.css</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>Reference</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName>ScopedCss</AssetTraitName>
       <AssetTraitValue>ProjectBundle</AssetTraitValue>
-      <Fingerprint>4p6dhc4t7j</Fingerprint>
-      <Integrity>KEQJCJpjjc1OUSKjmZyznAXDQRmaGC0Co6edMUmLGtY=</Integrity>
+      <Fingerprint>4xfhaztmgt</Fingerprint>
+      <Integrity>2HCj3gNGUzlfRL5Ds/jmMG5oEkV5tYzn246VFkBABTw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RealEstateBlazor.4p6dhc4t7j.bundle.scp.css'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RealEstateBlazor.4xfhaztmgt.bundle.scp.css'))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>
