@@ -1,4 +1,3 @@
-@page "/property/{Id}"
 @using RealEstateBlazor.Data.Models
 @using RealEstateBlazor.Data.DTOs
 @using RealEstateBlazor.Services
@@ -6,7 +5,12 @@
 @inject IPropertyService PropertyService
 @inject IImageService ImageService
 
+@page "/property/{Id}"
+@rendermode InteractiveServer
+
 <PageTitle>Property</PageTitle>
+
+<link rel="stylesheet" href="Property.css">
 
 @if (loading)
 {
@@ -24,113 +28,113 @@ else if (error != null)
 }
 else if (property != null)
 {
-    <div class="card-body">
-        @if (images != null && images.Any())
-        {
-            <div id="propertyCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    @for (int i = 0; i < images.Count(); i++)
-                    {
-                        <button type="button"
-                                data-bs-target="#propertyCarousel"
-                                data-bs-slide-to="@i"
-                                class="@(i == 0 ? "active" : "")"
-                                aria-current="@(i == 0 ? "true" : "false")"
-                                aria-label="Slide @(i + 1)"></button>
-                    }
-                </div>
-                <div class="carousel-inner">
-                    @{var first = true;}
-                    @foreach (var image in images)
-                    {
-                        <div class="carousel-item @(first ? "active" : "")">
-                            <img src="data:image/jpeg;base64,@image.Base64ImageData" 
-                                 class="d-block w-100" 
-                                 alt="Property image"
-                                 style="object-fit: cover; height: 400px;">
-                        </div>
-                        first = false;
-                    }
-                </div>
-                    
+    <div class="custom-carousel">
+        <div class="carousel-container">
+            @if (images != null && images.Any())
+            {
+                @foreach (var image in images)
+                {
+                    <div class="carousel-item @(image == images[currentIndex] ? "active" : "")">
+                        <img src="data:image/jpeg;base64,@image.Base64ImageData" alt="Property image">
+                    </div>
+                }
+                
                 @if (images.Count() > 1)
                 {
-                    <button class="carousel-control-prev" type="button" 
-                            data-bs-target="#propertyCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
+                    <button class="carousel-nav prev" @onclick="PreviousImage">
+                        <svg>
+                            <use href="#icon-arrow-left"></use>
+                        </svg>
                     </button>
-                    <button class="carousel-control-next" type="button" 
-                            data-bs-target="#propertyCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
+                    <button class="carousel-nav next" @onclick="NextImage">
+                        <svg>
+                            <use href="#icon-arrow-right"></use>
+                        </svg>
                     </button>
+
+                    <div class="carousel-indicators">
+                        @for (int i = 0; i < images.Count(); i++)
+                        {
+                            var index = i;
+                            <button class="indicator @(currentIndex == index ? "active" : "")"
+                                    @onclick="() => GoToImage(index)">
+                            </button>
+                        }
+                    </div>
                 }
-            </div>
-        }
+            }
+            else
+            {
+                <div class="carousel-container">
+                    <div class="no-images">
+                        No images available
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
         
-        <div class="row">
-            <div class="col-md-6">
-                <div>
-                    @if (property.PropertyId > 0)
-                    {
-                        <BookmarkToggle PropertyId="@property.PropertyId" OnBookmarkChanged="HandleBookmarkChanged"/>
-                    }
-                </div>
-                
-                <div class="mb-4">
-                    <h5 class="text-muted">Price</h5>
-                    <p class="lead fw-bold">@property.Price.ToString("C")</p>
-                </div>
-
-                <div class="mb-4">
-                    <h5 class="text-muted">Address</h5>
-                    <p class="lead">@property.Address</p>
-                </div>
-
-                <div class="mb-4">
-                    <h5 class="text-muted">Property Type</h5>
-                    <p>@property.PropertyType</p>
-                </div>
-
-                @if (property.PropertyType?.ToUpper() == "HOUSE")
+    <div class="row">
+        <div class="col-md-6">
+            <div>
+                @if (property.PropertyId > 0)
                 {
-                    var house = property as House;
-                    <div class="mb-4">
-                        <h5 class="text-muted">Number of Floors</h5>
-                        <p>@(house?.NumFloors ?? 1) @(house?.NumFloors == 1 ? "floor" : "floors")</p>
-                    </div>
+                    <BookmarkToggle PropertyId="@property.PropertyId" OnBookmarkChanged="HandleBookmarkChanged"/>
                 }
-                else if (property.PropertyType?.ToUpper() == "APARTMENT")
-                {
-                    var apartment = property as Apartment;
-                    <div class="mb-4">
-                        <h5 class="text-muted">Number of Floors</h5>
-                        <p>@(apartment?.NumFloors ?? 1) @(apartment?.NumFloors == 1 ? "floor" : "floors")</p>
-                    </div>
-                }
-
-                <div class="mb-4">
-                    <h5 class="text-muted">Floor Area</h5>
-                    <p>@property.FloorArea.ToString("N2") sq ft</p>
-                </div>
+            </div>
+            
+            <div class="mb-4">
+                <h5 class="text-muted">Price</h5>
+                <p class="lead fw-bold">@property.Price.ToString("C")</p>
             </div>
 
-            <div class="col-md-6">
-                <div class="mb-4">
-                    <h5 class="text-muted">Bedrooms</h5>
-                    <p>@(property.NumBedrooms ?? 0)</p>
-                </div>
+            <div class="mb-4">
+                <h5 class="text-muted">Address</h5>
+                <p class="lead">@property.Address</p>
+            </div>
 
-                <div class="mb-4">
-                    <h5 class="text-muted">Bathrooms</h5>
-                    <p>@(property.NumBathrooms ?? 0)</p>
-                </div>
+            <div class="mb-4">
+                <h5 class="text-muted">Property Type</h5>
+                <p>@property.PropertyType</p>
+            </div>
 
+            @if (property.PropertyType?.ToUpper() == "HOUSE")
+            {
+                var house = property as House;
                 <div class="mb-4">
-                    <h5 class="text-muted">Year Built</h5>
-                    <p>@(property.YearBuilt?.ToString() ?? "N/A")</p>
+                    <h5 class="text-muted">Number of Floors</h5>
+                    <p>@(house?.NumFloors ?? 1) @(house?.NumFloors == 1 ? "floor" : "floors")</p>
                 </div>
+            }
+            else if (property.PropertyType?.ToUpper() == "APARTMENT")
+            {
+                var apartment = property as Apartment;
+                <div class="mb-4">
+                    <h5 class="text-muted">Number of Floors</h5>
+                    <p>@(apartment?.NumFloors ?? 1) @(apartment?.NumFloors == 1 ? "floor" : "floors")</p>
+                </div>
+            }
+
+            <div class="mb-4">
+                <h5 class="text-muted">Floor Area</h5>
+                <p>@property.FloorArea.ToString("N2") sq ft</p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-4">
+                <h5 class="text-muted">Bedrooms</h5>
+                <p>@(property.NumBedrooms ?? 0)</p>
+            </div>
+
+            <div class="mb-4">
+                <h5 class="text-muted">Bathrooms</h5>
+                <p>@(property.NumBathrooms ?? 0)</p>
+            </div>
+
+            <div class="mb-4">
+                <h5 class="text-muted">Year Built</h5>
+                <p>@(property.YearBuilt?.ToString() ?? "N/A")</p>
             </div>
         </div>
     </div>
@@ -141,9 +145,31 @@ else if (property != null)
     public string? Id { get; set; }
 
     private Data.Models.Property? property;
-    private IEnumerable<ImageDTO>? images;
+    private List<ImageDTO>? images;
     private bool loading = true;
     private string? error;
+    private int currentIndex = 0;
+
+    private void NextImage()
+    {
+        if (images?.Count() > 0)
+        {
+            currentIndex = (currentIndex + 1) % images.Count();
+        }
+    }
+
+    private void PreviousImage()
+    {
+        if (images?.Count() > 0)
+        {
+            currentIndex = (currentIndex - 1 + images.Count()) % images.Count();
+        }
+    }
+
+    private void GoToImage(int index)
+    {
+        currentIndex = index;
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -173,7 +199,7 @@ else if (property != null)
             }
             
             property = await PropertyService.GetPropertyByIdAsync(Id);
-            images = await ImageService.GetImagesForPropertyAsync(Id);
+            images = (await ImageService.GetImagesForPropertyAsync(Id)).ToList();
         }
         catch (Exception ex)
         {
@@ -200,31 +226,3 @@ else if (property != null)
         }
     }
 }
-
-<style>
-    .carousel-item img {
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    .carousel-control-prev,
-    .carousel-control-next {
-        background-color: rgba(0,0,0,0.3);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        top: 50%;
-        transform: translateY(-50%);
-        margin: 0 20px;
-    }
-
-    .carousel-indicators {
-        margin-bottom: -1rem;
-    }
-
-    .carousel-indicators button {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-    }
-</style>

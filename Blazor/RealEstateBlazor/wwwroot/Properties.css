@@ -1,210 +1,108 @@
-﻿/*
-.account-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-}
-
-!* User Info Section *!
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.user-info .profile-pic {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ccc;
-}
-
-.user-info .info h2 {
-    margin: 5px 0;
-    font-size: 1.8rem;
-}
-
-.user-info .info p {
-    color: #555;
-}
-
-.user-info .update-btn {
-    margin-top: 10px;
-    padding: 10px 15px;
-    background: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.user-info .update-btn:hover {
-    background: #0056b3;
-}
-
-!* Property Grid *!
-.property-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); !* 3 columns for larger screens *!
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.property-box {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    text-align: center;
-    padding: 10px;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.property-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-.property-box img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
-
-.property-box h4 {
-    margin: 10px 0;
-    font-size: 1.2rem;
-    color: #333;
-}
-
-.property-box p {
-    color: #555;
-    margin: 5px 0;
-}
-
-!* Wishlist Remove Button *!
-.property-box .remove-btn {
-    padding: 8px 12px;
-    background: #ff4d4d;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.property-box .remove-btn:hover {
-    background: #d93636;
-}
-*/
-.properties-container {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+﻿.properties-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .filter-section {
-    margin: 1rem 0 2rem;
+  margin: 1rem 0 2rem;
 }
 
 .filter-section select {
-    padding: 0.5rem;
-    margin-left: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
 
 .property-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
 }
 
 .property-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.2s;
-    background: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .property-card:hover {
-    transform: translateY(-4px);
+  transform: translateY(-4px);
 }
 
 .property-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
 .no-image {
-    width: 100%;
-    height: 200px;
-    background: #f0f0f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
+  width: 100%;
+  height: 200px;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
 }
 
 .property-details {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 .property-details h2 {
-    margin: 0 0 0.5rem;
-    font-size: 1.2rem;
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
 }
 
 .price {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #2c5282;
-    margin: 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #2c5282;
+  margin: 0.5rem 0;
 }
 
 .type {
-    color: #666;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    margin: 0.5rem 0;
+  color: #666;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  margin: 0.5rem 0;
 }
 
 .property-specs {
-    display: flex;
-    gap: 1rem;
-    margin: 0.5rem 0;
-    font-size: 0.875rem;
-    color: #666;
+  display: flex;
+  gap: 1rem;
+  margin: 0.5rem 0;
+  font-size: 0.875rem;
+  color: #666;
 }
 
 .description {
-    font-size: 0.875rem;
-    margin: 0.5rem 0 0;
-    color: #444;
+  font-size: 0.875rem;
+  margin: 0.5rem 0 0;
+  color: #444;
 }
 
 .loading {
-    text-align: center;
-    padding: 2rem;
-    color: #666;
+  text-align: center;
+  padding: 2rem;
+  color: #666;
 }
 
 .error {
-    text-align: center;
-    padding: 2rem;
-    color: #e53e3e;
+  text-align: center;
+  padding: 2rem;
+  color: #e53e3e;
 }
 
 .no-results {
-    text-align: center;
-    padding: 2rem;
-    color: #666;
-    grid-column: 1 / -1;
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  grid-column: 1 / -1;
 }

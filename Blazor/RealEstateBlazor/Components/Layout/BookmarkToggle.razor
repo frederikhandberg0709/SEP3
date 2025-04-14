@@ -1,15 +1,14 @@
-@rendermode InteractiveServer
-
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IBookmarkService BookmarkService
 @using Microsoft.AspNetCore.Components.Authorization
 @using RealEstateBlazor.Services
 
+@rendermode InteractiveServer
+
 <CascadingAuthenticationState>
     <AuthorizeView>
         <Authorized>
             @{
-                Console.WriteLine($"AuthorizeView - User authenticated: {context.User.Identity?.IsAuthenticated}");
                 foreach (var claim in context.User.Claims)
                 {
                     Console.WriteLine($"Claim: {claim.Type} = {claim.Value}");
@@ -24,20 +23,27 @@
                 {
                     @if (IsBookmarked)
                     {
-                        <span>★ Bookmarked</span>
+                        <span class="btn-content">
+                            <svg>
+                                <use href="#icon-star"></use>
+                            </svg>
+                            Bookmarked
+                        </span>
                     }
                     else
                     {
-                        <span>☆ Add Bookmark</span>
+                        <span class="btn-content">
+                            <svg>
+                                <use href="#icon-star-outline"></use>
+                            </svg>
+                            Add Bookmark
+                        </span>
                     }
                 }
             </button>
         </Authorized>
 
         <NotAuthorized>
-            @{
-                Console.WriteLine("AuthorizeView - User not authorized");
-            }
             <a href="/login" class="btn btn-outline-primary">Login to Bookmark</a>
         </NotAuthorized>
     </AuthorizeView>
@@ -51,8 +57,8 @@
     private bool IsLoading { get; set; }
 
     private string ButtonClass => IsBookmarked 
-        ? "btn btn-primary" 
-        : "btn btn-outline-primary";
+        ? "btn bookmark-active" 
+        : "btn bookmark-inactive";
     
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -138,3 +144,38 @@
         }
     }
 }
+
+<style>
+    .bookmark-inactive {
+        color: white;
+        background-color: oklch(62.3% 0.214 259.815);
+    }
+
+    .bookmark-inactive:hover {
+        color: white;
+        background-color: oklch(48.8% 0.243 264.376);
+    }
+
+    .bookmark-active {
+        color: white;
+        background-color: oklch(62.7% 0.194 149.214);
+    }
+
+    .bookmark-active:hover {
+        color: white;
+        background-color: #bb2d3b;
+    }
+
+    .btn-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .btn-content svg {
+        fill: #fff;
+        height: 20px;
+        width: 20px;
+    }
+</style>

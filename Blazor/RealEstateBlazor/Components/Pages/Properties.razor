@@ -1,16 +1,16 @@
-﻿@page "/properties"
-@using RealEstateBlazor.Data.DTOs
+﻿@using RealEstateBlazor.Data.DTOs
 @using RealEstateBlazor.Data.Models
 @using RealEstateBlazor.Services
 @inject IPropertyService PropertyService
 @inject NavigationManager NavigationManager
 @inject IImageService ImageService
 
-<PageTitle>Properties</PageTitle>
-
+@page "/properties"
 @rendermode InteractiveServer
 
-<link href="Properties.css" rel="stylesheet" />
+<PageTitle>Properties</PageTitle>
+
+<link rel="stylesheet" href="Properties.css">
 
 <div class="properties-container">
     <h1>Our Properties</h1>
