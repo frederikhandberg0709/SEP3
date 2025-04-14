@@ -1,0 +1,457 @@
+@using System.Net.Http.Headers
+@using RealEstateBlazor.Data.DTOs
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthProvider
+@inject HttpClient HttpClient
+
+@page "/update-profile"
+@rendermode InteractiveServer
+
+<link rel="stylesheet" href="UpdateProfile.css">
+
+<PageTitle>Update Profile | Real Estate Plus</PageTitle>
+
+<CascadingAuthenticationState>
+    <AuthorizeView>
+        <Authorized>
+            <div class="update-profile-page">
+                <div class="update-profile-container">
+                    <div class="update-header">
+                        <h2>Update Profile Information</h2>
+                        <p>Keep your information up to date</p>
+                    </div>
+
+                    <div class="form-container">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <div class="input-wrapper">
+                                <svg>
+                                    <use href="#icon-user"></use>
+                                </svg>
+                                <input type="text" id="username" placeholder="Choose a username" @bind="updateProfile.Username"/>
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(usernameError))
+                            {
+                                <small class="text-danger">@usernameError</small>
+                            }
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fullname">Full Name</label>
+                            <div class="input-wrapper">
+                                <svg>
+                                    <use href="#icon-user-plus"></use>
+                                </svg>
+                                <input type="text" id="fullname" placeholder="Your full name" @bind="updateProfile.FullName"/>
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(fullNameError))
+                            {
+                                <small class="text-danger">@fullNameError</small>
+                            }
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <div class="input-wrapper">
+                                <svg>
+                                    <use href="#icon-mail"></use>
+                                </svg>
+                                <input type="email" id="email" placeholder="Your email address" @bind="updateProfile.Email"/>
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(emailError))
+                            {
+                                <small class="text-danger">@emailError</small>
+                            }
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <div class="input-wrapper">
+                                <svg>
+                                    <use href="#icon-phone"></use>
+                                </svg>
+                                <input type="tel" id="phone" placeholder="Your phone number" @bind="updateProfile.PhoneNumber"/>
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(phoneError))
+                            {
+                                <small class="text-danger">@phoneError</small>
+                            }
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <div class="input-wrapper textarea-wrapper">
+                                <svg>
+                                    <use href="#icon-location"></use>
+                                </svg>
+                                <textarea id="address" placeholder="Your address" @bind="updateProfile.Address"></textarea>
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(addressError))
+                            {
+                                <small class="text-danger">@addressError</small>
+                            }
+                        </div>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class="alert-error">
+                            <svg>
+                                <use href="#icon-circle-exclamation"></use>
+                            </svg>
+                            @errorMessage
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrEmpty(successMessage))
+                    {
+                        <div class="alert-success">
+                            <svg>
+                                <use href="#icon-circle-check"></use>
+                            </svg>
+                            @successMessage
+                        </div>
+                    }
+
+                    @if (requiresVerification)
+                    {
+                        <div class="verification-section">
+                            <div class="alert-warning">
+                                <svg>
+                                    <use href="#icon-triangle-exclamation"></use>
+                                </svg>
+                                <p>Changing your @(updateProfile.Username != originalUsername ? "username" : "email") requires password verification for security.</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password Verification</label>
+                                <div class="input-wrapper">
+                                    <svg>
+                                        <use href="#icon-lock"></use>
+                                    </svg>
+                                    <input type="password" id="password" placeholder="Enter your password" @bind="password"/>
+                                </div>
+                                @if (!string.IsNullOrEmpty(passwordError))
+                                {
+                                    <span class="error-message">@passwordError</span>
+                                }
+                            </div>
+                        </div>
+                    }
+                    
+                    <div class="cta-section">
+                        <button @onclick="HandleUpdateProfile" disabled="@isLoading" class="btn-update">
+                            @if (isLoading)
+                            {
+                                <span class="spinner"></span>
+                                <span>Saving...</span>
+                            }
+                            else
+                            {
+                                <span>Save</span>
+                            }
+                        </button>
+
+                        <a href="/" class="return-home">
+                            Return to Homepage
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </Authorized>
+        
+        <NotAuthorized>
+            <div class="not-authorized-container">
+                <div class="not-authorized-content">
+                    <svg class="icon warning-icon">
+                        <use href="#icon-shield-alert"></use>
+                    </svg>
+                    <h2>Access Restricted</h2>
+                    <p>Please log in to update your profile information.</p>
+                    <div class="logged-out-content-cta">
+                        <a href="/login" class="btn-login">
+                            <svg>
+                                <use href="#icon-login"></use>
+                            </svg>
+                            Sign In
+                        </a>
+                        <a href="/" class="return-home">
+                            Return to Homepage
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </NotAuthorized>
+    </AuthorizeView>
+</CascadingAuthenticationState>
+
+@code {
+    private UpdateProfileDTO updateProfile = new(){
+        Role = "USER"
+    };
+    
+    public bool isLoading = false;
+    private string errorMessage = string.Empty;
+    private string successMessage = string.Empty;
+    private string originalUsername = string.Empty;
+    private string usernameError = string.Empty;
+    private string password = string.Empty;
+    private string passwordError = string.Empty;
+    private string fullNameError = string.Empty;
+    private string originalEmail = string.Empty;
+    private string emailError = string.Empty;
+    private string phoneError = string.Empty;
+    private string addressError = string.Empty;
+    
+    private bool requiresVerification => 
+        !string.IsNullOrEmpty(updateProfile.Username) && updateProfile.Username != originalUsername ||
+        !string.IsNullOrEmpty(updateProfile.Email) && updateProfile.Email != originalEmail;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadUserProfile();
+    }
+    
+    private async Task LoadUserProfile()
+    {
+        try
+        {
+            var authState = await AuthProvider.GetAuthenticationStateAsync();
+            var user = authState.User;
+            
+            if (user.Identity.IsAuthenticated)
+            {
+                var userId = user.FindFirst("AccountId")?.Value;
+
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    var token = user.FindFirst("Token")?.Value;
+
+                    if (!string.IsNullOrEmpty(token))
+                    {
+                        var request = new HttpRequestMessage(HttpMethod.Get, $"http://localhost:8080/api/users/{userId}");
+                        request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                        var response = await HttpClient.SendAsync(request);
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var userData = await response.Content.ReadFromJsonAsync<UserResponseDTO>();
+
+                            if (userData != null)
+                            {
+                                updateProfile = new UpdateProfileDTO
+                                {
+                                    UserId = userData.AccountId,
+                                    Username = userData.Username,
+                                    FullName = userData.FullName,
+                                    Email = userData.Email,
+                                    PhoneNumber = userData.PhoneNumber,
+                                    Address = userData.Address,
+                                    Role = userData.Role
+                                };
+
+                                originalUsername = updateProfile.Username;
+                                originalEmail = updateProfile.Email;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Received null user data");
+                            }
+                        }
+                        else
+                        {
+                            var content = await response.Content.ReadAsStringAsync();
+                            errorMessage = $"Failed to load profile: {response.StatusCode} - {content}";
+                            Console.WriteLine($"Error response: {content}");
+                        }
+                    }
+                    else
+                    {
+                        errorMessage = "Authentication token not found";
+                        Console.WriteLine("Token claim not found or empty");
+                    }
+                }
+                else
+                {
+                    errorMessage = "User ID not found in authentication claims";
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+    }
+    
+    private async Task HandleUpdateProfile()
+    {
+        ClearErrors();
+        isLoading = true;
+        
+        try
+        {
+            var authState = await AuthProvider.GetAuthenticationStateAsync();
+            var user = authState.User;
+            var token = user.FindFirst("Token")?.Value;
+            
+            if (requiresVerification)
+            {
+                if (string.IsNullOrWhiteSpace(password))
+                {
+                    passwordError = "Password is required to update username or email";
+                    isLoading = false;
+                    return;
+                }
+            
+                var verificationRequest = new PasswordVerificationDTO
+                {
+                    Username = originalUsername,
+                    Password = password
+                };
+            
+                var verifyRequest = new HttpRequestMessage(HttpMethod.Post, "http://localhost:8080/api/users/verify-password");
+                verifyRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                verifyRequest.Content = JsonContent.Create(verificationRequest);
+            
+                var verifyResponse = await HttpClient.SendAsync(verifyRequest);
+            
+                if (!verifyResponse.IsSuccessStatusCode)
+                {
+                    passwordError = "Incorrect password";
+                    isLoading = false;
+                    return;
+                }
+            }
+            
+            var request = new HttpRequestMessage(HttpMethod.Patch, "http://localhost:8080/api/users");
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            request.Content = JsonContent.Create(updateProfile);
+            
+            var response = await HttpClient.SendAsync(request);
+            
+            if (response.IsSuccessStatusCode)
+            {
+                successMessage = "Profile updated successfully!";
+                
+                if (requiresVerification)
+                {
+                    originalUsername = updateProfile.Username;
+                    originalEmail = updateProfile.Email;
+                    password = string.Empty;
+                }
+            }
+            else
+            {
+                var error = await response.Content.ReadFromJsonAsync<Dictionary<string, string>>();
+                
+                if (error != null && error.TryGetValue("error", out string errorMsg))
+                {
+                    if (errorMsg.Contains("Username", StringComparison.OrdinalIgnoreCase))
+                    {
+                        usernameError = errorMsg;
+                    }
+                    else if (errorMsg.Contains("Email", StringComparison.OrdinalIgnoreCase))
+                    {
+                        emailError = errorMsg;
+                    }
+                    else if (errorMsg.Contains("Phone", StringComparison.OrdinalIgnoreCase))
+                    {
+                        phoneError = errorMsg;
+                    }
+                    else if (errorMsg.Contains("Address", StringComparison.OrdinalIgnoreCase))
+                    {
+                        addressError = errorMsg;
+                    }
+                    else if (errorMsg.Contains("Name", StringComparison.OrdinalIgnoreCase))
+                    {
+                        fullNameError = errorMsg;
+                    }
+                    else
+                    {
+                        errorMessage = errorMsg;
+                    }
+                }
+                else
+                {
+                    errorMessage = "Failed to update profile. Please try again.";
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+    
+    private bool ValidateForm()
+    {
+        bool isValid = true;
+        
+        if (string.IsNullOrWhiteSpace(updateProfile.Username))
+        {
+            usernameError = "Username is required";
+            isValid = false;
+        }
+        
+        if (string.IsNullOrWhiteSpace(updateProfile.FullName))
+        {
+            fullNameError = "Full Name is required";
+            isValid = false;
+        }
+        
+        if (string.IsNullOrWhiteSpace(updateProfile.Email))
+        {
+            emailError = "Email is required";
+            isValid = false;
+        }
+        else if (!updateProfile.Email.Contains("@") || !updateProfile.Email.Contains("."))
+        {
+            emailError = "Invalid email format";
+            isValid = false;
+        }
+        
+        if (string.IsNullOrWhiteSpace(updateProfile.PhoneNumber))
+        {
+            phoneError = "Phone Number is required";
+            isValid = false;
+        }
+        
+        if (string.IsNullOrWhiteSpace(updateProfile.Address))
+        {
+            addressError = "Address is required";
+            isValid = false;
+        }
+        
+        return isValid;
+    }
+    
+    private void ClearErrors()
+    {
+        errorMessage = string.Empty;
+        usernameError = string.Empty;
+        passwordError = string.Empty;
+        fullNameError = string.Empty;
+        emailError = string.Empty;
+        phoneError = string.Empty;
+        addressError = string.Empty;
+        successMessage = string.Empty;
+    }
+    
+    public class PasswordVerificationDTO
+    {
+        public string Username { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+    }
+}

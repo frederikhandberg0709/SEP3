@@ -1,5 +1,4 @@
-﻿@page "/account"
-@using Microsoft.AspNetCore.Components.Authorization
+﻿@using Microsoft.AspNetCore.Components.Authorization
 @using RealEstateBlazor.Data.Models
 @using RealEstateBlazor.Data.DTOs
 @using RealEstateBlazor.Services
@@ -8,13 +7,12 @@
 @inject IPropertyService PropertyService
 @attribute [StreamRendering]
 
+@page "/account"
 @rendermode InteractiveServer
 
-<head>
-    <link href="Account.css" rel="stylesheet" />
-</head>
+<link rel="stylesheet" href="Account.css">
 
-<PageTitle>Account</PageTitle>
+<PageTitle>Account | Real Estate Plus</PageTitle>
 
 <CascadingAuthenticationState>
     <AuthorizeView>
@@ -25,7 +23,7 @@
                     <img class="profile-pic" src="images/default-profile.png" alt="Profile Picture" />
                     <div class="info">
                         <h2>@context.User.Identity?.Name</h2>
-                        <button class="update-btn">Update Info</button>
+                        <button @onclick="@(() => NavigationManager.NavigateTo("/update-profile"))" class="update-btn">Update Profile</button>
                     </div>
                 </div>
 

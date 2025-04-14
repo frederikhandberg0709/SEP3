@@ -6,19 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import via.sep.restful_server.dto.LoginRequestDTO;
-import via.sep.restful_server.dto.LoginResponseDTO;
-import via.sep.restful_server.dto.RegistrationDTO;
-import via.sep.restful_server.dto.UserResponseDTO;
+import via.sep.restful_server.dto.*;
 import via.sep.restful_server.model.Login;
 import via.sep.restful_server.model.UserProfile;
 import via.sep.restful_server.repository.LoginRepository;
 import via.sep.restful_server.repository.UserProfileRepository;
 import via.sep.restful_server.service.JwtService;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -70,6 +65,64 @@ public class UserController {
                 ))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PatchMapping
+    public ResponseEntity<UserResponseDTO> partialUpdateUser(@RequestBody UserResponseDTO userDTO) {
+        return loginRepository.findById(userDTO.getAccountId())
+                .map(login -> {
+                    if (userDTO.getUsername() != null) {
+                        login.setUsername(userDTO.getUsername());
+                    }
+                    if (userDTO.getRole() != null) {
+                        login.setRole(userDTO.getRole());
+                    }
+                    Login updatedLogin = loginRepository.save(login);
+
+                    UserProfile profile = userProfileRepository.findByLogin_AccountId(updatedLogin.getAccountId()).orElseThrow();
+
+                    if (userDTO.getFullName() != null) {
+                        profile.setFullName(userDTO.getFullName());
+                    }
+                    if (userDTO.getEmail() != null) {
+                        profile.setEmail(userDTO.getEmail());
+                    }
+                    if (userDTO.getPhoneNumber() != null) {
+                        profile.setPhoneNumber(userDTO.getPhoneNumber());
+                    }
+                    if (userDTO.getAddress() != null) {
+                        profile.setAddress(userDTO.getAddress());
+                    }
+
+                    UserProfile updatedProfile = userProfileRepository.save(profile);
+
+                    return ResponseEntity.ok(new UserResponseDTO(
+                            updatedLogin.getAccountId(),
+                            updatedLogin.getUsername(),
+                            updatedProfile.getFullName(),
+                            updatedProfile.getEmail(),
+                            updatedProfile.getPhoneNumber(),
+                            updatedProfile.getAddress(),
+                            updatedLogin.getRole()
+                    ));
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/verify-password")
+    public ResponseEntity<?> verifyPassword(@RequestBody PasswordVerificationDTO request) {
+        Optional<Login> loginOptional = loginRepository.findByUsername(request.getUsername());
+
+        if (loginOptional.isPresent()) {
+            Login login = loginOptional.get();
+
+            if (passwordEncoder.matches(request.getPassword(), login.getPassword())) {
+                return ResponseEntity.ok().build();
+            }
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(Collections.singletonMap("error", "Incorrect password"));
     }
 
     @PostMapping("/login")

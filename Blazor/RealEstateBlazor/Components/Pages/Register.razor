@@ -1,5 +1,4 @@
-﻿
-@using System.ComponentModel.DataAnnotations
+﻿@using System.ComponentModel.DataAnnotations
 @using System.Net.Http
 @using System.Text
 @using System.Text.Json
@@ -150,20 +149,25 @@
         </NotAuthorized>
         
         <Authorized>
-            <div class="user-greeting">
-                <h2>Welcome, @context.User.Identity.Name</h2>
-                <p>You are already registered and logged in</p>
+            <div class="logged-in-container">
+                <div class="logged-in-content">
+                    <div class="user-greeting">
+                        <h2>Welcome, @context.User.Identity.Name</h2>
+                        <p>You are already registered and logged in</p>
+                    </div>
+
+                    <div class="logged-in-content-cta">
+                        <button @onclick="HandleLogout" class="btn-logout">
+                            <svg>
+                                <use href="#icon-logout"></use>
+                            </svg>
+                            Sign Out
+                        </button>
+
+                        <a href="/" class="return-home">Return to Homepage</a>
+                    </div>
+                </div>
             </div>
-
-            <button @onclick="HandleLogout" class="btn-logout">
-                <svg>
-                    <use href="#icon-logout" class="logout-icon"></use>
-                </svg>
-                Sign Out
-            </button>
-
-            <a href="/" class="return-home">Return to Homepage</a>
-            <button @onclick="HandleLogout">Log out</button>
         </Authorized>
     </AuthorizeView>
 </CascadingAuthenticationState>

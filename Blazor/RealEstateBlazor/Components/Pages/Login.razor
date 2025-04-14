@@ -86,8 +86,25 @@
         </NotAuthorized>
         
         <Authorized>
-            <h3>Hello, @context.User.Identity.Name</h3>
-            <button @onclick="HandleLogout">Log out</button>
+            <div class="logged-in-container">
+                <div class="logged-in-content">
+                    <div class="user-greeting">
+                        <h2>Welcome, @context.User.Identity.Name</h2>
+                        <p>You are already registered and logged in</p>
+                    </div>
+
+                    <div class="logged-in-content-cta">
+                        <button @onclick="HandleLogout" class="btn-logout">
+                            <svg>
+                                <use href="#icon-logout"></use>
+                            </svg>
+                            Sign Out
+                        </button>
+
+                        <a href="/" class="return-home">Return to Homepage</a>
+                    </div>
+                </div>
+            </div>
         </Authorized>
     </AuthorizeView>
 </CascadingAuthenticationState>
