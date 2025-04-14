@@ -1,6 +1,4 @@
-﻿@page "/login"
-
-@using Microsoft.AspNetCore.Components.Authorization
+﻿@using Microsoft.AspNetCore.Components.Authorization
 @using RealEstateBlazor.Data.Models
 @using RealEstateBlazor.Data.DTOs
 @using RealEstateBlazor.Services
@@ -9,36 +7,81 @@
 @inject AuthenticationStateProvider AuthProvider
 @using Microsoft.AspNetCore.Components.Web
 
+@page "/login"
 @rendermode InteractiveServer
 
-<head>
-    <link href="Login.css" rel="stylesheet" />
-</head>
+<link rel="stylesheet" href="Login.css">
+
+<PageTitle>Login | Real Estate Plus</PageTitle>
 
 <CascadingAuthenticationState>
     <AuthorizeView>
         <NotAuthorized>
-            <div class="login-container">
-                <h3>Please login</h3>
-                
-                <div class="form-group">
-                    <label for="username">User name:</label>
-                    <input type="text" id="username" @bind="loginForm.Username"/>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" @bind="loginForm.Password"/>
-                </div>
-                
-                <button @onclick="HandleLogin" disabled="@(isLoading || string.IsNullOrWhiteSpace(loginForm.Username) || string.IsNullOrWhiteSpace(loginForm.Password))" class="btn btn-primary">Log in</button>
-                <button @onclick="@(() => NavigationManager.NavigateTo("/register"))" class="Login-btn-link">Register new user</button>
-                @if (!string.IsNullOrEmpty(errorMessage))
-                {
-                    <div class="alert alert-danger mt-3">
-                        @errorMessage
+            <div class="login-page">
+                <div class="login-container">
+                    <div class="login-header">
+                        <h2>Welcome Back</h2>
+                        <p>Sign in to access your Real Estate Plus account</p>
                     </div>
-                }
+                    
+                    <div class="form-container">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <div class="input-wrapper">
+                                <svg>
+                                    <use href="#icon-user"></use>
+                                </svg>
+                                <input type="text" id="username" placeholder="Enter your username" @bind="loginForm.Username"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="input-wrapper">
+                                <svg>
+                                    <use href="#icon-lock"></use>
+                                </svg>
+                                <input type="password" id="password" placeholder="Enter your password" @bind="loginForm.Password"/>
+                            </div>
+                        </div>
+
+                        <div class="form-options">
+                            <div class="remember-me">
+                                <input type="checkbox" id="remember" />
+                                <label for="remember">Remember me</label>
+                            </div>
+                            <a href="/forgot-password" class="forgot-link">Forgot password?</a>
+                        </div>
+
+                        <button @onclick="HandleLogin"
+                                disabled="@(isLoading || string.IsNullOrWhiteSpace(loginForm.Username) || string.IsNullOrWhiteSpace(loginForm.Password))"
+                                class="btn-login">
+                            @if (isLoading)
+                            {
+                                <span class="spinner"></span>
+                                <span>Signing In</span>
+                            }
+                            else
+                            {
+                                <span>Sign In</span>
+                            }
+                        </button>
+                        
+                        @if (!string.IsNullOrEmpty(errorMessage))
+                        {
+                            <div class="alert-error">
+                                <svg>
+                                    <use href="#icon-circle-exclamation"></use>
+                                </svg>
+                                @errorMessage
+                            </div>
+                        }
+                        </div>
+
+                    <div class="login-footer">
+                        <p>Don't have an account? <a @onclick="@(() => NavigationManager.NavigateTo("/register"))" class="register-link">Register now</a></p>
+                    </div>
+                </div>
             </div>
         </NotAuthorized>
         

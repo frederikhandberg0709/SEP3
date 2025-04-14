@@ -1,41 +1,72 @@
 ﻿@page "/"
 
-<link href="Home.css" rel="stylesheet"/>
+<link rel="stylesheet" href="Home.css">
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Real Estate Plus | Your Trusted Partner</PageTitle>
 
 <div class="homepage">
-
-    <!-- Hero Section -->
     <div class="hero-section">
-        <h1>Welcome to Real Estate Plus</h1>
-        <p>Your Trusted Partner in Real Estate</p>
+        <div class="hero-content">
+            <h1>Find Your Perfect Home</h1>
+            <p>Your journey to the ideal property starts here</p>
+            <div class="hero-cta">
+                <a href="/properties" class="btn-primary">Browse Properties</a>
+                <a href="/contact" class="btn-secondary">Contact an Agent</a>
+            </div>
+        </div>
     </div>
 
-    <!-- Divider Line -->
-    <hr class="divider" />
+    <div class="features-section">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg>
+                    <use href="#icon-house"></use>
+                </svg>
+            </div>
+            <h3>Wide Selection</h3>
+            <p>Discover a diverse portfolio of properties tailored to your unique needs and preferences.</p>
+        </div>
 
-    <!-- Why Choose Us Section -->
-    <div class="why-choose-us">
-        <h2>Why Choose Us?</h2>
-        <ul>
-            <li><strong>Wide Selection:</strong> Discover a diverse portfolio of properties, including houses, apartments, and commercial spaces tailored to your needs.</li>
-            <li><strong>Expert Guidance:</strong> Our experienced agents provide personalized support to help you make informed decisions.</li>
-            <li><strong>Unmatched Service:</strong> We pride ourselves on delivering top-notch service to ensure a seamless buying, selling, or renting experience.</li>
-        </ul>
+        <div class="feature-card">
+            <div class="feature-icon">
+                @* <img src="images/icons/user-tie.svg" alt="Expert Icon"> *@
+                <svg>
+                    <use href="#icon-user-tie"></use>
+                </svg>
+            </div>
+            <h3>Expert Guidance</h3>
+            <p>Our experienced agents provide personalized support to help you make informed decisions.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg>
+                    <use href="#icon-award"></use>
+                </svg>
+            </div>
+            <h3>Unmatched Service</h3>
+            <p>We pride ourselves on delivering excellence for a seamless real estate experience.</p>
+        </div>
     </div>
 
-    <!-- Divider Line -->
-    <hr class="divider" />
+    <div class="testimonial-section">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonial">
+            <div class="testimonial-text">
+                "Real Estate Plus made finding our dream home an enjoyable experience. Their team was professional, responsive, and truly cared about our needs."
+            </div>
+            <div class="testimonial-author">
+                <span class="author-name">Lars Larsen</span>
+                <span class="author-title">Homeowner</span>
+            </div>
+        </div>
+    </div>
 
-    <!-- Call-to-Action Section -->
     <div class="cta-section">
-        <h2>Find Your Dream Property Today</h2>
-        <p>
-            Browse our <a href="/properties">property listings</a> or
-            <a href="/contact">contact us</a> to begin your real estate journey.
-            At Real Estate Plus, your dream home is just a click away.
-        </p>
+        <div class="cta-content">
+            <h2>Ready to Find Your Dream Property?</h2>
+            <p>Take the first step toward your new home today.</p>
+            <a href="/properties" class="btn-primary">Start Searching</a>
+        </div>
     </div>
-
 </div>

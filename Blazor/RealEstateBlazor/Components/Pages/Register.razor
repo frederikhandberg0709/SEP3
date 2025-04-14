@@ -1,5 +1,4 @@
-﻿@page "/register"
-
+﻿
 @using System.ComponentModel.DataAnnotations
 @using System.Net.Http
 @using System.Text
@@ -13,91 +12,157 @@
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthProvider
 
+@page "/register"
 @rendermode InteractiveServer
+
+<link rel="stylesheet" href="Register.css">
+
+<PageTitle>Register | Real Estate Plus</PageTitle>
 
 <CascadingAuthenticationState>
     <AuthorizeView>
         <NotAuthorized>
-            <h3>Register account</h3>
-            
-            <div class="form-group mb-3">
-                <label>Username</label>
-                <input type="text" class="form-control" @bind="registration.Username"/>
-                @if (!string.IsNullOrEmpty(usernameError))
-                {
-                    <small class="text-danger">@usernameError</small>
-                }
-            </div>
+            <div class="register-page">
+                <div class="register-container">
+                    <div class="register-header">
+                        <h2>Create Your Account</h2>
+                        <p>Join Real Estate Plus to find your dream property</p>
+                    </div>
+                    
+                    <div class="form-container">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <div class="input-wrapper">
+                                <svg>
+                                    <use href="#icon-user"></use>
+                                </svg>
+                                <input type="text" id="username" placeholder="Choose a username" @bind="registration.Username"/>
+                            </div>
+                                
+                                @if (!string.IsNullOrEmpty(usernameError))
+                            {
+                                <small class="text-danger">@usernameError</small>
+                            }
+                        </div>
 
-            <div class="form-group mb-3">
-                <label>Password</label>
-                <input type="password" class="form-control" @bind="registration.Password"/>
-                @if (!string.IsNullOrEmpty(passwordError))
-                {
-                    <small class="text-danger">@passwordError</small>
-                }
-            </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="input-wrapper">
+                                <svg>
+                                    <use href="#icon-lock"></use>
+                                </svg>
+                                <input type="password" id="password" placeholder="Create a password" @bind="registration.Password"/>
+                            </div>
+                            
+                            @if (!string.IsNullOrEmpty(passwordError))
+                            {
+                                <small class="text-danger">@passwordError</small>
+                            }
+                        </div>
 
-            <div class="form-group mb-3">
-                <label>Full Name</label>
-                <input type="text" class="form-control" @bind="registration.FullName"/>
-                @if (!string.IsNullOrEmpty(fullNameError))
-                {
-                    <small class="text-danger">@fullNameError</small>
-                }
-            </div>
+                        <div class="form-group">
+                            <label for="fullname">Full Name</label>
+                            <div class="input-wrapper">
+                                <svg>
+                                    <use href="#icon-user-plus"></use>
+                                </svg>
+                                <input type="text" id="fullname" placeholder="Your full name" @bind="registration.FullName"/>
+                            </div>
+                            
+                            @if (!string.IsNullOrEmpty(fullNameError))
+                            {
+                                <small class="text-danger">@fullNameError</small>
+                            }
+                        </div>
 
-            <div class="form-group mb-3">
-                <label>Email</label>
-                <input type="email" class="form-control" @bind="registration.Email"/>
-                @if (!string.IsNullOrEmpty(emailError))
-                {
-                    <small class="text-danger">@emailError</small>
-                }
-            </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <div class="input-wrapper">
+                                <svg>
+                                    <use href="#icon-mail"></use>
+                                </svg>
+                                <input type="email" id="email" placeholder="Your email address" @bind="registration.Email"/>
+                            </div>
+                            
+                            @if (!string.IsNullOrEmpty(emailError))
+                            {
+                                <small class="text-danger">@emailError</small>
+                            }
+                        </div>
 
-            <div class="form-group mb-3">
-                <label>Phone Number</label>
-                <input type="tel" class="form-control" @bind="registration.PhoneNumber"/>
-                @if (!string.IsNullOrEmpty(phoneError))
-                {
-                    <small class="text-danger">@phoneError</small>
-                }
-            </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <div class="input-wrapper">
+                                <svg>
+                                    <use href="#icon-phone"></use>
+                                </svg>
+                                <input type="tel" id="phone" placeholder="Your phone number" @bind="registration.PhoneNumber"/>
+                            </div>
+                                
+                            @if (!string.IsNullOrEmpty(phoneError))
+                            {
+                                <small class="text-danger">@phoneError</small>
+                            }
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <div class="input-wrapper textarea-wrapper">
+                                <svg>
+                                    <use href="#icon-location"></use>
+                                </svg>
+                                <textarea id="address" placeholder="Your address" @bind="registration.Address"></textarea>
+                            </div>
 
-            <div class="form-group mb-3">
-                <label>Address</label>
-                <textarea class="form-control" @bind="registration.Address"></textarea>
-                @if (!string.IsNullOrEmpty(addressError))
-                {
-                    <small class="text-danger">@addressError</small>
-                }
-            </div>
-
-            @if (!string.IsNullOrEmpty(errorMessage))
-            {
-                <div class="alert alert-danger">
-                    @errorMessage
+                            @if (!string.IsNullOrEmpty(addressError))
+                            {
+                                <small class="text-danger">@addressError</small>
+                            }
+                        </div>
+                    </div>
+                    
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class ="alert-error">
+                            <svg>
+                                <use href="#icon-circle-exclamation"></use>
+                            </svg>
+                            @errorMessage
+                        </div>
+                    }
+                    
+                    <button @onclick="HandleRegistration" disabled="@isLoading" class="btn-register">
+                        @if (isLoading)
+                        {
+                            <span>Creating Account...</span>
+                        }
+                        else
+                        {
+                            <span>Create Account</span>
+                        }
+                    </button>
+                    
+                    <div class="register-footer">
+                        <p>Already have an account? <a @onclick="@(() => NavigationManager.NavigateTo("/login"))" class="login-link">Sign In</a></p>
+                    </div>
                 </div>
-            }
-
-            <div class="d-flex justify-content-between align-items-center">
-                <button class="btn btn-primary" @onclick="HandleRegistration" disabled="@isLoading">
-                    @if (isLoading)
-                    {
-                        <span>Registering...</span>
-                    }
-                    else
-                    {
-                        <span>Register</span>
-                    }
-                </button>
-                <button @onclick="@(() => NavigationManager.NavigateTo("/login"))" class="btn btn-secondary">Back to Login</button>
             </div>
         </NotAuthorized>
         
         <Authorized>
-            <h3>Hello, @context.User.Identity.Name</h3>
+            <div class="user-greeting">
+                <h2>Welcome, @context.User.Identity.Name</h2>
+                <p>You are already registered and logged in</p>
+            </div>
+
+            <button @onclick="HandleLogout" class="btn-logout">
+                <svg>
+                    <use href="#icon-logout" class="logout-icon"></use>
+                </svg>
+                Sign Out
+            </button>
+
+            <a href="/" class="return-home">Return to Homepage</a>
             <button @onclick="HandleLogout">Log out</button>
         </Authorized>
     </AuthorizeView>
