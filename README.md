@@ -1,5 +1,9 @@
 # SEP3
 
+This project was developed as part of our third semester project (SEP3) for our **Software Engineering** degree.
+
+The goal of the semester project was to design and implement a distributed system consisting of at least two servers. Our team chose to build a system for a fictional real estate agency called **Real Estate Plus**.
+
 ## Project Structure
 
 The project is structured as follows:
