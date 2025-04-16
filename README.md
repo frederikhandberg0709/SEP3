@@ -4,6 +4,8 @@ This project was developed as part of our third semester project (SEP3) for our 
 
 The goal of the semester project was to design and implement a distributed system consisting of at least two servers. Our team chose to build a system for a fictional real estate agency called **Real Estate Plus**.
 
+![](.github/Blazor_Properties.jpeg)
+
 ## Project Structure
 
 The project is structured as follows:
@@ -45,11 +47,11 @@ The system was designed to meet the following functional requirements defined th
 
 ### Tech Stack
 
-- `Frontend (Web)`: Blazor
-- `Frontend (Desktop)`: JavaFX
-- `Backend (REST API)`: Java Spring Boot
-- `Real-time notifications`: SignalR
-- `Database`: PostgreSQL
+- **Frontend (Web):** Blazor
+- **Frontend (Desktop):** JavaFX
+- **Backend (REST API):** Java Spring Boot
+- **Real-time notifications:** SignalR
+- **Database:** PostgreSQL
 
 ## Project Features
 
@@ -83,12 +85,56 @@ Endpoint security is achieved by using `@PreAuthorize("hasRole('ADMIN')")` on en
 
 ### Update user information
 
+Users can update their account information by going to `Account` and clicking on `Update Profile`.
+
+![Register window on JavaFX desktop application](.github/Blazor_Update_Profile.jpeg)
+
+From this view, users can change:
+
+- Username
+- Full name
+- Email address
+- Phone number
+- Address
+
+Form fields are pre-filled with the user’s current information, making it easy to edit.
+
+As a security measure, updating sensitive data such as the username or email address requires the user to enter their password. This is to prevent unauthorized changes in case the JWT session token is compromised.
+
 ### Manage property listings
+
+Administrators can manage property listings through the JavaFX desktop application.
+
+**Create property**\
+Administrators can add new property listings by filling in the details such as price, address, property type, and upload images.
+
+**Update property information**\
+Details for existing property listings can be updated, such as changing the price.
+
+![Edit property window on JavaFX desktop application](.github/JavaFX_Edt_Property.png)
+
+Uploading additional images is also supported, as well as deleting existing images.
+
+![Window to add and remove images for an existing property listing on JavaFX desktop application](.github/JavaFX_Edt_Property_Images.png)
+
+**Delete property**\
+Administrators can remove properties that are no longer available or relevant from the system entirely.
 
 ### Manage agents
 
 ### Bookmark property listings
 
+Users can save properties as bookmarks to easily view them later.
+Bookmarked properties are displayed on the `Account` page, where users can also remove bookmarks for listings they are no longer interested in.
+
+![Account page on Blazor web application](.github/Blazor_Account.jpeg)
+
+When changes happen to bookmarked properties, the user will receive a notification.
+For example, if the price is updated. In this case, the user will receive a notification about the new price of the property.
+
 ### Book an agent
 
 ### Real-time notifications
+
+A SignalR server was implemented to handle real-time notifications.
+When a price change occurs, the Java REST server notifies the SignalR server, which then sends the real-time notification to the Blazor web application. This approach allows instant updates without requiring the user to refresh the page. SignalR was chosen for its speed and efficiency in delivering real-time notifications.

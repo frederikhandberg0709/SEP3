@@ -19,7 +19,6 @@
         <Authorized>
             <div class="account-container">
                 <div class="user-info">
-                    <img class="profile-pic" src="images/default-profile.png" alt="Profile Picture" />
                     <div class="info">
                         <h2>@context.User.Identity?.Name</h2>
                         <button @onclick="@(() => NavigationManager.NavigateTo("/update-profile"))" class="update-btn">Update Profile</button>
@@ -39,7 +38,7 @@
                             {
                                 <div class="property-box">
                                     <h4>@property.Address</h4>
-                                    <p>@property.Price</p>
+                                    <p>@property.Price.ToString("C")</p>
                                     <p>@property.PropertyType</p>
                                     <button class="remove-btn" @onclick="() => RemoveBookmark(property)">Remove</button>
                                 </div>
