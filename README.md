@@ -111,16 +111,26 @@ Administrators can add new property listings by filling in the details such as p
 **Update property information**\
 Details for existing property listings can be updated, such as changing the price.
 
-![Edit property window on JavaFX desktop application](.github/JavaFX_Edt_Property.png)
+![Edit property window on JavaFX desktop application](.github/JavaFX_Edit_Property.png)
 
 Uploading additional images is also supported, as well as deleting existing images.
 
-![Window to add and remove images for an existing property listing on JavaFX desktop application](.github/JavaFX_Edt_Property_Images.png)
+![Window to add and remove images for an existing property listing on JavaFX desktop application](.github/JavaFX_Edit_Property_Images.png)
 
 **Delete property**\
 Administrators can remove properties that are no longer available or relevant from the system entirely.
 
 ### Manage agents
+
+Administrators can manage real estate agents through the JavaFX desktop application. These agents are displayed in the Blazor web application, where customers can book them for property viewings and appointments.
+
+![Window to add and remove agents on JavaFX desktop application](.github/JavaFX_Agent_List.png)
+
+**Add new agent**\
+Administrators can register new agents by providing the name and contact information. Once an agent has been added, they become available for booking on the web application.
+
+**Remove agent**\
+Agents can be removed from the system if they are no longer active. This prevents customers from booking inactive agents.
 
 ### Bookmark property listings
 
