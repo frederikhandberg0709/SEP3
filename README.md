@@ -55,6 +55,32 @@ The system was designed to meet the following functional requirements defined th
 
 ### User authentication
 
+**Blazor web application for customers:**
+
+![Login page on Blazor web application](.github/Blazor_Login.jpeg)
+
+![Register page on Blazor web application](.github/Blazor_Register.jpeg)
+
+**JavaFX desktop application for administrators:**
+
+![Login window on JavaFX desktop application](.github/JavaFX_Login.png)
+
+![Register window on JavaFX desktop application](.github/JavaFX_Register.png)
+
+**Role-based authentication**\
+The system uses role-based authentication to manage access and permissions.
+
+There are two distinct user roles: `USER` and `ADMIN`.
+
+- Customers who register for an account through the Blazor web application are automatically assigned the `USER` role.
+- Administrators who register through the JavaFX desktop application are automatically assigned the `ADMIN` role.
+
+Administrators have additional privileges, such as managing property listings. Therefore, it is important to distinguish between administrators and customers. This ensures that customers cannot access API endpoints they are not authorized to use.
+
+**API endpoint security**\
+Access control is enforced by our Java REST API, which uses Spring Security to handle authentication and authorization.
+Endpoint security is achieved by using `@PreAuthorize("hasRole('ADMIN')")` on endpoints that only administrators are allowed to access.
+
 ### Update user information
 
 ### Manage property listings
