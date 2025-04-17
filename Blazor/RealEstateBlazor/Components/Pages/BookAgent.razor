@@ -4,6 +4,7 @@
 @using RealEstateBlazor.Data.DTOs
 @using RealEstateBlazor.Services
 @inject IBookingService BookingService
+@inject IPropertyService PropertyService
 
 @page "/book-an-agent"
 @rendermode InteractiveServer
@@ -19,11 +20,20 @@
                 <DataAnnotationsValidator />
                 <ValidationSummary />
 
+                @if (_properties.Any())
+                {
                 <div class="form-group mb-3">
-                    <label for="propertyId">Property ID</label>
-                    <InputNumber id="propertyId" @bind-Value="bookingModel.PropertyId" class="form-control" />
+                    <label for="propertyId">Property Address</label>
+                    <InputSelect id="agent" @bind-Value="bookingModel.PropertyId" class="form-control">
+                        <option value="">-- Select a property --</option>
+                        @foreach (var property in _properties)
+                        {
+                            <option value="@property.PropertyId">@property.Address</option>
+                        }
+                    </InputSelect>
                     <ValidationMessage For="@(() => bookingModel.PropertyId)" />
                 </div>
+                }
 
                 <div class="form-group mb-3">
                     <label for="date">Select Date</label>
@@ -88,6 +98,7 @@
 
 @code {
     private BookingDTO bookingModel = new();
+    private IEnumerable<Data.Models.Property> _properties = Array.Empty<Data.Models.Property>();
     private List<AgentDTO> availableAgents;
     private string errorMessage;
     private bool isLoading;
@@ -97,6 +108,7 @@
     {
         bookingModel.BookingDate = DateTime.Now;
         await LoadAvailableAgents();
+        await LoadProperties();
     }
 
     private async Task LoadAvailableAgents()
@@ -118,6 +130,24 @@
             {
                 isLoading = false;
             }
+        }
+    }
+
+    private async Task LoadProperties()
+    {
+        try
+        {
+            isLoading = true;
+            _properties = await PropertyService.GetAllPropertiesAsync();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "Failed to load properties. Please try again later.";
+            Console.WriteLine($"Error loading properties: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
         }
     }
 

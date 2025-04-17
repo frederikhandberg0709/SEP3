@@ -43,6 +43,61 @@ The system was designed to meet the following functional requirements defined th
 
 **Delete property listing:** As an administrator, I want to be able to delete property listings, so that outdated or irrelevant listings no longer appear to customers.
 
+## System Architecture
+
+This project consists of five subsystems:
+
+![High-level system architecture](.github/High_level_system_architecture.png)
+
+**PostgreSQL database**
+The PostgreSQL database is he data store for the entire system. It sores all the domain data such as:
+
+- User accounts
+- Property listings
+- Bookmarks
+- Bookings
+- Agents
+
+The database is exclusively accessed by the Spring Boot REST server.
+
+**Spring Boot REST server**
+The REST server built with Java Spring Boot is the backend of the system.
+
+It acts as the middleman and is responsible for:
+
+- Handling HTTP requests from the Blazor web app and the JavaFX desktop app.
+- Performs authentication and authorization using Spring Security.
+- Writing and fetching data from the database.
+- Notifies the SignalR server when prices of a property changes.
+
+**SignalR notification server**
+The SignalR server is responsible for handling real-time communication with the Blazor web application.
+
+**JavaFX desktop application**
+The JavaFX desktop application is made for administrators of the real estate agency who manage the backend data.
+
+The app provides a GUI to:
+
+- Create new accounts for admins.
+- Create, update, and delete property listings.
+- Manage agents.
+- View booking appointments.
+
+The JavaFX desktop app is communicating with the REST API for all HTTP requests. Administrator accounts are assigned the `ADMIN` role.
+
+**Blazor web application**
+The Blazor web application is the frontend for customers.
+
+It allows users to:
+
+- Register a new customer account.
+- Browse and bookmark property listings.
+- Book appointments with agents.
+- Receive real-time notifications when the price changes for a bookmarked property.
+- Update personal profile information.
+
+The web application communicated with the REST API for all the data operations and connects to the SignalR server to receive notifications instantly. Customers who register through the web app are assigned the `USER` role by default.
+
 ## System Implementation
 
 ### Tech Stack
@@ -143,6 +198,8 @@ When changes happen to bookmarked properties, the user will receive a notificati
 For example, if the price is updated. In this case, the user will receive a notification about the new price of the property.
 
 ### Book an agent
+
+![Book agent page on Blazor web application](.github/Blazor_Book_Agent.jpeg)
 
 ### Real-time notifications
 
