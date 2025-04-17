@@ -33,7 +33,7 @@ The system was designed to meet the following functional requirements defined th
 
 **Real-time notifications:** As a customer, I want to receive notifications about my bookmarked properties, so that I can stay updated on any changes to them.
 
-**Search in admin dashboard:** As an administrator, I want to be able to search for property listings, so that I can quickly find the specific property I’m looking for.
+**Search in admin dashboard:** As an administrator, I want to be able to search for property listings, so that I can quickly find the specific property I'm looking for.
 
 **Create property listing:** As an administrator, I want to be able to create new property listings, so that they can be added to the website.
 
@@ -47,16 +47,16 @@ The system was designed to meet the following functional requirements defined th
 
 This project consists of five subsystems:
 
-![High-level system architecture](.github/High_level_system_architecture.png)
+![High-level system architecture diagram](.github/High_level_system_architecture.png)
 
 **PostgreSQL database**
 The PostgreSQL database is he data store for the entire system. It sores all the domain data such as:
 
-- User accounts
-- Property listings
-- Bookmarks
-- Bookings
-- Agents
+- User accounts.
+- Property listings.
+- Bookmarks.
+- Bookings.
+- Agents.
 
 The database is exclusively accessed by the Spring Boot REST server.
 
